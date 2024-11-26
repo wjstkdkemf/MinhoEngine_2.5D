@@ -7,7 +7,7 @@
 
 //#pragma comment (lib, "..\\x64\\Debug\\MinhoEngine_Window.lib");
 
-Application app;
+min::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -31,7 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
-    app.test();
+    
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOWS, szWindowClass, MAX_LOADSTRING);
@@ -61,6 +61,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
         }
         else {
             //메세지가 없을 경우 여기서 처리된다.
+            application.Run();
         }
     }
 
@@ -125,6 +126,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
 
+   application.Initialize(hWnd);
+
    if (!hWnd)
    {
       return FALSE;
@@ -174,29 +177,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // 화면 출력에 필요한 모든 경우는 WINAPI에서는 DC를 통해 작업을 진행함.
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));// 파랑배경 브러쉬 생성
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush); // 파랑 브러쉬 DC에 선택 후 기존 흰색 브러쉬 반환
+            //hbrush brush = createsolidbrush(rgb(0, 0, 255));// 파랑배경 브러쉬 생성
+            //hbrush oldbrush = (hbrush)selectobject(hdc, brush); // 파랑 브러쉬 dc에 선택 후 기존 흰색 브러쉬 반환
 
-            Rectangle(hdc, 100, 100, 200, 200);
+            //rectangle(hdc, 100, 100, 200, 200);
 
-            SelectObject(hdc, oldBrush); // 다시 흰색 배경 브러쉬로 변환
-            DeleteObject(brush); // 파랑 브러쉬 삭제
+            //selectobject(hdc, oldbrush); // 다시 흰색 배경 브러쉬로 변환
+            //deleteobject(brush); // 파랑 브러쉬 삭제
 
-            HPEN redpen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-            HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
+            //hpen redpen = createpen(ps_solid, 2, rgb(255, 0, 0));
+            //hpen oldpen = (hpen)selectobject(hdc, redpen);
 
-            Ellipse(hdc, 200, 200, 300, 300);
+            //ellipse(hdc, 200, 200, 300, 300);
 
-            SelectObject(hdc, oldpen);
-            DeleteObject(redpen);
+            //selectobject(hdc, oldpen);
+            //deleteobject(redpen);
 
-            HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-            oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
+            //hbrush graybrush = (hbrush)getstockobject(gray_brush);
+            //oldbrush = (hbrush)selectobject(hdc, graybrush);
 
-            Rectangle(hdc, 400, 400, 500, 500);
+            //rectangle(hdc, 400, 400, 500, 500);
 
-            SelectObject(hdc, oldBrush);// 다시 흰색 배경 브러쉬로 변환
-            DeleteObject(grayBrush);
+            //selectobject(hdc, oldbrush);// 다시 흰색 배경 브러쉬로 변환
+            //deleteobject(graybrush);
 
             EndPaint(hWnd, &ps);
         }
