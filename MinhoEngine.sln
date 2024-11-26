@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Windows", "Editor_Windows\Editor_Windows.vcxproj", "{64118986-3A2B-4D3C-BEBC-A45A32729AF6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinhoEngine_Window", "MinhoEngine_Window\MinhoEngine_Window.vcxproj", "{67FB9378-8902-4EE3-BFA6-EC779D283E72}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinhoEngine_SOURCE", "MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems", "{73D9E8B1-27B6-4FB8-A6B8-B4CE2D679D11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,11 +25,23 @@ Global
 		{64118986-3A2B-4D3C-BEBC-A45A32729AF6}.Release|x64.Build.0 = Release|x64
 		{64118986-3A2B-4D3C-BEBC-A45A32729AF6}.Release|x86.ActiveCfg = Release|Win32
 		{64118986-3A2B-4D3C-BEBC-A45A32729AF6}.Release|x86.Build.0 = Release|Win32
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Debug|x64.ActiveCfg = Debug|x64
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Debug|x64.Build.0 = Debug|x64
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Debug|x86.ActiveCfg = Debug|Win32
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Debug|x86.Build.0 = Debug|Win32
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Release|x64.ActiveCfg = Release|x64
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Release|x64.Build.0 = Release|x64
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Release|x86.ActiveCfg = Release|Win32
+		{67FB9378-8902-4EE3-BFA6-EC779D283E72}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {91D5EF52-DDD3-4F90-8B43-1F958272D7E2}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems*{67fb9378-8902-4ee3-bfa6-ec779d283e72}*SharedItemsImports = 4
+		MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems*{73d9e8b1-27b6-4fb8-a6b8-b4ce2d679d11}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

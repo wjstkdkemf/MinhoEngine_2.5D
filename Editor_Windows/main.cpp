@@ -3,6 +3,11 @@
 
 #include "framework.h"
 #include "Editor_Windows.h"
+#include "..\\MinhoEngine_SOURCE\\MinApplication.h"
+
+//#pragma comment (lib, "..\\x64\\Debug\\MinhoEngine_Window.lib");
+
+Application app;
 
 #define MAX_LOADSTRING 100
 
@@ -17,16 +22,16 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 핸들
+                     _In_opt_ HINSTANCE hPrevInstance, // 바로앞에 실행된 프로그램의 인스턴스 핸들 -> 지금은 잘 사용되지 않음
+                     _In_ LPWSTR    lpCmdLine,// 명령행 으로 입력된 프로그램 인수
+                     _In_ int       nCmdShow) // 프로그램이 실행될 형태
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
-
+    app.test();
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOWS, szWindowClass, MAX_LOADSTRING);
@@ -42,15 +47,35 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+    while (true) {
+        if(PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))//꺼낸뒤 삭제하도록 PM_REMOVE가 필요함
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT) {
+                break;
+            }
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else {
+            //메세지가 없을 경우 여기서 처리된다.
         }
     }
+
+
+    // 기본 메시지 루프입니다:
+    // PeekMessage : 메세지큐에 메세지 유무에 상관없이 함수가 리턴된다. -> 리턴 값이 true인 경우 메세지가 있고 false인경우는 없다.
+    //while (GetMessage(&msg, nullptr, 0, 0))// -> 프로세스에서 발생한 메세지를 메세지 큐에서 가져오는 함수.
+    //{
+    //    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+    //    {
+    //        TranslateMessage(&msg);
+    //        DispatchMessage(&msg);
+    //    }
+    //}
+
 
     return (int) msg.wParam;
 }
@@ -98,7 +123,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
 
    if (!hWnd)
    {
@@ -145,8 +170,34 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
+            HDC hdc = BeginPaint(hWnd, &ps);// -> DC란 화면 출력에 필요한 모든 정보를 가지는 데이터 구조체이다.(GDI모듈에 의해 관리됨)
+            // 화면 출력에 필요한 모든 경우는 WINAPI에서는 DC를 통해 작업을 진행함.
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));// 파랑배경 브러쉬 생성
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush); // 파랑 브러쉬 DC에 선택 후 기존 흰색 브러쉬 반환
+
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            SelectObject(hdc, oldBrush); // 다시 흰색 배경 브러쉬로 변환
+            DeleteObject(brush); // 파랑 브러쉬 삭제
+
+            HPEN redpen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+            HPEN oldpen = (HPEN)SelectObject(hdc, redpen);
+
+            Ellipse(hdc, 200, 200, 300, 300);
+
+            SelectObject(hdc, oldpen);
+            DeleteObject(redpen);
+
+            HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+            oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
+
+            Rectangle(hdc, 400, 400, 500, 500);
+
+            SelectObject(hdc, oldBrush);// 다시 흰색 배경 브러쉬로 변환
+            DeleteObject(grayBrush);
+
             EndPaint(hWnd, &ps);
         }
         break;
