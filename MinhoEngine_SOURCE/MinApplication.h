@@ -1,5 +1,5 @@
 #pragma once
-#include "commoninclude.h"
+#include "minGameObject.h"
 
 namespace min{
 	class Application
@@ -19,9 +19,7 @@ namespace min{
 		HWND mHwnd;
 		HDC mHdc;
 
-		float mSpeed;
-		float mX;
-		float mY;
+		GameObject mPlayer[2];
 	};
 }
 
