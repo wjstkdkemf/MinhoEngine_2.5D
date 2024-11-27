@@ -20,6 +20,7 @@ namespace min {
 	private:
 		float mX;
 		float mY;
+		float speed;
 	};
 }
 

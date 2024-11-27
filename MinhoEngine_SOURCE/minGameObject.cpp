@@ -1,10 +1,12 @@
 #include "minGameObject.h"
 #include "mininput.h"
+#include "MinTime.h"
 
 namespace min {
 	GameObject::GameObject()
 		:mX(0.0f)
 		,mY(0.0f)
+		,speed(100.0f)
 	{
 
 	}
@@ -16,16 +18,16 @@ namespace min {
 	void GameObject::Update()
 	{
 		if (input::GetKey(eKeyCode::A)) {
-			mX -= 0.01f;
+			mX -= speed * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::D)) {
-			mX += 0.01f;
+			mX += speed * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::W)) {
-			mY -= 0.01f;
+			mY -= speed * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::S)) {
-			mY += 0.01f;
+			mY += speed * Time::DeltaTime();
 		}
 	}
 	void GameObject::LateUpdate()
@@ -50,16 +52,16 @@ namespace min {
 	void GameObject::Update_2()
 	{
 		if (input::GetKey(eKeyCode::Left)) {
-			mX -= 0.01f;
+			mX -= speed * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Right)) {
-			mX += 0.01f;
+			mX += speed * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Up)) {
-			mY -= 0.01f;
+			mY -= speed * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Down)) {
-			mY += 0.01f;
+			mY += speed * Time::DeltaTime();
 		}
 	}
 	void GameObject::LateUpdate_2()
