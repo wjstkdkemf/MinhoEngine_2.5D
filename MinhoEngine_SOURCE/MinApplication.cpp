@@ -1,4 +1,5 @@
 #include "MinApplication.h"
+#include "Mininput.h"
 
 
 namespace min {
@@ -15,6 +16,8 @@ namespace min {
 	{
 		mHwnd = hwnd;
 		mHdc = GetDC(mHwnd);
+
+		input::Initailize();
 	}
 	void Application::Run()
 	{
@@ -24,6 +27,8 @@ namespace min {
 	}
 	void Application::Update()
 	{
+		input::Update();
+
 		mPlayer[0].Update();
 		mPlayer[1].Update_2();
 	}
