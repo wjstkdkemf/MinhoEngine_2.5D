@@ -26,6 +26,7 @@ namespace min{
 		UINT mHeight;
 
 		GameObject mPlayer[2];
+		static std::vector<GameObject>Bullet;
 	};
 }
 

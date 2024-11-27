@@ -3,12 +3,13 @@
 #include "MinTime.h"
 
 namespace min {
+	bool GameObject::shot = false;
+
 	GameObject::GameObject()
 		:mX(0.0f)
 		,mY(0.0f)
 		,speed(100.0f)
 	{
-
 	}
 	GameObject::~GameObject()
 	{
@@ -29,6 +30,9 @@ namespace min {
 		if (input::GetKey(eKeyCode::S)) {
 			mY += speed * Time::DeltaTime();
 		}
+		if (input::GetKey(eKeyCode::Space)) {
+			shot = true;
+		}
 	}
 	void GameObject::LateUpdate()
 	{
@@ -47,6 +51,20 @@ namespace min {
 
 		SelectObject(mHdc, oldBrush);
 		DeleteObject(brush);
+	}
+	void GameObject::ShotRander(HDC mHdc)
+	{
+		mY -= speed * Time::DeltaTime();
+		//Ellipse(mHdc,100 + mX, 10 + mY - speed*Time::DeltaTime(), 10 + mX, 20 + mY - speed * Time::DeltaTime());
+
+		Ellipse(mHdc, 145 + mX, 90 + mY, 155 + mX, 100 + mY);
+
+	}
+
+
+	void GameObject::SetShot(bool button)
+	{
+		shot = button;
 	}
 
 	void GameObject::Update_2()

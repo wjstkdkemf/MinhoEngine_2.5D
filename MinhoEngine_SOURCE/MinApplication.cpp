@@ -4,6 +4,8 @@
 
 
 namespace min {
+	std::vector<GameObject> Application::Bullet = {};
+
 	Application::Application()
 		: mHwnd(nullptr)
 		, mHdc(nullptr)
@@ -58,7 +60,11 @@ namespace min {
 		Time::Update();
 
 		mPlayer[0].Update();
-		mPlayer[1].Update_2();
+		//	mPlayer[1].Update_2();
+		if (mPlayer->GetShot()) {
+			Bullet.push_back(mPlayer[0]);
+			mPlayer->SetShot(false);
+		}
 	}
 	void Application::LateUpdate()
 	{
@@ -69,7 +75,12 @@ namespace min {
 
 		Time::Render(mBackHdc);
 		mPlayer[0].Rander(mBackHdc);
-		mPlayer[1].Rander_2(mBackHdc);
+		std::for_each(Bullet.begin(), Bullet.end(), [&](GameObject& bullets)
+		{
+			bullets.ShotRander(mBackHdc);
+		});
+
+	//	mPlayer[1].Rander_2(mBackHdc);
 
 		BitBlt(mHdc, 0, 0, mWidth, mHeight
 		, mBackHdc, 0, 0, SRCCOPY);
