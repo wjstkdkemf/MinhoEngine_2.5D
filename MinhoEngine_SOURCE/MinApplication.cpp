@@ -1,10 +1,11 @@
 #include "MinApplication.h"
 #include "Mininput.h"
 #include "MinTime.h"
+#include "MinSceneManager.h"
 
 
 namespace min {
-	std::vector<GameObject> Application::Bullet = {};
+	//std::vector<GameObject> Application::Bullet = {};
 
 	Application::Application()
 		: mHwnd(nullptr)
@@ -13,6 +14,7 @@ namespace min {
 		, mHeight(0)
 		, mBackHdc(NULL)
 		, mBackBitmap(NULL)
+		, Bullet{}
 	{
 	}
 	Application::~Application()
@@ -21,32 +23,11 @@ namespace min {
 	}
 	void Application::Initialize(HWND hwnd, UINT width, UINT height)
 	{
-		mHwnd = hwnd;
-		mHdc = GetDC(mHwnd);
+		adjustWindowRect(hwnd, width, height);
+		createBuffer(width, height);
+		initializeEtc();
 
-
-		RECT rect = {0, 0, width, height};
-		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-		mWidth = rect.right - rect.left;
-		mHeight = rect.bottom - rect.top;
-
-		SetWindowPos(mHwnd, nullptr, 0, 0
-			, rect.right - rect.left
-			, rect.bottom - rect.top, 0);
-		ShowWindow(mHwnd, true);
-
-		mBackBitmap = CreateCompatibleBitmap(mHdc
-			, mWidth
-			, mHeight);
-
-		mBackHdc = CreateCompatibleDC(mHdc);
-
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
-		DeleteObject(oldBitmap);
-
-		input::Initailize();
-		Time::Initailize();
+		SceneManager::Initialize();
 	}
 	void Application::Run()
 	{
@@ -58,11 +39,13 @@ namespace min {
 	{
 		input::Update();
 		Time::Update();
+		SceneManager::Update();//mPlayer[0].Update(); 대체
 
 		mPlayer[0].Update();
 		//	mPlayer[1].Update_2();
 		if (mPlayer->GetShot()) {
-			Bullet.push_back(mPlayer[0]);
+			GameObject* gameobj = new GameObject(mPlayer[0]);
+			Bullet.push_back(gameobj);
 			mPlayer->SetShot(false);
 		}
 	}
@@ -71,18 +54,62 @@ namespace min {
 	}
 	void Application::Rander()
 	{
-		Rectangle(mBackHdc, 0, 0, 1920, 1080);
+		clearRenderTarget();
 
 		Time::Render(mBackHdc);
+		SceneManager::Rander(mBackHdc);// 아래 대체할예정
 		mPlayer[0].Rander(mBackHdc);
-		std::for_each(Bullet.begin(), Bullet.end(), [&](GameObject& bullets)
+		
+		for(size_t i=0; i< Bullet.size(); i++){
+			Bullet[i]->ShotRander(mBackHdc);
+		}
+		/*std::for_each(bullet.begin(), bullet.end(), [&](gameobject bullets)
 		{
-			bullets.ShotRander(mBackHdc);
-		});
-
+			bullets.shotrander(mbackhdc);
+		});*/
 	//	mPlayer[1].Rander_2(mBackHdc);
 
-		BitBlt(mHdc, 0, 0, mWidth, mHeight
-		, mBackHdc, 0, 0, SRCCOPY);
+		copyRenderTarget(mBackHdc, mHdc);
+	}
+	void Application::clearRenderTarget()
+	{
+		Rectangle(mBackHdc, -1, -1, 1921, 1081);
+	}
+	void Application::copyRenderTarget(HDC source, HDC dest)
+	{
+		BitBlt(dest, 0, 0, mWidth, mHeight
+			, source, 0, 0, SRCCOPY);
+	}
+	void Application::adjustWindowRect(HWND hwnd, UINT width, UINT height)
+	{
+		mHwnd = hwnd;
+		mHdc = GetDC(mHwnd);
+
+		RECT rect = { 0, 0, width, height };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		mWidth = rect.right - rect.left;
+		mHeight = rect.bottom - rect.top;
+
+		SetWindowPos(hwnd, nullptr, 0, 0
+			, mWidth
+			, mHeight, 0);
+		ShowWindow(hwnd, true);
+	}
+	void Application::createBuffer(UINT width, UINT height)
+	{
+		mBackBitmap = CreateCompatibleBitmap(mHdc
+			, width
+			, height);
+
+		mBackHdc = CreateCompatibleDC(mHdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+		DeleteObject(oldBitmap);
+	}
+	void Application::initializeEtc()
+	{
+		input::Initailize();
+		Time::Initailize();
 	}
 }

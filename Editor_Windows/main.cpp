@@ -4,8 +4,9 @@
 #include "framework.h"
 #include "Editor_Windows.h"
 #include "..\\MinhoEngine_SOURCE\\MinApplication.h"
+#include "..\\MinhoEngine_Window\\MinLodeScene.h"
 
-//#pragma comment (lib, "..\\x64\\Debug\\MinhoEngine_Window.lib");
+#pragma comment (lib, "..\\x64\\Debug\\MinhoEngine_Window.lib")
 
 min::Application application;
 
@@ -136,6 +137,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   //load Scenes
+   min::LoadScenes();
 
    return TRUE;
 }

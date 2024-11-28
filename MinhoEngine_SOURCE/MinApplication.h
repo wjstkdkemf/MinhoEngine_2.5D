@@ -12,8 +12,14 @@ namespace min{
 
 		void Update();
 		void LateUpdate();
-
 		void Rander();
+
+	private:
+		void clearRenderTarget();
+		void copyRenderTarget(HDC source, HDC dest);
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void createBuffer(UINT width, UINT height);
+		void initializeEtc();
 
 	private:
 		HWND mHwnd;
@@ -26,7 +32,8 @@ namespace min{
 		UINT mHeight;
 
 		GameObject mPlayer[2];
-		static std::vector<GameObject>Bullet;
+		std::vector<GameObject*> Bullet;
+		//std::vector<Scene*> mScenes;
 	};
 }
 

@@ -16,14 +16,20 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTime.cpp" />
   </ItemGroup>
 </Project>

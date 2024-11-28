@@ -128,6 +128,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MinLodeScene.h" />
+    <ClInclude Include="MinPlayScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MinPlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
