@@ -33,6 +33,13 @@ namespace min {
 		if (input::GetKey(eKeyCode::Space)) {
 			shot = true;
 		}
+		if (GetShot()) {
+			GameObject* gameobj = new GameObject();
+			gameobj->mX = mX;
+			gameobj->mY = mY;
+			Bullet.push_back(gameobj);
+			SetShot(false);
+		}
 	}
 	void GameObject::LateUpdate()
 	{
@@ -51,6 +58,9 @@ namespace min {
 
 		SelectObject(mHdc, oldBrush);
 		DeleteObject(brush);
+		for (size_t i = 0; i < Bullet.size(); i++) {
+			Bullet[i]->ShotRander(mHdc);
+		}
 	}
 	void GameObject::ShotRander(HDC mHdc)
 	{

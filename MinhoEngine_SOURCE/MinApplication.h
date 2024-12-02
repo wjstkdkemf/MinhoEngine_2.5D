@@ -32,7 +32,7 @@ namespace min{
 		UINT mHeight;
 
 		GameObject mPlayer[2];
-		std::vector<GameObject*> Bullet;
+		//std::vector<GameObject*> Bullet;
 		//std::vector<Scene*> mScenes;
 	};
 }

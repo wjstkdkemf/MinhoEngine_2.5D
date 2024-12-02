@@ -25,6 +25,7 @@ namespace min {
 		float mY;
 		float speed;
 		static bool shot;
+		std::vector<GameObject*> Bullet;
 	};
 }
 

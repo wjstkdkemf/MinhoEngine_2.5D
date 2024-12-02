@@ -14,7 +14,6 @@ namespace min {
 		, mHeight(0)
 		, mBackHdc(NULL)
 		, mBackBitmap(NULL)
-		, Bullet{}
 	{
 	}
 	Application::~Application()
@@ -41,13 +40,13 @@ namespace min {
 		Time::Update();
 		SceneManager::Update();//mPlayer[0].Update(); 대체
 
-		mPlayer[0].Update();
+		//mPlayer[0].Update();
 		//	mPlayer[1].Update_2();
-		if (mPlayer->GetShot()) {
+		/*if (mPlayer->GetShot()) {
 			GameObject* gameobj = new GameObject(mPlayer[0]);
 			Bullet.push_back(gameobj);
 			mPlayer->SetShot(false);
-		}
+		}*/
 	}
 	void Application::LateUpdate()
 	{
@@ -58,11 +57,8 @@ namespace min {
 
 		Time::Render(mBackHdc);
 		SceneManager::Rander(mBackHdc);// 아래 대체할예정
-		mPlayer[0].Rander(mBackHdc);
+		//mPlayer[0].Rander(mBackHdc);
 		
-		for(size_t i=0; i< Bullet.size(); i++){
-			Bullet[i]->ShotRander(mBackHdc);
-		}
 		/*std::for_each(bullet.begin(), bullet.end(), [&](gameobject bullets)
 		{
 			bullets.shotrander(mbackhdc);
