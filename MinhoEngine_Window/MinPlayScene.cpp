@@ -14,40 +14,16 @@ namespace min {
 	void PlayScene::initialize()
 	{
 		{
-			Player* p1 = new Player();
-			Transform* tr = p1->AddComponent<Transform>();
-			tr->SetPos(800, 450);
+			Player* bg = new Player();
+			Transform* tr = bg->AddComponent<Transform>();
+			tr->SetPos(Vector2(0, 0));
 
 			tr->SetName(L"TR");
 
-			SpriteRenderer* sr = p1->AddComponent<SpriteRenderer>();
+			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 			sr->SetName(L"SR");
-
-			AddGameObject(p1);
-		}
-		{
-			Player* p1 = new Player();
-			Transform* tr = p1->AddComponent<Transform>();
-			tr->SetPos(300, 450);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr = p1->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(p1);
-		}
-		{
-			Player* p1 = new Player();
-			Transform* tr = p1->AddComponent<Transform>();
-			tr->SetPos(100, 650);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr = p1->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(p1);
+			sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
+			AddGameObject(bg);
 		}
 	}
 	void PlayScene::Update()

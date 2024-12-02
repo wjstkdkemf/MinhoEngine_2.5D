@@ -4,6 +4,7 @@
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <ItemsProjectGuid>{73d9e8b1-27b6-4fb8-a6b8-b4ce2d679d11}</ItemsProjectGuid>
+    <ItemsRootNamespace>min</ItemsRootNamespace>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -20,6 +21,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h" />
@@ -32,6 +36,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp" />
