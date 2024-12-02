@@ -38,15 +38,7 @@ namespace min {
 	{
 		input::Update();
 		Time::Update();
-		SceneManager::Update();//mPlayer[0].Update(); 대체
-
-		//mPlayer[0].Update();
-		//	mPlayer[1].Update_2();
-		/*if (mPlayer->GetShot()) {
-			GameObject* gameobj = new GameObject(mPlayer[0]);
-			Bullet.push_back(gameobj);
-			mPlayer->SetShot(false);
-		}*/
+		SceneManager::Update();
 	}
 	void Application::LateUpdate()
 	{
@@ -56,14 +48,7 @@ namespace min {
 		clearRenderTarget();
 
 		Time::Render(mBackHdc);
-		SceneManager::Rander(mBackHdc);// 아래 대체할예정
-		//mPlayer[0].Rander(mBackHdc);
-		
-		/*std::for_each(bullet.begin(), bullet.end(), [&](gameobject bullets)
-		{
-			bullets.shotrander(mbackhdc);
-		});*/
-	//	mPlayer[1].Rander_2(mBackHdc);
+		SceneManager::Rander(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);
 	}

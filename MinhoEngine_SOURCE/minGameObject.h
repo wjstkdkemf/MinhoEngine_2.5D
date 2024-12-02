@@ -1,5 +1,6 @@
 #pragma once
 #include "commoninclude.h"
+#include "MinComponent.h"
 
 namespace min {
 	class GameObject
@@ -7,25 +8,43 @@ namespace min {
 	public:
 		GameObject();
 		~GameObject();
+		
+		virtual void Initialize();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void Rander(HDC hdc);
+		//virtual void ShotRander(HDC mHdc);
 
-		void Update();
-		void LateUpdate();
-		void Rander(HDC mHdc);
-		void ShotRander(HDC mHdc);
+		/*bool GetShot() { return shot; };
+		void SetShot(bool button);*/
 
-		void Update_2();
-		void LateUpdate_2();
-		void Rander_2(HDC mHdc);
+		template <typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+			comp->SetOwner(this);
+			mComponents.push_back(comp);
 
-		bool GetShot() { return shot; };
-		void SetShot(bool button);
+			return comp;
+		}
+
+		template <typename T>
+		T* GetComponent()
+		{
+			T* component = nullptr;
+			for (Component* comp : mComponents) {
+				component = dynamic_cast<T*>(comp);
+				if (component)
+					break;
+			}
+
+			return component;
+		}
 
 	private:
-		float mX;
-		float mY;
-		float speed;
-		static bool shot;
-		std::vector<GameObject*> Bullet;
+		//static bool shot;
+		std::vector<Component*> mComponents;
+		//std::vector<GameObject*> Bullet;
 	};
 }
 

@@ -4,14 +4,23 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{38d14b22-202f-47e8-a713-1a07e90aeae9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{ff9fb87c-ea5a-4af9-b8d7-5db8785d0ca6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MinLodeScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="MinPlayScene.h" />
+    <ClInclude Include="MinPlayScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MinPlayer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MinPlayScene.cpp" />
+    <ClCompile Include="MinPlayScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MinPlayer.cpp" />
   </ItemGroup>
 </Project>
