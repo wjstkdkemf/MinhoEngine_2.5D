@@ -3,38 +3,64 @@
 
 namespace min {
 	Scene::Scene()
-		: mGameObjects {}
+		: mLayer {}
 	{
+		mLayer.resize((UINT)eLayerType::Max);
+		for (size_t i = 0; i < (UINT)eLayerType::Max; i++) {
+			mLayer[i] = new Layer();
+		}
 	}
 	Scene::~Scene()
 	{
 	}
-	void Scene::initialize()
+	void Scene::Initialize()
 	{
+		for (Layer* layer : mLayer) {
+			if (layer == nullptr)
+				continue;
+
+			layer->Initialize();
+		}
 	}
 	void Scene::Update()
 	{
 		/*for (size_t i = 0; i < mGameObjects.size(); i++) {
 			mGameObjects[i]->Update();
 		}*/
-		for (GameObject* gameObj : mGameObjects) {
-			gameObj->Update();
+		for (Layer* layer : mLayer) {
+			if (layer == nullptr)
+				continue;
+
+			layer->Update();
 		}
 	}
 	void Scene::LateUpdate()
 	{
-		for (GameObject* gameObj : mGameObjects) {
-			gameObj->LateUpdate();
+		for (Layer* layer : mLayer) {
+			if (layer == nullptr)
+				continue;
+
+			layer->LateUpdate();
 		}
 	}
 	void Scene::Rander(HDC hdc)
 	{
-		for (GameObject* gameObj : mGameObjects) {
-			gameObj->Rander(hdc);
+		for (Layer* layer : mLayer) {
+			if (layer == nullptr)
+				continue;
+
+			layer->Rander(hdc);
 		}
 	}
-	void Scene::AddGameObject(GameObject* gameObject)
+	void Scene::AddGameObject(GameObject* gameObj,const eLayerType type)
 	{
-		mGameObjects.push_back(gameObject);
+		mLayer[(UINT)type]->AddGameObject(gameObj);
+	}
+
+	void Scene::OnEnter()
+	{
+	}
+	void Scene::OnExit()
+	{
 	}
 }

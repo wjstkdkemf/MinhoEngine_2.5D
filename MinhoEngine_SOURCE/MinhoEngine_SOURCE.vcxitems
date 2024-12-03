@@ -19,8 +19,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
@@ -36,6 +38,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />

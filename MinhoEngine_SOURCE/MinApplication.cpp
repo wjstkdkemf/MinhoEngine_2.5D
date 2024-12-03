@@ -42,6 +42,7 @@ namespace min {
 	}
 	void Application::LateUpdate()
 	{
+		SceneManager::LateUpdate();
 	}
 	void Application::Rander()
 	{

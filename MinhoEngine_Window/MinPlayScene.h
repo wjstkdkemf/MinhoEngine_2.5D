@@ -8,13 +8,16 @@ namespace min {
 		PlayScene();
 		~PlayScene();
 
-		void initialize() override;
+		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Rander(HDC hdc) override;
 
-	private:
+		void OnEnter() override;
+		void OnExit() override;
 
+	private:
+		class Player* bg;
 	};
 }
 

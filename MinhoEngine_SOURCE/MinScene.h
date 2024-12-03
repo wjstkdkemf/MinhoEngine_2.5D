@@ -1,6 +1,7 @@
 #pragma once
 #include "minEntity.h"
 #include "minGameObject.h"
+#include "MinLayer.h"
 
 namespace min {
 	class Scene : public Entity
@@ -9,15 +10,18 @@ namespace min {
 		Scene();
 		~Scene();
 
-		virtual void initialize();
+		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Rander(HDC hdc);
 
-		void AddGameObject(GameObject* gameObject);
+		virtual void OnEnter();
+		virtual void OnExit();
+
+		void AddGameObject(GameObject* gameObj,const eLayerType type);
 
 	private :
-		std::vector<GameObject*> mGameObjects;
+		std::vector<Layer*> mLayer;
 	};
 }
 

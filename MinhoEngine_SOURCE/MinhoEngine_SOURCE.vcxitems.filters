@@ -10,11 +10,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
@@ -32,6 +30,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp">
+      <Filter>Layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -46,11 +53,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -68,6 +73,18 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h">
+      <Filter>Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -87,6 +104,9 @@
     </Filter>
     <Filter Include="Helpers">
       <UniqueIdentifier>{49882a4f-d82a-4b46-bd2b-830f0f4a9537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Layer">
+      <UniqueIdentifier>{d517d8eb-8cd8-43c9-b598-6b0121c4e9f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

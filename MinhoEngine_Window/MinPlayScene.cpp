@@ -3,7 +3,8 @@
 #include "MinPlayer.h"
 #include "MinTransform.h"
 #include "MinSpriteRenderer.h"
-//#include "Mininput.h"
+#include "Mininput.h"
+#include "MinSceneManager.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -12,10 +13,10 @@ namespace min {
 	PlayScene::~PlayScene()
 	{
 	}
-	void PlayScene::initialize()
+	void PlayScene::Initialize()
 	{
 		{
-			Player* bg = new Player();
+			bg = new Player();
 			Transform* tr = bg->AddComponent<Transform>();
 			tr->SetPos(Vector2(0, 0));
 
@@ -24,7 +25,7 @@ namespace min {
 			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 			sr->SetName(L"SR");
 			sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
-			AddGameObject(bg);
+			AddGameObject(bg, eLayerType::BackGround);
 		}
 	}
 	void PlayScene::Update()
@@ -34,9 +35,23 @@ namespace min {
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
+
+		if (input::GetKey(eKeyCode::N)) {
+			SceneManager::LoadScene(L"TitleScene");
+		}
 	}
 	void PlayScene::Rander(HDC hdc)
 	{
 		Scene::Rander(hdc);
+		wchar_t str[50] = L"Play Scene";
+		TextOut(hdc, 0, 0, str, 10);
+	}
+	void PlayScene::OnEnter()
+	{
+	}
+	void PlayScene::OnExit()
+	{
+		Transform* tr = bg->GetComponent<Transform>();
+		tr->SetPos(Vector2(0, 0));
 	}
 }

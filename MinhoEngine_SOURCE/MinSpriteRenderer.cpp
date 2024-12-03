@@ -40,12 +40,12 @@ namespace min {
 		Gdiplus::Graphics graphcis(hdc);
 		graphcis.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
 
-		std::wstring SceneName = SceneManager::GetSceneName();
-		wchar_t str[50] = L"";
-		swprintf_s(str, 50, L"Scene Name : %s", SceneName.c_str());//swprintf_s(str,50,L"Time : %f", time)
-		int len = wcsnlen_s(str, 50);
+		//std::wstring SceneName = SceneManager::GetSceneName();
+		//wchar_t str[50] = L"";
+		//swprintf_s(str, 50, L"Scene Name : %s", SceneName.c_str());//swprintf_s(str,50,L"Time : %f", time)
+		//int len = wcsnlen_s(str, 50);
 
-		TextOut(hdc, 0, 0, str, len);
+		//TextOut(hdc, 0, 0, str, len);
 
 		//Rectangle(hdc, 100 + tr->GetX(), 100 + tr->GetY(), 200 + tr->GetX(), 200 + tr->GetY());
 

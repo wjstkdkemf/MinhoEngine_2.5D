@@ -8,10 +8,13 @@ namespace min {
 		TitleScene();
 		~TitleScene();
 
-		void initialize() override;
+		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Rander(HDC hdc) override;
+
+		void OnEnter() override;
+		void OnExit() override;
 
 	private:
 
