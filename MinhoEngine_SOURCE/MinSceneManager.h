@@ -26,6 +26,7 @@ namespace min {
 
 			return iter->second;
 		}
+		static std::wstring GetSceneName() { return mActiveScene->GetName(); }
 
 		static void Initialize();
 		static void Update();

@@ -16,11 +16,17 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="MinPlayer.h" />
+    <ClInclude Include="MinTitleScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinPlayScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="MinPlayer.cpp" />
+    <ClCompile Include="MinTitleScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

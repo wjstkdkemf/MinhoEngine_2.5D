@@ -1,18 +1,17 @@
-#include "MinPlayScene.h"
+#include "MinTitleScene.h"
 #include "..\\MinhoEngine_SOURCE\\minGameObject.h"
 #include "MinPlayer.h"
 #include "MinTransform.h"
 #include "MinSpriteRenderer.h"
-//#include "Mininput.h"
 
 namespace min {
-	PlayScene::PlayScene()
+	TitleScene::TitleScene()
 	{
 	}
-	PlayScene::~PlayScene()
+	TitleScene::~TitleScene()
 	{
 	}
-	void PlayScene::initialize()
+	void TitleScene::initialize()
 	{
 		{
 			Player* bg = new Player();
@@ -23,19 +22,19 @@ namespace min {
 
 			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 			sr->SetName(L"SR");
-			sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
+			sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\background.png");
 			AddGameObject(bg);
 		}
 	}
-	void PlayScene::Update()
+	void TitleScene::Update()
 	{
 		Scene::Update();
 	}
-	void PlayScene::LateUpdate()
+	void TitleScene::LateUpdate()
 	{
 		Scene::LateUpdate();
 	}
-	void PlayScene::Rander(HDC hdc)
+	void TitleScene::Rander(HDC hdc)
 	{
 		Scene::Rander(hdc);
 	}
