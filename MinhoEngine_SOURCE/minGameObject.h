@@ -43,6 +43,9 @@ namespace min {
 		}
 
 	private:
+		void initializeTransform();
+
+	private:
 		//static bool shot;
 		std::vector<Component*> mComponents;
 		//std::vector<GameObject*> Bullet;

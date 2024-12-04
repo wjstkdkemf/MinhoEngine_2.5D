@@ -5,10 +5,7 @@ namespace min {
 	Scene::Scene()
 		: mLayer {}
 	{
-		mLayer.resize((UINT)eLayerType::Max);
-		for (size_t i = 0; i < (UINT)eLayerType::Max; i++) {
-			mLayer[i] = new Layer();
-		}
+		CreateLayers();
 	}
 	Scene::~Scene()
 	{
@@ -52,9 +49,17 @@ namespace min {
 			layer->Rander(hdc);
 		}
 	}
-	void Scene::AddGameObject(GameObject* gameObj,const eLayerType type)
+	void Scene::AddGameObject(GameObject* gameObj,const enums::eLayerType type)
 	{
 		mLayer[(UINT)type]->AddGameObject(gameObj);
+	}
+
+	void Scene::CreateLayers()
+	{
+		mLayer.resize((UINT)enums::eLayerType::Max);
+		for (size_t i = 0; i < (UINT)enums::eLayerType::Max; i++) {
+			mLayer[i] = new Layer();
+		}
 	}
 
 	void Scene::OnEnter()

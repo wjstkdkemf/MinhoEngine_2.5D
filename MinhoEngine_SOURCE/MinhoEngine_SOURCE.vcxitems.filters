@@ -85,6 +85,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinObject.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

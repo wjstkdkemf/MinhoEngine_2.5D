@@ -1,12 +1,14 @@
 #include "minGameObject.h"
 #include "mininput.h"
 #include "MinTime.h"
+#include "MinTransform.h"
 
 namespace min {
 	//bool GameObject::shot = false;
 
 	GameObject::GameObject()
 	{
+		initializeTransform();
 	}
 	GameObject::~GameObject()
 	{
@@ -68,6 +70,10 @@ namespace min {
 				comp->Rander(hdc);
 			}
 		}
+	}
+	void GameObject::initializeTransform()
+	{
+		AddComponent<Transform>();
 	}
 	/*void GameObject::ShotRander(HDC mHdc)
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace min {
+namespace min::enums {
 	enum class eLayerType {
 		None,
 		BackGround,

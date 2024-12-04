@@ -5,6 +5,7 @@
 #include "MinSpriteRenderer.h"
 #include "Mininput.h"
 #include "MinSceneManager.h"
+#include "MinObject.h"
 
 namespace min {
 	TitleScene::TitleScene()
@@ -16,16 +17,26 @@ namespace min {
 	void TitleScene::Initialize()
 	{
 		{
-			Player* bg = new Player();
-			Transform* tr = bg->AddComponent<Transform>();
-			tr->SetPos(Vector2(0, 0));
+			//Player* bg = new Player();
+			//Transform* tr = bg->AddComponent<Transform>();
+			//tr->SetPosition(Vector2(0, 0));
 
-			tr->SetName(L"TR");
+			//tr->SetName(L"TR");
 
-			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-			sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\background.png");
-			AddGameObject(bg, eLayerType::BackGround);
+			//SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+			//sr->SetName(L"SR");
+			//sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\background.png");
+			//AddGameObject(bg, enums::eLayerType::BackGround);
+
+			fg = object::Instantiate<Player>(enums::eLayerType::FrontGround, Vector2(300.0f, 300.0f));
+			SpriteRenderer* sr = fg->AddComponent<SpriteRenderer>();
+			sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
+
+			bg = object::Instantiate<Player>(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
+			sr = bg->AddComponent<SpriteRenderer>();
+			sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
+
+
 		}
 	}
 	void TitleScene::Update()

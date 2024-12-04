@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScene.h" />
