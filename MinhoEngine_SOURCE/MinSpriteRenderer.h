@@ -1,6 +1,7 @@
 #pragma once
 #include "MinEntity.h"
 #include "MinComponent.h"
+#include "MinTexture.h"
 
 namespace min {
 	class SpriteRenderer : public Component
@@ -12,13 +13,14 @@ namespace min {
 		void Update() override;
 		void LateUpdate() override;
 		void Rander(HDC hdc) override;
-	
-		void ImageLoad(const std::wstring& path);
+
+		void SetTexture(graphcis::Texture* texture) { mTexture = texture; }
+		void SetSize(math::Vector2 size) { mSize = size; }
+
 
 	private:
-		Gdiplus::Image* mImage;
-		UINT mWidth;
-		UINT mHeight;
+		graphcis::Texture* mTexture;
+		math::Vector2 mSize;
 	};
 }
 

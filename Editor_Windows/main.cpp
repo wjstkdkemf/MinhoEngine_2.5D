@@ -5,6 +5,7 @@
 #include "Editor_Windows.h"
 #include "..\\MinhoEngine_SOURCE\\MinApplication.h"
 #include "..\\MinhoEngine_Window\\MinLodeScene.h"
+#include "..\\MinhoEngine_Window\\MinLoadResources.h"
 
 #pragma comment (lib, "..\\x64\\Debug\\MinhoEngine_Window.lib")
 
@@ -144,6 +145,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
    //load Scenes
+   min::LoadResources();
    min::LoadScenes();
 
    return TRUE;

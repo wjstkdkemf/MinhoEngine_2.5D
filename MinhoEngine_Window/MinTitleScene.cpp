@@ -6,6 +6,8 @@
 #include "Mininput.h"
 #include "MinSceneManager.h"
 #include "MinObject.h"
+#include "MinTexture.h"
+#include "MinResources.h"
 
 namespace min {
 	TitleScene::TitleScene()
@@ -30,13 +32,19 @@ namespace min {
 
 			fg = object::Instantiate<Player>(enums::eLayerType::FrontGround, Vector2(300.0f, 300.0f));
 			SpriteRenderer* sr = fg->AddComponent<SpriteRenderer>();
-			sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
+			//sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
+
+			graphcis::Texture* bgf = Resources::Find<graphcis::Texture>(L"BG_2");
+			sr->SetTexture(bgf);
 
 			bg = object::Instantiate<Player>(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
 			sr = bg->AddComponent<SpriteRenderer>();
-			sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
+			//sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
 
+			bgf = Resources::Find<graphcis::Texture>(L"TN");
+			sr->SetTexture(bgf);
 
+			Scene::Initialize();
 		}
 	}
 	void TitleScene::Update()

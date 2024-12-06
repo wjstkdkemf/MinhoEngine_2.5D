@@ -3,13 +3,13 @@
 #include "MinTransform.h"
 #include "MinMath.h"
 #include "MinSceneManager.h"
-
+#include "MinTexture.h"
 
 namespace min {
 	SpriteRenderer::SpriteRenderer()
-		:mImage(nullptr)
-		,mWidth(0)
-		,mHeight(0)
+		: Component()
+		, mTexture(nullptr)
+		, mSize(Vector2::One)
 	{
 	}
 	SpriteRenderer::~SpriteRenderer()
@@ -26,6 +26,25 @@ namespace min {
 	}
 	void SpriteRenderer::Rander(HDC hdc)
 	{
+		if (mTexture ==nullptr)
+			assert(false);
+
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+
+		if (mTexture->GetTextureType() == graphcis::Texture::eTextureType::Bmp)
+		{
+			TransparentBlt(hdc, pos.x, pos.y
+				, mTexture->GetWidth() * mSize.x, mTexture->GetHeight() * mSize.y
+				, mTexture->GetHdc(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight()
+				, RGB(255, 0, 255));
+		}
+		else if (mTexture->GetTextureType() == graphcis::Texture::eTextureType::Png)
+		{
+			Gdiplus::Graphics graphcis(hdc);
+			graphcis.DrawImage(mTexture->GetImage()
+				, Gdiplus::Rect(pos.x, pos.y, mTexture->GetWidth() * mSize.x, mTexture->GetHeight() * mSize.y));
+		}
 		//HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));// 파랑배경 브러쉬 생성
 		//HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush); // 파랑 브러쉬 DC에 선택 후 기존 흰색 브러쉬 반환
 
@@ -33,12 +52,6 @@ namespace min {
 		//HPEN oldpen = (HPEN)SelectObject(mHdc, redpen);
 
 		//SelectObject(mHdc, oldpen);*/
-
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-
-		Gdiplus::Graphics graphcis(hdc);
-		graphcis.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
 
 		//std::wstring SceneName = SceneManager::GetSceneName();
 		//wchar_t str[50] = L"";
@@ -54,11 +67,12 @@ namespace min {
 		////for (size_t i = 0; i < Bullet.size(); i++) {
 		////	Bullet[i]->ShotRander(mHdc);
 		////}
+
+		/*Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+
+		Gdiplus::Graphics graphcis(hdc);
+		graphcis.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));*/
 	}
-	void SpriteRenderer::ImageLoad(const std::wstring& path)
-	{
-		mImage = Gdiplus::Image::FromFile(path.c_str());
-		mWidth = mImage->GetWidth();
-		mHeight = mImage->GetHeight();
-	}
+
 }

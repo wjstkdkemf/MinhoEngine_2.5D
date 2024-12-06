@@ -19,6 +19,7 @@
     <ClInclude Include="MinTitleScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="MinLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinPlayScene.cpp">

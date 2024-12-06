@@ -28,8 +28,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp">
       <Filter>Component</Filter>
     </ClCompile>
@@ -38,6 +36,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp">
       <Filter>Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinTexture.cpp">
+      <Filter>Resource\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,8 +78,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h">
       <Filter>Component</Filter>
     </ClInclude>
@@ -87,6 +92,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinObject.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinTexture.h">
+      <Filter>Resource\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +124,15 @@
     </Filter>
     <Filter Include="Layer">
       <UniqueIdentifier>{d517d8eb-8cd8-43c9-b598-6b0121c4e9f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{75af2ed0-86c7-417a-95b2-f07cbab13bb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{a1d66860-5c3e-45c0-a95b-1bf12bff232e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\AudioClip">
+      <UniqueIdentifier>{38120d34-e85f-4e2e-839f-f971151d7f2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

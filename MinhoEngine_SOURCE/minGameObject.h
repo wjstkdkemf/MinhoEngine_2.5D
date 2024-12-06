@@ -13,10 +13,6 @@ namespace min {
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Rander(HDC hdc);
-		//virtual void ShotRander(HDC mHdc);
-
-		/*bool GetShot() { return shot; };
-		void SetShot(bool button);*/
 
 		template <typename T>
 		T* AddComponent()
@@ -46,9 +42,7 @@ namespace min {
 		void initializeTransform();
 
 	private:
-		//static bool shot;
 		std::vector<Component*> mComponents;
-		//std::vector<GameObject*> Bullet;
 	};
 }
 

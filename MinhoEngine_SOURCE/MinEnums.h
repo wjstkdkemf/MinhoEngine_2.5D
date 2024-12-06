@@ -6,6 +6,14 @@ namespace min::enums {
 		BackGround,
 		FrontGround,
 		Player,
-		Max = 16,
+		Max = 6,
+	};
+
+	enum class eResourceType 
+	{
+		Texture,
+		AudioClip,
+		Prefab,
+		End,
 	};
 }

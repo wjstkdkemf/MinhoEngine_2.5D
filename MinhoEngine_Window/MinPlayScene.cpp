@@ -6,6 +6,8 @@
 #include "Mininput.h"
 #include "MinSceneManager.h"
 #include "MinObject.h"
+#include "MinTexture.h"
+#include "MinResources.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -27,9 +29,16 @@ namespace min {
 			//sr->SetName(L"SR");
 			//sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
 			//AddGameObject(bg, enums::eLayerType::BackGround);
-			bg = object::Instantiate<Player>(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
+			bg = object::Instantiate<Player>
+				(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
 			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-  			sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
+
+			graphcis::Texture* bg = Resources::Find<graphcis::Texture>(L"BG");
+			sr->SetTexture(bg);
+
+			/*graphcis::Texture* tex = new graphcis::Texture();
+			tex->Load(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");*/
+			Scene::Initialize();
 		}
 	}
 	void PlayScene::Update()
