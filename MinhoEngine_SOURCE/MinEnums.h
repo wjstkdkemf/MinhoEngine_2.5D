@@ -1,7 +1,18 @@
 #pragma once
 
-namespace min::enums {
-	enum class eLayerType {
+namespace min::enums 
+{
+	enum class eComponentType
+	{
+		Transform,
+		SpriteRenderer,
+		Script,
+		End,
+	};
+
+
+	enum class eLayerType
+	{
 		None,
 		BackGround,
 		FrontGround,

@@ -1,6 +1,7 @@
 #include "MinTransform.h"
 
 min::Transform::Transform()
+	: Component(enums::eComponentType::Transform)
 {
 }
 

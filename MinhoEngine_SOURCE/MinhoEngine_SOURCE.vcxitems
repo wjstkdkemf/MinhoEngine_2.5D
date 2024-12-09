@@ -29,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTime.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTime.cpp" />

@@ -8,6 +8,7 @@
 #include "MinObject.h"
 #include "MinTexture.h"
 #include "MinResources.h"
+#include "MinPlayerScript.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -33,8 +34,11 @@ namespace min {
 				(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
 			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 
-			graphcis::Texture* bg = Resources::Find<graphcis::Texture>(L"BG");
-			sr->SetTexture(bg);
+			bg->AddComponent<PlayerScript>();
+
+			graphcis::Texture* bgTex = Resources::Find<graphcis::Texture>(L"BG");
+			sr->SetTexture(bgTex);
+
 
 			/*graphcis::Texture* tex = new graphcis::Texture();
 			tex->Load(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");*/

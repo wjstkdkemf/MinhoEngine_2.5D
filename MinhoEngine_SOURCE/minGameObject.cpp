@@ -8,6 +8,7 @@ namespace min {
 
 	GameObject::GameObject()
 	{
+		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();
 	}
 	GameObject::~GameObject()
@@ -21,6 +22,9 @@ namespace min {
 	void GameObject::Initialize()
 	{
 		for (Component* comp : mComponents) {
+			if (comp == nullptr)
+				continue;
+
 			comp->Initialize();
 		}
 	}
@@ -28,9 +32,10 @@ namespace min {
 	void GameObject::Update()
 	{
 		for (Component* comp : mComponents) {
-			for (Component* comp : mComponents) {
+			if (comp == nullptr)
+				continue;
+
 				comp->Update();
-			}
 		}
 		//if (input::GetKey(eKeyCode::A)) {
 		//	mX -= speed * Time::DeltaTime();
@@ -58,17 +63,19 @@ namespace min {
 	void GameObject::LateUpdate()
 	{
 		for (Component* comp : mComponents) {
-			for (Component* comp : mComponents) {
-				comp->LateUpdate();
-			}
+			if (comp == nullptr)
+				continue;
+
+			comp->LateUpdate();
 		}
 	}
 	void GameObject::Rander(HDC hdc)
 	{
 		for (Component* comp : mComponents) {
-			for (Component* comp : mComponents) {
-				comp->Rander(hdc);
-			}
+			if (comp == nullptr)
+				continue;
+
+			comp->Rander(hdc);
 		}
 	}
 	void GameObject::initializeTransform()

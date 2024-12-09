@@ -135,11 +135,13 @@
     <ClInclude Include="MinLoadResources.h" />
     <ClInclude Include="MinLodeScene.h" />
     <ClInclude Include="MinPlayer.h" />
+    <ClInclude Include="MinPlayerScript.h" />
     <ClInclude Include="MinPlayScene.h" />
     <ClInclude Include="MinTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinPlayer.cpp" />
+    <ClCompile Include="MinPlayerScript.cpp" />
     <ClCompile Include="MinPlayScene.cpp" />
     <ClCompile Include="MinTitleScene.cpp" />
   </ItemGroup>

@@ -34,15 +34,15 @@ namespace min {
 			SpriteRenderer* sr = fg->AddComponent<SpriteRenderer>();
 			//sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
 
-			graphcis::Texture* bgf = Resources::Find<graphcis::Texture>(L"BG_2");
-			sr->SetTexture(bgf);
+			graphcis::Texture* bgTex = Resources::Find<graphcis::Texture>(L"BG_2");
+			sr->SetTexture(bgTex);
 
 			bg = object::Instantiate<Player>(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
 			sr = bg->AddComponent<SpriteRenderer>();
 			//sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
 
-			bgf = Resources::Find<graphcis::Texture>(L"TN");
-			sr->SetTexture(bgf);
+			bgTex = Resources::Find<graphcis::Texture>(L"TN");
+			sr->SetTexture(bgTex);
 
 			Scene::Initialize();
 		}

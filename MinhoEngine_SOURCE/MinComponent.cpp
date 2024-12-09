@@ -1,7 +1,8 @@
 #include "MinComponent.h"
 
 namespace min {
-	Component::Component()
+	Component::Component(enums::eComponentType type)
+		: mType(type)
 	{
 	}
 	Component::~Component()
