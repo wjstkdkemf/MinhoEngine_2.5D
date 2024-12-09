@@ -8,6 +8,8 @@
 #include "MinObject.h"
 #include "MinTexture.h"
 #include "MinResources.h"
+#include "MinPlayerScript.h"
+#include "MinRenderer.h"
 
 namespace min {
 	TitleScene::TitleScene()
@@ -43,6 +45,8 @@ namespace min {
 
 			bgTex = Resources::Find<graphcis::Texture>(L"TN");
 			sr->SetTexture(bgTex);
+
+			bg->AddComponent<PlayerScript>();
 
 			Scene::Initialize();
 		}

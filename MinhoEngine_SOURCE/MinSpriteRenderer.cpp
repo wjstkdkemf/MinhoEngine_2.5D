@@ -4,6 +4,7 @@
 #include "MinMath.h"
 #include "MinSceneManager.h"
 #include "MinTexture.h"
+#include "MinRenderer.h"
 
 namespace min {
 	SpriteRenderer::SpriteRenderer()
@@ -31,6 +32,7 @@ namespace min {
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		pos = renderer::mainCamera->CalculatePosition(pos);
 
 		if (mTexture->GetTextureType() == graphcis::Texture::eTextureType::Bmp)
 		{

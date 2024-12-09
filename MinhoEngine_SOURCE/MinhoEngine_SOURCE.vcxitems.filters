@@ -28,12 +28,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp">
       <Filter>Layer</Filter>
     </ClCompile>
@@ -46,8 +40,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTexture.cpp">
       <Filter>Resource\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp">
+      <Filter>Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp">
+      <Filter>Component\SpriteRenderer</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinScript.cpp">
-      <Filter>Component</Filter>
+      <Filter>Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCamera.cpp">
+      <Filter>Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderer.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,12 +87,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h">
       <Filter>Layer</Filter>
     </ClInclude>
@@ -105,8 +105,20 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTexture.h">
       <Filter>Resource\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h">
+      <Filter>Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h">
+      <Filter>Component\SpriteRenderer</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScript.h">
-      <Filter>Component</Filter>
+      <Filter>Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCamera.h">
+      <Filter>Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +151,21 @@
     </Filter>
     <Filter Include="Resource\AudioClip">
       <UniqueIdentifier>{38120d34-e85f-4e2e-839f-f971151d7f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Script">
+      <UniqueIdentifier>{07094336-8a9d-4552-86a9-1ed8235f3297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SpriteRenderer">
+      <UniqueIdentifier>{260ffe45-9f01-4d05-974c-64b045e4b77a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Transform">
+      <UniqueIdentifier>{edfa39c5-ba6c-40a4-9c95-2189d8719276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Camera">
+      <UniqueIdentifier>{7b2811f8-2abd-469d-a73d-e4ae99f1bff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{375cb4bb-5f8c-4c4f-bb93-fed101908a8c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

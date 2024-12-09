@@ -9,6 +9,8 @@
 #include "MinTexture.h"
 #include "MinResources.h"
 #include "MinPlayerScript.h"
+#include "MinCamera.h"
+#include "MinRenderer.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -30,14 +32,29 @@ namespace min {
 			//sr->SetName(L"SR");
 			//sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
 			//AddGameObject(bg, enums::eLayerType::BackGround);
-			bg = object::Instantiate<Player>
-				(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
-			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None,Vector2(344.0f,445.0f));
+			Camera* cameraComp = camera->AddComponent<Camera>();
+			renderer::mainCamera = cameraComp;
+			//camera->AddComponent<PlayerScript>();
 
-			bg->AddComponent<PlayerScript>();
+			mPlayer = object::Instantiate<Player>
+				(enums::eLayerType::Player, Vector2(100.0f, 100.0f));
+			SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
+			sr->SetSize(Vector2(2.0f, 2.0f));
 
-			graphcis::Texture* bgTex = Resources::Find<graphcis::Texture>(L"BG");
-			sr->SetTexture(bgTex);
+			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"PackMan");
+			sr->SetTexture(PacTex);
+			mPlayer->AddComponent<PlayerScript>();
+
+
+			GameObject* bg = object::Instantiate<GameObject>
+				(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
+			SpriteRenderer* BGsr = bg->AddComponent<SpriteRenderer>();
+			BGsr->SetSize(Vector2(2.0f, 2.0f));
+
+			graphcis::Texture* BgTex = Resources::Find<graphcis::Texture>(L"BG");
+			BGsr->SetTexture(BgTex);
+
 
 
 			/*graphcis::Texture* tex = new graphcis::Texture();
@@ -68,7 +85,7 @@ namespace min {
 	}
 	void PlayScene::OnExit()
 	{
-		Transform* tr = bg->GetComponent<Transform>();
+		Transform* tr = mPlayer->GetComponent<Transform>();
 		//tr->SetPosition(Vector2(0, 0));
 	}
 }

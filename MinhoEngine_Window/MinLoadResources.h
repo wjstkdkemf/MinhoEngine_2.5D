@@ -13,7 +13,7 @@ namespace min {
 		Resources::Load<graphcis::Texture>(L"BG", L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
 		Resources::Load<graphcis::Texture>(L"BG_2", L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
 		Resources::Load<graphcis::Texture>(L"TN", L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
-
+		Resources::Load<graphcis::Texture>(L"PackMan", L"..\\MinhoEngine_SOURCE\\Resources\\3.png");
 
 	}
 }

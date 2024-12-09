@@ -17,6 +17,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScene.h" />
@@ -37,12 +39,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinScene.cpp" />
