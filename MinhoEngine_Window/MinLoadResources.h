@@ -14,6 +14,7 @@ namespace min {
 		Resources::Load<graphcis::Texture>(L"BG_2", L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
 		Resources::Load<graphcis::Texture>(L"TN", L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
 		Resources::Load<graphcis::Texture>(L"PackMan", L"..\\MinhoEngine_SOURCE\\Resources\\3.png");
-
+		Resources::Load<graphcis::Texture>(L"Chicken", L"..\\MinhoEngine_SOURCE\\Resources\\chicken.bmp");
+		Resources::Load<graphcis::Texture>(L"ChickenAlpha", L"..\\MinhoEngine_SOURCE\\Resources\\ChickenAlpha.bmp");
 	}
 }

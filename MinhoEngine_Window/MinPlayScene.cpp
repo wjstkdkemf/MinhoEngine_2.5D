@@ -11,6 +11,7 @@
 #include "MinPlayerScript.h"
 #include "MinCamera.h"
 #include "MinRenderer.h"
+#include "MinAnimator.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -39,12 +40,17 @@ namespace min {
 
 			mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Player, Vector2(100.0f, 100.0f));
-			SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-			sr->SetSize(Vector2(2.0f, 2.0f));
-
-			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"PackMan");
-			sr->SetTexture(PacTex);
+			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
+			sr->SetSize(Vector2(2.0f, 2.0f));*/
 			mPlayer->AddComponent<PlayerScript>();
+
+			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"ChickenAlpha");
+		 	Animator* animator = mPlayer->AddComponent<Animator>();
+			animator->CreateAnimation(L"CatFrontMove", PacTex
+				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 1.0f);
+
+			animator->PlayAnimation(L"CatFrontMove", true);
+			//sr->SetTexture(ChickenAlpha);
 
 
 			GameObject* bg = object::Instantiate<GameObject>

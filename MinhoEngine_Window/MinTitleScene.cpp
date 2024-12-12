@@ -32,18 +32,22 @@ namespace min {
 			//sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\background.png");
 			//AddGameObject(bg, enums::eLayerType::BackGround);
 
+			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 445.0f));
+			Camera* cameraComp = camera->AddComponent<Camera>();
+			renderer::mainCamera = cameraComp;
+
 			fg = object::Instantiate<Player>(enums::eLayerType::FrontGround, Vector2(300.0f, 300.0f));
 			SpriteRenderer* sr = fg->AddComponent<SpriteRenderer>();
 			//sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
 
-			graphcis::Texture* bgTex = Resources::Find<graphcis::Texture>(L"BG_2");
-			sr->SetTexture(bgTex);
+			graphcis::Texture* fgTex = Resources::Find<graphcis::Texture>(L"BG_2");
+			sr->SetTexture(fgTex);
 
 			bg = object::Instantiate<Player>(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
 			sr = bg->AddComponent<SpriteRenderer>();
 			//sr->ImageLoad(L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
 
-			bgTex = Resources::Find<graphcis::Texture>(L"TN");
+			graphcis::Texture* bgTex = Resources::Find<graphcis::Texture>(L"TN");
 			sr->SetTexture(bgTex);
 
 			bg->AddComponent<PlayerScript>();

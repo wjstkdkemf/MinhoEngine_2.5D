@@ -4,6 +4,7 @@
 #include "MinTime.h"
 #include "minGameObject.h"
 
+
 namespace min
 {
 	PlayerScript::PlayerScript()

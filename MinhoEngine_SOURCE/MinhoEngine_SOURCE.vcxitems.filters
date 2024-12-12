@@ -55,6 +55,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp">
+      <Filter>Resource\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -120,6 +126,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimation.h">
+      <Filter>Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -166,6 +178,12 @@
     </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{375cb4bb-5f8c-4c4f-bb93-fed101908a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Animation">
+      <UniqueIdentifier>{5577a558-d787-4a15-8d31-04aa1240e9f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{07be6ab4-7982-47c3-9cf6-5ed6715ee496}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

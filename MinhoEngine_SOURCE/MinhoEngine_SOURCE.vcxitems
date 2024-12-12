@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinComponent.h" />
@@ -38,6 +40,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinComponent.cpp" />

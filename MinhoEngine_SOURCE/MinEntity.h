@@ -1,6 +1,8 @@
 #pragma once
 #include "commoninclude.h"
 
+using namespace min::math;
+
 namespace min {
 	class Entity
 	{
