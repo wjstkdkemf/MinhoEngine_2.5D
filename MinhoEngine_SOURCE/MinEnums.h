@@ -19,7 +19,8 @@ namespace min::enums
 		BackGround,
 		FrontGround,
 		Player,
-		Max = 6,
+		Particle,
+		Max = 16,
 	};
 
 	enum class eResourceType 

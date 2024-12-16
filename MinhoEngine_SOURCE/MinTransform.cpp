@@ -2,6 +2,8 @@
 
 min::Transform::Transform()
 	: Component(enums::eComponentType::Transform)
+	, mScale(Vector2::One)
+	, mRotation(0.0f)
 {
 }
 

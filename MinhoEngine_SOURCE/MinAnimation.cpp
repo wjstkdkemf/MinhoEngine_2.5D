@@ -48,26 +48,57 @@ namespace min
 		GameObject* gameobj = mAnimator->GetOwner();
 		Transform* tr = gameobj->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		float rot = tr->GetRoation();
+		Vector2 scale = tr->GetScale();
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		BLENDFUNCTION func = {};
-		func.BlendOp = AC_SRC_OVER;
-		func.BlendFlags = 0;
-		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 125;//0(완전투명) ~ 255(불투명)
-
 		Sprite sprite = mAnimationSheet[mIndex];
-		HDC imgHdc = mTexture->GetHdc();
+		graphcis::Texture::eTextureType type = mTexture->GetTextureType();
 
-		AlphaBlend(hdc
-			, pos.x, pos.y
-			, sprite.size.x * 5, sprite.size.y * 5
-			, imgHdc
-			, sprite.leftTop.x, sprite.leftTop.y
-			, sprite.size.x, sprite.size.y
-			, func);
+		if (type == graphcis::Texture::eTextureType::Bmp)
+		{
+			BLENDFUNCTION func = {};
+			func.BlendOp = AC_SRC_OVER;
+			func.BlendFlags = 0;
+			func.AlphaFormat = AC_SRC_ALPHA;
+			func.SourceConstantAlpha = 125;//0(완전투명) ~ 255(불투명)
+
+			
+			HDC imgHdc = mTexture->GetHdc();
+
+			AlphaBlend(hdc
+				, pos.x - (sprite.size.x / 2.0f), pos.y - (sprite.size.y / 2.0f)
+				, sprite.size.x * scale.x, sprite.size.y * scale.y
+				, imgHdc
+				, sprite.leftTop.x, sprite.leftTop.y
+				, sprite.size.x, sprite.size.y
+				, func);
+		}
+		else if (type == graphcis::Texture::eTextureType::Png)
+		{
+			Gdiplus::ImageAttributes imgAtt = {};
+
+			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));//투명화 시킬 픽셀의 색 범위
+			Gdiplus::Graphics graphcis(hdc);
+
+			graphcis.TranslateTransform(pos.x, pos.y);
+			graphcis.RotateTransform(rot);
+			graphcis.TranslateTransform(-pos.x, -pos.y);
+
+			graphcis.DrawImage(mTexture->GetImage()
+				,Gdiplus::Rect
+				(
+						pos.x - (sprite.size.x / 2.0f), pos.y - (sprite.size.y / 2.0f)
+					,	sprite.size.x * scale.x, sprite.size.y * scale.y
+				)
+				, sprite.leftTop.x,	 sprite.leftTop.y
+				, sprite.size.x,	 sprite.size.y
+				, Gdiplus::UnitPixel
+				, &imgAtt
+			);
+		}
 		//AlphaBlend() 사용조건 : 해당이미지의 알파채널이 존재해야한다.
 	}
 	void Animation::CreateAnimation(const std::wstring& name, graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)

@@ -6,6 +6,15 @@ namespace min
 	class PlayerScript : public Script
 	{
 	public:
+		enum class eState
+		{
+			SitDown,
+			Walk,
+			Sleep,
+			Attack,
+			Max = 16,
+		};
+
 		PlayerScript();
 		~PlayerScript();
 
@@ -15,7 +24,12 @@ namespace min
 		virtual void Rander(HDC hdc) override;
 
 	private:
+		void sitDown();
+		void move();
 
+	private:
+		eState mState;
+		class Animator* mAnimator;
 	};
 }
 

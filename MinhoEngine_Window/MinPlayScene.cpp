@@ -39,26 +39,45 @@ namespace min {
 			//camera->AddComponent<PlayerScript>();
 
 			mPlayer = object::Instantiate<Player>
-				(enums::eLayerType::Player, Vector2(100.0f, 100.0f));
+				(enums::eLayerType::Particle, Vector2(0.0f, 0.0f));
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
 			mPlayer->AddComponent<PlayerScript>();
 
-			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"ChickenAlpha");
-		 	Animator* animator = mPlayer->AddComponent<Animator>();
-			animator->CreateAnimation(L"CatFrontMove", PacTex
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 1.0f);
+			//graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"MappleEffect");
+		 //	Animator* animator = mPlayer->AddComponent<Animator>();
+			//animator->CreateAnimation(L"CatFrontMove", PacTex
+			//	, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.1f);//32.0f, 32.0f
 
-			animator->PlayAnimation(L"CatFrontMove", true);
+
+			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"Cat");
+			Animator* animator = mPlayer->AddComponent<Animator>();
+			animator->CreateAnimation(L"CatDownWalk", PacTex
+				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
+			animator->CreateAnimation(L"CatRightWalk", PacTex
+				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimation(L"CatUpWalk", PacTex
+				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimation(L"CatLeftWalk", PacTex
+				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimation(L"CatSitDown", PacTex
+				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimation(L"CatGrooming", PacTex
+				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			animator->PlayAnimation(L"CatSitDown", false);
 			//sr->SetTexture(ChickenAlpha);
 
+			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+			mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
 
 			GameObject* bg = object::Instantiate<GameObject>
-				(enums::eLayerType::BackGround, Vector2(0.0f, 0.0f));
+				(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
 			SpriteRenderer* BGsr = bg->AddComponent<SpriteRenderer>();
-			BGsr->SetSize(Vector2(2.0f, 2.0f));
+			//BGsr->SetSize(Vector2(2.0f, 2.0f));
 
-			graphcis::Texture* BgTex = Resources::Find<graphcis::Texture>(L"BG");
+			graphcis::Texture* BgTex = Resources::Find<graphcis::Texture>(L"Bubble");
 			BGsr->SetTexture(BgTex);
 
 

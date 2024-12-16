@@ -19,9 +19,16 @@ namespace min {
 		void Rander(HDC hdc) override;
 
 		void SetPosition(Vector2 pos) { mPosition.x = pos.x; mPosition.y = pos.y; }
+		void SetRotation(float rotate) { mRotation = rotate; }
+		void SetScale(Vector2 scale) { mScale = scale; }
 		Vector2 GetPosition() { return mPosition; }
+		float GetRoation() { return mRotation; }
+		Vector2 GetScale() { return mScale; }
+
 	private:
 		Vector2 mPosition;
+		Vector2 mScale;
+		float mRotation;
 	};
 }
 
