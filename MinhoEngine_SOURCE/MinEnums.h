@@ -18,6 +18,7 @@ namespace min::enums
 		None,
 		BackGround,
 		FrontGround,
+		Animal,
 		Player,
 		Particle,
 		Max = 16,

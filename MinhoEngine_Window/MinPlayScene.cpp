@@ -12,6 +12,8 @@
 #include "MinCamera.h"
 #include "MinRenderer.h"
 #include "MinAnimator.h"
+#include "MinCat.h"
+#include "MinCatScript.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -39,7 +41,7 @@ namespace min {
 			//camera->AddComponent<PlayerScript>();
 
 			mPlayer = object::Instantiate<Player>
-				(enums::eLayerType::Particle, Vector2(0.0f, 0.0f));
+				(enums::eLayerType::Particle);
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
 			mPlayer->AddComponent<PlayerScript>();
@@ -79,6 +81,39 @@ namespace min {
 
 			graphcis::Texture* BgTex = Resources::Find<graphcis::Texture>(L"Bubble");
 			BGsr->SetTexture(BgTex);
+
+
+
+
+			Cat* cat = object::Instantiate<Cat>
+				(enums::eLayerType::Animal);
+			cat->AddComponent<CatScript>();
+
+
+			graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
+			Animator* catAnimator = cat->AddComponent<Animator>();
+			catAnimator->CreateAnimation(L"CatDownWalk", CatTex
+				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatRightWalk", CatTex
+				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatUpWalk", CatTex
+				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
+				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatSitDown", CatTex
+				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatGrooming", CatTex
+				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatLayDown", CatTex
+				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->PlayAnimation(L"CatSitDown", false);
+
+
+			cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
+			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			cat->GetComponent<Transform>()->SetRotation(30.0f);
+
 
 
 
