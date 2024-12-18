@@ -30,12 +30,10 @@
     <ClInclude Include="MinCat.h">
       <Filter>Contents</Filter>
     </ClInclude>
-    <ClInclude Include="MinLoadResources.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
     <ClInclude Include="MinCatScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="MinLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinPlayScene.cpp">

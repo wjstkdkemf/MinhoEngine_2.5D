@@ -14,6 +14,7 @@ namespace min {
 		A,S,D,F,G,H,J,K,L,
 		Z,X,C,V,B,N,M,
 		Left,Right,Down,Up,Space,
+		Lbutton, Mbutton, Rbutton,
 		End,
 	};
 
@@ -33,6 +34,7 @@ namespace min {
 		static bool GetKeyDown(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Down; };
 		static bool GetKeyUp(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Up; };
 		static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; };
+		static math::Vector2 GetMousePosition() { return mMousePosition; }
 
 	private:
 		static void createKeys();
@@ -41,6 +43,9 @@ namespace min {
 		static bool isKeyDown(eKeyCode code);
 		static void updateKeyDown(input::Key& key);
 		static void updateKeyUp(input::Key& key);
+		static void getMousePositionByWindow();
+		static void claerKey();
+		
 
 	private:
 		//eKeyState mState = eKeyState::Up;
@@ -49,6 +54,7 @@ namespace min {
 										//그리고 전역변수와 같기때문에 초기화를 해주어야한다.
 										//즉 여러개의 클래스를 만들어도 static으로 선언된 변수는 하나의 주소를 참조하기때문에
 										//모두 같은 값을 참조할 수 있게된다.
+		static math::Vector2 mMousePosition;
 	};
 }
 

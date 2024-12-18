@@ -1,11 +1,13 @@
 #pragma once
 #include <Windows.h>
 #include <assert.h>
+#include <iostream>
 
 #include<vector>
 #include<algorithm>
 #include<iostream>
 #include<map>
+#include<functional>
 
 #include "MinMath.h"
 

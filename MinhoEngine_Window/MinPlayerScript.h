@@ -8,9 +8,10 @@ namespace min
 	public:
 		enum class eState
 		{
-			SitDown,
+			idle,
 			Walk,
 			Sleep,
+			GiveWater,
 			Attack,
 			Max = 16,
 		};
@@ -24,12 +25,19 @@ namespace min
 		virtual void Rander(HDC hdc) override;
 
 	private:
-		void sitDown();
+		void Idle();
 		void move();
+		void giveWater();
 
 	private:
 		eState mState;
 		class Animator* mAnimator;
+
+
+
+		//void (*StartEvent)();
+		//void (*CompleteEvent)();
+		//void (*EndEvent)();
 	};
 }
 

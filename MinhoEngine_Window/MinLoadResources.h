@@ -18,5 +18,6 @@ namespace min {
 		Resources::Load<graphcis::Texture>(L"Cat", L"..\\MinhoEngine_SOURCE\\Resources\\ChickenAlpha.bmp");
 		Resources::Load<graphcis::Texture>(L"Bubble", L"..\\MinhoEngine_SOURCE\\Resources\\Bubble.png");
 		Resources::Load<graphcis::Texture>(L"MappleEffect", L"..\\MinhoEngine_SOURCE\\Resources\\ezgif.com-gif-maker.png");
+		Resources::Load<graphcis::Texture>(L"Player", L"..\\MinhoEngine_SOURCE\\Resources\\Player.bmp");
 	}
 }

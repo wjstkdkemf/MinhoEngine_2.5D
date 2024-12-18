@@ -1,14 +1,18 @@
 #include "Mininput.h"
+#include "MinApplication.h"
 
+extern min::Application application;
 
 namespace min {
 	std::vector<input::Key> input::mKeys = {};
+	math::Vector2 input::mMousePosition = math::Vector2::One;
 
 	int ASCII[(UINT)eKeyCode::End] {
 		'Q','W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
-		VK_LEFT,VK_RIGHT,VK_DOWN,VK_UP,VK_SPACE
+		VK_LEFT,VK_RIGHT,VK_DOWN,VK_UP,VK_SPACE,
+		VK_LBUTTON,VK_MBUTTON, VK_RBUTTON,
 	};
 
 	void input::Initailize()
@@ -42,11 +46,19 @@ namespace min {
 	}
 	void input::updateKey(input::Key& key)
 	{
-		if (isKeyDown(key.keyCode)){
-			updateKeyDown(key);
+		if (GetFocus())
+		{
+			if (isKeyDown(key.keyCode)) {
+				updateKeyDown(key);
+			}
+			else {
+				updateKeyUp(key);
+			}
+			getMousePositionByWindow();
 		}
-		else {
-			updateKeyUp(key);
+		else
+		{
+			claerKey();
 		}
 	}
 	bool input::isKeyDown(eKeyCode code)
@@ -70,5 +82,26 @@ namespace min {
 			key.state = eKeyState::None;
 
 		key.bPressed = false;
+	}
+	void input::getMousePositionByWindow()
+	{
+		POINT mousePos = {};
+		GetCursorPos(&mousePos);
+		ScreenToClient(application.GetHwnd(), &mousePos);
+
+		mMousePosition.x = mousePos.x;
+		mMousePosition.y = mousePos.y;
+	}
+	void input::claerKey()
+	{
+		for (Key& key : mKeys)
+		{
+			if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
+				key.state = eKeyState::Up;
+			else if (key.state == eKeyState::Up)
+				key.state = eKeyState::None;
+
+			key.bPressed = false;
+		}
 	}
 }

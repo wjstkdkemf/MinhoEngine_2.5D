@@ -9,7 +9,7 @@
 namespace min
 {
 	PlayerScript::PlayerScript()
-		:mState(PlayerScript::eState::SitDown)
+		:mState(PlayerScript::eState::idle)
 		,mAnimator(nullptr)
 	{
 	}
@@ -27,13 +27,16 @@ namespace min
 
 		switch (mState)
 		{
-		case min::PlayerScript::eState::SitDown:
-			sitDown();
+		case min::PlayerScript::eState::idle:
+			Idle();
 			break;
 		case min::PlayerScript::eState::Walk:
 			move();
 			break;
 		case min::PlayerScript::eState::Sleep:
+			break;
+		case min::PlayerScript::eState::GiveWater:
+			giveWater();
 			break;
 		case min::PlayerScript::eState::Attack:
 			break;
@@ -74,23 +77,29 @@ namespace min
 	void PlayerScript::Rander(HDC hdc)
 	{
 	}
-	void PlayerScript::sitDown()
+	void PlayerScript::Idle()
 	{
 		if (input::GetKey(eKeyCode::Right)) {
 			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"CatRightWalk", true);
+			mAnimator->PlayAnimation(L"PlayerRightWalk", true);
 		}
 		if (input::GetKey(eKeyCode::Left)) {
 			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"CatLeftWalk", true);
+			mAnimator->PlayAnimation(L"PlayerLeftWalk", true);
 		}
 		if (input::GetKey(eKeyCode::Up)) {
 			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"CatUpWalk", true);
+			mAnimator->PlayAnimation(L"PlayerUpWalk", true);
 		}
 		if (input::GetKey(eKeyCode::Down)) {
 			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"CatDownWalk", true);
+			mAnimator->PlayAnimation(L"PlayerDownWalk", true);
+		}
+		if (input::GetKey(eKeyCode::Lbutton)) {
+			mState = PlayerScript::eState::GiveWater;
+			mAnimator->PlayAnimation(L"PlayerFronttGiveWater", false);
+
+			Vector2 mousePos = input::GetMousePosition();
 		}
 	}
 	void PlayerScript::move()
@@ -115,8 +124,16 @@ namespace min
 			|| input::GetKeyUp(eKeyCode::Left)
 			|| input::GetKeyUp(eKeyCode::Up)
 			|| input::GetKeyUp(eKeyCode::Down)) {
-			mState = PlayerScript::eState::SitDown;
-			mAnimator->PlayAnimation(L"CatSitDown", false);
+			mState = PlayerScript::eState::idle;
+			mAnimator->PlayAnimation(L"Idle", false);
+		}
+	}
+	void PlayerScript::giveWater()
+	{
+		if (mAnimator->IsCompleteAnimation()) 
+		{
+			mState = PlayerScript::eState::idle;
+			mAnimator->PlayAnimation(L"Idle", false);
 		}
 	}
 }

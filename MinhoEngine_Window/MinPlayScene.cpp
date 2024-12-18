@@ -52,26 +52,27 @@ namespace min {
 			//	, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.1f);//32.0f, 32.0f
 
 
-			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"Cat");
+			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"Player");
 			Animator* animator = mPlayer->AddComponent<Animator>();
-			animator->CreateAnimation(L"CatDownWalk", PacTex
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
-			animator->CreateAnimation(L"CatRightWalk", PacTex
+			animator->CreateAnimation(L"Idle", PacTex
+				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
+			animator->CreateAnimation(L"PlayerFronttGiveWater", PacTex
+				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
+			/*animator->CreateAnimation(L"PlayerRightWalk", PacTex
 				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"CatUpWalk", PacTex
+			animator->CreateAnimation(L"PlayerUpWalk", PacTex
 				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"CatLeftWalk", PacTex
+			animator->CreateAnimation(L"PlayerLeftWalk", PacTex
 				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"CatSitDown", PacTex
-				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"CatGrooming", PacTex
-				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			animator->CreateAnimation(L"PlayerSitDown", PacTex
+				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);*/
+			
 
-			animator->PlayAnimation(L"CatSitDown", false);
+			animator->PlayAnimation(L"Idle", false);
 			//sr->SetTexture(ChickenAlpha);
 
 			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-			mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 			mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
 
 			GameObject* bg = object::Instantiate<GameObject>
