@@ -44,7 +44,9 @@ namespace min {
 				(enums::eLayerType::Particle);
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
-			mPlayer->AddComponent<PlayerScript>();
+			PlayerScript* plScriptmPlayer = mPlayer->AddComponent<PlayerScript>();
+
+			cameraComp->SetTarget(mPlayer);
 
 			//graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"MappleEffect");
 		 //	Animator* animator = mPlayer->AddComponent<Animator>();
@@ -52,24 +54,24 @@ namespace min {
 			//	, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.1f);//32.0f, 32.0f
 
 
-			graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"Player");
+			graphcis::Texture* PlayerTex = Resources::Find<graphcis::Texture>(L"Player");
 			Animator* animator = mPlayer->AddComponent<Animator>();
-			animator->CreateAnimation(L"Idle", PacTex
+			animator->CreateAnimation(L"Idle", PlayerTex
 				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
-			animator->CreateAnimation(L"PlayerFronttGiveWater", PacTex
+			animator->CreateAnimation(L"PlayerFronttGiveWater", PlayerTex
 				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
-			/*animator->CreateAnimation(L"PlayerRightWalk", PacTex
+			/*animator->CreateAnimation(L"PlayerRightWalk", PlayerTex
 				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"PlayerUpWalk", PacTex
+			animator->CreateAnimation(L"PlayerUpWalk", PlayerTex
 				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"PlayerLeftWalk", PacTex
+			animator->CreateAnimation(L"PlayerLeftWalk", PlayerTex
 				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"PlayerSitDown", PacTex
+			animator->CreateAnimation(L"PlayerSitDown", PlayerTex
 				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);*/
 			
-
 			animator->PlayAnimation(L"Idle", false);
-			//sr->SetTexture(ChickenAlpha);
+			
+			animator->GetCompleteEvent(L"PlayerFronttGiveWater") = std::bind(&PlayerScript::PlayerEffect, plScriptmPlayer);
 
 			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
 			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));

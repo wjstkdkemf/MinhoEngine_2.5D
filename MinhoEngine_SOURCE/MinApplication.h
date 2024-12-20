@@ -13,6 +13,7 @@ namespace min{
 		void Update();
 		void LateUpdate();
 		void Rander();
+		void Release();
 
 		HWND GetHwnd() { return mHwnd; }
 		HDC GetHdc() { return mHdc; }

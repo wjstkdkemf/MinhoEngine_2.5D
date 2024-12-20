@@ -19,6 +19,8 @@ namespace min
 	}
 	Animation::~Animation()
 	{
+		/*mAnimationSheet.clear();
+		std::vector<Sprite>().swap(mAnimationSheet);*/
 	}
 	HRESULT Animation::Load(const std::wstring path)
 	{

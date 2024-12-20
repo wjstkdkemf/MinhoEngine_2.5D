@@ -9,6 +9,11 @@ namespace min {
 	}
 	Scene::~Scene()
 	{
+		for (Layer* layer : mLayer)
+		{
+			delete layer;
+			layer = nullptr;
+		}
 	}
 	void Scene::Initialize()
 	{

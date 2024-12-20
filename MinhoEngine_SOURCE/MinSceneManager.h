@@ -26,6 +26,17 @@ namespace min {
 		static void Update();
 		static void LateUpdate();
 		static void Rander(HDC hdc);
+		static void Release();
+
+	//	static SceneManager& GetInst()
+	//	{
+	//		static SceneManager sceneManager;
+	//		return sceneManager;
+	//	}
+
+	//private:
+	//	SceneManager();
+	//	~SceneManager();
 
 	private:
 		//static std::vector<Scene*> mScene;

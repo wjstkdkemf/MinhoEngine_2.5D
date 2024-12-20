@@ -2,6 +2,7 @@
 #include "Mininput.h"
 #include "MinTime.h"
 #include "MinSceneManager.h"
+#include "MinResources.h"
 
 
 namespace min {
@@ -53,6 +54,12 @@ namespace min {
 
 		copyRenderTarget(mBackHdc, mHdc);
 	}
+	void Application::Release()
+	{
+		SceneManager::Release();
+		Resources::Release();
+	}
+
 	void Application::clearRenderTarget()
 	{
 		Rectangle(mBackHdc, -1, -1, 1921, 1081);

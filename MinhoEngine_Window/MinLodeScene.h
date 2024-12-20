@@ -12,7 +12,7 @@
 namespace min {
 	void LoadScenes() {
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
-		SceneManager::CreateScene<TitleScene>(L"TitleScene");
+		//SceneManager::CreateScene<TitleScene>(L"TitleScene");
 
 		SceneManager::LoadScene(L"PlayScene");
 	}

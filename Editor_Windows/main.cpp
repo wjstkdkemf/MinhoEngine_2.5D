@@ -34,7 +34,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc(377);
     // TODO: 여기에 코드를 입력합니다.
     
     // 전역 문자열을 초기화합니다.
@@ -82,6 +83,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
     //    }
     //}
     Gdiplus::GdiplusShutdown(gpToken);
+    application.Release();
 
     return (int) msg.wParam;
 }

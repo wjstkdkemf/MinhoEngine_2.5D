@@ -18,7 +18,7 @@ namespace min
 			void operator()() //Event()로 사용할수있도록 -> 헷갈림방지
 			{
 				if (mEvent)
-					mEvent;
+					mEvent();
 			}
 			//void (*functionPointer)();
 			std::function<void()> mEvent;
@@ -26,9 +26,9 @@ namespace min
 
 		struct Events
 		{
-			Event mStartEvent;
-			Event mCompleteEvent;
-			Event mEndEvent;
+			Event StartEvent;
+			Event CompleteEvent;
+			Event EndEvent;
 		};
 
 		Animator();
@@ -49,6 +49,12 @@ namespace min
 
 		Animation* FindAnimation(const std::wstring& name);
 		void PlayAnimation(const std::wstring& name, bool loop = true);
+
+		Events* FindEvents(const std::wstring& name);
+
+		std::function<void()>& GetStartEvent(const std::wstring& name);
+		std::function<void()>& GetCompleteEvent(const std::wstring& name);
+		std::function<void()>& GetEndEvent(const std::wstring& name);
 
 		bool IsCompleteAnimation() { return mActiveAnimation->IsComplete(); }
 

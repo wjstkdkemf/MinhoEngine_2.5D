@@ -37,6 +37,14 @@ namespace min
 			mResources.insert(std::make_pair(key, resource));
 		}
 
+		static void Release()
+		{
+			for (auto& iter : mResources)
+			{
+				delete iter.second;
+				iter.second = nullptr;
+			}
+		}
 
 	private:
 		static std::map<std::wstring, Resource*> mResources;

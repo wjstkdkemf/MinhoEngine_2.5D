@@ -24,6 +24,8 @@ namespace min
 		virtual void LateUpdate() override;
 		virtual void Rander(HDC hdc) override;
 
+		void PlayerEffect();
+
 	private:
 		void Idle();
 		void move();

@@ -16,7 +16,7 @@ namespace min
 		virtual void LateUpdate() override;
 		virtual void Rander(HDC hdc) override;
 
-
+		void SetTarget(GameObject* target) { mTarget = target; }
 
 	private:
 		//std::vector<GameObject*> mGameObjects;
