@@ -4,7 +4,7 @@
 #include "MinTime.h"
 #include "minGameObject.h"
 #include "MinAnimator.h"
-
+#include "MinObject.h"
 
 namespace min
 {
@@ -12,6 +12,7 @@ namespace min
 		:mState(CatScript::eState::SitDown)
 		, mAnimator(nullptr)
 		, mTime(0.0f)
+		, mDeathTime(0.0f)
 		, mDirection(CatScript::eDirection::Down)
 	{
 	}
@@ -24,6 +25,12 @@ namespace min
 	}
 	void CatScript::Update()
 	{
+		mDeathTime += Time::DeltaTime();
+		if (mDeathTime > 6.0f)
+		{
+		//	object::Destory(GetOwner());
+		}
+
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<Animator>();
 

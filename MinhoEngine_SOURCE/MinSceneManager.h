@@ -26,6 +26,7 @@ namespace min {
 		static void Update();
 		static void LateUpdate();
 		static void Rander(HDC hdc);
+		static void Destory();
 		static void Release();
 
 	//	static SceneManager& GetInst()

@@ -14,6 +14,7 @@ namespace min {
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Rander(HDC hdc);
+		virtual void Destory();
 
 		virtual void OnEnter();
 		virtual void OnExit();

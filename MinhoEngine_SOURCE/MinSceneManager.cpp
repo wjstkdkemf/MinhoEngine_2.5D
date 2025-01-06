@@ -44,6 +44,10 @@ namespace min {
 	{
 		mActiveScene->Rander(hdc);
 	}
+	void SceneManager::Destory()
+	{
+		mActiveScene->Destory();
+	}
 	void SceneManager::Release()
 	{
 		for (auto& iter : mScene)

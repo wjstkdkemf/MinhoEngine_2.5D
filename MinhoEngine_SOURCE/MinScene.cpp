@@ -54,6 +54,15 @@ namespace min {
 			layer->Rander(hdc);
 		}
 	}
+	void Scene::Destory()
+	{
+		for (Layer* layer : mLayer) {
+			if (layer == nullptr)
+				continue;
+
+			layer->Destroy();
+		}
+	}
 	void Scene::AddGameObject(GameObject* gameObj,const enums::eLayerType type)
 	{
 		mLayer[(UINT)type]->AddGameObject(gameObj);

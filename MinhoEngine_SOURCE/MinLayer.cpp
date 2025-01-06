@@ -19,10 +19,10 @@ namespace min {
 	void Layer::Initialize()
 	{
 		for (GameObject* gameObj : mGameObjects) {
-			gameObj->Initialize();
 			if (gameObj == nullptr)
 				continue;
 
+			gameObj->Initialize();
 		}
 	}
 	void Layer::Update()
@@ -30,8 +30,12 @@ namespace min {
 		for (GameObject* gameObj : mGameObjects) {
 			if (gameObj == nullptr)
 				continue;
+			GameObject::eState state = gameObj->GetActive();
+			if (state == GameObject::eState::Paused
+				|| state == GameObject::eState::Dead)
+				continue;
 
-			gameObj->Update();
+				gameObj->Update();
 		}
 	}
 	void Layer::LateUpdate()
@@ -49,9 +53,38 @@ namespace min {
 			if (gameObj == nullptr)
 				continue;
 
+			GameObject::eState state = gameObj->GetActive();
+			if (state == GameObject::eState::Paused
+				|| state == GameObject::eState::Dead)
+				continue;
+
 			gameObj->Rander(hdc);
 		}
 	}
+	void Layer::Destroy()
+	{
+		for (GameObjectIter iter = mGameObjects.begin()
+			; iter != mGameObjects.end()
+			; )
+		{
+			GameObject::eState active = (*iter)->GetActive();
+
+			if (active == GameObject::eState::Dead)
+			{
+				GameObject* deathObj = (*iter);
+
+				iter = mGameObjects.erase(iter);
+
+				delete deathObj;
+				deathObj = nullptr;
+				continue;
+			}
+
+			iter++;
+		}
+	}
+
+
 	void Layer::AddGameObject(GameObject* gameObject)
 	{
 		if (gameObject == nullptr)

@@ -6,6 +6,17 @@ namespace min {
 	class GameObject
 	{
 	public:
+		//friend void object::Destory(GameObject* obj);
+
+		enum class eState
+		{
+			Active,
+			Paused,
+			Dead,
+			End
+		};
+
+
 		GameObject();
 		~GameObject();
 		
@@ -39,11 +50,25 @@ namespace min {
 			return component;
 		}
 
+		void SetActive(bool power)
+		{
+			if (power)
+				mState = eState::Active;
+			else
+				mState = eState::Paused;
+		}
+		eState GetActive() { return mState; }
+
+		void death() { mState = eState::Dead; }
+		
+
 	private:
 		void initializeTransform();
+		
 
 	private:
 		std::vector<Component*> mComponents;
+		eState mState;
 	};
 }
 

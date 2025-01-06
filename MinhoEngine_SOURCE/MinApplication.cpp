@@ -34,6 +34,7 @@ namespace min {
 		Update();
 		LateUpdate();
 		Rander();
+		Destory();
 	}
 	void Application::Update()
 	{
@@ -53,6 +54,10 @@ namespace min {
 		SceneManager::Rander(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);
+	}
+	void Application::Destory()
+	{
+		SceneManager::Destory();
 	}
 	void Application::Release()
 	{

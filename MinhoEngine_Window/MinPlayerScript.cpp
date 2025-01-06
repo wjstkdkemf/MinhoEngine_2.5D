@@ -110,7 +110,6 @@ namespace min
 
 		cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
 		cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-		cat->GetComponent<Transform>()->SetRotation(30.0f);
 	}
 	void PlayerScript::Idle()
 	{

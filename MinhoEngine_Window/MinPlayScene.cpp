@@ -46,7 +46,7 @@ namespace min {
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
 			PlayerScript* plScriptmPlayer = mPlayer->AddComponent<PlayerScript>();
 
-			cameraComp->SetTarget(mPlayer);
+			//cameraComp->SetTarget(mPlayer);
 
 			//graphcis::Texture* PacTex = Resources::Find<graphcis::Texture>(L"MappleEffect");
 		 //	Animator* animator = mPlayer->AddComponent<Animator>();
@@ -91,7 +91,7 @@ namespace min {
 			Cat* cat = object::Instantiate<Cat>
 				(enums::eLayerType::Animal);
 			cat->AddComponent<CatScript>();
-
+			//cat->SetActive(false);
 
 			graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
@@ -110,15 +110,22 @@ namespace min {
 			catAnimator->CreateAnimation(L"CatLayDown", CatTex
 				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-			catAnimator->PlayAnimation(L"CatSitDown", false);
-
+			//catAnimator->PlayAnimation(L"CatSitDown", false);
+			//catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\MinhoEngine_SOURCE\\Resources\\Mushroom", Vector2::Zero, 0.1f);
+			//catAnimator->PlayAnimation(L"MushroomIdle", true);
 
 			cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-			cat->GetComponent<Transform>()->SetRotation(30.0f);
+			//cat->GetComponent<Transform>()->SetRotation(30.0f);
 
 
 
+			//GameObject* sheet = object::Instantiate<GameObject>
+			//	(enums::eLayerType::Particle);
+			//SpriteRenderer* plScriptsheet = sheet->AddComponent<SpriteRenderer>();
+
+			//graphcis::Texture* mrIdle = Resources::Find<graphcis::Texture>(L"MushroomIdle");
+			//plScriptsheet->SetTexture(mrIdle);
 
 			/*graphcis::Texture* tex = new graphcis::Texture();
 			tex->Load(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");*/

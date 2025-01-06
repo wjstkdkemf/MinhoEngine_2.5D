@@ -34,4 +34,9 @@ namespace min::object
 
 		return gameobject;
 	}
+
+	static void Destory(GameObject* obj)
+	{
+		obj->death();
+	}
 }

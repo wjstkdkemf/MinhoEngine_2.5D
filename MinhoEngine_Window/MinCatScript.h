@@ -45,6 +45,7 @@ namespace min
 		eState mState;
 		class Animator* mAnimator;
 		float mTime;
+		float mDeathTime;
 		eDirection mDirection;
 	};
 }

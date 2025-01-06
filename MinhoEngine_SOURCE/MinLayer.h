@@ -13,6 +13,7 @@ namespace min {
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Rander(HDC hdc);
+		virtual void Destroy();
 
 		void AddGameObject(GameObject* gameObject);
 
@@ -20,5 +21,7 @@ namespace min {
 		//eLayerType mType;
 		std::vector<GameObject*> mGameObjects;
 	};
+
+	typedef std::vector<GameObject*>::iterator GameObjectIter;
 }
 

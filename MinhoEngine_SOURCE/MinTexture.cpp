@@ -1,12 +1,42 @@
 #include "MinTexture.h"
 #include "MinApplication.h"
+#include "MinResources.h"
 
 extern min::Application application;
 
 namespace min::graphcis
 {
+	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
+	{
+		Texture* image = Resources::Find<Texture>(name);
+		if (image)
+			return image;
+		
+		image = new Texture();
+		image->SetName(name);
+		image->SetHeight(height);
+		image->SetWidth(width);
+
+		HDC hdc = application.GetHdc();
+		HWND hwnd = application.GetHwnd();
+
+		image->mBitmap = CreateCompatibleBitmap(hdc
+			, width
+			, height);
+
+		image->mHdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+		DeleteObject(oldBitmap);
+
+		Resources::Insert(name + L"image", image);
+
+		return image;
+	}
+
 	Texture::Texture()
 		: Resource(enums::eResourceType::Texture)
+		, mbAlpha(false)
 	{
 	}
 
@@ -30,6 +60,11 @@ namespace min::graphcis
 
 			mWidth = info.bmWidth;
 			mHeight = info.bmHeight;
+			
+			if (info.bmBitsPixel == 32)
+				mbAlpha = true;
+			else if (info.bmBitsPixel == 24)
+				mbAlpha = false;
 
 			HDC mainDC = application.GetHdc();
 			mHdc = CreateCompatibleDC(mainDC);

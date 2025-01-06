@@ -13,6 +13,7 @@ namespace min{
 		void Update();
 		void LateUpdate();
 		void Rander();
+		void Destory();
 		void Release();
 
 		HWND GetHwnd() { return mHwnd; }
