@@ -58,6 +58,7 @@ namespace min {
 				mState = eState::Paused;
 		}
 		eState GetActive() { return mState; }
+		bool IsActive() { return mState == eState::Active; }
 
 		void death() { mState = eState::Dead; }
 		

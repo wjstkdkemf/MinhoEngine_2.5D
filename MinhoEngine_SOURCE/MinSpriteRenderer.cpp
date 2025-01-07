@@ -25,7 +25,7 @@ namespace min {
 	void SpriteRenderer::LateUpdate()
 	{
 	}
-	void SpriteRenderer::Rander(HDC hdc)
+	void SpriteRenderer::Render(HDC hdc)
 	{
 		if (mTexture == nullptr)
 			assert(false);

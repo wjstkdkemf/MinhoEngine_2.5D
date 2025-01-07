@@ -20,7 +20,7 @@ namespace min
 	void Script::LateUpdate()
 	{
 	}
-	void Script::Rander(HDC hdc)
+	void Script::Render(HDC hdc)
 	{
 	}
 }

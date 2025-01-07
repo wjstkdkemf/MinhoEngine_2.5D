@@ -7,10 +7,12 @@
 #include<algorithm>
 #include<iostream>
 #include<map>
+#include<bitset>
 #include<functional>
 #include<filesystem>
 
 #include "MinMath.h"
+#include <math.h>
 
 #include <mmsystem.h>
 #include <dinput.h>

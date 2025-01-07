@@ -79,7 +79,7 @@ namespace min {
 			if (comp == nullptr)
 				continue;
 
-			comp->Rander(hdc);
+			comp->Render(hdc);
 		}
 	}
 	void GameObject::initializeTransform()

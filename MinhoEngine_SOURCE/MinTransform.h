@@ -16,7 +16,7 @@ namespace min {
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Rander(HDC hdc) override;
+		void Render(HDC hdc) override;
 
 		void SetPosition(Vector2 pos) { mPosition.x = pos.x; mPosition.y = pos.y; }
 		void SetRotation(float rotate) { mRotation = rotate; }

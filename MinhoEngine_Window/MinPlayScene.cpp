@@ -14,6 +14,8 @@
 #include "MinAnimator.h"
 #include "MinCat.h"
 #include "MinCatScript.h"
+#include "MinBoxCollider2D.h"
+#include "MinCollisionManager.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -25,6 +27,8 @@ namespace min {
 	void PlayScene::Initialize()
 	{
 		{
+			CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+
 			//bg = new Player();
 			//Transform* tr = bg->AddComponent<Transform>();
 			//tr->SetPosition(Vector2(0, 0));
@@ -42,6 +46,8 @@ namespace min {
 
 			mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Particle);
+			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+			collider->SetOffset(Vector2(-50.0f, -50.0f));
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
 			PlayerScript* plScriptmPlayer = mPlayer->AddComponent<PlayerScript>();
@@ -77,45 +83,44 @@ namespace min {
 			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 			mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
 
-			GameObject* bg = object::Instantiate<GameObject>
-				(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
-			SpriteRenderer* BGsr = bg->AddComponent<SpriteRenderer>();
-			//BGsr->SetSize(Vector2(2.0f, 2.0f));
+		
+			//배경화면
 
-			graphcis::Texture* BgTex = Resources::Find<graphcis::Texture>(L"Bubble");
-			BGsr->SetTexture(BgTex);
+			//GameObject* bg = object::Instantiate<GameObject>
+			//	(enums::eLayerType::Player, Vector2(0.0f, 0.0f));
+			//SpriteRenderer* BGsr = bg->AddComponent<SpriteRenderer>();
+			////BGsr->SetSize(Vector2(2.0f, 2.0f));
+
+			//graphcis::Texture* BgTex = Resources::Find<graphcis::Texture>(L"Bubble");
+			//BGsr->SetTexture(BgTex);
 
 
+			//Cat
 
+			//Cat* cat = object::Instantiate<Cat>
+			//	(enums::eLayerType::Animal);
+			//cat->AddComponent<CatScript>();
+			////cat->SetActive(false);
 
-			Cat* cat = object::Instantiate<Cat>
-				(enums::eLayerType::Animal);
-			cat->AddComponent<CatScript>();
-			//cat->SetActive(false);
+			//graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
+			//Animator* catAnimator = cat->AddComponent<Animator>();
+			//catAnimator->CreateAnimation(L"CatDownWalk", CatTex
+			//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"CatRightWalk", CatTex
+			//	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"CatUpWalk", CatTex
+			//	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
+			//	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"CatSitDown", CatTex
+			//	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"CatGrooming", CatTex
+			//	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"CatLayDown", CatTex
+			//	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-			graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
-			Animator* catAnimator = cat->AddComponent<Animator>();
-			catAnimator->CreateAnimation(L"CatDownWalk", CatTex
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"CatRightWalk", CatTex
-				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"CatUpWalk", CatTex
-				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
-				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"CatSitDown", CatTex
-				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"CatGrooming", CatTex
-				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"CatLayDown", CatTex
-				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-			//catAnimator->PlayAnimation(L"CatSitDown", false);
-			//catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\MinhoEngine_SOURCE\\Resources\\Mushroom", Vector2::Zero, 0.1f);
-			//catAnimator->PlayAnimation(L"MushroomIdle", true);
-
-			cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
-			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			//cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
+			//cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 			//cat->GetComponent<Transform>()->SetRotation(30.0f);
 
 

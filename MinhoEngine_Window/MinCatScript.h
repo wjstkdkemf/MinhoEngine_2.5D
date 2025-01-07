@@ -32,7 +32,11 @@ namespace min
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void LateUpdate() override;
-		virtual void Rander(HDC hdc) override;
+		virtual void Render(HDC hdc) override;
+
+		void setPlayer(GameObject* player) { mPlayer = player; }
+
+		Vector2 mDest;
 
 	private:
 		void sitDown();
@@ -41,12 +45,17 @@ namespace min
 		void playWalkAnimationByDirection(eDirection dir);
 		void trnaslate(Transform* tr);
 
+		
+
 	private:
 		eState mState;
 		class Animator* mAnimator;
 		float mTime;
 		float mDeathTime;
 		eDirection mDirection;
+
+		GameObject* mPlayer;
+		float mRadian;
 	};
 }
 

@@ -37,7 +37,7 @@ namespace min
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Rander(HDC hdc) override;
+		void Render(HDC hdc) override;
 
 		void CreateAnimation(const std::wstring& name
 			, graphcis::Texture* spriteSheet

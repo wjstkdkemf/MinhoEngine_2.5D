@@ -26,6 +26,17 @@ namespace min::graphcis
 
 		image->mHdc = CreateCompatibleDC(hdc);
 
+		//배경 설정(투명도)
+		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(image->mHdc, transparentBrush);
+
+		Rectangle(image->mHdc
+			, -1 , -1
+			, image->GetWidth() + 1
+			, image->GetHeight() + 1);
+
+		SelectObject(image->mHdc, oldBrush);
+
 		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
 		DeleteObject(oldBitmap);
 

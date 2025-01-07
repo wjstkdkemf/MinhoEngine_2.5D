@@ -17,7 +17,7 @@ namespace min {
 	void Component::LateUpdate()
 	{
 	}
-	void Component::Rander(HDC hdc)
+	void Component::Render(HDC hdc)
 	{
 	}
 }

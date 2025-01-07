@@ -61,6 +61,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimator.cpp">
       <Filter>Component\Animator</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCollisionManager.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -132,6 +144,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimator.h">
       <Filter>Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCollisionManager.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -184,6 +208,9 @@
     </Filter>
     <Filter Include="Component\Animator">
       <UniqueIdentifier>{07be6ab4-7982-47c3-9cf6-5ed6715ee496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{628e3170-7042-4d08-88ad-d1c2ac9d40de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

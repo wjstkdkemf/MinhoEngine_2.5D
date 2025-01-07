@@ -9,7 +9,7 @@ namespace min {
 		static void Update();
 		static void Render(HDC hdc);
 
-		static float DeltaTime() { return DeltaTimeValue; }
+		inline static float DeltaTime() { return DeltaTimeValue; }
 
 	private:
 		static LARGE_INTEGER CpuFrequency;

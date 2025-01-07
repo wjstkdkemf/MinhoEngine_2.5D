@@ -51,7 +51,7 @@ namespace min
 	void Animator::LateUpdate()
 	{
 	}
-	void Animator::Rander(HDC hdc)
+	void Animator::Render(HDC hdc)
 	{
 		if (mActiveAnimation)
 		{

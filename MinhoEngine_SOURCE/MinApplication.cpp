@@ -3,6 +3,7 @@
 #include "MinTime.h"
 #include "MinSceneManager.h"
 #include "MinResources.h"
+#include "MinCollisionManager.h"
 
 
 namespace min {
@@ -27,31 +28,35 @@ namespace min {
 		createBuffer(width, height);
 		initializeEtc();
 
+		CollisionManager::Initialize();
 		SceneManager::Initialize();
 	}
 	void Application::Run()
 	{
 		Update();
 		LateUpdate();
-		Rander();
+		Render();
 		Destory();
 	}
 	void Application::Update()
 	{
 		input::Update();
 		Time::Update();
+		CollisionManager::Update();
 		SceneManager::Update();
 	}
 	void Application::LateUpdate()
 	{
+		CollisionManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
-	void Application::Rander()
+	void Application::Render()
 	{
 		clearRenderTarget();
 
 		Time::Render(mBackHdc);
-		SceneManager::Rander(mBackHdc);
+		CollisionManager::Render(mBackHdc);
+		SceneManager::Render(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);
 	}
@@ -67,7 +72,13 @@ namespace min {
 
 	void Application::clearRenderTarget()
 	{
+		HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(128,128,128));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, grayBrush);
+
 		Rectangle(mBackHdc, -1, -1, 1921, 1081);
+
+		SelectObject(mBackHdc, oldBrush);
+		DeleteObject(grayBrush);
 	}
 	void Application::copyRenderTarget(HDC source, HDC dest)
 	{

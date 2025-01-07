@@ -8,7 +8,7 @@
 #include "MinCatScript.h"
 #include "MinObject.h"
 #include "MinResources.h"
-
+#include "MinBoxCollider2D.h"
 
 namespace min
 {
@@ -78,15 +78,16 @@ namespace min
 	void PlayerScript::LateUpdate()
 	{
 	}
-	void PlayerScript::Rander(HDC hdc)
+	void PlayerScript::Render(HDC hdc)
 	{
 	}
 	void PlayerScript::PlayerEffect()
 	{
 		Cat* cat = object::Instantiate<Cat>
 			(enums::eLayerType::Animal);
-		cat->AddComponent<CatScript>();
+		CatScript* catSrc = cat->AddComponent<CatScript>();
 
+		catSrc->setPlayer(GetOwner());
 
 		graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
 		Animator* catAnimator = cat->AddComponent<Animator>();
@@ -105,11 +106,20 @@ namespace min
 		catAnimator->CreateAnimation(L"CatLayDown", CatTex
 			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+
+		BoxCollider2D* catCollider = cat->AddComponent<BoxCollider2D>();
+		catCollider->SetOffset(Vector2(-50.0f, -50.0f));
+
 		catAnimator->PlayAnimation(L"CatSitDown", false);
 
 
-		cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
+		cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
 		cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+
+		Vector2 mousePos = input::GetMousePosition();
+		catSrc->mDest = mousePos;
+
 	}
 	void PlayerScript::Idle()
 	{

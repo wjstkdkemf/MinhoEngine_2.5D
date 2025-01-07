@@ -23,6 +23,6 @@ void min::Transform::LateUpdate()
 {
 }
 
-void min::Transform::Rander(HDC hdc)
+void min::Transform::Render(HDC hdc)
 {
 }

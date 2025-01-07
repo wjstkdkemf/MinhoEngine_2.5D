@@ -42,7 +42,7 @@ namespace min
 	{
 
 	}
-	void Camera::Rander(HDC hdc)
+	void Camera::Render(HDC hdc)
 	{
 	}
 }

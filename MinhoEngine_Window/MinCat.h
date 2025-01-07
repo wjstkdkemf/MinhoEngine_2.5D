@@ -9,6 +9,7 @@ namespace min {
 		void Update() override;
 		void LateUpdate() override;
 		void Rander(HDC hdc) override;
+
 	private:
 	};
 }

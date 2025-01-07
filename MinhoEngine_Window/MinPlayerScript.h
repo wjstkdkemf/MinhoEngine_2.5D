@@ -22,7 +22,7 @@ namespace min
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void LateUpdate() override;
-		virtual void Rander(HDC hdc) override;
+		virtual void Render(HDC hdc) override;
 
 		void PlayerEffect();
 

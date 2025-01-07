@@ -12,7 +12,7 @@ namespace min{
 
 		void Update();
 		void LateUpdate();
-		void Rander();
+		void Render();
 		void Destory();
 		void Release();
 

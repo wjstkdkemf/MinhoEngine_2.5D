@@ -40,7 +40,7 @@ namespace min {
 	{
 		mActiveScene->LateUpdate();
 	}
-	void SceneManager::Rander(HDC hdc)
+	void SceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Rander(hdc);
 	}

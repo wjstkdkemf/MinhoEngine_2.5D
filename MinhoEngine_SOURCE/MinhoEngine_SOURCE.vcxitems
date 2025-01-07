@@ -19,7 +19,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
@@ -43,7 +47,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />

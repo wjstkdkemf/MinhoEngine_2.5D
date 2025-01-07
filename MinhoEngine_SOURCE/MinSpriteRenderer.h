@@ -12,7 +12,7 @@ namespace min {
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Rander(HDC hdc) override;
+		void Render(HDC hdc) override;
 
 		void SetTexture(graphcis::Texture* texture) { mTexture = texture; }
 		void SetSize(math::Vector2 size) { mSize = size; }
