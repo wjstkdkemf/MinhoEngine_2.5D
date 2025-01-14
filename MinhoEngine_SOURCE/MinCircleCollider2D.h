@@ -3,7 +3,7 @@
 
 namespace min
 {
-	class CircleCollider2D
+	class CircleCollider2D : public Collider
 	{
 	public:
 		CircleCollider2D();

@@ -75,8 +75,10 @@ namespace min {
 	}
 	void TitleScene::OnEnter()
 	{
+		Scene::OnEnter();
 	}
 	void TitleScene::OnExit()
 	{
+		Scene::OnExit();
 	}
 }

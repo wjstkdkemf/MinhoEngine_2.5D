@@ -12,6 +12,7 @@ namespace min::object
 	static T* Instantiate(min::enums::eLayerType type)
 	{
 		T* gameobject = new T();
+		gameobject->SetLayerType(type);
 		Scene* activeScene = SceneManager::GetActiveScene();
 		Layer* layer = activeScene->GetLayer(type);
 
@@ -24,6 +25,7 @@ namespace min::object
 	static T* Instantiate(min::enums::eLayerType type, math::Vector2 position)
 	{
 		T* gameobject = new T();
+		gameobject->SetLayerType(type);
 		Scene* activeScene = SceneManager::GetActiveScene();
 		Layer* layer = activeScene->GetLayer(type);
 
@@ -38,5 +40,15 @@ namespace min::object
 	static void Destory(GameObject* obj)
 	{
 		obj->death();
+	}
+
+	static void DontDestoryOnLoad(GameObject* gameobject)
+	{
+		Scene* activeScene = SceneManager::GetActiveScene();
+
+		activeScene->EraseGameObject(gameobject);
+
+		Scene* dontDestroyOnLoad = SceneManager::GetDontDestroyOnLoad();
+		dontDestroyOnLoad->AddGameObject(gameobject, gameobject->GetLayerType());
 	}
 }

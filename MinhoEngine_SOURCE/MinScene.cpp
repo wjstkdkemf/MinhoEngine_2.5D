@@ -68,6 +68,12 @@ namespace min {
 		mLayer[(UINT)type]->AddGameObject(gameObj);
 	}
 
+	void Scene::EraseGameObject(GameObject* gameObj)
+	{
+		eLayerType layerType = gameObj->GetLayerType();
+		mLayer[(UINT)layerType]->EraseGameObjects(gameObj);
+	}
+
 	void Scene::CreateLayers()
 	{
 		mLayer.resize((UINT)enums::eLayerType::Max);

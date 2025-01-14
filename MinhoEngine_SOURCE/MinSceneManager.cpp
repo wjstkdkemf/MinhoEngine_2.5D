@@ -1,13 +1,11 @@
 #include "MinSceneManager.h"
 #include "Mininput.h"
+#include "MinDontDestroyOnLoad.h"
 
 namespace min {
 	std::map<std::wstring, Scene*> SceneManager::mScene = {{}};
 	Scene* SceneManager::mActiveScene = nullptr;
-
-	void SceneManager::Initialize()
-	{
-	}
+	Scene* SceneManager::mDontDestroyOnLoad = nullptr;
 
 	Scene* SceneManager::LoadScene(const std::wstring& name)
 	{
@@ -26,6 +24,11 @@ namespace min {
 		return iter->second;
 	}
 
+	void SceneManager::Initialize()
+	{
+		mDontDestroyOnLoad = CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");
+	}
+
 	void SceneManager::Update()
 	{
 		if (input::GetKey(eKeyCode::N)) {
@@ -35,18 +38,22 @@ namespace min {
 			SceneManager::LoadScene(L"PlayScene");
 		}
 		mActiveScene->Update();
+		mDontDestroyOnLoad->Update();
 	}
 	void SceneManager::LateUpdate()
 	{
 		mActiveScene->LateUpdate();
+		mDontDestroyOnLoad->LateUpdate();
 	}
 	void SceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Rander(hdc);
+		mDontDestroyOnLoad->Rander(hdc);
 	}
 	void SceneManager::Destory()
 	{
 		mActiveScene->Destory();
+		mDontDestroyOnLoad->Destory();
 	}
 	void SceneManager::Release()
 	{

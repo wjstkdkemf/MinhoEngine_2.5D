@@ -8,6 +8,7 @@ namespace min {
 
 	GameObject::GameObject()
 		: mState(eState::Active)
+		, mLayerType(eLayerType::None)
 	{
 		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();

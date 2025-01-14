@@ -9,6 +9,7 @@
 #include "MinObject.h"
 #include "MinResources.h"
 #include "MinBoxCollider2D.h"
+#include "MinCollider.h"
 
 namespace min
 {
@@ -79,6 +80,15 @@ namespace min
 	{
 	}
 	void PlayerScript::Render(HDC hdc)
+	{
+	}
+	void PlayerScript::OnCollisionEnter(Collider* other)
+	{
+	}
+	void PlayerScript::OnCollisionStay(Collider* other)
+	{
+	}
+	void PlayerScript::OnCollisionExit(Collider* other)
 	{
 	}
 	void PlayerScript::PlayerEffect()

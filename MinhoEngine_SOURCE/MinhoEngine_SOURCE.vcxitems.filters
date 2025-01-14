@@ -73,6 +73,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCollisionManager.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCollisionManager.h">
       <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

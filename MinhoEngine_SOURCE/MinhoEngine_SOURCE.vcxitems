@@ -25,6 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
@@ -53,6 +54,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />

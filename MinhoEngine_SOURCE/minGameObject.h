@@ -57,10 +57,14 @@ namespace min {
 			else
 				mState = eState::Paused;
 		}
-		eState GetActive() { return mState; }
+		eState GetState() { return mState; }
 		bool IsActive() { return mState == eState::Active; }
+		bool IsDead() { return mState == eState::Dead; }
 
 		void death() { mState = eState::Dead; }
+		void SetLayerType(eLayerType layer) { mLayerType = layer; }
+		eLayerType GetLayerType() { return mLayerType; }
+
 		
 
 	private:
@@ -70,6 +74,7 @@ namespace min {
 	private:
 		std::vector<Component*> mComponents;
 		eState mState;
+		eLayerType mLayerType;
 	};
 }
 

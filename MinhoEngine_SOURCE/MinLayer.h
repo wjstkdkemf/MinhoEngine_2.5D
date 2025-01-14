@@ -15,8 +15,15 @@ namespace min {
 		virtual void Rander(HDC hdc);
 		virtual void Destroy();
 
+		void EraseGameObjects(GameObject* eraseGameObj);
+
 		void AddGameObject(GameObject* gameObject);
 		const std::vector<GameObject*> GetGameObjects() { return mGameObjects; }
+
+	private:
+		void findDeadGameObjects(OUT std::vector<GameObject*> gameObjs);
+		void deleteGameObjects(std::vector<GameObject*> deleteObjs);
+		void eraseDeadGameObject();
 
 	private:
 		//eLayerType mType;

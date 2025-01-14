@@ -62,6 +62,10 @@ namespace min::math
 		{
 			return Vector2(x + other.x, y + other.y);
 		}
+		Vector2 operator+(float other)
+		{
+			return Vector2(x + other, y + other);
+		}
 		void operator+=(Vector2 other)
 		{
 			x += other.x;

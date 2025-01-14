@@ -1,11 +1,14 @@
 #include "MinBoxCollider2D.h"
 #include "MinTransform.h"
 #include "minGameObject.h"
+#include "MinRenderer.h"
+#include "MinCamera.h"
 
 namespace min
 {
 	BoxCollider2D::BoxCollider2D()
-		:Collider()
+		:Collider(eColliderType::Rect2D)
+		, mSize(Vector2::One)
 	{
 	}
 	BoxCollider2D::~BoxCollider2D()
@@ -24,6 +27,9 @@ namespace min
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+
+		if (renderer::mainCamera)
+			pos = renderer::mainCamera->CalculatePosition(pos);
 
 		Vector2 offset = GetOffset();
 

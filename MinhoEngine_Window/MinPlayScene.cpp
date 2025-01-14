@@ -16,6 +16,7 @@
 #include "MinCatScript.h"
 #include "MinBoxCollider2D.h"
 #include "MinCollisionManager.h"
+#include "MinDontDestroyOnLoad.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -45,8 +46,10 @@ namespace min {
 			//camera->AddComponent<PlayerScript>();
 
 			mPlayer = object::Instantiate<Player>
-				(enums::eLayerType::Particle);
-			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+				(enums::eLayerType::Player);
+			//BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+			CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
+
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
@@ -97,31 +100,37 @@ namespace min {
 
 			//Cat
 
-			//Cat* cat = object::Instantiate<Cat>
-			//	(enums::eLayerType::Animal);
-			//cat->AddComponent<CatScript>();
-			////cat->SetActive(false);
+			Cat* cat = object::Instantiate<Cat>
+				(enums::eLayerType::Animal);
+			CatScript* catScript = cat->AddComponent<CatScript>();
+			//BoxCollider2D* catCol = cat->AddComponent<BoxCollider2D>();
+			CircleCollider2D* catCol = cat->AddComponent<CircleCollider2D>();
 
-			//graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
-			//Animator* catAnimator = cat->AddComponent<Animator>();
-			//catAnimator->CreateAnimation(L"CatDownWalk", CatTex
-			//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"CatRightWalk", CatTex
-			//	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"CatUpWalk", CatTex
-			//	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
-			//	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"CatSitDown", CatTex
-			//	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"CatGrooming", CatTex
-			//	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			//catAnimator->CreateAnimation(L"CatLayDown", CatTex
-			//	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catScript->setPlayer(mPlayer);
+			catCol->SetOffset(Vector2(-50.0f, -50.0f));
+			//cat->SetActive(false);
 
-			//cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 100.0f));
-			//cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-			//cat->GetComponent<Transform>()->SetRotation(30.0f);
+			graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
+			Animator* catAnimator = cat->AddComponent<Animator>();
+			catAnimator->CreateAnimation(L"CatDownWalk", CatTex
+				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatRightWalk", CatTex
+				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatUpWalk", CatTex
+				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
+				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatSitDown", CatTex
+				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatGrooming", CatTex
+				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"CatLayDown", CatTex
+				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->PlayAnimation(L"CatSitDown", false);
+			cat->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 300.0f));
+			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			cat->GetComponent<Transform>()->SetRotation(30.0f);
 
 
 
@@ -134,6 +143,9 @@ namespace min {
 
 			/*graphcis::Texture* tex = new graphcis::Texture();
 			tex->Load(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");*/
+			
+			object::DontDestoryOnLoad(mPlayer);
+
 			Scene::Initialize();
 		}
 	}

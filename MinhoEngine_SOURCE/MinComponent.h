@@ -2,6 +2,8 @@
 #include "MinEntity.h"
 
 namespace min {
+	using namespace enums;
+
 	class GameObject;
 	class Component : public Entity
 	{
