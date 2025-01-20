@@ -34,6 +34,12 @@
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="MinLoadResources.h" />
+    <ClInclude Include="MinToolScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="MinTile.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinPlayScene.cpp">
@@ -53,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="MinCatScript.cpp">
       <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="MinToolScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="MinTile.cpp">
+      <Filter>Contents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

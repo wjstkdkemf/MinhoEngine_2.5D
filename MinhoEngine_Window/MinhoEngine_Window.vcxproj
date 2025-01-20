@@ -139,7 +139,9 @@
     <ClInclude Include="MinPlayer.h" />
     <ClInclude Include="MinPlayerScript.h" />
     <ClInclude Include="MinPlayScene.h" />
+    <ClInclude Include="MinTile.h" />
     <ClInclude Include="MinTitleScene.h" />
+    <ClInclude Include="MinToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinCat.cpp" />
@@ -147,7 +149,9 @@
     <ClCompile Include="MinPlayer.cpp" />
     <ClCompile Include="MinPlayerScript.cpp" />
     <ClCompile Include="MinPlayScene.cpp" />
+    <ClCompile Include="MinTile.cpp" />
     <ClCompile Include="MinTitleScene.cpp" />
+    <ClCompile Include="MinToolScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

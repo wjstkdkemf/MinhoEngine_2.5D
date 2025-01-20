@@ -18,6 +18,7 @@ namespace min::enums
 	{
 		None,
 		BackGround,
+		Tile,
 		FrontGround,
 		Animal,
 		Player,

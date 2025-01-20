@@ -37,6 +37,9 @@ namespace min {
 		if (input::GetKey(eKeyCode::M)) {
 			SceneManager::LoadScene(L"PlayScene");
 		}
+		if (input::GetKey(eKeyCode::B)) {
+			SceneManager::LoadScene(L"ToolScene");
+		}
 		mActiveScene->Update();
 		mDontDestroyOnLoad->Update();
 	}

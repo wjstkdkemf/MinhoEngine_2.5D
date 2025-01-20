@@ -144,7 +144,7 @@ namespace min {
 			/*graphcis::Texture* tex = new graphcis::Texture();
 			tex->Load(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");*/
 			
-			object::DontDestoryOnLoad(mPlayer);
+			//object::DontDestoryOnLoad(mPlayer);
 
 			Scene::Initialize();
 		}

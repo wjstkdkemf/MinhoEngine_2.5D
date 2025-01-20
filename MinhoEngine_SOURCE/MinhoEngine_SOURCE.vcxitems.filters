@@ -76,6 +76,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinTilemapRender.cpp">
+      <Filter>Component\TileRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -162,6 +165,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinTilemapRender.h">
+      <Filter>Component\TileRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -217,6 +223,9 @@
     </Filter>
     <Filter Include="Component\Collider">
       <UniqueIdentifier>{628e3170-7042-4d08-88ad-d1c2ac9d40de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\TileRender">
+      <UniqueIdentifier>{22003385-18f5-4132-a319-12b816ff2633}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
