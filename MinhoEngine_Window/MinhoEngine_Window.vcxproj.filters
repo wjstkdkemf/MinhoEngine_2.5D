@@ -33,12 +33,23 @@
     <ClInclude Include="MinCatScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="MinLoadResources.h" />
     <ClInclude Include="MinToolScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="MinTile.h">
       <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="MinCameraScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="MinLoadResources.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="MinFloor.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="MinFloorScript.h">
+      <Filter>Scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +76,15 @@
     </ClCompile>
     <ClCompile Include="MinTile.cpp">
       <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="MinCameraScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="MinFloor.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="MinFloorScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

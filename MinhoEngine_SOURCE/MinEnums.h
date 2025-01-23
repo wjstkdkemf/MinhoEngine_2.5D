@@ -6,6 +6,7 @@ namespace min::enums
 	{
 		Transform,
 		Collider,
+		Rigidbody,
 		Script,
 		SpriteRenderer,
 		Animator,
@@ -22,6 +23,7 @@ namespace min::enums
 		FrontGround,
 		Animal,
 		Player,
+		Floor,
 		Particle,
 		Max = 16,
 	};
@@ -39,6 +41,12 @@ namespace min::enums
 	{
 		Circle2D,
 		Rect2D,
+		End,
+	};
+
+	enum class eUIType
+	{
+
 		End,
 	};
 }

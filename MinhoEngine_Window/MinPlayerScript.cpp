@@ -10,6 +10,7 @@
 #include "MinResources.h"
 #include "MinBoxCollider2D.h"
 #include "MinCollider.h"
+#include "MinRigidbody.h"
 
 namespace min
 {
@@ -84,9 +85,11 @@ namespace min
 	}
 	void PlayerScript::OnCollisionEnter(Collider* other)
 	{
+		int a = 0;
 	}
 	void PlayerScript::OnCollisionStay(Collider* other)
 	{
+		
 	}
 	void PlayerScript::OnCollisionExit(Collider* other)
 	{
@@ -133,6 +136,7 @@ namespace min
 	}
 	void PlayerScript::Idle()
 	{
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 		if (input::GetKey(eKeyCode::Right)) {
 			mState = PlayerScript::eState::Walk;
 			mAnimator->PlayAnimation(L"PlayerRightWalk", true);
@@ -155,23 +159,39 @@ namespace min
 
 			Vector2 mousePos = input::GetMousePosition();
 		}
+		if (input::GetKey(eKeyCode::Space)) {
+			Vector2 velocity = rb->GetVelocity();
+			velocity.y = -500.0f;
+			rb->SetVelocity(velocity);
+			rb->SetGround(false);
+
+			//pos.y += 100.0f * Time::DeltaTime();
+		}
 	}
 	void PlayerScript::move()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 		if (input::GetKey(eKeyCode::Right)) {
-			pos.x += 100.0f * Time::DeltaTime();
+			//pos.x += 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(200.0f, 0.0f));
 		}
 		if (input::GetKey(eKeyCode::Left)) {
-			pos.x -= 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(-200.0f, 0.0f));
+			//pos.x -= 100.0f * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Up)) {
-			pos.y -= 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(0.0f, -200.0f));
+			//pos.y -= 100.0f * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Down)) {
-			pos.y += 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(0.0f, 200.0f));
+			//pos.y += 100.0f * Time::DeltaTime();
 		}
+		
+
 		tr->SetPosition(pos);
 
 		if (input::GetKeyUp(eKeyCode::Right) 

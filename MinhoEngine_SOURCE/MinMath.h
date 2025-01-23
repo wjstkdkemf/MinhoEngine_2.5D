@@ -54,6 +54,10 @@ namespace min::math
 		{
 		}
 
+		Vector2 operator-()
+		{
+			return Vector2(-x , -y);
+		}
 		Vector2 operator-(Vector2 other)
 		{
 			return Vector2(x - other.x, y - other.y);
@@ -66,10 +70,25 @@ namespace min::math
 		{
 			return Vector2(x + other, y + other);
 		}
+		void operator-=(Vector2 other)
+		{
+			x -= other.x;
+			y -= other.y;
+		}
 		void operator+=(Vector2 other)
 		{
 			x += other.x;
 			y += other.y;
+		}
+		void operator*=(Vector2 other)
+		{
+			x *= other.x;
+			y *= other.y;
+		}
+		void operator*=(float other)
+		{
+			x *= other;
+			y *= other;
 		}
 		Vector2 operator*(float value)
 		{
@@ -82,6 +101,10 @@ namespace min::math
 		Vector2 operator*(Vector2 value)
 		{
 			return Vector2(x * value.x, y * value.y);
+		}
+		bool operator==(Vector2 value)
+		{
+			return (x == value.x) && (y == value.y);
 		}
 
 		void clear()

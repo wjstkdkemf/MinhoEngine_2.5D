@@ -22,6 +22,7 @@ namespace min {
 		static std::wstring GetSceneName() { return mActiveScene->GetName(); }
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static Scene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
+		static std::vector<GameObject*> GetGameObjects(eLayerType layer);
 
 
 		static void Initialize();

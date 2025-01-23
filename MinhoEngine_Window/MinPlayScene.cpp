@@ -17,6 +17,9 @@
 #include "MinBoxCollider2D.h"
 #include "MinCollisionManager.h"
 #include "MinDontDestroyOnLoad.h"
+#include "MinRigidbody.h"
+#include "MinFloor.h"
+#include "MinFloorScript.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -47,13 +50,15 @@ namespace min {
 
 			mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Player);
-			//BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
-			CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
+			mPlayer->SetName(L"player");
+			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+			//CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
 
 			collider->SetOffset(Vector2(-50.0f, -50.0f));
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
 			PlayerScript* plScriptmPlayer = mPlayer->AddComponent<PlayerScript>();
+	
 
 			//cameraComp->SetTarget(mPlayer);
 
@@ -86,7 +91,16 @@ namespace min {
 			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 			mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
 
-		
+			mPlayer->AddComponent<Rigidbody>();
+
+			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 600.0f));
+			floor->SetName(L"Floor");
+			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			floorCol->SetSize(Vector2(3.0f, 1.0f));
+			floor->AddComponent<FloorScript>();
+			
+			
+
 			//배경화면
 
 			//GameObject* bg = object::Instantiate<GameObject>
@@ -100,7 +114,7 @@ namespace min {
 
 			//Cat
 
-			Cat* cat = object::Instantiate<Cat>
+			/*Cat* cat = object::Instantiate<Cat>
 				(enums::eLayerType::Animal);
 			CatScript* catScript = cat->AddComponent<CatScript>();
 			//BoxCollider2D* catCol = cat->AddComponent<BoxCollider2D>();
@@ -131,7 +145,7 @@ namespace min {
 			cat->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 300.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 			cat->GetComponent<Transform>()->SetRotation(30.0f);
-
+			*/
 
 
 			//GameObject* sheet = object::Instantiate<GameObject>
@@ -169,6 +183,8 @@ namespace min {
 	}
 	void PlayScene::OnEnter()
 	{
+		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
 	}
 	void PlayScene::OnExit()
 	{

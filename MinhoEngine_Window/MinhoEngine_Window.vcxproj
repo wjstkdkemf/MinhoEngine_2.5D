@@ -132,8 +132,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MinCameraScript.h" />
     <ClInclude Include="MinCat.h" />
     <ClInclude Include="MinCatScript.h" />
+    <ClInclude Include="MinFloor.h" />
+    <ClInclude Include="MinFloorScript.h" />
     <ClInclude Include="MinLoadResources.h" />
     <ClInclude Include="MinLodeScene.h" />
     <ClInclude Include="MinPlayer.h" />
@@ -144,8 +147,11 @@
     <ClInclude Include="MinToolScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MinCameraScript.cpp" />
     <ClCompile Include="MinCat.cpp" />
     <ClCompile Include="MinCatScript.cpp" />
+    <ClCompile Include="MinFloor.cpp" />
+    <ClCompile Include="MinFloorScript.cpp" />
     <ClCompile Include="MinPlayer.cpp" />
     <ClCompile Include="MinPlayerScript.cpp" />
     <ClCompile Include="MinPlayScene.cpp" />

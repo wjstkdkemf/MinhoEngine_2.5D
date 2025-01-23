@@ -24,6 +24,18 @@ namespace min {
 		return iter->second;
 	}
 
+	std::vector<GameObject*> SceneManager::GetGameObjects(eLayerType layer)
+	{
+		std::vector<GameObject*> gameObjects
+			= mActiveScene->GetLayer(layer)->GetGameObjects();
+		std::vector<GameObject*> dontDestroyOnload
+			= mDontDestroyOnLoad->GetLayer(layer)->GetGameObjects();
+
+		gameObjects.insert(gameObjects.end(), dontDestroyOnload.begin(), dontDestroyOnload.end());
+
+		return gameObjects;
+	}
+
 	void SceneManager::Initialize()
 	{
 		mDontDestroyOnLoad = CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");

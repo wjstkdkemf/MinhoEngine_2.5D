@@ -2,8 +2,13 @@
 #include "commoninclude.h"
 #include "MinComponent.h"
 
+namespace min::object
+{
+	void Destroy(GameObject* gameObject);
+}
+
 namespace min {
-	class GameObject
+	class GameObject : public Entity
 	{
 	public:
 		//friend void object::Destory(GameObject* obj);

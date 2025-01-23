@@ -36,11 +36,11 @@ namespace min
 	void Collider::OnCollisionStay(Collider* other)
 	{
 		Script* script = GetOwner()->GetComponent<Script>();
-		script->OnCollisionEnter(other);
+		script->OnCollisionStay(other);
 	}
 	void Collider::OnCollisionExit(Collider* other)
 	{
 		Script* script = GetOwner()->GetComponent<Script>();
-		script->OnCollisionEnter(other);
+		script->OnCollisionExit(other);
 	}
 }

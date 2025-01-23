@@ -6,6 +6,8 @@
 #include "..\\MinhoEngine_SOURCE\\MinApplication.h"
 #include "..\\MinhoEngine_SOURCE\\MinResources.h"
 #include "..\\MinhoEngine_SOURCE\\MinTexture.h"
+#include "..\\MinhoEngine_SOURCE\\MinSceneManager.h"
+
 
 #include "..\\MinhoEngine_Window\\MinLodeScene.h"
 #include "..\\MinhoEngine_Window\\MinLoadResources.h"
@@ -143,10 +145,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
 
-   HWND ToolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
-
-
    application.Initialize(hWnd, width, height);
 
    if (!hWnd)
@@ -167,17 +165,26 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    int a = 0;
    srand((unsigned int)(& a));
 
-   min::graphcis::Texture* texture
-       = min::Resources::Find<min::graphcis::Texture>(L"SpringFloor");
-   RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
-   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+   min::Scene* activeScene = min::SceneManager::GetActiveScene();
+   std::wstring name = activeScene->GetName();
 
-   UINT toolWidth = rect.right - rect.left;
-   UINT toolHeight = rect.bottom - rect.top;
+   if(name == L"ToolScene")
+   {
+       HWND ToolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+           0, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
 
-   SetWindowPos(ToolhWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
-   ShowWindow(ToolhWnd, true);
-   UpdateWindow(ToolhWnd);
+       min::graphcis::Texture* texture
+           = min::Resources::Find<min::graphcis::Texture>(L"SpringFloor");
+       RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+       AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+       UINT toolWidth = rect.right - rect.left;
+       UINT toolHeight = rect.bottom - rect.top;
+
+       SetWindowPos(ToolhWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
+       ShowWindow(ToolhWnd, true);
+       UpdateWindow(ToolhWnd);
+   }
 
    return TRUE;
 }

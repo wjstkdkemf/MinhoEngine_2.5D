@@ -1,6 +1,6 @@
 #pragma once
 #include "..\\MinhoEngine_SOURCE\\\MinScene.h"
-
+#include "MinTile.h"
 
 namespace min
 {
@@ -18,7 +18,11 @@ namespace min
 		void OnEnter() override;
 		void OnExit() override;
 
+		void Save();
+		void Load();
+
 	private:
+		std::vector<Tile*> mTiles;
 	};
 }
 

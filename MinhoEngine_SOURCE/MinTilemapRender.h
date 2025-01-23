@@ -19,6 +19,7 @@ namespace min
 		void SetTexture(graphcis::Texture* texture) { mTexture = texture; }
 		void SetSize(math::Vector2 size) { mSize = size; }
 		void SetIndex(Vector2 Index) { mIndex = Index; }
+		Vector2 GetIndex() {return mIndex; }
 
 
 	public:

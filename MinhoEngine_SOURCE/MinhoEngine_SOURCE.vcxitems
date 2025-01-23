@@ -36,6 +36,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinRigidbody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinScript.h" />
@@ -44,6 +45,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTilemapRender.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp" />
@@ -64,6 +67,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinRigidbody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinScript.cpp" />
@@ -72,5 +76,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTilemapRender.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIManager.cpp" />
   </ItemGroup>
 </Project>

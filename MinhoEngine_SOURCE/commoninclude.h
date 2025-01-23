@@ -10,6 +10,8 @@
 #include<bitset>
 #include<functional>
 #include<filesystem>
+#include<stack>
+#include<queue>
 
 #include "MinMath.h"
 #include <math.h>

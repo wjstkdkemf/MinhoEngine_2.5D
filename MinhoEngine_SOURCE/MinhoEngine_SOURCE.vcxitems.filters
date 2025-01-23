@@ -79,6 +79,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTilemapRender.cpp">
       <Filter>Component\TileRender</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinRigidbody.cpp">
+      <Filter>Component\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIBase.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -168,6 +177,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTilemapRender.h">
       <Filter>Component\TileRender</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinRigidbody.h">
+      <Filter>Component\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIBase.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -226,6 +244,12 @@
     </Filter>
     <Filter Include="Component\TileRender">
       <UniqueIdentifier>{22003385-18f5-4132-a319-12b816ff2633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Rigidbody">
+      <UniqueIdentifier>{2bfe1183-e4b5-47f8-b15b-1cda44e8cac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{2c1fad8a-70e2-4f63-8193-ec082f14b473}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

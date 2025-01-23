@@ -3,15 +3,17 @@
 
 namespace min
 {
-	class Tile : public GameObject
+	class Floor : public GameObject
 	{
 	public:
+		Floor();
+		~Floor();
+
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Rander(HDC hdc) override;
 
-		void SetIndexPosition(int x, int y);
 
 	private:
 	};

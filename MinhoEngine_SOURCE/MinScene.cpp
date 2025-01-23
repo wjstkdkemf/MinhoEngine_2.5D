@@ -1,5 +1,5 @@
 #include "MinScene.h"
-
+#include "MinCollisionManager.h"
 
 namespace min {
 	Scene::Scene()
@@ -87,5 +87,6 @@ namespace min {
 	}
 	void Scene::OnExit()
 	{
+		CollisionManager::clear();
 	}
 }

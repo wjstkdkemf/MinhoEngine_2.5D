@@ -26,7 +26,6 @@ namespace min
                     LayerCollision(scene, (eLayerType)row, (eLayerType)col);
                 }
             }
-
         }
     }
     void CollisionManager::LateUpdate()
@@ -34,6 +33,11 @@ namespace min
     }
     void CollisionManager::Render(HDC hdc)
     {
+    }
+    void CollisionManager::clear()
+    {
+        mCollisionMap.clear();
+        mCollisionLayerMatrix->reset();
     }
     void CollisionManager::CollisionLayerCheck(eLayerType left, eLayerType right, bool enable)
     {
@@ -55,8 +59,8 @@ namespace min
     }
     void CollisionManager::LayerCollision(Scene* scene, eLayerType left, eLayerType right)
     {
-       const std::vector<GameObject*>& lefts = scene->GetLayer(left)->GetGameObjects();
-       const std::vector<GameObject*>& rights = scene->GetLayer(right)->GetGameObjects();
+       const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects(left);
+       const std::vector<GameObject*>& rights = SceneManager::GetGameObjects(right);
 
        for (GameObject* left : lefts)
        {
