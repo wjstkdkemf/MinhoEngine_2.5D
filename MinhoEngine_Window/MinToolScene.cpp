@@ -60,7 +60,7 @@ namespace min
 				Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
 				TilemapRender* tmr = tile->AddComponent<TilemapRender>();
 
-				tmr->SetTexture(Resources::Find<graphcis::Texture>(L"SpringFloor"));
+				tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
 				tmr->SetIndex(TilemapRender::SelectedIndex);
 
 				tile->SetIndexPosition(idxX, idxY);
@@ -200,7 +200,7 @@ namespace min
 			
 			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile, Vector2(posX,posY));
 			TilemapRender* tmr = tile->AddComponent<TilemapRender>();
-			tmr->SetTexture(Resources::Find<graphcis::Texture>(L"SpringFloor"));
+			tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
 			tmr->SetIndex(Vector2(idxX,idxY));
 
 			mTiles.push_back(tile);
@@ -236,8 +236,8 @@ LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		HDC hdc = BeginPaint(hWnd, &ps);
 
 
-		min::graphcis::Texture* texture
-			= min::Resources::Find<min::graphcis::Texture>(L"SpringFloor");
+		min::graphics::Texture* texture
+			= min::Resources::Find<min::graphics::Texture>(L"SpringFloor");
 
 		TransparentBlt(hdc
 			, 0, 0

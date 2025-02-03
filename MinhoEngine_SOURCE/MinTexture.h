@@ -1,6 +1,6 @@
 #pragma once
 #include "MinResource.h"
-namespace min::graphcis
+namespace min::graphics
 {
 	class Texture : public Resource
 	{

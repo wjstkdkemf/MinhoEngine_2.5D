@@ -19,6 +19,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MiNAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.h" />
@@ -28,7 +31,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
@@ -46,12 +51,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIHUd.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.cpp" />
@@ -60,7 +70,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />
@@ -77,6 +89,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIHUd.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinUIManager.cpp" />
   </ItemGroup>
 </Project>

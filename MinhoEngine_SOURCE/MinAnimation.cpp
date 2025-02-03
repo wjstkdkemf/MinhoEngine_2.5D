@@ -57,9 +57,9 @@ namespace min
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
 		Sprite sprite = mAnimationSheet[mIndex];
-		graphcis::Texture::eTextureType type = mTexture->GetTextureType();
+		graphics::Texture::eTextureType type = mTexture->GetTextureType();
 
-		if (type == graphcis::Texture::eTextureType::Bmp)
+		if (type == graphics::Texture::eTextureType::Bmp)
 		{
 			HDC imgHdc = mTexture->GetHdc();
 
@@ -91,10 +91,10 @@ namespace min
 					, sprite.size.x, sprite.size.y
 					, RGB(255, 0 , 255));
 			}
-			Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
+			::Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
 			
 		}
-		else if (type == graphcis::Texture::eTextureType::Png)
+		else if (type == graphics::Texture::eTextureType::Png)
 		{
 			Gdiplus::ImageAttributes imgAtt = {};
 
@@ -119,7 +119,7 @@ namespace min
 		}
 		//AlphaBlend() 사용조건 : 해당이미지의 알파채널이 존재해야한다.
 	}
-	void Animation::CreateAnimation(const std::wstring& name, graphcis::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
+	void Animation::CreateAnimation(const std::wstring& name, graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
 	{
 		mTexture = spriteSheet;
 		for (size_t i = 0; i < spriteLength; i++)

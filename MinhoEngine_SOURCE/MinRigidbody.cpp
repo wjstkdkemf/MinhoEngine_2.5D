@@ -32,9 +32,9 @@ namespace min
 		if (mbGround)
 		{
 			Vector2 gravity = mGravity;
-			gravity.normalize();
-
-			float dot = Vector2::Dot(mVelocity, gravity);
+			gravity.Normalize();
+			float dot = mVelocity.Dot(gravity);
+			// Vector2::Dot(mVelocity, gravity);
 			mVelocity -= gravity * dot;
 		}
 		else
@@ -44,19 +44,20 @@ namespace min
 
 		//최대 속도 제한
 		Vector2 gravity = mGravity;
-		gravity.normalize();
-		float dot = Vector2::Dot(mVelocity, gravity);
+		gravity.Normalize();
+		//float dot = Vector2::Dot(mVelocity, gravity);
+		float dot = mVelocity.Dot(gravity);
 		gravity = gravity * dot;
 
 		Vector2 sideVelocity = mVelocity - gravity;
-		if (mLimitmVelocity.y < gravity.length())
+		if (mLimitmVelocity.y < gravity.Length())
 		{
-			gravity.normalize();
+			gravity.Normalize();
 			gravity *= mLimitmVelocity.y;
 		}
-		if (mLimitmVelocity.x < sideVelocity.length())
+		if (mLimitmVelocity.x < sideVelocity.Length())
 		{
-			sideVelocity.normalize();
+			sideVelocity.Normalize();
 			sideVelocity *= mLimitmVelocity.x;
 		}
 
@@ -65,9 +66,10 @@ namespace min
 		if (!(mVelocity == Vector2::Zero))
 		{
 			Vector2 friction = -mVelocity; // 힘의 반대방향
-			friction = friction.normalize() * mFriction * mMass * Time::DeltaTime();
+			friction.Normalize();
+			friction = friction * mFriction * mMass * Time::DeltaTime();
 
-			if (mVelocity.length() <= friction.length())
+			if (mVelocity.Length() <= friction.Length())
 			{
 				mVelocity = Vector2::Zero;
 			}
@@ -82,7 +84,7 @@ namespace min
 		pos = pos + mVelocity * Time::DeltaTime();
 		tr->SetPosition(pos);
 
-		mForce.clear();
+		mForce = Vector2::One;
 	}
 	void Rigidbody::LateUpdate()
 	{

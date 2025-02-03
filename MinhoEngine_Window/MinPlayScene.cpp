@@ -20,6 +20,10 @@
 #include "MinRigidbody.h"
 #include "MinFloor.h"
 #include "MinFloorScript.h"
+#include "MinUIManager.h"
+#include "MinAudioClip.h"
+#include "MinAudioListener.h"
+#include "MiNAudioSource.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -51,6 +55,7 @@ namespace min {
 			mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Player);
 			mPlayer->SetName(L"player");
+			mPlayer->AddComponent<AudioListener>();
 			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
 			//CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
 
@@ -68,7 +73,7 @@ namespace min {
 			//	, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.1f);//32.0f, 32.0f
 
 
-			graphcis::Texture* PlayerTex = Resources::Find<graphcis::Texture>(L"Player");
+			graphics::Texture* PlayerTex = Resources::Find<graphics::Texture>(L"Player");
 			Animator* animator = mPlayer->AddComponent<Animator>();
 			animator->CreateAnimation(L"Idle", PlayerTex
 				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
@@ -95,12 +100,15 @@ namespace min {
 
 			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 600.0f));
 			floor->SetName(L"Floor");
+			AudioSource* as = floor->AddComponent<AudioSource>();
 			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
 			floorCol->SetSize(Vector2(3.0f, 1.0f));
 			floor->AddComponent<FloorScript>();
-			
-			
 
+
+			AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
+			
+			as->SetClip(ac);
 			//배경화면
 
 			//GameObject* bg = object::Instantiate<GameObject>
@@ -185,10 +193,13 @@ namespace min {
 	{
 		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
+
+		UIManager::Push(eUIType::Button);
 	}
 	void PlayScene::OnExit()
 	{
 		Transform* tr = mPlayer->GetComponent<Transform>();
+		UIManager::Pop(eUIType::Button);
 		//tr->SetPosition(Vector2(0, 0));
 	}
 }

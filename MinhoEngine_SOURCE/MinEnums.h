@@ -11,6 +11,8 @@ namespace min::enums
 		SpriteRenderer,
 		Animator,
 		Camera,
+		AudioListener,
+		AudioSource,
 		End,
 	};
 
@@ -46,7 +48,8 @@ namespace min::enums
 
 	enum class eUIType
 	{
-
+		HPBAR,
+		Button,
 		End,
 	};
 }

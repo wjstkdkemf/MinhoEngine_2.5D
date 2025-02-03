@@ -11,6 +11,7 @@
 #include "MinBoxCollider2D.h"
 #include "MinCollider.h"
 #include "MinRigidbody.h"
+#include "MinUIManager.h"
 
 namespace min
 {
@@ -102,7 +103,7 @@ namespace min
 
 		catSrc->setPlayer(GetOwner());
 
-		graphcis::Texture* CatTex = Resources::Find<graphcis::Texture>(L"Cat");
+		graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
 		Animator* catAnimator = cat->AddComponent<Animator>();
 		catAnimator->CreateAnimation(L"CatDownWalk", CatTex
 			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
@@ -164,8 +165,13 @@ namespace min
 			velocity.y = -500.0f;
 			rb->SetVelocity(velocity);
 			rb->SetGround(false);
-
 			//pos.y += 100.0f * Time::DeltaTime();
+		}
+		if (input::GetKey(eKeyCode::I)) {
+			UIManager::Push(eUIType::HPBAR);
+		}
+		if (input::GetKey(eKeyCode::O)) {
+			UIManager::Pop(eUIType::HPBAR);
 		}
 	}
 	void PlayerScript::move()

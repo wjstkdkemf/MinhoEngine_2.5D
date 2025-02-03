@@ -1,5 +1,6 @@
 #pragma once
 #include "minGameObject.h"
+#include "MinGraphicDevice_DX11.h"
 
 namespace min{
 	class Application
@@ -29,6 +30,7 @@ namespace min{
 		void initializeEtc();
 
 	private:
+		std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
 		HWND mHwnd;
 		HDC mHdc;
 

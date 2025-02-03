@@ -25,9 +25,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp">
       <Filter>Layer</Filter>
     </ClCompile>
@@ -88,6 +85,30 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinUIBase.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIHUd.cpp">
+      <Filter>UI\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinUIButton.cpp">
+      <Filter>UI\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinFmod.cpp">
+      <Filter>Fmod</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioListener.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioSource.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioClip.cpp">
+      <Filter>Resource\AudioClip</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.cpp">
+      <Filter>GraphicDevice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -115,9 +136,6 @@
       <Filter>High Level interface</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h">
@@ -186,6 +204,30 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinUIBase.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIHUd.h">
+      <Filter>UI\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinUIButton.h">
+      <Filter>UI\UIButton</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinFmod.h">
+      <Filter>Fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioListener.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MiNAudioSource.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioClip.h">
+      <Filter>Resource\AudioClip</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.h">
+      <Filter>GraphicDevice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -250,6 +292,21 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{2c1fad8a-70e2-4f63-8193-ec082f14b473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\HUD">
+      <UniqueIdentifier>{1e1fbf6c-d854-4852-ba12-6d2bd0fb1381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UIButton">
+      <UniqueIdentifier>{cb7ef101-d942-4b7d-9984-4f979f066a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fmod">
+      <UniqueIdentifier>{1cf411a3-8c95-4c30-8cf0-f8e21ce92c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Audio">
+      <UniqueIdentifier>{601bf588-f3d9-43cd-b8ba-72675d4d06e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicDevice">
+      <UniqueIdentifier>{cc6add0a-bb82-4de7-b42a-32eeef0b9480}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

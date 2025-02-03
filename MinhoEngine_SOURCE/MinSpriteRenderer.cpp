@@ -37,7 +37,7 @@ namespace min {
 
 		pos = renderer::mainCamera->CalculatePosition(pos);
 
-		if (mTexture->GetTextureType() == graphcis::Texture::eTextureType::Bmp)
+		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
 		{
 			if (mTexture->IsAlpha())
 			{
@@ -66,7 +66,7 @@ namespace min {
 					, RGB(255, 0, 255));
 			}
 		}
-		else if (mTexture->GetTextureType() == graphcis::Texture::eTextureType::Png)
+		else if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Png)
 		{
 			Gdiplus::ImageAttributes imgAtt = {};
 

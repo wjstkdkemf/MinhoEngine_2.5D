@@ -16,7 +16,7 @@ namespace min
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void SetTexture(graphcis::Texture* texture) { mTexture = texture; }
+		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		void SetSize(math::Vector2 size) { mSize = size; }
 		void SetIndex(Vector2 Index) { mIndex = Index; }
 		Vector2 GetIndex() {return mIndex; }
@@ -29,7 +29,7 @@ namespace min
 			
 	private:
 		Vector2 mTileSize;
-		graphcis::Texture* mTexture;
+		graphics::Texture* mTexture;
 		Vector2 mSize;
 		Vector2 mIndex;
 	};

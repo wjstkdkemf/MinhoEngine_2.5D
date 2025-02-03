@@ -4,7 +4,7 @@
 
 extern min::Application application;
 
-namespace min::graphcis
+namespace min::graphics
 {
 	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
 	{
@@ -30,7 +30,7 @@ namespace min::graphcis
 		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(image->mHdc, transparentBrush);
 
-		Rectangle(image->mHdc
+		::Rectangle(image->mHdc
 			, -1 , -1
 			, image->GetWidth() + 1
 			, image->GetHeight() + 1);

@@ -1,4 +1,6 @@
 #include "MinUIManager.h"
+#include "MinUIHUd.h"
+#include "MinUIButton.h"
 
 namespace min
 {
@@ -9,6 +11,12 @@ namespace min
 
 	void UIManager::Initialize()
 	{
+		UIHUd* hud = new UIHUd();
+		mUIs.insert(std::make_pair(eUIType::HPBAR, hud));
+
+		UIButton* button = new UIButton();
+		mUIs.insert(std::make_pair(eUIType::Button, button));
+
 	}
 	void UIManager::OnLoad(eUIType type)
 	{
@@ -26,7 +34,8 @@ namespace min
 	void UIManager::Update()
 	{
 		std::stack<UIBase*> uiBases = mUIBases;
-		while (uiBases.empty())
+
+		while (!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
 			if (uiBase)
@@ -46,7 +55,7 @@ namespace min
 	void UIManager::LateUpdate()
 	{
 		std::stack<UIBase*> uiBases = mUIBases;
-		while (uiBases.empty())
+		while (!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
 			if (uiBase)
@@ -59,7 +68,7 @@ namespace min
 	void UIManager::Render(HDC hdc)
 	{
 		std::stack<UIBase*> uiBases = mUIBases;
-		while (uiBases.empty())
+		while (!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
 			if (uiBase)
@@ -98,6 +107,14 @@ namespace min
 	{
 		mActiveUI = nullptr;
 	}
+	void UIManager::Release()
+	{
+		for (auto iter : mUIs)
+		{
+			delete iter.second;
+			iter.second = nullptr;
+		}
+	}
 	void UIManager::Push(eUIType type)
 	{
 		mRequestUIQueue.push(type);
@@ -107,11 +124,43 @@ namespace min
 		if (mUIBases.size() <= 0)
 			return;
 
+		std::stack<UIBase*> tempStack;
+
 		UIBase* uibase = nullptr;
 
 		while (mUIBases.size() > 0)
 		{
+			uibase = mUIBases.top();
+			mUIBases.pop();
 
+			if (uibase->GetType() != type)
+			{
+				tempStack.push(uibase);
+				continue;
+			}
+
+			if (uibase->IsFullScreen())
+			{
+				std::stack<UIBase*> uiBases = mUIBases;
+				while (!uiBases.empty())
+				{
+					UIBase* uiBase = uiBases.top();
+					uiBases.pop();
+					if (uiBase)
+					{
+						uiBase->Active();
+						break;
+					}
+				}
+			}
+			uibase->UIClear();
+		}
+
+		while (tempStack.size() > 0)
+		{
+			uibase = tempStack.top();
+			tempStack.pop();
+			mUIBases.push(uibase);
 		}
 	}
 }

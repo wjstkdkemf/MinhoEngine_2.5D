@@ -8,6 +8,7 @@
 #include "MinObject.h"
 #include "MinCollider.h"
 #include "MinRigidbody.h"
+#include "MiNAudioSource.h"
 
 namespace min
 {
@@ -49,6 +50,10 @@ namespace min
 
 			playerTr->SetPosition(playerPos);
 		}
+
+		AudioSource* as = GetOwner()->GetComponent<AudioSource>();
+		as->SetLoop(false);
+		as->Play();
 
 		playerRb->SetGround(true);
 	}

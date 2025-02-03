@@ -10,15 +10,17 @@
 
 namespace min {
 	void LoadResources() {
-		Resources::Load<graphcis::Texture>(L"BG", L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
-		Resources::Load<graphcis::Texture>(L"BG_2", L"..\\MinhoEngine_SOURCE\\Resources\\TitleName.png");
-		Resources::Load<graphcis::Texture>(L"TN", L"..\\MinhoEngine_SOURCE\\Resources\\background.png");
-		Resources::Load<graphcis::Texture>(L"PackMan", L"..\\MinhoEngine_SOURCE\\Resources\\3.png");
-		Resources::Load<graphcis::Texture>(L"Chicken", L"..\\MinhoEngine_SOURCE\\Resources\\chicken.bmp");
-		Resources::Load<graphcis::Texture>(L"Cat", L"..\\MinhoEngine_SOURCE\\Resources\\ChickenAlpha.bmp");
-		Resources::Load<graphcis::Texture>(L"Bubble", L"..\\MinhoEngine_SOURCE\\Resources\\Bubble.png");
-		Resources::Load<graphcis::Texture>(L"MappleEffect", L"..\\MinhoEngine_SOURCE\\Resources\\ezgif.com-gif-maker.png");
-		Resources::Load<graphcis::Texture>(L"Player", L"..\\MinhoEngine_SOURCE\\Resources\\Player.bmp");
-		Resources::Load<graphcis::Texture>(L"SpringFloor", L"..\\MinhoEngine_SOURCE\\Resources\\SpringFloor.bmp");
+		Resources::Load<graphics::Texture>(L"BG", L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\Resources\\CloudOcean.png");
+		Resources::Load<graphics::Texture>(L"BG_2", L"..\\Resources\\TitleName.png");
+		Resources::Load<graphics::Texture>(L"TN", L"..\\Resources\\background.png");
+		Resources::Load<graphics::Texture>(L"PackMan", L"..\\Resources\\3.png");
+		Resources::Load<graphics::Texture>(L"Chicken", L"..\\Resources\\chicken.bmp");
+		Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
+		Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
+		Resources::Load<graphics::Texture>(L"MappleEffect", L"..\\Resources\\ezgif.com-gif-maker.png");
+		Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
+		Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
+		Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
+
 	}
 }

@@ -4,6 +4,9 @@
 #include "MinSceneManager.h"
 #include "MinResources.h"
 #include "MinCollisionManager.h"
+#include "MinUIManager.h"
+#include "MinFmod.h"
+#include "MinGraphicDevice_DX11.h"
 
 
 namespace min {
@@ -28,7 +31,12 @@ namespace min {
 		createBuffer(width, height);
 		initializeEtc();
 
+		mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
+		mGraphicDevice->Initialize();
+
+		Fmod::Initialize();
 		CollisionManager::Initialize();
+		UIManager::Initialize();
 		SceneManager::Initialize();
 	}
 	void Application::Run()
@@ -42,23 +50,29 @@ namespace min {
 	{
 		input::Update();
 		Time::Update();
+
 		CollisionManager::Update();
+		UIManager::Update();
 		SceneManager::Update();
 	}
 	void Application::LateUpdate()
 	{
 		CollisionManager::LateUpdate();
+		UIManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
 	void Application::Render()
 	{
-		clearRenderTarget();
+		//clearRenderTarget();
+
+		mGraphicDevice->Draw();
 
 		Time::Render(mBackHdc);
 		CollisionManager::Render(mBackHdc);
+		UIManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
-		copyRenderTarget(mBackHdc, mHdc);
+		//copyRenderTarget(mBackHdc, mHdc);
 	}
 	void Application::Destory()
 	{
@@ -67,6 +81,7 @@ namespace min {
 	void Application::Release()
 	{
 		SceneManager::Release();
+		UIManager::Release();
 		Resources::Release();
 	}
 
@@ -75,7 +90,7 @@ namespace min {
 		HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(128,128,128));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, grayBrush);
 
-		Rectangle(mBackHdc, -1, -1, 1921, 1081);
+		::Rectangle(mBackHdc, -1, -1, 1921, 1081);
 
 		SelectObject(mBackHdc, oldBrush);
 		DeleteObject(grayBrush);
