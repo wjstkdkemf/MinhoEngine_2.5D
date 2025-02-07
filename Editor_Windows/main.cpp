@@ -159,7 +159,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
    //load Scenes
-   min::LoadResources();
+   //min::LoadResources();
    min::LoadScenes();
 
    int a = 0;

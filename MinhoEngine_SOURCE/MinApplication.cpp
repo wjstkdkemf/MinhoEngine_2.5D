@@ -7,6 +7,7 @@
 #include "MinUIManager.h"
 #include "MinFmod.h"
 #include "MinGraphicDevice_DX11.h"
+#include "MinRenderer.h"
 
 
 namespace min {
@@ -32,6 +33,7 @@ namespace min {
 		initializeEtc();
 
 		mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
+		renderer::Initialize();
 		mGraphicDevice->Initialize();
 
 		Fmod::Initialize();
@@ -83,6 +85,8 @@ namespace min {
 		SceneManager::Release();
 		UIManager::Release();
 		Resources::Release();
+
+		renderer::Release();
 	}
 
 	void Application::clearRenderTarget()

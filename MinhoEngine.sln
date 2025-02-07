@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinhoEngine_Window", "Minho
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinhoEngine_SOURCE", "MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems", "{73D9E8B1-27B6-4FB8-A6B8-B4CE2D679D11}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders_SOURCE", "Shaders_SOURCE\Shaders_SOURCE.vcxitems", "{90A4FD38-BC3B-422D-875A-FAA447AC23C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -42,6 +44,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems*{67fb9378-8902-4ee3-bfa6-ec779d283e72}*SharedItemsImports = 4
+		Shaders_SOURCE\Shaders_SOURCE.vcxitems*{67fb9378-8902-4ee3-bfa6-ec779d283e72}*SharedItemsImports = 4
 		MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems*{73d9e8b1-27b6-4fb8-a6b8-b4ce2d679d11}*SharedItemsImports = 9
+		Shaders_SOURCE\Shaders_SOURCE.vcxitems*{90a4fd38-bc3b-422d-875a-faa447ac23c9}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

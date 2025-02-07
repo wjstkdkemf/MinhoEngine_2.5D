@@ -53,7 +53,7 @@ namespace min
 
 		AudioSource* as = GetOwner()->GetComponent<AudioSource>();
 		as->SetLoop(false);
-		as->Play();
+		//as->Play();
 
 		playerRb->SetGround(true);
 	}

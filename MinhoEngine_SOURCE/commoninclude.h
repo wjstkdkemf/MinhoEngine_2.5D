@@ -12,6 +12,8 @@
 #include<filesystem>
 #include<stack>
 #include<queue>
+#include<mutex>
+#include<thread>
 
 #include "MinMath.h"
 #include <math.h>
@@ -24,5 +26,6 @@
 #include <gdiplus.h>
 #pragma comment(lib, "gdiplus.lib")
 
+#include "MinGraphics.h"
 #include "MinEnums.h"
 #include "wrl.h"

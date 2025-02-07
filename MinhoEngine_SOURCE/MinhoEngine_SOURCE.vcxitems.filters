@@ -109,6 +109,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.cpp">
       <Filter>GraphicDevice</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphics.cpp">
+      <Filter>GraphicDevice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -226,6 +229,9 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.h">
+      <Filter>GraphicDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphics.h">
       <Filter>GraphicDevice</Filter>
     </ClInclude>
   </ItemGroup>

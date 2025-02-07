@@ -33,6 +33,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
@@ -72,6 +73,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)minGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphics.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp" />

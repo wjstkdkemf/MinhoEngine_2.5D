@@ -57,6 +57,7 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
     <Import Project="..\MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems" Label="Shared" />
+    <Import Project="..\Shaders_SOURCE\Shaders_SOURCE.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -160,6 +161,7 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClInclude Include="MinFloorScript.h" />
     <ClInclude Include="MinLoadResources.h" />
     <ClInclude Include="MinLodeScene.h" />
+    <ClInclude Include="MinLoadingScene.h" />
     <ClInclude Include="MinPlayer.h" />
     <ClInclude Include="MinPlayerScript.h" />
     <ClInclude Include="MinPlayScene.h" />
@@ -173,6 +175,7 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClCompile Include="MinCatScript.cpp" />
     <ClCompile Include="MinFloor.cpp" />
     <ClCompile Include="MinFloorScript.cpp" />
+    <ClCompile Include="MinLoadingScene.cpp" />
     <ClCompile Include="MinPlayer.cpp" />
     <ClCompile Include="MinPlayerScript.cpp" />
     <ClCompile Include="MinPlayScene.cpp" />
