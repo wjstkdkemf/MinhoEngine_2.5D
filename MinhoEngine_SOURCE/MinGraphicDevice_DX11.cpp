@@ -3,6 +3,7 @@
 #include "MinRenderer.h"
 #include "MinShader.h"
 #include "MinResources.h"
+//win_api 설정 바꾸기 직전
 
 extern min::Application application;
 
