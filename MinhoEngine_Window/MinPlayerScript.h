@@ -22,7 +22,7 @@ namespace min
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void LateUpdate() override;
-		virtual void Render(HDC hdc) override;
+		virtual void Render() override;
 
 		void OnCollisionEnter(Collider* other) override;
 		void OnCollisionStay(Collider* other) override;

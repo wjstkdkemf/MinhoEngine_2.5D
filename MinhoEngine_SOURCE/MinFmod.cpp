@@ -55,12 +55,12 @@ namespace min
 	{
 		mCoreSystem->playSound(sound, 0, false, channel);
 	}
-	void Fmod::Set3DListenerAttributes(const Vector2* pos) //, const Vector2* forward, const Vector2* up
+	void Fmod::Set3DListenerAttributes(const Vector3& pos) //, const Vector2* forward, const Vector2* up
 	{
 		FMOD_VECTOR fmodforward = { 0.0f, 0.0f, 1.0f };
 		FMOD_VECTOR fmodup = { 0.0f, 1.0f, 0.0f };
 		FMOD_VECTOR fmodvel = { 0.0f, 0.0f, 0.0f };
-		FMOD_VECTOR fmodlistenerpos = { 0.0f, 0.0f, 0.5f };//pos->x, pos->y
+		FMOD_VECTOR fmodlistenerpos = { pos.x , pos.y , pos.z };//pos->x, pos->y
 
 		mCoreSystem->set3DListenerAttributes(0, &fmodlistenerpos, &fmodvel, &fmodforward, &fmodup);
 	}

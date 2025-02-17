@@ -17,28 +17,28 @@ namespace min::graphics
 		image->SetHeight(height);
 		image->SetWidth(width);
 
-		HDC hdc = application.GetHdc();
-		HWND hwnd = application.GetHwnd();
+		//HDC hdc = application.GetHdc();
+		//HWND hwnd = application.GetHwnd();
 
-		image->mBitmap = CreateCompatibleBitmap(hdc
-			, width
-			, height);
+		//image->mBitmap = CreateCompatibleBitmap(hdc
+		//	, width
+		//	, height);
 
-		image->mHdc = CreateCompatibleDC(hdc);
+		//image->mHdc = CreateCompatibleDC(hdc);
 
-		//배경 설정(투명도)
-		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(image->mHdc, transparentBrush);
+		////배경 설정(투명도)
+		//HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+		//HBRUSH oldBrush = (HBRUSH)SelectObject(image->mHdc, transparentBrush);
 
-		::Rectangle(image->mHdc
-			, -1 , -1
-			, image->GetWidth() + 1
-			, image->GetHeight() + 1);
+		//::Rectangle(image->mHdc
+		//	, -1 , -1
+		//	, image->GetWidth() + 1
+		//	, image->GetHeight() + 1);
 
-		SelectObject(image->mHdc, oldBrush);
+		//SelectObject(image->mHdc, oldBrush);
 
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
-		DeleteObject(oldBitmap);
+		//HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+		//DeleteObject(oldBitmap);
 
 		Resources::Insert(name + L"image", image);
 
@@ -58,7 +58,7 @@ namespace min::graphics
 	{
 		std::wstring ext = path.substr(path.find_last_of(L".") + 1);
 		//bmp 일때
-		if (ext == L"bmp")
+		/*if (ext == L"bmp")
 		{
 			mType = eTextureType::Bmp;
 			mBitmap = (HBITMAP)LoadImageW(nullptr, path.c_str(), IMAGE_BITMAP
@@ -91,7 +91,7 @@ namespace min::graphics
 				return S_FALSE;
 			mWidth = mImage->GetWidth();
 			mHeight = mImage->GetHeight();
-		}
+		}*/
 
 		return S_OK;
 	}

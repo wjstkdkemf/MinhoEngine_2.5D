@@ -23,17 +23,12 @@ namespace min::graphics
 		void SetWidth(UINT width) { mWidth = width; }
 		UINT GetHeight() { return mHeight; }
 		void SetHeight(UINT height) { mHeight = height; }
-		HDC GetHdc() { return mHdc; }
-		eTextureType GetTextureType() { return mType; }
-		Gdiplus::Image* GetImage() { return mImage; }
-		bool IsAlpha() { return mbAlpha; }
+		eTextureType GetTextureType() const { return mType; }
+		bool IsAlpha() const { return mbAlpha; }
 
 	private:
 		bool mbAlpha;
 		eTextureType mType;
-		Gdiplus::Image* mImage;//png파일
-		HBITMAP mBitmap;//bmp 파일
-		HDC mHdc;
 
 		UINT mWidth;
 		UINT mHeight;

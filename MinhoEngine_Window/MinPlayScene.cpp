@@ -27,6 +27,7 @@
 
 namespace min {
 	PlayScene::PlayScene()
+		: mPlayer(nullptr)
 	{
 	}
 	PlayScene::~PlayScene()
@@ -54,6 +55,7 @@ namespace min {
 
 			mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Player);
+			object::DontDestoryOnLoad(mPlayer);
 			mPlayer->SetName(L"player");
 			mPlayer->AddComponent<AudioListener>();
 			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
@@ -183,11 +185,9 @@ namespace min {
 			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
-	void PlayScene::Rander(HDC hdc)
+	void PlayScene::Rander()
 	{
-		Scene::Rander(hdc);
-		wchar_t str[50] = L"Play Scene";
-		TextOut(hdc, 0, 0, str, 10);
+		Scene::Rander();
 	}
 	void PlayScene::OnEnter()
 	{

@@ -13,7 +13,8 @@ namespace min
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Rander(HDC hdc) override;
+		void Rander() override;
+		void renderGreed();
 
 		void OnEnter() override;
 		void OnExit() override;

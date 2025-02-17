@@ -21,19 +21,19 @@ namespace min {
 		DeltaTimeValue = differenceFrequency / static_cast<float>(CpuFrequency.QuadPart);
 		PrevFrequency.QuadPart = CurrentFrequency.QuadPart;
 	}
-	void Time::Render(HDC hdc)
+	void Time::Render()
 	{
-		static float time = 0.0f;
+		//static float time = 0.0f;
 
-		time += DeltaTimeValue;
-		float fps = 1.0f / DeltaTimeValue;
+		//time += DeltaTimeValue;
+		//float fps = 1.0f / DeltaTimeValue;
 
-		wchar_t str[50] = L"";
-		swprintf_s(str,50,L"FPS : %d", (int)fps);//swprintf_s(str,50,L"Time : %f", time)
-		int len = wcsnlen_s(str, 50);
+		//wchar_t str[50] = L"";
+		//swprintf_s(str,50,L"FPS : %d", (int)fps);//swprintf_s(str,50,L"Time : %f", time)
+		//int len = wcsnlen_s(str, 50);
 
-		
+		//
 
-		TextOut(hdc, 0, 0, str, len);
+		//TextOut(hdc, 0, 0, str, len);
 	}
 }

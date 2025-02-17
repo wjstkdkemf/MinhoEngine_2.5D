@@ -47,7 +47,7 @@ namespace min {
 			gameObj->LateUpdate();
 		}
 	}
-	void Layer::Rander(HDC hdc)
+	void Layer::Rander()
 	{
 		for (GameObject* gameObj : mGameObjects) {
 			if (gameObj == nullptr)
@@ -58,7 +58,7 @@ namespace min {
 				|| state == GameObject::eState::Dead)
 				continue;
 
-			gameObj->Rander(hdc);
+			gameObj->Rander();
 		}
 	}
 	void Layer::Destroy()

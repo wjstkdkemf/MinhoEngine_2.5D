@@ -24,7 +24,7 @@ namespace min
 		static void Initialize();
 		static bool CreateSound(const std::string& path, FMOD::Sound** sound);
 		static void SoundPlay(FMOD::Sound* sound, FMOD::Channel** channel);
-		static void Set3DListenerAttributes(const Vector2* pos);//, const Vector2* forward, const Vector2* up
+		static void Set3DListenerAttributes(const Vector3& pos);//, const Vector2* forward, const Vector2* up
 		static void Release();
 
 	private:

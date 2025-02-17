@@ -16,8 +16,8 @@ namespace min {
 	{
 		GameObject::LateUpdate();
 	}
-	void Player::Rander(HDC hdc)
+	void Player::Rander()
 	{
-		GameObject::Rander(hdc);
+		GameObject::Rander();
 	}
 }

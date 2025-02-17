@@ -23,8 +23,8 @@ namespace min
 		GameObject::LateUpdate();
 	}
 
-	void Floor::Rander(HDC hdc)
+	void Floor::Rander()
 	{
-		GameObject::Rander(hdc);
+		GameObject::Rander();
 	}
 }

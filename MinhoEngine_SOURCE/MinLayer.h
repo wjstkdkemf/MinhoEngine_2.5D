@@ -12,7 +12,7 @@ namespace min {
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Rander(HDC hdc);
+		virtual void Rander();
 		virtual void Destroy();
 
 		void EraseGameObjects(GameObject* eraseGameObj);

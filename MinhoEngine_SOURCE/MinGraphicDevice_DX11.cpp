@@ -3,7 +3,6 @@
 #include "MinRenderer.h"
 #include "MinShader.h"
 #include "MinResources.h"
-//win_api 설정 바꾸기 직전
 
 extern min::Application application;
 
@@ -27,11 +26,12 @@ namespace min::graphics
 #if defined(DEBUG) || defined(_DEBUG)
 		creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
-		HRESULT hr = D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE,
+		if (FAILED(D3D11CreateDevice(0, D3D_DRIVER_TYPE_HARDWARE,
 			0, creationFlags,
 			featureLevels, ARRAYSIZE(featureLevels),
 			D3D11_SDK_VERSION, mDevice.GetAddressOf(),
-			0, mContext.GetAddressOf());
+			0, mContext.GetAddressOf())))
+			return false;
 
 		return true;
 	}
@@ -278,7 +278,7 @@ namespace min::graphics
 
 		D3D11_VIEWPORT viewPort =
 		{
-			0, 0, application.GetWidth(), application.GetHeight(),
+			0, 0, (float)application.GetWidth(), (float)application.GetHeight(),
 			0.0f, 1.0f
 		};
 		mContext->RSSetViewports(1, &viewPort);

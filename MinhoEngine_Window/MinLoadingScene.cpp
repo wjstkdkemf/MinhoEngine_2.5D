@@ -34,7 +34,7 @@ void min::LoadingScene::LateUpdate()
 {
 }
 
-void min::LoadingScene::Rander(HDC hdc)
+void min::LoadingScene::Rander()
 {
 }
 

@@ -12,7 +12,7 @@ namespace min::graphics
 	bool VertexBuffer::Create(const std::vector<Vertex>& vertexes)
 	{
 #pragma region vertex buffer desc
-		desc.ByteWidth = sizeof(Vertex) * vertexes.size();
+		desc.ByteWidth = sizeof(Vertex) * (UINT)vertexes.size();
 		desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
 		desc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
 		desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
@@ -22,7 +22,7 @@ namespace min::graphics
 
 #pragma endregion
 		if (!(GetDevice()->CreateBuffer(&desc, &sub, buffer.GetAddressOf())))
-			assert(NULL && "Create vertex buffer failed!");
+			assert(NULL);
 
 		return true;
 	}

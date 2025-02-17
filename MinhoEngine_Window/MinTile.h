@@ -9,7 +9,7 @@ namespace min
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Rander(HDC hdc) override;
+		void Rander() override;
 
 		void SetIndexPosition(int x, int y);
 

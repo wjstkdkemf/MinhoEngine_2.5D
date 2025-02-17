@@ -48,11 +48,8 @@ namespace min
 	void UIButton::OnLateUpdate()
 	{
 	}
-	void UIButton::OnRender(HDC hdc)
+	void UIButton::OnRender()
 	{
-		::Rectangle(hdc
-			, mPosition.x, mPosition.y
-			, mPosition.x + mSize.x, mPosition.y + mSize.y);
 	}
 	void UIButton::OnClear()
 	{

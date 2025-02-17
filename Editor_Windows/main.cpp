@@ -162,9 +162,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    //min::LoadResources();
    min::LoadScenes();
 
-   int a = 0;
-   srand((unsigned int)(& a));
-
    min::Scene* activeScene = min::SceneManager::GetActiveScene();
    std::wstring name = activeScene->GetName();
 

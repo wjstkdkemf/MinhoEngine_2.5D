@@ -45,13 +45,13 @@ namespace min {
 			layer->LateUpdate();
 		}
 	}
-	void Scene::Rander(HDC hdc)
+	void Scene::Rander()
 	{
 		for (Layer* layer : mLayer) {
 			if (layer == nullptr)
 				continue;
 
-			layer->Rander(hdc);
+			layer->Rander();
 		}
 	}
 	void Scene::Destory()

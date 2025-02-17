@@ -67,11 +67,9 @@ namespace min {
 			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
-	void TitleScene::Rander(HDC hdc)
+	void TitleScene::Rander()
 	{
-		Scene::Rander(hdc);
-		wchar_t str[50] = L"Title Scene";
-		TextOut(hdc, 0, 0, str, 11);
+		Scene::Rander();
 	}
 	void TitleScene::OnEnter()
 	{

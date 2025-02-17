@@ -60,10 +60,10 @@ namespace min {
 		mActiveScene->LateUpdate();
 		mDontDestroyOnLoad->LateUpdate();
 	}
-	void SceneManager::Render(HDC hdc)
+	void SceneManager::Render()
 	{
-		mActiveScene->Rander(hdc);
-		mDontDestroyOnLoad->Rander(hdc);
+		mActiveScene->Rander();
+		mDontDestroyOnLoad->Rander();
 	}
 	void SceneManager::Destory()
 	{

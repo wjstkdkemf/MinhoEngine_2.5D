@@ -29,7 +29,7 @@ namespace min
 	}
 	void PlayerScript::Update()
 	{
-		if (mAnimator == nullptr)
+		/*if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<Animator>();
 
 		switch (mState)
@@ -51,7 +51,7 @@ namespace min
 			break;
 		default:
 			break;
-		}
+		}*/
 
 		//if (input::GetKey(eKeyCode::Right)) {
 		//	Transform* tr = GetOwner()->GetComponent<Transform>();
@@ -81,7 +81,7 @@ namespace min
 	void PlayerScript::LateUpdate()
 	{
 	}
-	void PlayerScript::Render(HDC hdc)
+	void PlayerScript::Render()
 	{
 	}
 	void PlayerScript::OnCollisionEnter(Collider* other)
@@ -97,82 +97,82 @@ namespace min
 	}
 	void PlayerScript::PlayerEffect()
 	{
-		Cat* cat = object::Instantiate<Cat>
-			(enums::eLayerType::Animal);
-		CatScript* catSrc = cat->AddComponent<CatScript>();
+		//Cat* cat = object::Instantiate<Cat>
+		//	(enums::eLayerType::Animal);
+		//CatScript* catSrc = cat->AddComponent<CatScript>();
 
-		catSrc->setPlayer(GetOwner());
+		//catSrc->setPlayer(GetOwner());
 
-		graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
-		Animator* catAnimator = cat->AddComponent<Animator>();
-		catAnimator->CreateAnimation(L"CatDownWalk", CatTex
-			, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		catAnimator->CreateAnimation(L"CatRightWalk", CatTex
-			, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		catAnimator->CreateAnimation(L"CatUpWalk", CatTex
-			, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
-			, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		catAnimator->CreateAnimation(L"CatSitDown", CatTex
-			, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		catAnimator->CreateAnimation(L"CatGrooming", CatTex
-			, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-		catAnimator->CreateAnimation(L"CatLayDown", CatTex
-			, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//graphics::Texture* CatTex = Resources::Find<graphics::Texture>(L"Cat");
+		//Animator* catAnimator = cat->AddComponent<Animator>();
+		//catAnimator->CreateAnimation(L"CatDownWalk", CatTex
+		//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"CatRightWalk", CatTex
+		//	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"CatUpWalk", CatTex
+		//	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"CatLeftWalk", CatTex
+		//	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"CatSitDown", CatTex
+		//	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"CatGrooming", CatTex
+		//	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//catAnimator->CreateAnimation(L"CatLayDown", CatTex
+		//	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		//Transform* tr = GetOwner()->GetComponent<Transform>();
 
-		BoxCollider2D* catCollider = cat->AddComponent<BoxCollider2D>();
-		catCollider->SetOffset(Vector2(-50.0f, -50.0f));
+		//BoxCollider2D* catCollider = cat->AddComponent<BoxCollider2D>();
+		//catCollider->SetOffset(Vector2(-50.0f, -50.0f));
 
-		catAnimator->PlayAnimation(L"CatSitDown", false);
+		//catAnimator->PlayAnimation(L"CatSitDown", false);
 
 
-		cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
-		cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+		//cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
+		//cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
-		Vector2 mousePos = input::GetMousePosition();
-		catSrc->mDest = mousePos;
+		//Vector2 mousePos = input::GetMousePosition();
+		//catSrc->mDest = mousePos;
 
 	}
 	void PlayerScript::Idle()
 	{
-		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
-		if (input::GetKey(eKeyCode::Right)) {
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"PlayerRightWalk", true);
-		}
-		if (input::GetKey(eKeyCode::Left)) {
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"PlayerLeftWalk", true);
-		}
-		if (input::GetKey(eKeyCode::Up)) {
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"PlayerUpWalk", true);
-		}
-		if (input::GetKey(eKeyCode::Down)) {
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"PlayerDownWalk", true);
-		}
-		if (input::GetKey(eKeyCode::Lbutton)) {
-			mState = PlayerScript::eState::GiveWater;
-			mAnimator->PlayAnimation(L"PlayerFronttGiveWater", false);
+		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		//if (input::GetKey(eKeyCode::Right)) {
+		//	mState = PlayerScript::eState::Walk;
+		//	mAnimator->PlayAnimation(L"PlayerRightWalk", true);
+		//}
+		//if (input::GetKey(eKeyCode::Left)) {
+		//	mState = PlayerScript::eState::Walk;
+		//	mAnimator->PlayAnimation(L"PlayerLeftWalk", true);
+		//}
+		//if (input::GetKey(eKeyCode::Up)) {
+		//	mState = PlayerScript::eState::Walk;
+		//	mAnimator->PlayAnimation(L"PlayerUpWalk", true);
+		//}
+		//if (input::GetKey(eKeyCode::Down)) {
+		//	mState = PlayerScript::eState::Walk;
+		//	mAnimator->PlayAnimation(L"PlayerDownWalk", true);
+		//}
+		//if (input::GetKey(eKeyCode::Lbutton)) {
+		//	mState = PlayerScript::eState::GiveWater;
+		//	mAnimator->PlayAnimation(L"PlayerFronttGiveWater", false);
 
-			Vector2 mousePos = input::GetMousePosition();
-		}
-		if (input::GetKey(eKeyCode::Space)) {
-			Vector2 velocity = rb->GetVelocity();
-			velocity.y = -500.0f;
-			rb->SetVelocity(velocity);
-			rb->SetGround(false);
-			//pos.y += 100.0f * Time::DeltaTime();
-		}
-		if (input::GetKey(eKeyCode::I)) {
-			UIManager::Push(eUIType::HPBAR);
-		}
-		if (input::GetKey(eKeyCode::O)) {
-			UIManager::Pop(eUIType::HPBAR);
-		}
+		//	Vector2 mousePos = input::GetMousePosition();
+		//}
+		//if (input::GetKey(eKeyCode::Space)) {
+		//	Vector2 velocity = rb->GetVelocity();
+		//	velocity.y = -500.0f;
+		//	rb->SetVelocity(velocity);
+		//	rb->SetGround(false);
+		//	//pos.y += 100.0f * Time::DeltaTime();
+		//}
+		//if (input::GetKey(eKeyCode::I)) {
+		//	UIManager::Push(eUIType::HPBAR);
+		//}
+		//if (input::GetKey(eKeyCode::O)) {
+		//	UIManager::Pop(eUIType::HPBAR);
+		//}
 	}
 	void PlayerScript::move()
 	{
@@ -210,10 +210,10 @@ namespace min
 	}
 	void PlayerScript::giveWater()
 	{
-		if (mAnimator->IsCompleteAnimation()) 
+		/*if (mAnimator->IsCompleteAnimation()) 
 		{
 			mState = PlayerScript::eState::idle;
 			mAnimator->PlayAnimation(L"Idle", false);
-		}
+		}*/
 	}
 }

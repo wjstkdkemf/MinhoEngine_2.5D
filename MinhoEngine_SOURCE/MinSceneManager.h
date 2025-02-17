@@ -28,7 +28,7 @@ namespace min {
 		static void Initialize();
 		static void Update();
 		static void LateUpdate();
-		static void Render(HDC hdc);
+		static void Render();
 		static void Destory();
 		static void Release();
 

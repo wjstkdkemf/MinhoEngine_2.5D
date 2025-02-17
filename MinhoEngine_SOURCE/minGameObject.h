@@ -28,7 +28,7 @@ namespace min {
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Rander(HDC hdc);
+		virtual void Rander();
 
 		template <typename T>
 		T* AddComponent()
@@ -63,12 +63,12 @@ namespace min {
 				mState = eState::Paused;
 		}
 		eState GetState() { return mState; }
-		bool IsActive() { return mState == eState::Active; }
-		bool IsDead() { return mState == eState::Dead; }
+		bool IsActive() const { return mState == eState::Active; }
+		bool IsDead() const { return mState == eState::Dead; }
 
 		void death() { mState = eState::Dead; }
 		void SetLayerType(eLayerType layer) { mLayerType = layer; }
-		eLayerType GetLayerType() { return mLayerType; }
+		eLayerType GetLayerType() const { return mLayerType; }
 
 		
 

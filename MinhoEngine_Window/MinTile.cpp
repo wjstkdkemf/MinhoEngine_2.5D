@@ -22,9 +22,9 @@ namespace min
 		GameObject::LateUpdate();
 	}
 
-	void Tile::Rander(HDC hdc)
+	void Tile::Rander()
 	{
-		GameObject::Rander(hdc);
+		GameObject::Rander();
 	}
 
 	void Tile::SetIndexPosition(int x, int y)

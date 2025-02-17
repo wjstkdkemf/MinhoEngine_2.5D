@@ -27,17 +27,17 @@ namespace min
 	void UIHUd::OnLateUpdate()
 	{
 	}
-	void UIHUd::OnRender(HDC hdc)
+	void UIHUd::OnRender()
 	{
-		TransparentBlt(hdc
-			, 0, 0
-			, mTexture->GetWidth()
-			, mTexture->GetHeight()
-			, mTexture->GetHdc()
-			, 0, 0
-			, mTexture->GetWidth()
-			, mTexture->GetHeight()
-			, RGB(255, 0, 255));
+		//TransparentBlt(hdc
+//	, 0, 0
+//	, mTexture->GetWidth()
+//	, mTexture->GetHeight()
+//	, mTexture->GetHdc()
+//	, 0, 0
+//	, (float)mTexture->GetWidth() / 2.0f
+//	, (float)mTexture->GetHeight()
+//	, RGB(255, 0, 255));
 	}
 	void UIHUd::OnClear()
 	{

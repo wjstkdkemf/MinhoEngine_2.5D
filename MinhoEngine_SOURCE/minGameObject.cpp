@@ -74,13 +74,13 @@ namespace min {
 			comp->LateUpdate();
 		}
 	}
-	void GameObject::Rander(HDC hdc)
+	void GameObject::Rander()
 	{
 		for (Component* comp : mComponents) {
 			if (comp == nullptr)
 				continue;
 
-			comp->Render(hdc);
+			comp->Render();
 		}
 	}
 	void GameObject::initializeTransform()

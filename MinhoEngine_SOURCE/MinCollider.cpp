@@ -25,7 +25,7 @@ namespace min
 	void Collider::LateUpdate()
 	{
 	}
-	void Collider::Render(HDC hdc)
+	void Collider::Render()
 	{
 	}
 	void Collider::OnCollisionEnter(Collider* other)

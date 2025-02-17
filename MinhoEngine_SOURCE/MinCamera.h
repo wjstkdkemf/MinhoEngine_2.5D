@@ -7,15 +7,15 @@ namespace min
 	class Camera : public Component
 	{
 	public:
-		Vector2 CalculatePosition(Vector2 pos) { return pos - mDistance; }
-		Vector2 CalculateMousePosition(Vector2 pos) { return pos + mDistance; }
+		Vector2 CalculatePosition(Vector2 pos) const { return pos - mDistance; }
+		Vector2 CalculateMousePosition(Vector2 pos) const { return pos + mDistance; }
 		Camera();
 		~Camera();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void LateUpdate() override;
-		virtual void Render(HDC hdc) override;
+		virtual void Render() override;
 
 		void SetTarget(GameObject* target) { mTarget = target; }
 

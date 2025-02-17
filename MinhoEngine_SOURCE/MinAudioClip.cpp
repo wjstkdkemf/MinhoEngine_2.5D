@@ -40,10 +40,10 @@ namespace min
 	{
 		mChannel->stop();
 	}
-	void AudioClip::Set3DAttributes(const Vector2 pos)
+	void AudioClip::Set3DAttributes(const Vector3 pos)
 	{
-		FMOD_VECTOR fmodvel = { 0.0f, 0.0f, 0.0f };
-		FMOD_VECTOR fmodlistenerpos = { 0.0f, 0.0f, 0.3f };//pos.x, pos.y
+		FMOD_VECTOR fmodvel = { pos.x , pos.y , pos.z };
+		FMOD_VECTOR fmodlistenerpos = { 0.0f, 0.0f, 0.0f };//pos.x, pos.y
 
 		mChannel->set3DAttributes(&fmodlistenerpos, &fmodvel);
 	}

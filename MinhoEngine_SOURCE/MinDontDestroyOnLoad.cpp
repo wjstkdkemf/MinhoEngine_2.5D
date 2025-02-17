@@ -21,9 +21,9 @@ namespace min
 	{
 		Scene::LateUpdate();
 	}
-	void DontDestroyOnLoad::Rander(HDC hdc)
+	void DontDestroyOnLoad::Rander()
 	{
-		Scene::Rander(hdc);
+		Scene::Rander();
 	}
 	void DontDestroyOnLoad::OnEnter()
 	{

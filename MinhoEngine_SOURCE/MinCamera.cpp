@@ -20,8 +20,8 @@ namespace min
 	}
 	void Camera::Initialize()
 	{
-		mResolution.x = application.GetWidth();
-		mResolution.y = application.GetHeight();
+		mResolution.x = (float)application.GetWidth();
+		mResolution.y = (float)application.GetHeight();
 	}
 	void Camera::Update()
 	{
@@ -42,7 +42,7 @@ namespace min
 	{
 
 	}
-	void Camera::Render(HDC hdc)
+	void Camera::Render()
 	{
 	}
 }

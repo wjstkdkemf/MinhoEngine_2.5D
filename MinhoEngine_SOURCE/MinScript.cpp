@@ -20,7 +20,7 @@ namespace min
 	void Script::LateUpdate()
 	{
 	}
-	void Script::Render(HDC hdc)
+	void Script::Render()
 	{
 	}
 	void Script::OnCollisionEnter(Collider* other)

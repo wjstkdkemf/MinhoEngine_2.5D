@@ -28,7 +28,7 @@ namespace min
 	void FloorScript::LateUpdate()
 	{
 	}
-	void FloorScript::Render(HDC hdc)
+	void FloorScript::Render()
 	{
 	}
 	void FloorScript::OnCollisionEnter(Collider* other)
@@ -37,9 +37,9 @@ namespace min
 		Transform* playerTr = other->GetOwner()->GetComponent<Transform>();
 		Collider* PlayerCol = other->GetOwner()->GetComponent<Collider>();
 
-		Rigidbody* floorRb = this->GetOwner()->GetComponent<Rigidbody>();
-		Transform* floorTr = this->GetOwner()->GetComponent<Transform>();
-		Collider* floorCol = this->GetOwner()->GetComponent<Collider>();
+		Rigidbody* floorRb = GetOwner()->GetComponent<Rigidbody>();
+		Transform* floorTr = GetOwner()->GetComponent<Transform>();
+		Collider* floorCol = GetOwner()->GetComponent<Collider>();
 		float len = fabs(playerTr->GetPosition().y - floorTr->GetPosition().y);
 		float scale = fabs(PlayerCol->GetSize().y * 100 / 2.0f - floorCol->GetSize().y * 100 / 2.0f);
 

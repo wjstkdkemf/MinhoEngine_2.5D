@@ -35,10 +35,10 @@ namespace min
         if (mbEnabled == true)
             OnLateUpdate();
     }
-    void UIBase::Render(HDC hdc)
+    void UIBase::Render()
     {
         if (mbEnabled == true)
-            OnRender(hdc);
+            OnRender();
     }
     void UIBase::UIClear()
     {
@@ -59,7 +59,7 @@ namespace min
     void UIBase::OnLateUpdate()
     {
     }
-    void UIBase::OnRender(HDC hdc)
+    void UIBase::OnRender()
     {
     }
     void UIBase::OnClear()
