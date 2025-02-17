@@ -10,8 +10,9 @@ namespace min::renderer
 	std::vector<graphics::Vertex> vertexes = {};
 	std::vector<UINT> indices;
 
-	graphics::VertexBuffer vertexBuffer;
-	graphics::IndexBuffer indexBuffer;
+	//graphics::VertexBuffer vertexBuffer;
+	//graphics::IndexBuffer indexBuffer;
+	Mesh* mesh = nullptr;
 	graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End] = {};
 
 	ID3D11Buffer* constantBuffer = nullptr;
@@ -19,6 +20,8 @@ namespace min::renderer
 
 	void LoadTriangleMesh()
 	{
+		mesh = new Mesh();
+
 		renderer::vertexes.resize(3);
 		renderer::vertexes[0].pos = Vector3(0.0f, 0.5f, 0.0f);
 		renderer::vertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
@@ -32,6 +35,9 @@ namespace min::renderer
 		indices.push_back(0);
 		indices.push_back(1);
 		indices.push_back(2);
+
+		mesh->CreateIB(indices);
+		mesh->CreateVB(vertexes);
 	}
 
 	void LoadMeshes()
@@ -58,5 +64,6 @@ namespace min::renderer
 	void Release()
 	{
 		inputLayouts->Release();
+		delete mesh;
 	}
 }

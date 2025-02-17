@@ -8,6 +8,7 @@ namespace min {
 		Resource(enums::eResourceType type);
 		virtual ~Resource();
 
+		virtual HRESULT Save(const std::wstring path) = 0;
 		virtual HRESULT Load(const std::wstring path) = 0; // 순수 가상함수 -> 반드시 상속받아 사용되야함.
 		//HRESULT 는 Bool과 비슷하다
 		const std::wstring& GetPath() { return mPath; }

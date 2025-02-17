@@ -33,11 +33,11 @@ namespace min::enums
 	enum class eResourceType 
 	{
 		Texture,
+		Mesh,
 		AudioClip,
 		Animation,
 		Shader,
 		Material,
-		Mesh,
 		Prefab,
 		End,
 	};
