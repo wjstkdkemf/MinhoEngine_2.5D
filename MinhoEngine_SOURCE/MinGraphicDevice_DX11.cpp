@@ -1,6 +1,8 @@
 #include "MinGraphicDevice_DX11.h"
 #include "MinApplication.h"
 #include "MinRenderer.h"
+#include "MinShader.h"
+#include "MinResources.h"
 
 extern min::Application application;
 
@@ -9,6 +11,8 @@ namespace min::graphics
 	GraphicDevice_DX11::GraphicDevice_DX11()
 	{
 		min::graphics::GetDevice() = this;
+		if (!(CreateDevice()))
+			assert(NULL && "Create Device Failed!");
 	}
 
 	GraphicDevice_DX11::~GraphicDevice_DX11()
@@ -92,7 +96,7 @@ namespace min::graphics
 
 		ID3DBlob* errorBlob = nullptr;
 		const std::wstring shaderFilePath = L"..\\Shaders_SOURCE\\";
-		D3DCompileFromFile((shaderFilePath + fileName).c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		D3DCompileFromFile((shaderFilePath + fileName + L"VS.hlsl").c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
 			, "main", "vs_5_0", shaderFlags, 0, ppCode, &errorBlob);
 
 		if (errorBlob)
@@ -117,7 +121,7 @@ namespace min::graphics
 
 		ID3DBlob* errorBlob = nullptr;
 		const std::wstring shaderFilePath = L"..\\Shaders_SOURCE\\";
-		D3DCompileFromFile((shaderFilePath + fileName).c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		D3DCompileFromFile((shaderFilePath + fileName + L"PS.hlsl").c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
 			, "main", "ps_5_0", shaderFlags, 0, ppCode, &errorBlob);
 
 		if (errorBlob)
@@ -153,11 +157,31 @@ namespace min::graphics
 
 		return true;
 	}
+
+	void GraphicDevice_DX11::BindVS(ID3D11VertexShader* pVertexShader)
+	{
+		mContext->VSSetShader(pVertexShader, 0, 0);
+	}
+
+	void GraphicDevice_DX11::BindPS(ID3D11PixelShader* pPixelShader)
+	{
+		mContext->PSSetShader(pPixelShader, 0, 0);
+	}
+	void GraphicDevice_DX11::SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size)
+	{
+		D3D11_MAPPED_SUBRESOURCE sub = {};
+		mContext->Map(buffer, 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &sub);
+		memcpy(sub.pData, data, size);
+		mContext->Unmap(buffer, 0);
+	}
+
+	void GraphicDevice_DX11::BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, UINT Offset)
+	{
+		mContext->IASetIndexBuffer(pIndexBuffer, Format, Offset);
+	}
+
 	void GraphicDevice_DX11::Initialize()
 	{
-		if (!(CreateDevice()))
-			assert(NULL && "Create Device Failed!");
-
 #pragma region swapchain desc
 
 		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
@@ -215,10 +239,6 @@ namespace min::graphics
 			assert(NULL && "Create depthstencil texture failed!");
 		if (!(CreateDepthStencilView(mDepthStencil.Get(), nullptr, mDepthStencilView.GetAddressOf())))
 			assert(NULL && "Create depthstencilview failed!");
-		if (!(CreateVertexShader(L"TriangleVS.hlsl", &renderer::vsBlob, &renderer::vsShader)))
-			assert(NULL && "Create vertex shader failed!");
-		if (!(CreatePixelShader(L"TrianglePS.hlsl", &renderer::psBlob, &renderer::psShader)))
-			assert(NULL && "Create pixel shader failed!");
 #pragma region inputLayout Desc
 
 		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[2] = {};
@@ -237,53 +257,15 @@ namespace min::graphics
 		inputLayoutDesces[1].SemanticName = "COLOR";
 		inputLayoutDesces[1].SemanticIndex = 0;
 #pragma endregion
+		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
 		if (!(CreateInputLayout(inputLayoutDesces, 2
-			, renderer::vsBlob->GetBufferPointer()
-			, renderer::vsBlob->GetBufferSize()
+			, triangle->GetVSBlob()->GetBufferPointer()
+			, triangle->GetVSBlob()->GetBufferSize()
 			, &renderer::inputLayouts)))
 		assert(NULL && "Create input layout failed!");
-#pragma region vertex buffer desc
 
-		D3D11_BUFFER_DESC bufferDesc = {};
-
-		bufferDesc.ByteWidth = sizeof(renderer::Vertex) * 3;
-		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		D3D11_SUBRESOURCE_DATA sub = { renderer::vertexes };
-		//sub.pSysMem = renderer::vertexes;
-
-#pragma endregion
-		if (!(CreateBuffer(&bufferDesc, &sub, &renderer::vertexBuffer)))
-			assert(NULL && "Create vertex buffer failed!");
-
-#pragma region index buffer desc
-		D3D11_BUFFER_DESC indexBufferdesc = {};
-		indexBufferdesc.ByteWidth = sizeof(UINT) * renderer::indices.size();
-		indexBufferdesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER;
-		indexBufferdesc.Usage = D3D11_USAGE_DEFAULT;
-		indexBufferdesc.CPUAccessFlags = 0;
-
-		D3D11_SUBRESOURCE_DATA indicesData = {};
-		indicesData.pSysMem = renderer::indices.data();
-#pragma endregion
-		if (!(graphics::GetDevice()->CreateBuffer(&indexBufferdesc, &indicesData, &renderer::indexBuffer)))
-			assert(NULL && "indices buffer create fail!!");
-
-#pragma region constant buffer desc
-		D3D11_BUFFER_DESC constantBufferDesc = {};
-		constantBufferDesc.ByteWidth = sizeof(Vector4); // constant buffer 
-		constantBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-		constantBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-		constantBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-
-		Vector4 pos(0.5f, 0.0f, 0.0f, 1.0f);
-		D3D11_SUBRESOURCE_DATA constantBufferData = {};
-		constantBufferData.pSysMem = &pos;
-#pragma endregion
-		if (!(graphics::GetDevice()->CreateBuffer(&constantBufferDesc, &constantBufferData, &renderer::constantBuffer)))
-			assert(NULL && "indices buffer create fail!!");
+		renderer::vertexBuffer.Create(renderer::vertexes);
+		renderer::indexBuffer.Create(renderer::indices);
 	}
 
 	void GraphicDevice_DX11::Draw()
@@ -305,14 +287,15 @@ namespace min::graphics
 
 		mContext->IASetInputLayout(renderer::inputLayouts);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		renderer::vertexBuffer.Bind();
+		renderer::indexBuffer.Bind();
 
-		UINT vertexSize = sizeof(renderer::Vertex);
-		UINT offset = 0;
-		mContext->IASetVertexBuffers(0, 1, &renderer::vertexBuffer, &vertexSize, &offset);
-		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+		Vector4 pos(0.0f, 0.5f, 0.0f, 1.0f);
+		renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
+		renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
 
-		mContext->VSSetShader(renderer::vsShader, 0, 0);
-		mContext->PSSetShader(renderer::psShader, 0, 0);
+		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
+		triangle->Bind();
 
 		mContext->Draw(3, 0);
 
@@ -352,5 +335,9 @@ namespace min::graphics
 		default:
 			break;
 		}
+	}
+	void GraphicDevice_DX11::BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets)
+	{
+		mContext->IASetVertexBuffers(StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
 	}
 }

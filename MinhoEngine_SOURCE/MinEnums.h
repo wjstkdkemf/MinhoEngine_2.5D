@@ -35,6 +35,9 @@ namespace min::enums
 		Texture,
 		AudioClip,
 		Animation,
+		Shader,
+		Material,
+		Mesh,
 		Prefab,
 		End,
 	};

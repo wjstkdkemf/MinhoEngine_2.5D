@@ -109,8 +109,23 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.cpp">
       <Filter>GraphicDevice</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphics.cpp">
-      <Filter>GraphicDevice</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinShader.cpp">
+      <Filter>Resource\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinMaterial.cpp">
+      <Filter>Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinMesh.cpp">
+      <Filter>Resource\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinVertexBuffer.cpp">
+      <Filter>GraphicDevice\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinConstantBuffer.cpp">
+      <Filter>GraphicDevice\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinIndexBuffer.cpp">
+      <Filter>GraphicDevice\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +249,24 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphics.h">
       <Filter>GraphicDevice</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinShader.h">
+      <Filter>Resource\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinMaterial.h">
+      <Filter>Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinMesh.h">
+      <Filter>Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinVertexBuffer.h">
+      <Filter>GraphicDevice\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinConstantBuffer.h">
+      <Filter>GraphicDevice\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinIndexBuffer.h">
+      <Filter>GraphicDevice\Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -313,6 +346,21 @@
     </Filter>
     <Filter Include="GraphicDevice">
       <UniqueIdentifier>{cc6add0a-bb82-4de7-b42a-32eeef0b9480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics">
+      <UniqueIdentifier>{322d182e-495b-4ad1-ba42-d3285450120e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics\Shader">
+      <UniqueIdentifier>{e0bf9aa8-1f48-4870-9637-c17df01a2d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Material">
+      <UniqueIdentifier>{66f637b8-90db-4e83-ae4f-d3fbf7051484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Mesh">
+      <UniqueIdentifier>{44cbd71a-0dbb-4255-abf0-d04671dbf45c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicDevice\Buffer">
+      <UniqueIdentifier>{7cdb747f-e12d-4956-964d-a258847104e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

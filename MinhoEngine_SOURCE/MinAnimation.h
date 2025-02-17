@@ -23,7 +23,7 @@ namespace min
 		};
 
 		Animation();
-		~Animation();
+		virtual ~Animation();
 
 		HRESULT Load(const std::wstring path) override;
 

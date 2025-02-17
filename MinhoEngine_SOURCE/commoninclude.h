@@ -15,9 +15,6 @@
 #include<mutex>
 #include<thread>
 
-#include "MinMath.h"
-#include <math.h>
-
 #include <mmsystem.h>
 #include <dinput.h>
 #pragma comment(lib, "Msimg32.lib")
@@ -26,6 +23,5 @@
 #include <gdiplus.h>
 #pragma comment(lib, "gdiplus.lib")
 
-#include "MinGraphics.h"
+#include "MinMath.h"
 #include "MinEnums.h"
-#include "wrl.h"
