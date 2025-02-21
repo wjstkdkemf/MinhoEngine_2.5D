@@ -15,6 +15,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)SpriteVS.hlsl" />
     <FxCompile Include="$(MSBuildThisFileDirectory)TrianglePS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -31,5 +32,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)ConstantBuffers.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)Samplers.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)SpritePS.hlsl" />
+    <None Include="$(MSBuildThisFileDirectory)Textures.hlsli" />
   </ItemGroup>
 </Project>

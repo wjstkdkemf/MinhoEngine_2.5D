@@ -6,48 +6,9 @@ extern min::Application application;
 
 namespace min::graphics
 {
-	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
-	{
-		Texture* image = Resources::Find<Texture>(name);
-		if (image)
-			return image;
-		
-		image = new Texture();
-		image->SetName(name);
-		image->SetHeight(height);
-		image->SetWidth(width);
-
-		//HDC hdc = application.GetHdc();
-		//HWND hwnd = application.GetHwnd();
-
-		//image->mBitmap = CreateCompatibleBitmap(hdc
-		//	, width
-		//	, height);
-
-		//image->mHdc = CreateCompatibleDC(hdc);
-
-		////배경 설정(투명도)
-		//HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-		//HBRUSH oldBrush = (HBRUSH)SelectObject(image->mHdc, transparentBrush);
-
-		//::Rectangle(image->mHdc
-		//	, -1 , -1
-		//	, image->GetWidth() + 1
-		//	, image->GetHeight() + 1);
-
-		//SelectObject(image->mHdc, oldBrush);
-
-		//HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
-		//DeleteObject(oldBitmap);
-
-		Resources::Insert(name + L"image", image);
-
-		return image;
-	}
-
 	Texture::Texture()
 		: Resource(enums::eResourceType::Texture)
-		, mbAlpha(false)
+		, mDesc{}
 	{
 	}
 
@@ -98,6 +59,41 @@ namespace min::graphics
 			mHeight = mImage->GetHeight();
 		}*/
 
+		if (ext == L".dds" || ext == L".DDS")
+		{
+			if (FAILED(LoadFromDDSFile(path.c_str(), DDS_FLAGS::DDS_FLAGS_NONE, nullptr, mImage)))
+				return S_FALSE;
+		}
+		else if (ext == L".tga" || ext == L".TGA")
+		{
+			if (FAILED(LoadFromTGAFile(path.c_str(), nullptr, mImage)))
+				return S_FALSE;
+		}
+		else // WIC (png, jpg, jpeg, bmp )
+		{
+			if (FAILED(LoadFromWICFile(path.c_str(), WIC_FLAGS::WIC_FLAGS_NONE, nullptr, mImage)))
+				return S_FALSE;
+		}
+
+		HRESULT hr = CreateShaderResourceView
+		(
+			graphics::GetDevice()->GetID3D11Device().Get()
+			, mImage.GetImages()
+			, mImage.GetImageCount()
+			, mImage.GetMetadata()
+			, mSRV.GetAddressOf()
+		);
+
+		if (hr == S_FALSE)
+			assert(false/*"Textrue load fail!!"*/);
+
+		mSRV->GetResource((ID3D11Resource**)mTexture.GetAddressOf());
+
 		return S_OK;
+	}
+
+	void Texture::Bind(eShaderStage stage, UINT startSlot)
+	{
+		graphics::GetDevice()->SetShaderResource(stage, startSlot, mSRV.GetAddressOf());
 	}
 }

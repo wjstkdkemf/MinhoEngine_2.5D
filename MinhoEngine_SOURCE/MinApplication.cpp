@@ -20,6 +20,7 @@ namespace min {
 		, mHeight(0)
 		, mBackHdc(NULL)
 		, mBackBitmap(NULL)
+		, mbLoaded(false)
 	{
 	}
 	Application::~Application()
@@ -28,9 +29,8 @@ namespace min {
 	}
 	void Application::Initialize(HWND hwnd, UINT width, UINT height)
 	{
-		adjustWindowRect(hwnd, width, height);
-		createBuffer(width, height);
-		initializeEtc();
+		AdjustWindowRect(hwnd, width, height);
+		InitializeEtc();
 
 		mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
 		renderer::Initialize();
@@ -43,6 +43,9 @@ namespace min {
 	}
 	void Application::Run()
 	{
+		if (mbLoaded == false)
+			mbLoaded = true;
+
 		Update();
 		LateUpdate();
 		Render();
@@ -89,28 +92,13 @@ namespace min {
 		renderer::Release();
 	}
 
-	void Application::clearRenderTarget()
-	{
-		HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(128,128,128));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, grayBrush);
-
-		::Rectangle(mBackHdc, -1, -1, 1921, 1081);
-
-		SelectObject(mBackHdc, oldBrush);
-		DeleteObject(grayBrush);
-	}
-	void Application::copyRenderTarget(HDC source, HDC dest)
-	{
-		BitBlt(dest, 0, 0, mWidth, mHeight
-			, source, 0, 0, SRCCOPY);
-	}
-	void Application::adjustWindowRect(HWND hwnd, UINT width, UINT height)
+	void Application::AdjustWindowRect(HWND hwnd, UINT width, UINT height)
 	{
 		mHwnd = hwnd;
 		mHdc = GetDC(mHwnd);
 
 		RECT rect = { 0, 0, (LONG)width, (LONG)height };
-		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+		::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		mWidth = rect.right - rect.left;
 		mHeight = rect.bottom - rect.top;
@@ -120,18 +108,8 @@ namespace min {
 			, mHeight, 0);
 		ShowWindow(hwnd, true);
 	}
-	void Application::createBuffer(UINT width, UINT height)
-	{
-		mBackBitmap = CreateCompatibleBitmap(mHdc
-			, width
-			, height);
-
-		mBackHdc = CreateCompatibleDC(mHdc);
-
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
-		DeleteObject(oldBitmap);
-	}
-	void Application::initializeEtc()
+	
+	void Application::InitializeEtc()
 	{
 		input::Initailize();
 		Time::Initailize();

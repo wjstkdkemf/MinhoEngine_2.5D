@@ -183,6 +183,22 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClCompile Include="MinTitleScene.cpp" />
     <ClCompile Include="MinToolScene.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpriteVS.hlsl">
+      <FileType>Document</FileType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\Samplers.hlsli">
+      <FileType>Document</FileType>
+    </None>
+    <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpritePs.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpritePs.hlsli">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -2,6 +2,7 @@
 #include "MinApplication.h"
 #include "MinRenderer.h"
 #include "MinShader.h"
+#include "MinTexture.h"
 #include "MinResources.h"
 
 extern min::Application application;
@@ -89,6 +90,14 @@ namespace min::graphics
 		return true;
 	}
 
+	bool GraphicDevice_DX11::CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState)
+	{
+		if (FAILED(mDevice->CreateSamplerState(pSamplerDesc, ppSamplerState)))
+			return false;
+
+		return true;
+	}
+
 	bool GraphicDevice_DX11::CreateVertexShader(const std::wstring& fileName, ID3DBlob** ppCode, ID3D11VertexShader** ppVertexShader)
 	{
 		DWORD shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -159,6 +168,15 @@ namespace min::graphics
 		return true;
 	}
 
+	bool GraphicDevice_DX11::CreateShaderResourceView(ID3D11Resource* pResource, const D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView)
+	{
+
+		if (FAILED(mDevice->CreateShaderResourceView(pResource, pDesc, ppSRView)))
+			return false;
+
+		return true;
+	}
+
 	void GraphicDevice_DX11::BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology)
 	{
 		mContext->IASetPrimitiveTopology(topology);
@@ -173,7 +191,7 @@ namespace min::graphics
 	{
 		mContext->PSSetShader(pPixelShader, 0, 0);
 	}
-	void GraphicDevice_DX11::SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size)
+	void GraphicDevice_DX11::SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size)
 	{
 		D3D11_MAPPED_SUBRESOURCE sub = {};
 		mContext->Map(buffer, 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &sub);
@@ -184,6 +202,49 @@ namespace min::graphics
 	void GraphicDevice_DX11::BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, UINT Offset)
 	{
 		mContext->IASetIndexBuffer(pIndexBuffer, Format, Offset);
+	}
+
+	void GraphicDevice_DX11::SetShaderResource(eShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** ppSRV)
+	{
+		if ((UINT)eShaderStage::VS & (UINT)stage)
+			mContext->VSSetShaderResources(startSlot, 1, ppSRV);
+		if ((UINT)eShaderStage::HS & (UINT)stage)
+			mContext->HSSetShaderResources(startSlot, 1, ppSRV);
+		if ((UINT)eShaderStage::DS & (UINT)stage)
+			mContext->DSSetShaderResources(startSlot, 1, ppSRV);
+		if ((UINT)eShaderStage::GS & (UINT)stage)
+			mContext->GSSetShaderResources(startSlot, 1, ppSRV);
+		if ((UINT)eShaderStage::PS & (UINT)stage)
+			mContext->PSSetShaderResources(startSlot, 1, ppSRV);
+		if ((UINT)eShaderStage::CS & (UINT)stage)
+			mContext->CSSetShaderResources(startSlot, 1, ppSRV);
+	}
+
+	void GraphicDevice_DX11::BindSampler(eShaderStage stage, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers)
+	{
+		if (eShaderStage::VS == stage)
+			mContext->VSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+		if (eShaderStage::HS == stage)
+			mContext->HSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+		if (eShaderStage::DS == stage)
+			mContext->DSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+		if (eShaderStage::GS == stage)
+			mContext->GSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+		if (eShaderStage::PS == stage)
+			mContext->PSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+	}
+
+	void GraphicDevice_DX11::BindSamplers(UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers)
+	{
+		BindSampler(eShaderStage::VS, StartSlot, NumSamplers, ppSamplers);
+		BindSampler(eShaderStage::HS, StartSlot, NumSamplers, ppSamplers);
+		BindSampler(eShaderStage::DS, StartSlot, NumSamplers, ppSamplers);
+		BindSampler(eShaderStage::GS, StartSlot, NumSamplers, ppSamplers);
+		BindSampler(eShaderStage::PS, StartSlot, NumSamplers, ppSamplers);
 	}
 
 	void GraphicDevice_DX11::Initialize()
@@ -247,7 +308,7 @@ namespace min::graphics
 			assert(NULL && "Create depthstencilview failed!");
 #pragma region inputLayout Desc
 
-		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[2] = {};
+		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
 
 		inputLayoutDesces[0].AlignedByteOffset = 0;
 		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -262,13 +323,29 @@ namespace min::graphics
 		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		inputLayoutDesces[1].SemanticName = "COLOR";
 		inputLayoutDesces[1].SemanticIndex = 0;
+
+		inputLayoutDesces[2].AlignedByteOffset = 28; //12 + 16
+		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+		inputLayoutDesces[2].InputSlot = 0;
+		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[2].SemanticName = "TEXCOORD";
+		inputLayoutDesces[2].SemanticIndex = 0;
 #pragma endregion
 		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
+
 		if (!(CreateInputLayout(inputLayoutDesces, 2
 			, triangle->GetVSBlob()->GetBufferPointer()
 			, triangle->GetVSBlob()->GetBufferSize()
 			, &renderer::inputLayouts)))
 		assert(NULL && "Create input layout failed!");
+
+		graphics::Shader* sprite = Resources::Find<graphics::Shader>(L"SpriteShader");
+
+		if (!(CreateInputLayout(inputLayoutDesces, 3
+			, sprite->GetVSBlob()->GetBufferPointer()
+			, sprite->GetVSBlob()->GetBufferSize()
+			, &renderer::inputLayouts)))
+			assert(NULL && "Create input layout failed!");
 
 		//renderer::vertexBuffer.Create(renderer::vertexes);
 		//renderer::indexBuffer.Create(renderer::indices);
@@ -295,15 +372,23 @@ namespace min::graphics
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		//renderer::vertexBuffer.Bind();
 		//renderer::indexBuffer.Bind();
+
 		renderer::mesh->Bind();
-		Vector4 pos(0.0f, 0.5f, 0.0f, 1.0f);
+
+		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 		renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
 		renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
 
-		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
+		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"SpriteShader");//Triangle
 		triangle->Bind();
 
-		mContext->Draw(3, 0);
+		//mContext->Draw(3, 0);
+
+		graphics::Texture* texture = Resources::Find<graphics::Texture>(L"Player");
+		if (texture)
+			texture->Bind(eShaderStage::PS, 0);
+
+		mContext->DrawIndexed(6, 0, 0);
 
 		mSwapChain->Present(1, 0);
 	}

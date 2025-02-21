@@ -1,38 +1,31 @@
 #pragma once
+#include <DirectXTex.h>
+#include <DirectXTex.inl>
+#include <DirectXTexEXR.h>
+
 #include "MinResource.h"
+#include "MinGraphicDevice_DX11.h"
 namespace min::graphics
 {
 	class Texture : public Resource
 	{
 	public:
-		enum class eTextureType 
-		{
-			Bmp,
-			Png,
-			None,
-		};
-
-		static Texture* Create(const std::wstring& name,UINT width, UINT height);
-
 		Texture();
 		~Texture();
 
 		virtual HRESULT Save(const std::wstring path) override;
 		virtual HRESULT Load(const std::wstring path) override;
 
-		UINT GetWidth() { return mWidth; }
-		void SetWidth(UINT width) { mWidth = width; }
-		UINT GetHeight() { return mHeight; }
-		void SetHeight(UINT height) { mHeight = height; }
-		eTextureType GetTextureType() const { return mType; }
-		bool IsAlpha() const { return mbAlpha; }
+		void Bind(eShaderStage stage, UINT startSlot);
 
 	private:
-		bool mbAlpha;
-		eTextureType mType;
+		ScratchImage mImage;
 
-		UINT mWidth;
-		UINT mHeight;
+		D3D11_TEXTURE2D_DESC mDesc;
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> mTexture;
+
+		Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> mSRV;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mRTV;
 	};
 }
 

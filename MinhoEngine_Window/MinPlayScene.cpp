@@ -24,6 +24,7 @@
 #include "MinAudioClip.h"
 #include "MinAudioListener.h"
 #include "MiNAudioSource.h"
+#include "minGraphicDevice_DX11.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -48,23 +49,23 @@ namespace min {
 			//sr->SetName(L"SR");
 			//sr->ImageLoad(L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\MinhoEngine_SOURCE\\Resources\\CloudOcean.png");
 			//AddGameObject(bg, enums::eLayerType::BackGround);
-			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None,Vector2(344.0f,445.0f));
-			Camera* cameraComp = camera->AddComponent<Camera>();
-			renderer::mainCamera = cameraComp;
+			//GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None,Vector2(344.0f,445.0f));
+			//Camera* cameraComp = camera->AddComponent<Camera>();
+			//renderer::mainCamera = cameraComp;
 			//camera->AddComponent<PlayerScript>();
 
 			mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Player);
 			object::DontDestoryOnLoad(mPlayer);
-			mPlayer->SetName(L"player");
-			mPlayer->AddComponent<AudioListener>();
-			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+			//mPlayer->SetName(L"player");
+			//mPlayer->AddComponent<AudioListener>();
+			//BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
 			//CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
 
-			collider->SetOffset(Vector2(-50.0f, -50.0f));
+			//collider->SetOffset(Vector2(-50.0f, -50.0f));
 			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSize(Vector2(2.0f, 2.0f));*/
-			PlayerScript* plScriptmPlayer = mPlayer->AddComponent<PlayerScript>();
+			//PlayerScript* plScriptmPlayer = mPlayer->AddComponent<PlayerScript>();
 	
 
 			//cameraComp->SetTarget(mPlayer);
@@ -75,12 +76,12 @@ namespace min {
 			//	, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.1f);//32.0f, 32.0f
 
 
-			graphics::Texture* PlayerTex = Resources::Find<graphics::Texture>(L"Player");
-			Animator* animator = mPlayer->AddComponent<Animator>();
-			animator->CreateAnimation(L"Idle", PlayerTex
-				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
-			animator->CreateAnimation(L"PlayerFronttGiveWater", PlayerTex
-				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
+			//graphics::Texture* PlayerTex = Resources::Find<graphics::Texture>(L"Player");
+			//Animator* animator = mPlayer->AddComponent<Animator>();
+			//animator->CreateAnimation(L"Idle", PlayerTex
+			//	, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 4, 0.1f);//32.0f, 32.0f
+			//animator->CreateAnimation(L"PlayerFronttGiveWater", PlayerTex
+			//	, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
 			/*animator->CreateAnimation(L"PlayerRightWalk", PlayerTex
 				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 			animator->CreateAnimation(L"PlayerUpWalk", PlayerTex
@@ -90,27 +91,27 @@ namespace min {
 			animator->CreateAnimation(L"PlayerSitDown", PlayerTex
 				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);*/
 			
-			animator->PlayAnimation(L"Idle", false);
-			
-			animator->GetCompleteEvent(L"PlayerFronttGiveWater") = std::bind(&PlayerScript::PlayerEffect, plScriptmPlayer);
+			//animator->PlayAnimation(L"Idle", false);
+			//
+			//animator->GetCompleteEvent(L"PlayerFronttGiveWater") = std::bind(&PlayerScript::PlayerEffect, plScriptmPlayer);
 
-			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-			mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
+			//mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+			////mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			//mPlayer->GetComponent<Transform>()->SetRotation(30.0f);
 
-			mPlayer->AddComponent<Rigidbody>();
+			//mPlayer->AddComponent<Rigidbody>();
 
-			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 600.0f));
-			floor->SetName(L"Floor");
-			AudioSource* as = floor->AddComponent<AudioSource>();
-			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
-			floorCol->SetSize(Vector2(3.0f, 1.0f));
-			floor->AddComponent<FloorScript>();
+			//Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 600.0f));
+			//floor->SetName(L"Floor");
+			//AudioSource* as = floor->AddComponent<AudioSource>();
+			//BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			//floorCol->SetSize(Vector2(3.0f, 1.0f));
+			//floor->AddComponent<FloorScript>();
 
 
-			AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
-			
-			as->SetClip(ac);
+			//AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
+			//
+			//as->SetClip(ac);
 			//배경화면
 
 			//GameObject* bg = object::Instantiate<GameObject>
@@ -188,6 +189,8 @@ namespace min {
 	void PlayScene::Rander()
 	{
 		Scene::Rander();
+
+		graphics::GetDevice()->Draw();
 	}
 	void PlayScene::OnEnter()
 	{

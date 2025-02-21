@@ -1,4 +1,8 @@
 #pragma once
+#include <DirectXTex.h>
+#include <DirectXTex.inl>
+#include <DirectXTexEXR.h>
+
 #include "minGameObject.h"
 #include "MinGraphicDevice_DX11.h"
 
@@ -9,6 +13,8 @@ namespace min{
 		Application();
 		~Application();
 		void Initialize(HWND hwnd, UINT width, UINT height);
+		void AdjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void InitializeEtc();
 		void Run();
 
 		void Update();
@@ -22,14 +28,11 @@ namespace min{
 		UINT GetWidth() const { return mWidth; }
 		UINT GetHeight() const { return mHeight; }
 
-	private:
-		void clearRenderTarget();
-		void copyRenderTarget(HDC source, HDC dest);
-		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
-		void createBuffer(UINT width, UINT height);
-		void initializeEtc();
+		bool IsLoaded() const { return mbLoaded; }
+		void IsLoaded(bool load) { mbLoaded = load; }
 
 	private:
+		bool mbLoaded;
 		std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
 		HWND mHwnd;
 		HDC mHdc;

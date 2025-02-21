@@ -62,6 +62,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
 
     MSG msg;
 
+    min::LoadScenes();
+
     while (true) {
         if(PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))//꺼낸뒤 삭제하도록 PM_REMOVE가 필요함
         {
@@ -91,7 +93,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
     //        DispatchMessage(&msg);
     //    }
     //}
-    Gdiplus::GdiplusShutdown(gpToken);
     application.Release();
 
     return (int) msg.wParam;
@@ -142,46 +143,45 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    const UINT width = 1600;
    const UINT height = 900;
 
+
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
 
-   application.Initialize(hWnd, width, height);
 
    if (!hWnd)
    {
       return FALSE;
    }
+   HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+
+   if (FAILED(hr))
+       assert(false);
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
 
-   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
+   //min::Scene* activeScene = min::SceneManager::GetActiveScene();
+   //std::wstring name = activeScene->GetName();
 
-   //load Scenes
-   //min::LoadResources();
-   min::LoadScenes();
+   //if(name == L"ToolScene")
+   //{
+   //    HWND ToolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+   //        0, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
 
-   min::Scene* activeScene = min::SceneManager::GetActiveScene();
-   std::wstring name = activeScene->GetName();
+   //    min::graphics::Texture* texture
+   //        = min::Resources::Find<min::graphics::Texture>(L"SpringFloor");
+   //    RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+   //    AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
-   if(name == L"ToolScene")
-   {
-       HWND ToolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-           0, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표
+   //    UINT toolWidth = rect.right - rect.left;
+   //    UINT toolHeight = rect.bottom - rect.top;
 
-       min::graphics::Texture* texture
-           = min::Resources::Find<min::graphics::Texture>(L"SpringFloor");
-       RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
-       AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-       UINT toolWidth = rect.right - rect.left;
-       UINT toolHeight = rect.bottom - rect.top;
-
-       SetWindowPos(ToolhWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
-       ShowWindow(ToolhWnd, true);
-       UpdateWindow(ToolhWnd);
-   }
+   //    SetWindowPos(ToolhWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
+   //    ShowWindow(ToolhWnd, true);
+   //    UpdateWindow(ToolhWnd);
+   //}
+   application.Initialize(hWnd, width, height);
 
    return TRUE;
 }
