@@ -13,7 +13,7 @@ namespace min {
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();
-		virtual void Rander();
+		virtual void Render();
 		virtual void Destory();
 
 		virtual void OnEnter();

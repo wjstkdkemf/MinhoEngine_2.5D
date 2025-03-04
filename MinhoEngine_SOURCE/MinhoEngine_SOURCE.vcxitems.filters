@@ -127,6 +127,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinIndexBuffer.cpp">
       <Filter>GraphicDevice\Buffer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinInputLayout.cpp">
+      <Filter>GraphicDevice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -266,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinIndexBuffer.h">
       <Filter>GraphicDevice\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinInputLayout.h">
+      <Filter>GraphicDevice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -26,65 +26,65 @@ namespace min
 	}
 	void Rigidbody::Update()
 	{
-		mAccelation = mForce / mMass;
-		mVelocity += mAccelation * Time::DeltaTime();
+		//mAccelation = mForce / mMass;
+		//mVelocity += mAccelation * Time::DeltaTime();
 
-		if (mbGround)
-		{
-			Vector2 gravity = mGravity;
-			gravity.Normalize();
-			float dot = mVelocity.Dot(gravity);
-			// Vector2::Dot(mVelocity, gravity);
-			mVelocity -= gravity * dot;
-		}
-		else
-		{
-			mVelocity += mGravity * Time::DeltaTime();
-		}
+		//if (mbGround)
+		//{
+		//	Vector2 gravity = mGravity;
+		//	gravity.Normalize();
+		//	float dot = mVelocity.Dot(gravity);
+		//	// Vector2::Dot(mVelocity, gravity);
+		//	mVelocity -= gravity * dot;
+		//}
+		//else
+		//{
+		//	mVelocity += mGravity * Time::DeltaTime();
+		//}
 
-		//최대 속도 제한
-		Vector2 gravity = mGravity;
-		gravity.Normalize();
-		//float dot = Vector2::Dot(mVelocity, gravity);
-		float dot = mVelocity.Dot(gravity);
-		gravity = gravity * dot;
+		////최대 속도 제한
+		//Vector2 gravity = mGravity;
+		//gravity.Normalize();
+		////float dot = Vector2::Dot(mVelocity, gravity);
+		//float dot = mVelocity.Dot(gravity);
+		//gravity = gravity * dot;
 
-		Vector2 sideVelocity = mVelocity - gravity;
-		if (mLimitmVelocity.y < gravity.Length())
-		{
-			gravity.Normalize();
-			gravity *= mLimitmVelocity.y;
-		}
-		if (mLimitmVelocity.x < sideVelocity.Length())
-		{
-			sideVelocity.Normalize();
-			sideVelocity *= mLimitmVelocity.x;
-		}
+		//Vector2 sideVelocity = mVelocity - gravity;
+		//if (mLimitmVelocity.y < gravity.Length())
+		//{
+		//	gravity.Normalize();
+		//	gravity *= mLimitmVelocity.y;
+		//}
+		//if (mLimitmVelocity.x < sideVelocity.Length())
+		//{
+		//	sideVelocity.Normalize();
+		//	sideVelocity *= mLimitmVelocity.x;
+		//}
 
-		mVelocity = gravity + sideVelocity;
+		//mVelocity = gravity + sideVelocity;
 
-		if (!(mVelocity == Vector2::Zero))
-		{
-			Vector2 friction = -mVelocity; // 힘의 반대방향
-			friction.Normalize();
-			friction = friction * mFriction * mMass * Time::DeltaTime();
+		//if (!(mVelocity == Vector2::Zero))
+		//{
+		//	Vector2 friction = -mVelocity; // 힘의 반대방향
+		//	friction.Normalize();
+		//	friction = friction * mFriction * mMass * Time::DeltaTime();
 
-			if (mVelocity.Length() <= friction.Length())
-			{
-				mVelocity = Vector2::Zero;
-			}
-			else
-			{
-				mVelocity += friction;
-			}
-		}
+		//	if (mVelocity.Length() <= friction.Length())
+		//	{
+		//		mVelocity = Vector2::Zero;
+		//	}
+		//	else
+		//	{
+		//		mVelocity += friction;
+		//	}
+		//}
 
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-		pos = pos + mVelocity * Time::DeltaTime();
-		tr->SetPosition(pos);
+		//Transform* tr = GetOwner()->GetComponent<Transform>();
+		//Vector2 pos = tr->GetPosition();
+		//pos = pos + mVelocity * Time::DeltaTime();
+		//tr->SetPosition(pos);
 
-		mForce = Vector2::One;
+		//mForce = Vector2::One;
 	}
 	void Rigidbody::LateUpdate()
 	{

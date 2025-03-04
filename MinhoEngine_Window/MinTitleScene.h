@@ -11,14 +11,12 @@ namespace min {
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
-		void Rander() override;
+		void Render() override;
 
 		void OnEnter() override;
 		void OnExit() override;
 
 	private:
-		class Player* bg;
-		class Player* fg;
 	};
 }
 

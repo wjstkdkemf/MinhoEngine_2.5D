@@ -18,7 +18,13 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)TriangleVS.hlsl">
       <Filter>VS</Filter>
     </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)SpriteVS.hlsl">
+    <FxCompile Include="$(MSBuildThisFileDirectory)SpriteDefaultVS.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)WireframePS.hlsl">
+      <Filter>PS</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)WireframeVS.hlsl">
       <Filter>VS</Filter>
     </FxCompile>
   </ItemGroup>
@@ -26,7 +32,7 @@
     <None Include="$(MSBuildThisFileDirectory)ConstantBuffers.hlsli">
       <Filter>LIB</Filter>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)SpritePS.hlsl">
+    <None Include="$(MSBuildThisFileDirectory)SpriteDefaultPS.hlsl">
       <Filter>PS</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Samplers.hlsli">
@@ -35,5 +41,8 @@
     <None Include="$(MSBuildThisFileDirectory)Textures.hlsli">
       <Filter>LIB</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\MinhoEngine_SOURCE\MinRenderer.cpp" />
   </ItemGroup>
 </Project>

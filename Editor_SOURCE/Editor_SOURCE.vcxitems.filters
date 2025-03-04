@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="impl">
+      <UniqueIdentifier>{1375b7c8-9774-480c-bea8-aa5eb6599fd7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_impl_win32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_rectpack.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_textedit.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_truetype.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)imgui.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_impl_dx11.h">
+      <Filter>impl</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphEditor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImCurveEdit.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImGradient.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImGuizmo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImSequencer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImZoomSlider.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_demo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_draw.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_impl_win32.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_tables.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_widgets.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_impl_dx11.cpp">
+      <Filter>impl</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImCurveEdit.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImGradient.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImGuizmo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImSequencer.cpp" />
+  </ItemGroup>
+</Project>

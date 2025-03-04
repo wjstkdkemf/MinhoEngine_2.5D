@@ -27,5 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\MinhoEngine_SOURCE\MinRenderer.cpp" />
   </ItemGroup>
 </Project>

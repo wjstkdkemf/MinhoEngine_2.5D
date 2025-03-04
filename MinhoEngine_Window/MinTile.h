@@ -11,8 +11,6 @@ namespace min
 		void LateUpdate() override;
 		void Rander() override;
 
-		void SetIndexPosition(int x, int y);
-
 	private:
 	};
 }

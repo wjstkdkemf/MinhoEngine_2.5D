@@ -30,12 +30,6 @@
     <ClInclude Include="MinCat.h">
       <Filter>Contents</Filter>
     </ClInclude>
-    <ClInclude Include="MinCatScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="MinToolScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="MinTile.h">
       <Filter>Contents</Filter>
     </ClInclude>
@@ -47,9 +41,6 @@
     </ClInclude>
     <ClInclude Include="MinFloor.h">
       <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="MinFloorScript.h">
-      <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="MinLoadingScene.h">
       <Filter>Scenes</Filter>
@@ -71,12 +62,6 @@
     <ClCompile Include="MinCat.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
-    <ClCompile Include="MinCatScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="MinToolScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="MinTile.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
@@ -86,11 +71,9 @@
     <ClCompile Include="MinFloor.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
-    <ClCompile Include="MinFloorScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="MinLoadingScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\MinhoEngine_SOURCE\MinRenderer.cpp" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,8 @@
 #include "MinShader.h"
 #include "MinTexture.h"
 #include "MinResources.h"
+#include "MinMesh.h"
+#include "MinMaterial.h"
 
 extern min::Application application;
 
@@ -177,6 +179,33 @@ namespace min::graphics
 		return true;
 	}
 
+	bool GraphicDevice_DX11::CreateRasterizerState(const D3D11_RASTERIZER_DESC* pRasterizerDesc, ID3D11RasterizerState** ppRasterizerState)
+	{
+		if (FAILED(mDevice->CreateRasterizerState(pRasterizerDesc, ppRasterizerState)))
+			return false;
+
+		return true;
+	}
+	bool GraphicDevice_DX11::CreateBlendState(const D3D11_BLEND_DESC* pBlendState, ID3D11BlendState** ppBlendState)
+	{
+		if (FAILED(mDevice->CreateBlendState(pBlendState, ppBlendState)))
+			return false;
+
+		return true;
+	}
+	bool GraphicDevice_DX11::CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState)
+	{
+		if (FAILED(mDevice->CreateDepthStencilState(pDepthStencilDesc, ppDepthStencilState)))
+			return false;
+
+		return true;
+	}
+
+	void GraphicDevice_DX11::BindInputLayout(ID3D11InputLayout* pInputLayout)
+	{
+		mContext->IASetInputLayout(pInputLayout);
+	}
+
 	void GraphicDevice_DX11::BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology)
 	{
 		mContext->IASetPrimitiveTopology(topology);
@@ -246,6 +275,53 @@ namespace min::graphics
 		BindSampler(eShaderStage::GS, StartSlot, NumSamplers, ppSamplers);
 		BindSampler(eShaderStage::PS, StartSlot, NumSamplers, ppSamplers);
 	}
+	void GraphicDevice_DX11::BindViewPort()
+	{
+		D3D11_VIEWPORT viewPort =
+		{
+			0, 0,
+			(float)application.GetWidth(), (float)application.GetHeight(),
+			0.0f, 1.0f
+		};
+
+		mContext->RSSetViewports(1, &viewPort);
+	}
+
+	void GraphicDevice_DX11::BindRenderTargets(UINT NumViews
+		, ID3D11RenderTargetView* const* ppRenderTargetViews
+		, ID3D11DepthStencilView* pDepthStencilView)
+	{
+		mContext->OMSetRenderTargets(NumViews, ppRenderTargetViews, pDepthStencilView);
+	}
+
+	void GraphicDevice_DX11::BindDefaultRenderTarget()
+	{
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+	}
+
+	void GraphicDevice_DX11::BindRasterizerState(ID3D11RasterizerState* pRasterizerState)
+	{
+		mContext->RSSetState(pRasterizerState);
+	}
+	void GraphicDevice_DX11::BindBlendState(ID3D11BlendState* pBlendState, const FLOAT BlendFactor[4], UINT SampleMask)
+	{
+		mContext->OMSetBlendState(pBlendState, BlendFactor, SampleMask);
+	}
+	void GraphicDevice_DX11::BindDepthStencilState(ID3D11DepthStencilState* pDepthStencilState, UINT StencilRef)
+	{
+		mContext->OMSetDepthStencilState(pDepthStencilState, StencilRef);
+	}
+
+	void GraphicDevice_DX11::ClearRenderTargetView()
+	{
+		FLOAT backgroundColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		mContext->ClearRenderTargetView(mRenderTargetView.Get(), backgroundColor);
+	}
+
+	void GraphicDevice_DX11::ClearDepthStencilView()
+	{
+		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	}
 
 	void GraphicDevice_DX11::Initialize()
 	{
@@ -306,91 +382,38 @@ namespace min::graphics
 			assert(NULL && "Create depthstencil texture failed!");
 		if (!(CreateDepthStencilView(mDepthStencil.Get(), nullptr, mDepthStencilView.GetAddressOf())))
 			assert(NULL && "Create depthstencilview failed!");
-#pragma region inputLayout Desc
-
-		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
-
-		inputLayoutDesces[0].AlignedByteOffset = 0;
-		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-		inputLayoutDesces[0].InputSlot = 0;
-		inputLayoutDesces[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		inputLayoutDesces[0].SemanticName = "POSITION";
-		inputLayoutDesces[0].SemanticIndex = 0;
-
-		inputLayoutDesces[1].AlignedByteOffset = 12;
-		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		inputLayoutDesces[1].InputSlot = 0;
-		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		inputLayoutDesces[1].SemanticName = "COLOR";
-		inputLayoutDesces[1].SemanticIndex = 0;
-
-		inputLayoutDesces[2].AlignedByteOffset = 28; //12 + 16
-		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
-		inputLayoutDesces[2].InputSlot = 0;
-		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		inputLayoutDesces[2].SemanticName = "TEXCOORD";
-		inputLayoutDesces[2].SemanticIndex = 0;
-#pragma endregion
-		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
-
-		if (!(CreateInputLayout(inputLayoutDesces, 2
-			, triangle->GetVSBlob()->GetBufferPointer()
-			, triangle->GetVSBlob()->GetBufferSize()
-			, &renderer::inputLayouts)))
-		assert(NULL && "Create input layout failed!");
-
-		graphics::Shader* sprite = Resources::Find<graphics::Shader>(L"SpriteShader");
-
-		if (!(CreateInputLayout(inputLayoutDesces, 3
-			, sprite->GetVSBlob()->GetBufferPointer()
-			, sprite->GetVSBlob()->GetBufferSize()
-			, &renderer::inputLayouts)))
-			assert(NULL && "Create input layout failed!");
 
 		//renderer::vertexBuffer.Create(renderer::vertexes);
 		//renderer::indexBuffer.Create(renderer::indices);
 	}
 
-	void GraphicDevice_DX11::Draw()
+	void GraphicDevice_DX11::Draw(UINT VertexCount, UINT StartVertexLocation)
 	{
-		FLOAT backgroundColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
-		mContext->ClearRenderTargetView(mRenderTargetView.Get(), backgroundColor);
+		//Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
+		//mesh->Bind();
 
-		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
+		//Vector4 pos(-0.2f, 0.0f, 0.0f, 1.0f);
+		//renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
+		//renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
 
-		D3D11_VIEWPORT viewPort =
-		{
-			0, 0, (float)application.GetWidth(), (float)application.GetHeight(),
-			0.0f, 1.0f
-		};
-		mContext->RSSetViewports(1, &viewPort);
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+		//Material* material = min::Resources::Find<Material>(L"SpriteMaterial");
+		//material->Bind();
 
-		BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::constantBuffer);
+		//mContext->DrawIndexed(6, 0, 0);
 
-		mContext->IASetInputLayout(renderer::inputLayouts);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		//renderer::vertexBuffer.Bind();
-		//renderer::indexBuffer.Bind();
+		//// Draw Triangle
+		//mesh = Resources::Find<Mesh>(L"TriangleMesh");
+		//mesh->Bind();
 
-		renderer::mesh->Bind();
+		//pos = Vector4(0.2f, 0.0f, 0.0f, 1.0f);
+		//renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
+		//renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
 
-		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
-		renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
-		renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
+		//material = min::Resources::Find<Material>(L"TriangleMaterial");
+		//material->Bind();
 
-		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"SpriteShader");//Triangle
-		triangle->Bind();
-
-		//mContext->Draw(3, 0);
-
-		graphics::Texture* texture = Resources::Find<graphics::Texture>(L"Player");
-		if (texture)
-			texture->Bind(eShaderStage::PS, 0);
-
-		mContext->DrawIndexed(6, 0, 0);
-
-		mSwapChain->Present(1, 0);
+		//mContext->DrawIndexed(3, 0, 0);
+		mContext->Draw(VertexCount, StartVertexLocation);
 	}
 	void GraphicDevice_DX11::BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer)
 	{
@@ -426,6 +449,14 @@ namespace min::graphics
 		default:
 			break;
 		}
+	}
+	void GraphicDevice_DX11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation)
+	{
+		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
+	}
+	void GraphicDevice_DX11::Present()
+	{
+		mSwapChain->Present(1, 0);
 	}
 	void GraphicDevice_DX11::BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets)
 	{

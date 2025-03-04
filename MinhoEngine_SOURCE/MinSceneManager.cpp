@@ -7,21 +7,31 @@ namespace min {
 	Scene* SceneManager::mActiveScene = nullptr;
 	Scene* SceneManager::mDontDestroyOnLoad = nullptr;
 
+	bool SceneManager::SetActiveScene(const std::wstring& name)
+	{
+		std::map<std::wstring, Scene*>::iterator iter
+			= mScene.find(name);
+
+		if (iter == mScene.end())
+			return false;
+
+
+		mActiveScene = iter->second;
+		return true;
+	}
+
 	Scene* SceneManager::LoadScene(const std::wstring& name)
 	{
 		if (mActiveScene) {
 			mActiveScene->OnExit();
 		}
 
-		std::map<std::wstring, Scene*>::iterator iter = mScene.find(name);
-
-		if (iter == mScene.end()) {
+		if(!SetActiveScene(name))
 			return nullptr;
-		}
-		mActiveScene = iter->second;
+
 		mActiveScene->OnEnter();
 
-		return iter->second;
+		return mActiveScene;
 	}
 
 	std::vector<GameObject*> SceneManager::GetGameObjects(eLayerType layer)
@@ -42,7 +52,7 @@ namespace min {
 	}
 
 	void SceneManager::Update()
-	{
+	{/*
 		if (input::GetKey(eKeyCode::N)) {
 			SceneManager::LoadScene(L"TitleScene");
 		}
@@ -51,7 +61,7 @@ namespace min {
 		}
 		if (input::GetKey(eKeyCode::B)) {
 			SceneManager::LoadScene(L"ToolScene");
-		}
+		}*/
 		mActiveScene->Update();
 		mDontDestroyOnLoad->Update();
 	}
@@ -62,8 +72,8 @@ namespace min {
 	}
 	void SceneManager::Render()
 	{
-		mActiveScene->Rander();
-		mDontDestroyOnLoad->Rander();
+		mActiveScene->Render();
+		mDontDestroyOnLoad->Render();
 	}
 	void SceneManager::Destory()
 	{

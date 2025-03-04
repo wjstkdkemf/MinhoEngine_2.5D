@@ -156,9 +156,7 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
   <ItemGroup>
     <ClInclude Include="MinCameraScript.h" />
     <ClInclude Include="MinCat.h" />
-    <ClInclude Include="MinCatScript.h" />
     <ClInclude Include="MinFloor.h" />
-    <ClInclude Include="MinFloorScript.h" />
     <ClInclude Include="MinLoadResources.h" />
     <ClInclude Include="MinLodeScene.h" />
     <ClInclude Include="MinLoadingScene.h" />
@@ -167,29 +165,44 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClInclude Include="MinPlayScene.h" />
     <ClInclude Include="MinTile.h" />
     <ClInclude Include="MinTitleScene.h" />
-    <ClInclude Include="MinToolScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\MinhoEngine_SOURCE\MinRenderer.cpp" />
     <ClCompile Include="MinCameraScript.cpp" />
     <ClCompile Include="MinCat.cpp" />
-    <ClCompile Include="MinCatScript.cpp" />
     <ClCompile Include="MinFloor.cpp" />
-    <ClCompile Include="MinFloorScript.cpp" />
     <ClCompile Include="MinLoadingScene.cpp" />
     <ClCompile Include="MinPlayer.cpp" />
     <ClCompile Include="MinPlayerScript.cpp" />
     <ClCompile Include="MinPlayScene.cpp" />
     <ClCompile Include="MinTile.cpp" />
     <ClCompile Include="MinTitleScene.cpp" />
-    <ClCompile Include="MinToolScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\Sprite-DefaultVS.hlsl">
+      <FileType>Document</FileType>
+    </FxCompile>
+    <FxCompile Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpriteDefaultVS.hlsl">
+      <FileType>Document</FileType>
+    </FxCompile>
     <FxCompile Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpriteVS.hlsl">
+      <FileType>Document</FileType>
+    </FxCompile>
+    <FxCompile Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\WireframePS.hlsl">
       <FileType>Document</FileType>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\Samplers.hlsli">
+      <FileType>Document</FileType>
+    </None>
+    <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\Sprite-DefaultPS.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpriteDefaultPS.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpritePS-DefaultPS.hlsl">
       <FileType>Document</FileType>
     </None>
     <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpritePs.hlsl">

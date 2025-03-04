@@ -8,6 +8,11 @@
 
 #include "commoninclude.h"
 
+#define CB_GETBINDSLOT(name) __CBUFFERBINDSLOT__##name##__
+#define CBUFFER(name, slot) static const int CB_GETBINDSLOT(name) = slot; struct alignas(16) name 
+
+#define CBSLOT_TRANSFORM		0
+
 namespace min::graphics
 {
 	struct Vertex
@@ -38,12 +43,54 @@ namespace min::graphics
 
 	enum class eSamplerType
 	{
-		Anisotropic,
 		Point,
+		Linear,
+		Anisotropic,
 		PostProcess,
 		End,
 	};
 
+	enum class eRenderingMode
+	{
+		Opaque,
+		CutOut,
+		Transparent,
+		PostProcess,
+		End,
+	};
+
+	enum class eTextureType
+	{
+		Albedo,
+		Normal,
+		Specular,
+		Smoothness,
+		Metallic,
+		Sprite,
+		End,
+	};
+
+	enum class eRasterizerState
+	{
+		SolidBack,
+		SolidFront,
+		SolidNone,
+		Wireframe,
+		End,
+	};
+	enum class eBlendState
+	{
+		AlphaBlend,
+		OneOne,
+		End,
+	};
+
+	enum class eDepthStencilState
+	{
+		DepthNone,
+		LessEqual,
+		End,
+	};
 	struct GpuBuffer
 	{
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer = nullptr;
@@ -51,6 +98,13 @@ namespace min::graphics
 
 		GpuBuffer() = default;
 		virtual ~GpuBuffer() = default;
+	};
+
+	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
+	{
+		math::Matrix world;
+		math::Matrix view;
+		math::Matrix projection;
 	};
 }
 

@@ -2,13 +2,13 @@
 
 namespace min
 {
-	Mesh::Data::Data()
+	Mesh::MeshData::MeshData()
 		:mTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 		, vertices{}
 		, indices{}
 	{
 	}
-	Mesh::Data::~Data()
+	Mesh::MeshData::~MeshData()
 	{
 	}
 	Mesh::Mesh()
@@ -38,8 +38,13 @@ namespace min
 
 		return mIB.Create(indices);
 	}
+	void Mesh::SetVertexBufferParams(UINT vertexCount, D3D11_INPUT_ELEMENT_DESC* layout, const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength)
+	{
+		mInputLayout.CreateInputLayout(vertexCount, layout, pShaderBytecodeWithInputSignature, BytecodeLength);
+	}
 	void Mesh::Bind()
 	{
+		mInputLayout.Bind();
 		mVB.Bind();
 		mIB.Bind();
 

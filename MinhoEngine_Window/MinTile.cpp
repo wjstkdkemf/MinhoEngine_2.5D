@@ -26,13 +26,4 @@ namespace min
 	{
 		GameObject::Rander();
 	}
-
-	void Tile::SetIndexPosition(int x, int y)
-	{
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos;
-		pos.x = x * TilemapRender::TileSize.x;
-		pos.y = y * TilemapRender::TileSize.y;
-		tr->SetPosition(pos);
-	}
 }

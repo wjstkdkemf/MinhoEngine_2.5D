@@ -38,6 +38,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinInputLayout.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
@@ -83,6 +84,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinIndexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinInputLayout.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />

@@ -22,7 +22,7 @@ namespace min
 	void AudioSource::LateUpdate()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
+		Vector3 pos = tr->GetPosition();
 
 		//mAudioClip->Set3DAttributes(pos);
 	}

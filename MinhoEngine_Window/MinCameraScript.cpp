@@ -5,12 +5,11 @@
 #include "minGameObject.h"
 #include "MinAnimator.h"
 #include "MinCat.h"
-#include "MinCatScript.h"
 #include "MinObject.h"
 #include "MinResources.h"
 #include "MinBoxCollider2D.h"
 #include "MinCollider.h"
-
+#include "MinCamera.h"
 
 namespace min
 {
@@ -26,18 +25,24 @@ namespace min
 	void CameraScript::Update()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
+		Vector3 pos = tr->GetPosition();
 		if (input::GetKey(eKeyCode::Right)) {
-			pos.x += 100.0f * Time::DeltaTime();
+			pos += 20.0f * tr->Right() * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Left)) {
-			pos.x -= 100.0f * Time::DeltaTime();
+			pos += 20.0f * -tr->Right() * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Up)) {
-			pos.y -= 100.0f * Time::DeltaTime();
+			pos += 20.0f * tr->Up() * Time::DeltaTime();
 		}
 		if (input::GetKey(eKeyCode::Down)) {
-			pos.y += 100.0f * Time::DeltaTime();
+			pos += 20.0f * -tr->Up() * Time::DeltaTime();
+		}
+		if (input::GetKey(eKeyCode::E)) {
+			pos += 20.0f * tr->Foward() * Time::DeltaTime();
+		}
+		if (input::GetKey(eKeyCode::Q)) {
+			pos += 20.0f * -tr->Foward() * Time::DeltaTime();
 		}
 		tr->SetPosition(pos);
 
@@ -46,7 +51,6 @@ namespace min
 			|| input::GetKeyUp(eKeyCode::Up)
 			|| input::GetKeyUp(eKeyCode::Down)) 
 		{
-
 		}
 	}
 	void CameraScript::LateUpdate()

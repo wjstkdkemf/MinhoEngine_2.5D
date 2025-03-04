@@ -21,9 +21,9 @@ namespace min
 	{
 		Scene::LateUpdate();
 	}
-	void DontDestroyOnLoad::Rander()
+	void DontDestroyOnLoad::Render()
 	{
-		Scene::Rander();
+		Scene::Render();
 	}
 	void DontDestroyOnLoad::OnEnter()
 	{

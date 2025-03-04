@@ -22,7 +22,7 @@ namespace min::object
 	}
 
 	template <typename T>
-	static T* Instantiate(min::enums::eLayerType type, math::Vector2 position)
+	static T* Instantiate(min::enums::eLayerType type, math::Vector3 position)
 	{
 		T* gameobject = new T();
 		gameobject->SetLayerType(type);

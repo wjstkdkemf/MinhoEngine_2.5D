@@ -3,16 +3,16 @@
 
 namespace min::graphics
 {
-	ConstantBuffer::ConstantBuffer()
+	ConstantBuffer::ConstantBuffer(eCBType type)
 		: mSize(0)
+		, mType(type)
 	{
 	}
 	ConstantBuffer::~ConstantBuffer()
 	{
 	}
-	bool ConstantBuffer::Create(eCBType type, UINT size, void* data)
+	bool ConstantBuffer::Create(UINT size, void* data)
 	{
-		mType = type;
 		mSize = size;
 		desc.ByteWidth = size;
 		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;

@@ -1,5 +1,6 @@
 #include "MinScene.h"
 #include "MinCollisionManager.h"
+#include "MinSceneManager.h"
 
 namespace min {
 	Scene::Scene()
@@ -17,12 +18,8 @@ namespace min {
 	}
 	void Scene::Initialize()
 	{
-		for (Layer* layer : mLayer) {
-			if (layer == nullptr)
-				continue;
-
-			layer->Initialize();
-		}
+		const std::wstring& sceneName = GetName();
+		SceneManager::SetActiveScene(sceneName);
 	}
 	void Scene::Update()
 	{
@@ -45,7 +42,7 @@ namespace min {
 			layer->LateUpdate();
 		}
 	}
-	void Scene::Rander()
+	void Scene::Render()
 	{
 		for (Layer* layer : mLayer) {
 			if (layer == nullptr)

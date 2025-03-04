@@ -21,9 +21,7 @@ namespace min::enums
 	{
 		None,
 		BackGround,
-		Tile,
 		FrontGround,
-		Animal,
 		Player,
 		Floor,
 		Particle,
@@ -34,10 +32,10 @@ namespace min::enums
 	{
 		Texture,
 		Mesh,
+		Material,
 		AudioClip,
 		Animation,
 		Shader,
-		Material,
 		Prefab,
 		End,
 	};

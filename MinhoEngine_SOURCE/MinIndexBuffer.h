@@ -12,7 +12,10 @@ namespace min::graphics
 		bool Create(const std::vector<UINT>& indices);
 		void Bind() const;
 
+		UINT GetIndexCount() const { return mIndexCount; }
+
 	private:
+		UINT mIndexCount;
 	};
 }
 

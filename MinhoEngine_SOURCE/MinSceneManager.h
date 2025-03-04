@@ -8,17 +8,16 @@ namespace min {
 		template <typename T>
 		static Scene* CreateScene(const std::wstring& name) {
 			T* scene = new T();
-			scene->SetName(name);
-			mActiveScene = scene;
-
-			scene->Initialize();
-
 			mScene.insert(std::make_pair(name, scene));
+
+			scene->SetName(name);
+			scene->Initialize();
 
 			return scene;
 		}
 
 		static Scene* LoadScene(const std::wstring& name);
+		static bool SetActiveScene(const std::wstring& name);
 		static std::wstring GetSceneName() { return mActiveScene->GetName(); }
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static Scene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
