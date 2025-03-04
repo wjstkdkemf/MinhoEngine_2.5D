@@ -1,46 +1,165 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="impl">
+    <Filter Include="GUI">
+      <UniqueIdentifier>{46ad43e6-4fbf-459d-a07c-86f61834cb4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Component">
+      <UniqueIdentifier>{c24c7a52-6ebf-4a60-a941-976e7fd48d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Editor">
+      <UniqueIdentifier>{87798596-66a4-436b-a245-1d7d87590581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\EditorWindow">
+      <UniqueIdentifier>{d95fbce2-4961-44f1-bd50-c6af09c495fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Entity">
+      <UniqueIdentifier>{6b3d9e64-55a2-41e1-85f0-0c296e691771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\GUILayout">
+      <UniqueIdentifier>{74a085de-a372-44b7-910a-76e54b5afb7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\View">
+      <UniqueIdentifier>{4596a5c9-2f10-4514-9aa6-c138b8b13829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{84f1b5dc-2433-419f-987f-30a1857a1be2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\impl">
       <UniqueIdentifier>{1375b7c8-9774-480c-bea8-aa5eb6599fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imGuizmo">
+      <UniqueIdentifier>{471c0a3b-3878-49f6-a28c-a8fac95e1873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{b75f509b-4192-4c54-8a5b-8cf37aa367ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Component\Transform">
+      <UniqueIdentifier>{0510e97d-be36-42bc-8be6-65b68e927d1c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_impl_win32.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_internal.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_rectpack.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_textedit.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_truetype.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imgui.h">
-      <Filter>impl</Filter>
+      <Filter>imgui\impl</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)imgui_impl_dx11.h">
-      <Filter>impl</Filter>
+      <Filter>imgui\impl</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GraphEditor.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImCurveEdit.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImGradient.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImGuizmo.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImSequencer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImZoomSlider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiComponent.h">
+      <Filter>GUI\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imgui_impl_win32.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImGuizmo.h">
+      <Filter>imGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImZoomSlider.h">
+      <Filter>imGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GraphEditor.h">
+      <Filter>imGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImCurveEdit.h">
+      <Filter>imGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImGradient.h">
+      <Filter>imGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImSequencer.h">
+      <Filter>imGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorApplication.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditor.h">
+      <Filter>GUI\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEntity.h">
+      <Filter>GUI\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTransform.h">
+      <Filter>GUI\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorWindow.h">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiGUILayout.h">
+      <Filter>GUI\GUILayout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_demo.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_draw.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_impl_win32.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_tables.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_widgets.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
-      <Filter>impl</Filter>
+      <Filter>imgui\impl</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui_impl_dx11.cpp">
-      <Filter>impl</Filter>
+      <Filter>imgui\impl</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImCurveEdit.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImGradient.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImGuizmo.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImSequencer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiComponent.cpp">
+      <Filter>GUI\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_impl_win32.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImGuizmo.cpp">
+      <Filter>imGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp">
+      <Filter>imGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImCurveEdit.cpp">
+      <Filter>imGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImGradient.cpp">
+      <Filter>imGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImSequencer.cpp">
+      <Filter>imGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp">
+      <Filter>GUI\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEntity.cpp">
+      <Filter>GUI\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTransform.cpp">
+      <Filter>GUI\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorWindow.cpp">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiGUILayout.cpp">
+      <Filter>GUI\GUILayout</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

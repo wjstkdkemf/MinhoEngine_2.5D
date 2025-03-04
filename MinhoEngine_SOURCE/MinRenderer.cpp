@@ -136,7 +136,6 @@ namespace min::renderer
 		Material* spriteMaterial = new Material();
 		spriteMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"SpriteDefaultShader"));
 		min::Resources::Insert(L"SpriteDefaultMaterial", spriteMaterial);
-		//ya::Resources::Load<graphics::Material>(L"SpriteMaterial", L"..\\Materials\\SpriteMaterial")
 	}
 
 	void LoadMeshes()

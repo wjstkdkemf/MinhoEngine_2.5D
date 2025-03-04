@@ -4,7 +4,8 @@
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <ItemsProjectGuid>{d0dff87e-0c5f-4af4-8ca9-1946608dbaac}</ItemsProjectGuid>
-    <ItemsRootNamespace>min</ItemsRootNamespace>
+    <ItemsRootNamespace>
+    </ItemsRootNamespace>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -16,6 +17,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEditor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorWindow.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiGUILayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)imconfig.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImCurveEdit.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImGradient.h" />
@@ -32,6 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorWindow.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiGUILayout.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImCurveEdit.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImGradient.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp" />
