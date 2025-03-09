@@ -6,16 +6,28 @@
 #include "minGameObject.h"
 #include "MinGraphicDevice_DX11.h"
 
+#include "MinEvent.h"
+#include "MinWindow.h"
+#include "MinApplicationEvent.h"
+#include "MinMoushEvent.h"
+#include "MinKeyEvent.h"
+
 namespace min{
 	class Application
 	{
 	public:
 		Application();
 		~Application();
-		void Initialize(HWND hwnd, UINT width, UINT height);
-		void AdjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void Initialize(HWND hwnd, int width, int height);
+		void InitializeWindow(HWND hwnd);
+		void AdjustWindowRect(HWND hwnd, int width, int height);
+		void ReszieGraphicDevice(WindowResizeEvent& e);
 		void InitializeEtc();
+
+		void OnEvent(Event& e);
+
 		void Run();
+		void Close();
 
 		void Update();
 		void LateUpdate();
@@ -24,27 +36,19 @@ namespace min{
 		void Destory();
 		void Release();
 
-		HWND GetHwnd() const { return mHwnd; }
-		HDC GetHdc() const { return mHdc; }
-		UINT GetWidth() const { return mWidth; }
-		UINT GetHeight() const { return mHeight; }
+		Window GetWindow() { return mWindow; }
 
 		bool IsLoaded() const { return mbLoaded; }
 		void IsLoaded(bool load) { mbLoaded = load; }
+		bool IsRunning() const { return mbRunning; }
+
 
 	private:
 		bool mbLoaded;
+		bool mbRunning;
 		std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
-		HWND mHwnd;
-		HDC mHdc;
 
-		HDC mBackHdc;
-		HBITMAP mBackBitmap;
-
-		UINT mWidth;
-		UINT mHeight;
-
-		GameObject mPlayer[2];
+		Window mWindow;
 		//std::vector<GameObject*> Bullet;
 		//std::vector<Scene*> mScenes;
 	};

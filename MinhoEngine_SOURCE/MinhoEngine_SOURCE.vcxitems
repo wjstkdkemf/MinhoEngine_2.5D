@@ -19,6 +19,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinApplicationEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioClip.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioListener.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MiNAudioSource.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)minGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinGraphics.h" />
@@ -39,12 +41,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinInputLayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinKeyEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinMoushEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinRigidbody.h" />
@@ -62,6 +67,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinUIHUd.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinUIManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinVertexBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp" />
@@ -90,6 +96,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinRigidbody.cpp" />
@@ -107,5 +114,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinUIHUd.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinUIManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinVertexBuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinWindow.cpp" />
   </ItemGroup>
 </Project>

@@ -48,7 +48,4 @@
     <None Include="$(MSBuildThisFileDirectory)SpriteDefaultPS.hlsl" />
     <None Include="$(MSBuildThisFileDirectory)Textures.hlsli" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\MinhoEngine_SOURCE\MinRenderer.cpp" />
-  </ItemGroup>
 </Project>

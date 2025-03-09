@@ -32,8 +32,8 @@ namespace min
 		void SetProjectionType(eProjectionType type) { mProjectionType = type; }
 		void SetSize(float size) { mSize = size; }
 
-		Matrix GetViewMatrix() { return mViewMatrix; }
-		Matrix GetProjectionMatrix() { return mProjectionMatrix; }
+		const Matrix& GetViewMatrix() { return mViewMatrix; }
+		const Matrix& GetProjectionMatrix() { return mProjectionMatrix; }
 
 	private:
 		static Matrix ViewMatrix;

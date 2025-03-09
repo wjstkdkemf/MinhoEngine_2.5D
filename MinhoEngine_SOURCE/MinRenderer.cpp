@@ -4,6 +4,10 @@
 #include "MinShader.h"
 #include "MinMesh.h"
 #include "MinMaterial.h"
+#include "MinApplication.h"
+#include "MinRenderTarget.h"
+
+extern min::Application application;
 
 namespace min::renderer
 {
@@ -15,6 +19,8 @@ namespace min::renderer
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)eRasterizerState::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBlendState::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDepthStencilState::End] = {};
+
+	RenderTarget* FrameBuffer = nullptr;
 
 	void LoadTriangleMesh()
 	{
@@ -59,6 +65,16 @@ namespace min::renderer
 		mesh->CreateVB(vertexes);
 
 		min::Resources::Insert(L"TriangleMesh", mesh);
+	}
+
+	void LoadFrameBuffer()
+	{
+		RenderTargetSpecification spec;
+		spec.Attachments = { eRenderTargetFormat::RGBA8, eRenderTargetFormat::Depth };
+		spec.Width = application.GetWindow().GetWidth();
+		spec.Height = application.GetWindow().GetHeight();
+
+		FrameBuffer = RenderTarget::Create(spec);
 	}
 
 	void LoadRectMesh()
@@ -273,11 +289,15 @@ namespace min::renderer
 		LoadMeshes();
 		LoadMeterails();
 		LoadConstantBuffers();
+		LoadFrameBuffer();
 	}
 	void Release()
 	{
 		//inputLayouts->Release();
 		//delete mesh;
+		delete FrameBuffer;
+		FrameBuffer = nullptr;
+
 		for (UINT i = 0; i < (UINT)eCBType::End; i++)
 		{
 			delete constantBuffers[i];

@@ -42,7 +42,4 @@
       <Filter>LIB</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\MinhoEngine_SOURCE\MinRenderer.cpp" />
-  </ItemGroup>
 </Project>

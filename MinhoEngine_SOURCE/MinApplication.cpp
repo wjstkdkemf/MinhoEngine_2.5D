@@ -8,27 +8,26 @@
 #include "MinFmod.h"
 #include "MinGraphicDevice_DX11.h"
 #include "MinRenderer.h"
-
+#include "MinApplicationEvent.h"
+#include "MinMoushEvent.h"
 
 namespace min {
 	//std::vector<GameObject> Application::Bullet = {};
 
 	Application::Application()
-		: mHwnd(nullptr)
-		, mHdc(nullptr)
-		, mWidth(0)
-		, mHeight(0)
-		, mBackHdc(NULL)
-		, mBackBitmap(NULL)
-		, mbLoaded(false)
+		: mbLoaded(false)
+		, mbRunning(false)
 	{
+		mWindow.SetEventCallBack(MIN_BIND_EVENT_FN(Application::OnEvent));
 	}
 	Application::~Application()
 	{
 		
 	}
-	void Application::Initialize(HWND hwnd, UINT width, UINT height)
+	void Application::Initialize(HWND hwnd, int width, int height)
 	{
+		mWindow.SetHwnd(hwnd);
+
 		AdjustWindowRect(hwnd, width, height);
 		InitializeEtc();
 
@@ -40,6 +39,16 @@ namespace min {
 		CollisionManager::Initialize();
 		UIManager::Initialize();
 		SceneManager::Initialize();
+
+		mbRunning = true;
+	}
+	void Application::InitializeWindow(HWND hwnd)
+	{
+		SetWindowPos(hwnd, nullptr,
+			mWindow.GetXPos(), mWindow.GetYPos(),
+			mWindow.GetWindowWidth(), mWindow.GetWindowHeight(),
+			0);
+		ShowWindow(hwnd, SW_SHOWDEFAULT);
 	}
 	void Application::Run()
 	{
@@ -78,6 +87,11 @@ namespace min {
 		CollisionManager::Render();
 		UIManager::Render();
 		SceneManager::Render();
+
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> src = GetDevice()->GetFrameBuffer();
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> dst = renderer::FrameBuffer->GetAttachmentTexture(0)->GetTexture();
+
+		GetDevice()->CopyResource(dst.Get(), src.Get());
 	}
 	void Application::Present()
 	{
@@ -96,26 +110,70 @@ namespace min {
 		renderer::Release();
 	}
 
-	void Application::AdjustWindowRect(HWND hwnd, UINT width, UINT height)
+	void Application::AdjustWindowRect(HWND hwnd, int width, int height)
 	{
-		mHwnd = hwnd;
-		mHdc = GetDC(mHwnd);
-
 		RECT rect = { 0, 0, (LONG)width, (LONG)height };
 		::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+		RECT winRect;
+		::GetWindowRect(mWindow.GetHwnd(), &winRect);
 
-		mWidth = rect.right - rect.left;
-		mHeight = rect.bottom - rect.top;
+		//window position
+		mWindow.SetPos(winRect.left, winRect.top);
 
-		SetWindowPos(hwnd, nullptr, 0, 0
-			, mWidth
-			, mHeight, 0);
-		ShowWindow(hwnd, true);
+		mWindow.SetWindowWidth(rect.right - rect.left);
+		mWindow.SetWindowHeight(rect.bottom - rect.top);
+
+		// window size
+
+		mWindow.SetWidth(width);
+		mWindow.SetHeight(height);
+
+		InitializeWindow(hwnd);
+	}
+
+	void Application::ReszieGraphicDevice(WindowResizeEvent& e)
+	{
+		if (mGraphicDevice == nullptr)
+			return;
+
+		D3D11_VIEWPORT viewport = {};
+		viewport.TopLeftX = 0.0f;
+		viewport.TopLeftY = 0.0f;
+		viewport.Width = static_cast<float>(e.GetWidth());
+		viewport.Height = static_cast<float>(e.GetHeight());
+		viewport.MinDepth = 0.0f;
+		viewport.MaxDepth = 1.0f;
+
+		mWindow.SetWidth(viewport.Width);
+		mWindow.SetHeight(viewport.Height);
+
+		mGraphicDevice->Resize(viewport);
+		renderer::FrameBuffer->Resize(viewport.Width, viewport.Height);
+	}
+
+	void Application::Close()
+	{
+		mbRunning = false;
 	}
 	
 	void Application::InitializeEtc()
 	{
 		input::Initailize();
 		Time::Initailize();
+	}
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e) -> bool
+		{
+			ReszieGraphicDevice(e);
+			return true;
+		});
+
+		//dispatcher.Dispatch<MouseMovedEvent>([this](MouseMovedEvent& e) -> bool
+		//{
+		//	// Todo : MouseMovedEvent
+		//	return true;
+		//});
 	}
 }
