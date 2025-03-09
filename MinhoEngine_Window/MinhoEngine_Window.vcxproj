@@ -167,18 +167,6 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClInclude Include="MinTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MinhoEngine_SOURCE\MinRenderer.cpp" />
-    <ClCompile Include="MinCameraScript.cpp" />
-    <ClCompile Include="MinCat.cpp" />
-    <ClCompile Include="MinFloor.cpp" />
-    <ClCompile Include="MinLoadingScene.cpp" />
-    <ClCompile Include="MinPlayer.cpp" />
-    <ClCompile Include="MinPlayerScript.cpp" />
-    <ClCompile Include="MinPlayScene.cpp" />
-    <ClCompile Include="MinTile.cpp" />
-    <ClCompile Include="MinTitleScene.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <FxCompile Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\Sprite-DefaultVS.hlsl">
       <FileType>Document</FileType>
     </FxCompile>
@@ -211,6 +199,17 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <None Update="C:\Users\wjstk\source\repos\MinhoEngine\Shaders_SOURCE\SpritePs.hlsli">
       <FileType>Document</FileType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MinCameraScript.cpp" />
+    <ClCompile Include="MinCat.cpp" />
+    <ClCompile Include="MinFloor.cpp" />
+    <ClCompile Include="MinLoadingScene.cpp" />
+    <ClCompile Include="MinPlayer.cpp" />
+    <ClCompile Include="MinPlayerScript.cpp" />
+    <ClCompile Include="MinPlayScene.cpp" />
+    <ClCompile Include="MinTile.cpp" />
+    <ClCompile Include="MinTitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

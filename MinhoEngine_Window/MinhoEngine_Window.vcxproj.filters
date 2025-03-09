@@ -46,34 +46,4 @@
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="MinPlayScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="MinTitleScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="MinPlayerScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="MinPlayer.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="MinCat.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="MinTile.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="MinCameraScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="MinFloor.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="MinLoadingScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MinhoEngine_SOURCE\MinRenderer.cpp" />
-  </ItemGroup>
 </Project>

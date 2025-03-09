@@ -130,6 +130,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinInputLayout.cpp">
       <Filter>GraphicDevice</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinRenderTarget.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinWindow.cpp">
+      <Filter>High Level interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -273,6 +279,24 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinInputLayout.h">
       <Filter>GraphicDevice</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinRenderTarget.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinEvent.h">
+      <Filter>Common\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinMoushEvent.h">
+      <Filter>Common\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinApplicationEvent.h">
+      <Filter>Common\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinWindow.h">
+      <Filter>High Level interface</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinKeyEvent.h">
+      <Filter>Common\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -367,6 +391,9 @@
     </Filter>
     <Filter Include="GraphicDevice\Buffer">
       <UniqueIdentifier>{7cdb747f-e12d-4956-964d-a258847104e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Event">
+      <UniqueIdentifier>{b1ae139b-ef22-4f69-9cbc-0f1df37b283c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

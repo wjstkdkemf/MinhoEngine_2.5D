@@ -52,7 +52,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램의 인스턴스 
     MSG msg;
 
 
-    while (true) {
+    while (application.IsRunning()) {
         if(PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))//꺼낸뒤 삭제하도록 PM_REMOVE가 필요함
         {
             if (msg.message == WM_QUIT) {
@@ -139,7 +139,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      0, 0, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표 CW_USEDEFAULT
+       CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, hInstance, nullptr);// 시작좌표 , 끝좌표 CW_USEDEFAULT
 
 
    if (!hWnd)
@@ -150,9 +150,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    if (FAILED(hr))
        assert(false);
-
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
 
    application.Initialize(hWnd, width, height);
 
@@ -197,6 +194,43 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
+        }
+        break;
+    case WM_SIZE:
+        {
+            application.GetWindow().SetWindowResize(LOWORD(lParam), HIWORD(lParam));
+        }
+        break;
+    case WM_KEYDOWN:
+    case WM_SYSKEYDOWN:
+    case WM_KEYUP:
+    case WM_SYSKEYUP:
+    {
+        const int keyCode = static_cast<int>(wParam);
+        const int scancode = (lParam >> 16) & 0x1ff;
+
+        const int KEY_RELEASE = 0;
+        const int KEY_PRESS = 1;
+
+        const int action = ((lParam >> 31) & 1) ? KEY_RELEASE : KEY_PRESS;
+
+        const int mods = []() -> int
+        {
+            int mod = 0;
+            if (GetKeyState(VK_SHIFT) & 0x8000) mod |= 1;
+            if (GetKeyState(VK_CONTROL) & 0x8000) mod |= 2;
+            if (GetKeyState(VK_MENU) & 0x8000) mod |= 4;
+
+            return mod;
+        }();
+
+        gui::EditorApplication::SetKeyPressed(keyCode, scancode, action, mods);
+
+    }
+    break;
+    case WM_MOUSEMOVE:
+        {
+            gui::EditorApplication::SetCursorPos(wParam, lParam);
         }
         break;
     case WM_PAINT:

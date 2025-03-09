@@ -38,13 +38,18 @@ namespace min::graphics
 		void BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
 		void BindSampler(eShaderStage stage, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers);
 		void BindSamplers(UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers);
+		bool CreateUnorderedAccessView(ID3D11Resource* pResource, const D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc,
+			ID3D11UnorderedAccessView** ppUAView);
 		void BindRasterizerState(ID3D11RasterizerState* pRasterizerState);
 		void BindBlendState(ID3D11BlendState* pBlendState, const FLOAT BlendFactor[4], UINT SampleMask);
 		void BindDepthStencilState(ID3D11DepthStencilState* pDepthStencilState, UINT StencilRef);
+		bool Resize(D3D11_VIEWPORT viewport);
 
 		void BindViewPort();
 		void BindRenderTargets(UINT NumViews = 1, ID3D11RenderTargetView* const* ppRenderTargetViews = nullptr, ID3D11DepthStencilView* pDepthStencilView = nullptr);
 		void BindDefaultRenderTarget();
+
+		void CopyResource(ID3D11Resource* pDstResource, ID3D11Resource* pSrcResource);
 
 		void ClearRenderTargetView();
 		void ClearDepthStencilView();
@@ -57,12 +62,13 @@ namespace min::graphics
 	public:
 		[[nodiscard]]Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return mDevice; }
 		[[nodiscard]] Microsoft::WRL::ComPtr<ID3D11DeviceContext> GetID3D11DeviceContext() { return mContext; }
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> GetFrameBuffer() { return mFrameBuffer; }
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> mDevice;
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> mContext;
-		Microsoft::WRL::ComPtr<ID3D11Texture2D> mRenderTarget;
-		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mRenderTargetView;
+		Microsoft::WRL::ComPtr<ID3D11Texture2D> mFrameBuffer;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mFrameBufferView;
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> mDepthStencil;
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> mDepthStencilView;
 

@@ -147,10 +147,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MinhoEngine_SOURCE\MinRenderer.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Editor_Windows.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +157,9 @@
     <ProjectReference Include="..\MinhoEngine_Window\MinhoEngine_Window.vcxproj">
       <Project>{67fb9378-8902-4ee3-bfa6-ec779d283e72}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

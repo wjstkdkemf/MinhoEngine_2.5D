@@ -24,7 +24,7 @@ namespace min
 	}
 	void CameraScript::Update()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
 		if (input::GetKey(eKeyCode::Right)) {
 			pos += 20.0f * tr->Right() * Time::DeltaTime();
@@ -51,7 +51,7 @@ namespace min
 			|| input::GetKeyUp(eKeyCode::Up)
 			|| input::GetKeyUp(eKeyCode::Down)) 
 		{
-		}
+		}*/
 	}
 	void CameraScript::LateUpdate()
 	{

@@ -37,7 +37,7 @@ namespace min
 			mbMouseOn = false;
 		}
 
-		if (input::GetKeyDown(eKeyCode::Lbutton))
+		if (input::GetKeyDown(eKeyCode::LButton))
 		{
 			if (mbMouseOn)
 			{

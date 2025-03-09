@@ -37,6 +37,9 @@
     <Filter Include="GUI\Component\Transform">
       <UniqueIdentifier>{0510e97d-be36-42bc-8be6-65b68e927d1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\ImguiEditor">
+      <UniqueIdentifier>{9fe7c742-3c3a-489d-ab97-71e21704382e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)imgui.h">
@@ -102,6 +105,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)guiGUILayout.h">
       <Filter>GUI\GUILayout</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiInspectorWindow.h">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiImguiEditor.h">
+      <Filter>GUI\ImguiEditor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
@@ -160,6 +169,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiGUILayout.cpp">
       <Filter>GUI\GUILayout</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiInspectorWindow.cpp">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiImguiEditor.cpp">
+      <Filter>GUI\ImguiEditor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

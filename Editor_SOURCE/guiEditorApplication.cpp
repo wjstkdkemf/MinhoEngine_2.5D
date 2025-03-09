@@ -1,17 +1,40 @@
 #include "guiEditorApplication.h"
 
+#include "guiInspectorWindow.h"
 #include "..\\MinhoEngine_SOURCE\\MinApplication.h"
 #include "..\\MinhoEngine_SOURCE\\MinRenderer.h"
 #include "..\\MinhoEngine_SOURCE\\MinGameObject.h"
 #include "..\\MinhoEngine_SOURCE\\MinTransform.h"
+#include "..\\MinhoEngine_SOURCE\\Mininput.h"
 
 extern min::Application application;
 
 namespace gui
 {
+	ImguiEditor* EditorApplication::mImguiEditor = nullptr;
+	std::map<std::wstring, EditorWindow*> EditorApplication::mEditorWindows;
+	ImGuiWindowFlags EditorApplication::mFlag = ImGuiWindowFlags_None;
+	ImGuiDockNodeFlags EditorApplication::mDockspaceFlags = ImGuiDockNodeFlags_None;
+	EditorApplication::eState EditorApplication::mState = EditorApplication::eState::Active;
+	bool EditorApplication::mFullScreen = true;
+	bool EditorApplication::mPadding = false;
+	min::math::Vector2 EditorApplication::mViewportBounds[2] = {};
+	min::math::Vector2 EditorApplication::mViewportSize;
+	bool EditorApplication::mViewportFocused = false;
+	bool EditorApplication::mViewportHovered = false;
+	min::graphics::RenderTarget* EditorApplication::mFrameBuffer = nullptr;
+	int EditorApplication::mGuizmoType = -1;
+	min::EventCallbackFn EditorApplication::mEventCallback = nullptr;
+
 	bool EditorApplication::Initialize()
 	{
-		imGguiInitialize();
+		mImguiEditor = new ImguiEditor();
+		mFrameBuffer = min::renderer::FrameBuffer;
+
+		mImguiEditor->Initialize();
+		InspectorWindow* inspector = new InspectorWindow();
+		mEditorWindows.insert(std::make_pair(L"InspectorWindow", inspector));
+		mEventCallback = &EditorApplication::OnEvent;
 
 		return true;
 	}
@@ -22,7 +45,9 @@ namespace gui
 
 	void EditorApplication::OnGUI()
 	{
-		imGuiRender();
+		mImguiEditor->Begin();
+		OnImguiRender();
+		mImguiEditor->End();
 	}
 
 	void EditorApplication::Run()
@@ -33,169 +58,358 @@ namespace gui
 
 	void EditorApplication::Release()
 	{
-		// Cleanup
-		ImGui_ImplDX11_Shutdown();
-		ImGui_ImplWin32_Shutdown();
-		ImGui::DestroyContext();
-	}
-
-	bool EditorApplication::imGguiInitialize()
-	{
-		// Setup Dear ImGui context
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
-		//io.ConfigViewportsNoAutoMerge = true;
-		//io.ConfigViewportsNoTaskBarIcon = true;
-		//io.ConfigViewportsNoDefaultParent = true;
-		//io.ConfigDockingAlwaysTabBar = true;
-		//io.ConfigDockingTransparentPayload = true;
-		//io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleFonts;     // FIXME-DPI: Experimental. THIS CURRENTLY DOESN'T WORK AS EXPECTED. DON'T USE IN USER APP!
-		//io.ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports; // FIXME-DPI: Experimental.
-
-		// Setup Dear ImGui style
-		ImGui::StyleColorsDark();
-		//ImGui::StyleColorsLight();
-
-		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-		ImGuiStyle& style = ImGui::GetStyle();
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		for (auto iter : mEditorWindows)
 		{
-			style.WindowRounding = 0.0f;
-			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+			delete iter.second;
+			iter.second = nullptr;
 		}
 
-		// Setup Platform/Renderer backends
-		ImGui_ImplWin32_Init(application.GetHwnd());
-
-		min::graphics::GraphicDevice_DX11*& graphicdevice = min::graphics::GetDevice();
-		ID3D11Device* device = graphicdevice->GetID3D11Device().Get();
-		ID3D11DeviceContext* device_context = graphicdevice->GetID3D11DeviceContext().Get();
-
-		ImGui_ImplDX11_Init(device, device_context);
-
-		return false;
+		// Cleanup
+		delete mImguiEditor;
+		mImguiEditor = nullptr;
 	}
 
-	void EditorApplication::imGuiRender()
+	void EditorApplication::OnEvent(min::Event& e)
 	{
-		// Load Fonts
-		// - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
-		// - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
-		// - If the file cannot be loaded, the function will return NULL. Please handle those errors in your application (e.g. use an assertion, or display an error and quit).
-		// - The fonts will be rasterized at a given size (w/ oversampling) and stored into a texture when calling ImFontAtlas::Build()/GetTexDataAsXXXX(), which ImGui_ImplXXXX_NewFrame below will call.
-		// - Use '#define IMGUI_ENABLE_FREETYPE' in your imconfig file to use Freetype for higher quality font rendering.
-		// - Read 'docs/FONTS.md' for more instructions and details.
-		// - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
-		//io.Fonts->AddFontDefault();
-		//io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);
-		//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
-		//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
-		//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
-		//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
-		//IM_ASSERT(font != NULL);
+		min::EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<min::KeyPressedEvent>([](min::KeyPressedEvent& e) -> bool
+		{
+			// Todo : KeyPressedEvent
+			if (OnKeyPressed(e))
+				return true;
 
-		// Our state
+			return false;
+		});
+
+		dispatcher.Dispatch<min::KeyReleasedEvent>([](min::KeyReleasedEvent& e) -> bool
+		{
+			// Todo : KeyReleasedEvent
+			//if (OnKeyPressed(e))
+				//return true;
+
+			return false;
+		});
+
+		dispatcher.Dispatch<min::MouseMovedEvent>([](min::MouseMovedEvent& e) -> bool
+		{
+			// Todo : MouseMovedEvent
+
+			return true;
+		});
+		if (!e.Handled)
+		{
+			mImguiEditor->OnEvent(e);
+		}
+	}
+
+	void EditorApplication::OpenProject()
+	{
+
+	}
+
+	void EditorApplication::NewScene()
+	{
+
+	}
+
+	void EditorApplication::SaveScene()
+	{
+
+	}
+
+	void EditorApplication::SaveSceneAs()
+	{
+
+	}
+	void EditorApplication::OpenScene(const std::filesystem::path& path)
+	{
+
+	}
+
+	void EditorApplication::OnImguiRender()
+	{
 		bool show_demo_window = true;
 		bool show_another_window = false;
 		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-		// Start the Dear ImGui frame
-		ImGui_ImplDX11_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
+		mFlag = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+		if (mFullScreen)
+		{
+			ImGuiViewport* viewport = ImGui::GetMainViewport();
+			ImGui::SetNextWindowPos(viewport->Pos);
+			ImGui::SetNextWindowSize(viewport->Size);
+			ImGui::SetNextWindowViewport(viewport->ID);
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+			mFlag |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+			mFlag |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+		}
 
-		//imGuizmo
+		// When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background
+		// and handle the pass-thru hole, so we ask Begin() to not render a background.
+		if (mDockspaceFlags & ImGuiDockNodeFlags_PassthruCentralNode)
+			mFlag |= ImGuiWindowFlags_NoBackground;
+
+		// Important: note that we proceed even if Begin() returns false (aka window is collapsed).
+		// This is because we want to keep our DockSpace() active. If a DockSpace() is inactive,
+		// all active windows docked into it will lose their parent and become undocked.
+		// We cannot preserve the docking relationship between an active window and an inactive docking, otherwise
+		// any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+		bool Active = static_cast<bool>(mState);
+		ImGui::Begin("EditorApplication", &Active, mFlag);
+		ImGui::PopStyleVar();
+
+		if (mFullScreen)
+			ImGui::PopStyleVar(2);
+
+		// DockSpace
 		ImGuiIO& io = ImGui::GetIO();
-
-		ImGuizmo::SetOrthographic(false/*!isPerspective*/);
-		ImGuizmo::SetDrawlist(ImGui::GetCurrentWindow()->DrawList);
-
-		ImGuizmo::BeginFrame();
-
-		UINT width = application.GetWidth();
-		UINT height = application.GetHeight();
-		float windowWidth = (float)ImGui::GetWindowWidth();
-		float windowHeight = (float)ImGui::GetWindowHeight();
-
-		RECT rect = { 0, 0, 0, 0 };
-		::GetClientRect(application.GetHwnd(), &rect);
-
-		// Transform start
-		//ImGuizmo::SetRect(0, 0, width, height);
-		ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
-
-		Matrix viewMatirx;
-		Matrix projectionMatirx;
-
-		if (min::renderer::mainCamera)
+		ImGuiStyle& style = ImGui::GetStyle();
+		float minWinSizeX = style.WindowMinSize.x;
+		style.WindowMinSize.x = 370.0f;
+		if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
 		{
-			viewMatirx = min::renderer::mainCamera->GetViewMatrix();
-			projectionMatirx = min::renderer::mainCamera->GetProjectionMatrix();
+			ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), mDockspaceFlags);
 		}
 
-		Matrix modelMatrix;
-		if (min::renderer::selectedObject)
+		style.WindowMinSize.x = minWinSizeX;
+
+		if (ImGui::BeginMenuBar())
 		{
-			modelMatrix = min::renderer::selectedObject->GetComponent<min::Transform>()->GetWorldMatrix();
+			if (ImGui::BeginMenu("File"))
+			{
+				if (ImGui::MenuItem("Open Project...", "Ctrl+O"))
+					OpenProject();
+
+				ImGui::Separator();
+
+				if (ImGui::MenuItem("New Scene", "Ctrl+N"))
+					NewScene();
+
+				if (ImGui::MenuItem("Save Scene", "Ctrl+S"))
+					SaveScene();
+
+				if (ImGui::MenuItem("Save Scene As...", "Ctrl+Shift+S"))
+					SaveSceneAs();
+
+				ImGui::Separator();
+
+				if (ImGui::MenuItem("Exit"))
+					application.Close();
+
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Script"))
+			{
+				if (ImGui::MenuItem("Reload assembly", "Ctrl+R"))
+				{
+					//ScriptEngine::ReloadAssembly(); ÃßÈÄ C#½ºÅ©¸³Æ® Ãß°¡±â´ÉÀÌ »ý±â¸é Ãß°¡ÇÒ ¿¹Á¤
+				}
+
+				ImGui::EndMenu();
+			}
+
+
+			ImGui::EndMenuBar();
 		}
 
-		ImGuizmo::Manipulate(*viewMatirx.m, *projectionMatirx.m,
-			ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, *modelMatrix.m);
+		for (auto& iter : mEditorWindows)
+			iter.second->Run();
 
-		//ImGuizmo::SetDrawlist(ImGui::GetCurrentWindow()->DrawList);
+		// viewport
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+		ImGui::Begin("Scene");
 
-		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-		if (show_demo_window)
-			ImGui::ShowDemoWindow(&show_demo_window);
+		const auto viewportMinRegion = ImGui::GetWindowContentRegionMin(); // ¾ÀºäÀÇ ÃÖ¼Ò ÁÂÇ¥
+		const auto viewportMaxRegion = ImGui::GetWindowContentRegionMax(); // ¾ÀºäÀÇ ÃÖ´ë ÁÂÇ¥
+		const auto viewportOffset = ImGui::GetWindowPos(); // ¾ÀºäÀÇ À§Ä¡
 
-		// 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
+		constexpr int letTop = 0;
+		constexpr int rightBottom = 1;
+		mViewportBounds[letTop] = Vector2{ viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
+		mViewportBounds[rightBottom] = Vector2{ viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
+
+		// check if the mouse,keyboard is on the Sceneview
+		mViewportFocused = ImGui::IsWindowFocused();
+		mViewportHovered = ImGui::IsWindowHovered();
+
+		mImguiEditor->BlockEvent(!mViewportHovered);
+
+		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+		mViewportSize = Vector2{ viewportPanelSize.x, viewportPanelSize.y };
+		min::graphics::Texture* texture = mFrameBuffer->GetAttachmentTexture(0);
+		ImGui::Image((ImTextureID)texture->GetSRV().Get(), ImVec2{ mViewportSize.x, mViewportSize.y }
+		, ImVec2{ 0, 0 }, ImVec2{ 1, 1 });
+
+		// Open Scene by drag and drop
+		if (ImGui::BeginDragDropTarget())
 		{
-			static float f = 0.0f;
-			static int counter = 0;
-
-			ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-
-			ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-			ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-			ImGui::Checkbox("Another Window", &show_another_window);
-
-			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-			ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
-			if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
-				counter++;
-			ImGui::SameLine();
-			ImGui::Text("counter = %d", counter);
-
-			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-			ImGui::End();
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("PROJECT_ITEM"))
+			{
+				const auto path = static_cast<const wchar_t*>(payload->Data);
+				OpenScene(path);
+			}
+			ImGui::EndDragDropTarget();
 		}
 
-		// 3. Show another simple window.
-		if (show_another_window)
+		// To do : guizmo
+		min::GameObject* selectedObject = min::renderer::selectedObject;
+		if (selectedObject && mGuizmoType != -1)
 		{
-			ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-			ImGui::Text("Hello from another window!");
-			if (ImGui::Button("Close Me"))
-				show_another_window = false;
-			ImGui::End();
+			ImGuizmo::SetOrthographic(false);
+			ImGuizmo::SetDrawlist();
+			ImGuizmo::SetGizmoSizeClipSpace(0.15f);
+			ImGuizmo::SetRect(mViewportBounds[0].x, mViewportBounds[0].y
+				, mViewportBounds[1].x - mViewportBounds[0].x, mViewportBounds[1].y - mViewportBounds[0].y);
+
+			// To do : guizmo...
+			// game view camera setting
+
+			// Scene Camera
+			const min::math::Matrix& viewMatrix = min::renderer::mainCamera->GetViewMatrix();
+			const min::math::Matrix& projectionMatrix = min::renderer::mainCamera->GetProjectionMatrix();
+
+			// Object Transform
+			min::Transform* transform = selectedObject->GetComponent<min::Transform>();
+			min::math::Matrix worldMatrix = transform->GetWorldMatrix();
+
+			// snapping
+			bool snap = min::input::GetKey(min::eKeyCode::Leftcontrol);
+			float snapValue = 0.5f;
+
+			// snap to 45 degrees for rotation
+			if (mGuizmoType == ImGuizmo::OPERATION::ROTATE)
+				snapValue = 45.0f;
+
+			float snapValues[3] = { snapValue, snapValue, snapValue };
+
+			ImGuizmo::Manipulate(*viewMatrix.m, *projectionMatrix.m, static_cast<ImGuizmo::OPERATION>(mGuizmoType)
+				, ImGuizmo::WORLD, *worldMatrix.m, nullptr, snap ? snapValues : nullptr);
+
+			if (ImGuizmo::IsUsing())
+			{
+				// Decompose matrix to translation, rotation and scale
+				float translation[3];
+				float rotation[3];
+				float scale[3];
+				ImGuizmo::DecomposeMatrixToComponents(*worldMatrix.m, translation, rotation, scale);
+
+				// delta rotation from the current rotation
+				min::math::Vector3 deltaRotation = Vector3(rotation) - transform->GetRotation();
+				deltaRotation = transform->GetRotation() + deltaRotation;
+
+				// set the new transform
+				transform->SetScale(Vector3(scale));
+				transform->SetRotation(Vector3(deltaRotation));
+				transform->SetPosition(Vector3(translation));
+			}
 		}
 
-		// Rendering
-		ImGui::Render();
-		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+		ImGui::End();	// Scene end
+		ImGui::PopStyleVar();
+
+		ImGui::End(); // dockspace end
+	}
+
+	void EditorApplication::SetKeyPressed(int keyCode, int scancode, int action, int mods)
+	{
+		constexpr int RELEASE = 0;
+		constexpr int PRESS = 1;
+		constexpr int REPEAT = 2;
+
+		//To do : repeat check
+		//if (action == PRESS)
+			//action = REPEAT;
+		//static std::unordered_map<key, >
+
+		// unordered map key setting
 
 
-		// Update and Render additional Platform Windows
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+
+		switch (action)
 		{
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
+		case RELEASE:
+		{
+			min::KeyReleasedEvent event(static_cast<min::eKeyCode>(keyCode));
+
+			if (mEventCallback)
+				mEventCallback(event);
 		}
+		break;
+		case PRESS:
+		{
+			min::KeyPressedEvent event(static_cast<min::eKeyCode>(keyCode), false);
+
+			if (mEventCallback)
+				mEventCallback(event);
+		}
+		break;
+		case REPEAT:
+		{
+			min::KeyPressedEvent event(static_cast<min::eKeyCode>(keyCode), true);
+
+			if (mEventCallback)
+				mEventCallback(event);
+		}
+		break;
+		}
+	}
+
+	bool EditorApplication::OnKeyPressed(min::KeyPressedEvent& e)
+	{
+		if (e.IsRepeat())
+			return false;
+
+		bool control = min::input::GetKey(min::eKeyCode::Leftcontrol) || min::input::GetKey(min::eKeyCode::RightControl);
+		bool shift = min::input::GetKey(min::eKeyCode::LeftShift) || min::input::GetKey(min::eKeyCode::RightShift);
+
+		switch (e.GetKeyCode())
+		{
+			// Gizmos
+		case min::eKeyCode::Q:
+		{
+			if (!ImGuizmo::IsUsing())
+				SetGuizmoType(-1);
+			break;
+		}
+		case min::eKeyCode::W:
+		{
+			if (!ImGuizmo::IsUsing())
+				SetGuizmoType(ImGuizmo::OPERATION::TRANSLATE);
+			break;
+		}
+		case min::eKeyCode::E:
+		{
+			if (!ImGuizmo::IsUsing())
+				SetGuizmoType(ImGuizmo::OPERATION::ROTATE);
+			break;
+		}
+		case min::eKeyCode::R:
+		{
+			if (control)
+			{
+				//ScriptEngine::ReloadAssembly();
+			}
+			else
+			{
+				if (!ImGuizmo::IsUsing())
+					SetGuizmoType(ImGuizmo::OPERATION::SCALE);
+			}
+			break;
+		}
+		}
+
+		return true;
+	}
+
+	void EditorApplication::SetCursorPos(double x, double y)
+	{
+		min::MouseMovedEvent event(x, y);
+
+		if (mEventCallback)
+			mEventCallback(event);
 	}
 }

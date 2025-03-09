@@ -1,5 +1,7 @@
 #pragma once
 #include "..\\MinhoEngine_SOURCE\\CommonInclude.h"
+#include "..\\MinhoEngine_SOURCE\\MinEvent.h"
+
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui.h"
@@ -21,11 +23,11 @@ namespace gui
 		virtual ~Entity();
 
 
-		void SetName(const std::wstring& name) { mName = name; };
-		std::wstring& GetName() { return mName; };
+		void SetName(const std::string& name) { mName = name; };
+		std::string& GetName() { return mName; };
 
 	private:
-		std::wstring mName;
+		std::string mName;
 	};
 }
 

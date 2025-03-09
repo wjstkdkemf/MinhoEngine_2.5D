@@ -7,14 +7,6 @@ namespace min {
 	std::vector<input::Key> input::mKeys = {};
 	math::Vector2 input::mMousePosition = math::Vector2::One;
 
-	int ASCII[(UINT)eKeyCode::End] {
-		'Q','W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
-		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
-		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
-		VK_LEFT,VK_RIGHT,VK_DOWN,VK_UP,VK_SPACE,
-		VK_LBUTTON,VK_MBUTTON, VK_RBUTTON,
-	};
-
 	void input::Initailize()
 	{
 		//mKeys.resize((UINT)eKeyCode::End);
@@ -27,11 +19,14 @@ namespace min {
 	}
 	void input::createKeys()
 	{
-		for (size_t i = 0; i < (UINT)eKeyCode::End; i++) {
+		for (int vk = 0; vk <= 0xFF; ++vk) {
+			eKeyCode keyCode = static_cast<eKeyCode>(vk);
+
 			Key key = {};
 			key.bPressed = false;
 			key.state = eKeyState::None;
-			key.keyCode = (eKeyCode)i;
+			key.keyCode = keyCode;
+			key.VK_KeyCode = vk;
 
 			mKeys.push_back(key);
 		}
@@ -63,7 +58,7 @@ namespace min {
 	}
 	bool input::isKeyDown(eKeyCode code)
 	{
-		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
+		return GetAsyncKeyState(static_cast<int>(code)) & 0x8000;
 	}
 	void input::updateKeyDown(input::Key& key)
 	{
@@ -87,10 +82,10 @@ namespace min {
 	{
 		POINT mousePos = {};
 		GetCursorPos(&mousePos);
-		ScreenToClient(application.GetHwnd(), &mousePos);
+		ScreenToClient(application.GetWindow().GetHwnd(), &mousePos);
 
-		UINT width = application.GetWidth();
-		UINT height = application.GetHeight();
+		UINT width = application.GetWindow().GetWidth();
+		UINT height = application.GetWindow().GetHeight();
 
 		mMousePosition.x = -1.0f;
 		mMousePosition.y = -1.0f;
