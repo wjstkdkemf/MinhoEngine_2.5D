@@ -1,0 +1,454 @@
+
+char_archer.png
+size: 992,992
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bow_common
+  rotate: true
+  xy: 223, 237
+  size: 163, 142
+  orig: 163, 142
+  offset: 0, 0
+  index: -1
+bow_epic_man
+  rotate: true
+  xy: 216, 402
+  size: 276, 193
+  orig: 276, 193
+  offset: 0, 0
+  index: -1
+bow_epic_woman
+  rotate: true
+  xy: 2, 117
+  size: 267, 219
+  orig: 267, 219
+  offset: 0, 0
+  index: -1
+bow_indian_rare
+  rotate: true
+  xy: 232, 742
+  size: 248, 191
+  orig: 248, 191
+  offset: 0, 0
+  index: -1
+bow_rare
+  rotate: true
+  xy: 370, 141
+  size: 259, 188
+  orig: 259, 188
+  offset: 0, 0
+  index: -1
+char_archerman_common/arm_l
+  rotate: true
+  xy: 785, 519
+  size: 63, 93
+  orig: 63, 94
+  offset: 0, 1
+  index: -1
+char_archerman_common/arm_r
+  rotate: true
+  xy: 659, 181
+  size: 66, 91
+  orig: 66, 91
+  offset: 0, 0
+  index: -1
+char_archerman_common/body
+  rotate: false
+  xy: 785, 584
+  size: 97, 105
+  orig: 97, 105
+  offset: 0, 0
+  index: -1
+char_archerman_common/head
+  rotate: false
+  xy: 594, 495
+  size: 189, 190
+  orig: 189, 190
+  offset: 0, 0
+  index: -1
+char_archerman_common/leg_l
+  rotate: true
+  xy: 747, 8
+  size: 46, 85
+  orig: 52, 85
+  offset: 0, 0
+  index: -1
+char_archerman_common/leg_r
+  rotate: true
+  xy: 816, 701
+  size: 46, 85
+  orig: 47, 85
+  offset: 0, 0
+  index: -1
+char_archerman_common/shoulder_l
+  rotate: false
+  xy: 519, 743
+  size: 39, 32
+  orig: 40, 33
+  offset: 0, 0
+  index: -1
+char_archerman_common/shoulder_r
+  rotate: false
+  xy: 936, 420
+  size: 44, 42
+  orig: 44, 43
+  offset: 0, 1
+  index: -1
+char_archerman_epic/arm_l
+  rotate: true
+  xy: 654, 689
+  size: 58, 78
+  orig: 58, 78
+  offset: 0, 0
+  index: -1
+char_archerman_epic/arm_r
+  rotate: true
+  xy: 930, 603
+  size: 49, 56
+  orig: 49, 56
+  offset: 0, 0
+  index: -1
+char_archerman_epic/arm_r2
+  rotate: true
+  xy: 560, 744
+  size: 31, 35
+  orig: 33, 35
+  offset: 1, 0
+  index: -1
+char_archerman_epic/body
+  rotate: true
+  xy: 667, 56
+  size: 85, 106
+  orig: 85, 106
+  offset: 0, 0
+  index: -1
+char_archerman_epic/head
+  rotate: false
+  xy: 411, 485
+  size: 181, 199
+  orig: 181, 199
+  offset: 0, 0
+  index: -1
+char_archerman_epic/leg_l
+  rotate: true
+  xy: 880, 538
+  size: 44, 88
+  orig: 44, 88
+  offset: 0, 0
+  index: -1
+char_archerman_epic/leg_r
+  rotate: false
+  xy: 903, 659
+  size: 44, 88
+  orig: 44, 88
+  offset: 0, 0
+  index: -1
+char_archerman_epic/shoulder_l
+  rotate: false
+  xy: 800, 451
+  size: 65, 66
+  orig: 65, 69
+  offset: 0, 2
+  index: -1
+char_archerman_epic/shoulder_r
+  rotate: true
+  xy: 867, 453
+  size: 64, 67
+  orig: 64, 69
+  offset: 0, 1
+  index: -1
+char_archerman_rare/arm_l
+  rotate: true
+  xy: 400, 686
+  size: 54, 84
+  orig: 54, 84
+  offset: 0, 0
+  index: -1
+char_archerman_rare/arm_r
+  rotate: true
+  xy: 570, 687
+  size: 55, 82
+  orig: 55, 82
+  offset: 0, 0
+  index: -1
+char_archerman_rare/body
+  rotate: true
+  xy: 878, 69
+  size: 78, 98
+  orig: 82, 98
+  offset: 4, 0
+  index: -1
+char_archerman_rare/cloak
+  rotate: false
+  xy: 845, 149
+  size: 105, 98
+  orig: 105, 98
+  offset: 0, 0
+  index: -1
+char_archerman_rare/head
+  rotate: false
+  xy: 624, 795
+  size: 181, 195
+  orig: 181, 195
+  offset: 0, 0
+  index: -1
+char_archerman_rare/leg_l
+  rotate: true
+  xy: 560, 141
+  size: 37, 76
+  orig: 37, 76
+  offset: 0, 0
+  index: -1
+char_archerman_rare/leg_r
+  rotate: false
+  xy: 952, 739
+  size: 38, 76
+  orig: 38, 76
+  offset: 0, 0
+  index: -1
+char_archerman_rare/shoulder_l
+  rotate: true
+  xy: 425, 742
+  size: 33, 45
+  orig: 33, 45
+  offset: 0, 0
+  index: -1
+char_archerman_rare/shoulder_r
+  rotate: true
+  xy: 472, 742
+  size: 33, 45
+  orig: 33, 45
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/arm_l
+  rotate: true
+  xy: 834, 3
+  size: 56, 78
+  orig: 56, 78
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/arm_r
+  rotate: true
+  xy: 914, 10
+  size: 57, 76
+  orig: 57, 76
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/back_acc
+  rotate: false
+  xy: 679, 419
+  size: 119, 74
+  orig: 120, 74
+  offset: 1, 0
+  index: -1
+char_archerwoman_common/body
+  rotate: false
+  xy: 560, 289
+  size: 102, 118
+  orig: 102, 118
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/hair_back
+  rotate: true
+  xy: 370, 54
+  size: 85, 147
+  orig: 85, 147
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/head
+  rotate: false
+  xy: 807, 817
+  size: 181, 173
+  orig: 181, 173
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/leg_l
+  rotate: true
+  xy: 624, 749
+  size: 44, 100
+  orig: 44, 100
+  offset: 0, 0
+  index: -1
+char_archerwoman_common/leg_r
+  rotate: true
+  xy: 726, 749
+  size: 44, 100
+  orig: 44, 100
+  offset: 0, 0
+  index: -1
+char_archerwoman_epic/arm_l
+  rotate: true
+  xy: 752, 181
+  size: 66, 91
+  orig: 66, 91
+  offset: 0, 0
+  index: -1
+char_archerwoman_epic/arm_r
+  rotate: true
+  xy: 828, 749
+  size: 66, 91
+  orig: 66, 91
+  offset: 0, 0
+  index: -1
+char_archerwoman_epic/body
+  rotate: true
+  xy: 425, 777
+  size: 213, 197
+  orig: 213, 197
+  offset: 0, 0
+  index: -1
+char_archerwoman_epic/head
+  rotate: false
+  xy: 2, 680
+  size: 228, 310
+  orig: 228, 310
+  offset: 0, 0
+  index: -1
+char_archerwoman_epic/leg_l
+  rotate: true
+  xy: 800, 409
+  size: 40, 85
+  orig: 40, 85
+  offset: 0, 0
+  index: -1
+char_archerwoman_epic/leg_r
+  rotate: false
+  xy: 949, 654
+  size: 40, 83
+  orig: 40, 83
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/arm_l
+  rotate: true
+  xy: 486, 686
+  size: 54, 82
+  orig: 55, 82
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/arm_r
+  rotate: true
+  xy: 734, 691
+  size: 56, 80
+  orig: 56, 80
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/body
+  rotate: true
+  xy: 775, 61
+  size: 81, 101
+  orig: 81, 101
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/cloak_l
+  rotate: true
+  xy: 411, 409
+  size: 74, 132
+  orig: 74, 132
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/cloak_r
+  rotate: true
+  xy: 545, 409
+  size: 74, 132
+  orig: 74, 132
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/head
+  rotate: false
+  xy: 2, 386
+  size: 212, 292
+  orig: 212, 292
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/leg_l
+  rotate: true
+  xy: 638, 143
+  size: 35, 71
+  orig: 36, 71
+  offset: 0, 0
+  index: -1
+char_archerwoman_rare/leg_r
+  rotate: true
+  xy: 711, 144
+  size: 35, 71
+  orig: 35, 71
+  offset: 0, 0
+  index: -1
+char_indianwoman_rare/arm_l
+  rotate: true
+  xy: 315, 683
+  size: 57, 83
+  orig: 58, 83
+  offset: 0, 0
+  index: -1
+char_indianwoman_rare/arm_r
+  rotate: true
+  xy: 232, 681
+  size: 59, 81
+  orig: 59, 81
+  offset: 0, 0
+  index: -1
+char_indianwoman_rare/body
+  rotate: false
+  xy: 560, 180
+  size: 97, 107
+  orig: 97, 107
+  offset: 0, 0
+  index: -1
+char_indianwoman_rare/head
+  rotate: true
+  xy: 667, 249
+  size: 158, 178
+  orig: 158, 178
+  offset: 0, 0
+  index: -1
+char_indianwoman_rare/leg_l
+  rotate: false
+  xy: 884, 585
+  size: 44, 72
+  orig: 44, 72
+  offset: 0, 0
+  index: -1
+char_indianwoman_rare/leg_r
+  rotate: false
+  xy: 936, 464
+  size: 44, 72
+  orig: 44, 72
+  offset: 0, 0
+  index: -1
+fx/arrow_sting1
+  rotate: false
+  xy: 505, 6
+  size: 240, 46
+  orig: 254, 58
+  offset: 12, 6
+  index: -1
+fx/arrow_sting2
+  rotate: false
+  xy: 2, 54
+  size: 366, 61
+  orig: 385, 67
+  offset: 14, 3
+  index: -1
+fx/arrow_sting3
+  rotate: false
+  xy: 2, 8
+  size: 501, 44
+  orig: 526, 50
+  offset: 19, 3
+  index: -1
+shadow
+  rotate: false
+  xy: 519, 61
+  size: 146, 78
+  orig: 157, 86
+  offset: 6, 2
+  index: -1
+tomb
+  rotate: true
+  xy: 223, 127
+  size: 108, 138
+  orig: 108, 138
+  offset: 0, 0
+  index: -1

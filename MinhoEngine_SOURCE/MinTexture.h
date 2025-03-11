@@ -16,6 +16,8 @@ namespace min::graphics
 		virtual HRESULT Save(const std::wstring path) override;
 		virtual HRESULT Load(const std::wstring path) override;
 
+		HRESULT CreateByScratchImage(ScratchImage mScratchImage);
+
 		bool Create(UINT width, UINT height, DXGI_FORMAT format, UINT bindFlag);
 		bool CreateSRV();
 		bool CreateUAV();
@@ -34,6 +36,10 @@ namespace min::graphics
 		void SetRTV(Microsoft::WRL::ComPtr<ID3D11RenderTargetView> rtv) { rtv = mRTV; }
 		void SetDSV(Microsoft::WRL::ComPtr<ID3D11DepthStencilView> dsv) { dsv = mDSV; }
 		void SetSRV(Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> srv) { mSRV = srv; }
+
+		void SetScratchImage(DirectX::Image Image) { mImage.InitializeFromImage(Image); }
+		float GetSizeX() { return mImage.GetImage(0,0,0)->width; }
+		float GetSizeY() { return mImage.GetImage(0, 0, 0)->height; }
 
 	private:
 		ScratchImage mImage;

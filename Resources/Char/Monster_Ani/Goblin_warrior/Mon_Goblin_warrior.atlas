@@ -1,0 +1,97 @@
+
+Mon_Goblin_warrior.png
+size: 531,531
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: true
+  xy: 206, 31
+  size: 40, 88
+  orig: 43, 90
+  offset: 1, 1
+  index: -1
+arm_r
+  rotate: true
+  xy: 2, 3
+  size: 45, 86
+  orig: 47, 88
+  offset: 1, 1
+  index: -1
+body
+  rotate: true
+  xy: 398, 261
+  size: 104, 129
+  orig: 104, 129
+  offset: 0, 0
+  index: -1
+deadface1
+  rotate: false
+  xy: 2, 371
+  size: 252, 158
+  orig: 252, 158
+  offset: 0, 0
+  index: -1
+deadface2
+  rotate: false
+  xy: 2, 248
+  size: 248, 121
+  orig: 248, 121
+  offset: 0, 0
+  index: -1
+eye_light
+  rotate: false
+  xy: 90, 5
+  size: 114, 43
+  orig: 117, 47
+  offset: 1, 2
+  index: -1
+head
+  rotate: false
+  xy: 256, 367
+  size: 251, 162
+  orig: 251, 162
+  offset: 0, 0
+  index: -1
+mouth_angry
+  rotate: true
+  xy: 509, 474
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 286, 87
+  size: 172, 91
+  orig: 185, 101
+  offset: 7, 3
+  index: -1
+swing1
+  rotate: false
+  xy: 252, 261
+  size: 144, 104
+  orig: 159, 133
+  offset: 4, 12
+  index: -1
+swing2
+  rotate: true
+  xy: 379, 97
+  size: 162, 128
+  orig: 180, 135
+  offset: 6, 1
+  index: -1
+swing3
+  rotate: true
+  xy: 146, 73
+  size: 173, 138
+  orig: 193, 144
+  offset: 10, 2
+  index: -1
+sword
+  rotate: false
+  xy: 2, 50
+  size: 142, 196
+  orig: 144, 199
+  offset: 1, 1
+  index: -1

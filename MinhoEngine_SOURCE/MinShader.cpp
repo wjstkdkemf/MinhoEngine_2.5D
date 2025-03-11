@@ -10,7 +10,7 @@ namespace min::graphics
 		: Resource(enums::eResourceType::Shader)
 		, mRasterizerState(eRasterizerState::SolidNone)
 		, mBlendState(eBlendState::AlphaBlend)
-		, mDepthStencilState(eDepthStencilState::LessEqual)
+		, mDepthStencilState(eDepthStencilState::DepthNone)
 	{
 	}
 	Shader::~Shader()

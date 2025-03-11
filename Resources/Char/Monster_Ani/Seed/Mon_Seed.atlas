@@ -1,0 +1,48 @@
+
+Mon_Seed.png
+size: 294,294
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: true
+  xy: 81, 6
+  size: 34, 62
+  orig: 36, 65
+  offset: 1, 2
+  index: -1
+arm_r
+  rotate: true
+  xy: 145, 6
+  size: 34, 62
+  orig: 36, 65
+  offset: 1, 2
+  index: -1
+body
+  rotate: false
+  xy: 2, 42
+  size: 197, 250
+  orig: 197, 250
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 201, 47
+  size: 64, 17
+  orig: 66, 19
+  offset: 1, 1
+  index: -1
+eye_light
+  rotate: false
+  xy: 2, 10
+  size: 77, 30
+  orig: 81, 34
+  offset: 2, 2
+  index: -1
+shadow
+  rotate: true
+  xy: 201, 66
+  size: 226, 91
+  orig: 243, 101
+  offset: 9, 3
+  index: -1

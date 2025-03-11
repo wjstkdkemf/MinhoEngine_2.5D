@@ -40,17 +40,17 @@ namespace min
 		void Render() override;
 
 		void CreateAnimation(const std::wstring& name
-			, graphics::Texture* spriteSheet
+			, graphics::Texture* spriteSheet //ScratchImage*
 			, Vector2 leftTop
 			, Vector2 size
 			, Vector2 offset
 			, UINT spriteLength
 			, float duration);
 
-		void CreateAnimationByFolder(/*const std::wstring& name
-			, const std::wstring& path
+		void CreateAnimationByFolder(const std::wstring& name
+			, const std::vector <std::wstring>& path
 			, Vector2 offset
-			, float duration*/);
+			, float duration);
 
 
 		Animation* FindAnimation(const std::wstring& name);

@@ -1,0 +1,118 @@
+
+Mon_Cactus.png
+size: 300,300
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: true
+  xy: 146, 90
+  size: 34, 42
+  orig: 36, 44
+  offset: 1, 1
+  index: -1
+arm_r
+  rotate: true
+  xy: 104, 2
+  size: 36, 43
+  orig: 38, 45
+  offset: 1, 1
+  index: -1
+body
+  rotate: false
+  xy: 2, 85
+  size: 142, 213
+  orig: 142, 213
+  offset: 0, 0
+  index: -1
+eyeball
+  rotate: false
+  xy: 149, 19
+  size: 76, 19
+  orig: 78, 21
+  offset: 1, 1
+  index: -1
+eyeball_light
+  rotate: false
+  xy: 104, 40
+  size: 102, 43
+  orig: 106, 49
+  offset: 2, 3
+  index: -1
+flower
+  rotate: false
+  xy: 2, 5
+  size: 100, 78
+  orig: 103, 82
+  offset: 1, 2
+  index: -1
+shadow
+  rotate: true
+  xy: 146, 126
+  size: 172, 91
+  orig: 185, 101
+  offset: 7, 3
+  index: -1
+thorn1
+  rotate: true
+  xy: 190, 104
+  size: 20, 17
+  orig: 23, 20
+  offset: 2, 2
+  index: -1
+thorn2
+  rotate: true
+  xy: 209, 105
+  size: 19, 16
+  orig: 22, 20
+  offset: 1, 2
+  index: -1
+thorn3
+  rotate: false
+  xy: 149, 3
+  size: 16, 14
+  orig: 18, 17
+  offset: 1, 2
+  index: -1
+thorn4
+  rotate: false
+  xy: 190, 86
+  size: 20, 16
+  orig: 22, 18
+  offset: 1, 1
+  index: -1
+thorn_back1
+  rotate: true
+  xy: 201, 4
+  size: 13, 16
+  orig: 15, 19
+  offset: 1, 1
+  index: -1
+thorn_back2
+  rotate: true
+  xy: 185, 2
+  size: 15, 14
+  orig: 17, 16
+  offset: 1, 1
+  index: -1
+thorn_back3
+  rotate: false
+  xy: 167, 3
+  size: 16, 14
+  orig: 19, 17
+  offset: 2, 2
+  index: -1
+thorn_back4
+  rotate: true
+  xy: 219, 2
+  size: 15, 13
+  orig: 17, 15
+  offset: 1, 1
+  index: -1
+thorn_back5
+  rotate: true
+  xy: 208, 71
+  size: 13, 12
+  orig: 15, 14
+  offset: 1, 1
+  index: -1

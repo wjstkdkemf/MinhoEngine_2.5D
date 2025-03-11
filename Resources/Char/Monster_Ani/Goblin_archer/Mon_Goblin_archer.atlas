@@ -1,0 +1,76 @@
+
+Mon_Goblin_archer.png
+size: 446,446
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: false
+  xy: 398, 243
+  size: 40, 85
+  orig: 42, 87
+  offset: 1, 1
+  index: -1
+arm_r
+  rotate: true
+  xy: 2, 13
+  size: 45, 87
+  orig: 47, 89
+  offset: 1, 1
+  index: -1
+body
+  rotate: true
+  xy: 255, 95
+  size: 99, 141
+  orig: 99, 141
+  offset: 0, 0
+  index: -1
+bow
+  rotate: false
+  xy: 2, 60
+  size: 240, 56
+  orig: 242, 58
+  offset: 1, 1
+  index: -1
+deadface1
+  rotate: false
+  xy: 2, 282
+  size: 252, 162
+  orig: 254, 164
+  offset: 1, 1
+  index: -1
+deadface2
+  rotate: true
+  xy: 256, 196
+  size: 248, 140
+  orig: 250, 142
+  offset: 1, 1
+  index: -1
+eye_light
+  rotate: true
+  xy: 398, 330
+  size: 114, 43
+  orig: 117, 47
+  offset: 1, 2
+  index: -1
+head
+  rotate: false
+  xy: 2, 118
+  size: 251, 162
+  orig: 251, 162
+  offset: 0, 0
+  index: -1
+mouth_angry
+  rotate: false
+  xy: 91, 38
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 244, 2
+  size: 172, 91
+  orig: 185, 101
+  offset: 7, 3
+  index: -1

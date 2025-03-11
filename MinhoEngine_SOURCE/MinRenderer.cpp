@@ -143,6 +143,7 @@ namespace min::renderer
 		min::Resources::Insert(L"RectMesh", mesh);
 	}
 
+
 	void LoadMeterails()
 	{
 		Material* triangleMaterial = new Material();
@@ -152,6 +153,10 @@ namespace min::renderer
 		Material* spriteMaterial = new Material();
 		spriteMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"SpriteDefaultShader"));
 		min::Resources::Insert(L"SpriteDefaultMaterial", spriteMaterial);
+
+		Material* AnimationMaterial = new Material();
+		AnimationMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"AnimationShader"));
+		min::Resources::Insert(L"AnimationMaterial", AnimationMaterial);
 	}
 
 	void LoadMeshes()
@@ -164,6 +169,7 @@ namespace min::renderer
 		min::Resources::Load<graphics::Shader>(L"TriangleShader", L"..\\Shaders_SOURCE\\Triangle");
 		min::Resources::Load<graphics::Shader>(L"SpriteDefaultShader", L"..\\Shaders_SOURCE\\SpriteDefault");
 		min::Resources::Load<graphics::Shader>(L"WireframeShader", L"..\\Shaders_SOURCE\\Wireframe");
+		min::Resources::Load<graphics::Shader>(L"AnimationShader", L"..\\Shaders_SOURCE\\Animation");
 	}
 
 	void LoadConstantBuffers()
@@ -172,6 +178,8 @@ namespace min::renderer
 		constantBuffers[CBSLOT_TRANSFORM] = new ConstantBuffer(eCBType::Transform);
 		constantBuffers[CBSLOT_TRANSFORM]->Create(sizeof(TransformCB));
 
+		constantBuffers[CBSLOT_ANIMATION] = new ConstantBuffer(eCBType::Animation);
+		constantBuffers[CBSLOT_ANIMATION]->Create(sizeof(TransformCB));
 	}
 
 	void LoadStates()

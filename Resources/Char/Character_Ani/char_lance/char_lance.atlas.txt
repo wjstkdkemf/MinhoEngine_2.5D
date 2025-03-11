@@ -1,0 +1,90 @@
+
+char_lance.png
+size: 384,384
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+char_lancewoman_common/arm_l
+  rotate: false
+  xy: 112, 84
+  size: 60, 83
+  orig: 61, 83
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/arm_r
+  rotate: false
+  xy: 112, 2
+  size: 61, 80
+  orig: 61, 80
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/body
+  rotate: false
+  xy: 220, 108
+  size: 81, 100
+  orig: 81, 100
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/hair_down_l
+  rotate: false
+  xy: 313, 207
+  size: 69, 95
+  orig: 69, 95
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/hair_down_r
+  rotate: false
+  xy: 303, 111
+  size: 69, 94
+  orig: 69, 94
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/hairpin
+  rotate: false
+  xy: 220, 210
+  size: 91, 92
+  orig: 91, 92
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/head
+  rotate: false
+  xy: 2, 169
+  size: 178, 213
+  orig: 178, 213
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/leg_l
+  rotate: true
+  xy: 220, 70
+  size: 36, 78
+  orig: 36, 78
+  offset: 0, 0
+  index: -1
+char_lancewoman_common/leg_r
+  rotate: true
+  xy: 220, 32
+  size: 36, 78
+  orig: 36, 78
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 220, 304
+  size: 146, 78
+  orig: 157, 85
+  offset: 6, 1
+  index: -1
+spear_common
+  rotate: false
+  xy: 182, 61
+  size: 36, 321
+  orig: 36, 322
+  offset: 0, 1
+  index: -1
+tomb
+  rotate: false
+  xy: 2, 29
+  size: 108, 138
+  orig: 108, 138
+  offset: 0, 0
+  index: -1

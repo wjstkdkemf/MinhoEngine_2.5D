@@ -92,6 +92,25 @@ namespace min::graphics
 		return S_OK;
 	}
 
+	HRESULT Texture::CreateByScratchImage(ScratchImage mScratchImage)
+	{
+		HRESULT hr = CreateShaderResourceView
+		(
+			graphics::GetDevice()->GetID3D11Device().Get()
+			, mScratchImage.GetImages()
+			, mScratchImage.GetImageCount()
+			, mScratchImage.GetMetadata()
+			, mSRV.GetAddressOf()
+		);
+
+		if (hr == S_FALSE)
+			assert(false/*"Textrue load fail!!"*/);
+
+		mSRV->GetResource((ID3D11Resource**)mTexture.GetAddressOf());
+
+		return S_OK;
+	}
+
 	bool Texture::Create(UINT width, UINT height, DXGI_FORMAT format, UINT bindFlag)
 	{
 		mDesc.BindFlags = bindFlag;

@@ -38,9 +38,9 @@ namespace min {
 	{
 		{
 			Scene::Initialize();
-
+#pragma region Camera
 			GameObject* camera = object::Instantiate<GameObject>
-				(enums::eLayerType::None, Vector3(00.0f, 0.0f, -10.0f));
+				(enums::eLayerType::None, Vector3(0.0f, 0.0f, -10.0f));
 
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			cameraComp->SetProjectionType(Camera::eProjectionType::Perspective);
@@ -48,16 +48,50 @@ namespace min {
 
 			CameraScript* cameraScript = camera->AddComponent<CameraScript>();
 			renderer::mainCamera = cameraComp;
+#pragma endregion
+#pragma region BG
+			
+			GameObject* BG = object::Instantiate<GameObject>
+				(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 0.0f));
+			BG->GetComponent<Transform>()->SetScale(Vector3(10.0f , 10.0f , 0.0f));
 
-			GameObject* player = object::Instantiate<Player>
-				(enums::eLayerType::Player);
+			SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();
+			sr->SetSprite(Resources::Find<graphics::Texture>(L"BG"));
 
-			object::DontDestoryOnLoad(player);
+			//BG->AddComponent<PlayerScript>();
+			
+#pragma endregion
+#pragma region Player
+			GameObject* Player = object::Instantiate<GameObject>
+				(enums::eLayerType::Player, Vector3(0.0f, 0.0f, 10.0f));
+			Player->GetComponent<Transform>()->SetScale(5.0f, 5.0f, 5.0f);
+			PlayerScript* prsc = Player->AddComponent<PlayerScript>();
+			//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
+			//prsr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
 
-			SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
-			sr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
+			object::DontDestoryOnLoad(Player);
+			Animator* playerAnimator = Player->AddComponent<Animator>();
 
-			renderer::selectedObject = player;
+			playerAnimator->CreateAnimation(L"PlayerWalk", Resources::Find<graphics::Texture>(L"Player")
+				,Vector2(0.0f , 0.0f), Vector2(250.0f, 250.0f) , Vector2::Zero , 4 , 0.5f);
+
+			playerAnimator->PlayAnimation(L"PlayerWalk",true);
+
+
+			//std::vector<std::wstring> FolderPath;
+			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\0.png");
+			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\1.png");
+			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\2.png");
+			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\3.png");
+			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\4.png");
+			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\5.png");
+
+			//playerAnimator->CreateAnimationByFolder(L"PlayerWalk", FolderPath, Vector2::Zero, 1.0f);
+
+#pragma endregion
+			//Animation* ani = 
+
+			//renderer::selectedObject = BG;
 		}
 	}
 	void PlayScene::Update()

@@ -1,0 +1,76 @@
+
+char_rapier.png
+size: 381,381
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+char_rapierwoman_epic/arm_l
+  rotate: false
+  xy: 305, 294
+  size: 57, 85
+  orig: 57, 85
+  offset: 0, 0
+  index: -1
+char_rapierwoman_epic/arm_r
+  rotate: true
+  xy: 271, 19
+  size: 59, 81
+  orig: 59, 81
+  offset: 0, 0
+  index: -1
+char_rapierwoman_epic/body
+  rotate: false
+  xy: 271, 80
+  size: 78, 98
+  orig: 78, 98
+  offset: 0, 0
+  index: -1
+char_rapierwoman_epic/cloak
+  rotate: false
+  xy: 173, 260
+  size: 130, 119
+  orig: 130, 119
+  offset: 0, 0
+  index: -1
+char_rapierwoman_epic/head
+  rotate: false
+  xy: 2, 27
+  size: 157, 179
+  orig: 157, 179
+  offset: 0, 0
+  index: -1
+char_rapierwoman_epic/leg_l
+  rotate: false
+  xy: 321, 217
+  size: 37, 75
+  orig: 37, 75
+  offset: 0, 0
+  index: -1
+char_rapierwoman_epic/leg_r
+  rotate: true
+  xy: 161, 2
+  size: 36, 75
+  orig: 36, 75
+  offset: 0, 0
+  index: -1
+rapier_epic
+  rotate: false
+  xy: 2, 208
+  size: 169, 171
+  orig: 173, 175
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 173, 180
+  size: 146, 78
+  orig: 157, 85
+  offset: 6, 1
+  index: -1
+tomb
+  rotate: false
+  xy: 161, 40
+  size: 108, 138
+  orig: 108, 138
+  offset: 0, 0
+  index: -1

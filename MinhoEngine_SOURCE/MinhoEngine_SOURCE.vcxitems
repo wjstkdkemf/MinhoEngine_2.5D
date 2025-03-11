@@ -68,6 +68,27 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinUIManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinVertexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinWindow.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\allocators.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\document.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\encodedstream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\encodings.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\filereadstream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\filewritestream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\fwd.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\istreamwrapper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\memorybuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\memorystream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\pointer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\prettywriter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\rapidjson.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\reader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\schema.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\stream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\stringbuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\uri.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAnimation.cpp" />

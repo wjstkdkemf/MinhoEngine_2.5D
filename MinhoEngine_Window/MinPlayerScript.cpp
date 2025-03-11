@@ -31,6 +31,34 @@ namespace min
 	}
 	void PlayerScript::LateUpdate()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector3 pos = tr->GetPosition();
+
+		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		if (input::GetKey(eKeyCode::D)) {
+			//pos.x += 100.0f * Time::DeltaTime();
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x + 0.1f, pos.y, pos.z);
+			//rb->AddForce(Vector2(200.0f, 0.0f));
+		}
+		if (input::GetKey(eKeyCode::A)) {
+			//pos.x += 100.0f * Time::DeltaTime();
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x - 0.1f, pos.y, pos.z);
+			//rb->AddForce(Vector2(200.0f, 0.0f));
+		}
+		//if (input::GetKey(eKeyCode::A)) {
+		//	rb->AddForce(Vector2(-200.0f, 0.0f));
+		//	//pos.x -= 100.0f * Time::DeltaTime();
+		//}
+		//if (input::GetKey(eKeyCode::W)) {
+		//	rb->AddForce(Vector2(0.0f, -200.0f));
+		//	//pos.y -= 100.0f * Time::DeltaTime();
+		//}
+		//if (input::GetKey(eKeyCode::S)) {
+		//	rb->AddForce(Vector2(0.0f, 200.0f));
+		//	//pos.y += 100.0f * Time::DeltaTime();
+		//}
 	}
 	void PlayerScript::Render()
 	{
@@ -55,30 +83,7 @@ namespace min
 	}
 	void PlayerScript::move()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector3 pos = tr->GetPosition();
 
-		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
-
-		if (input::GetKey(eKeyCode::D)) {
-			//pos.x += 100.0f * Time::DeltaTime();
-			rb->AddForce(Vector2(200.0f, 0.0f));
-		}
-		if (input::GetKey(eKeyCode::A)) {
-			rb->AddForce(Vector2(-200.0f, 0.0f));
-			//pos.x -= 100.0f * Time::DeltaTime();
-		}
-		if (input::GetKey(eKeyCode::W)) {
-			rb->AddForce(Vector2(0.0f, -200.0f));
-			//pos.y -= 100.0f * Time::DeltaTime();
-		}
-		if (input::GetKey(eKeyCode::S)) {
-			rb->AddForce(Vector2(0.0f, 200.0f));
-			//pos.y += 100.0f * Time::DeltaTime();
-		}
-		
-
-		tr->SetPosition(pos);
 	}
 	void PlayerScript::giveWater()
 	{

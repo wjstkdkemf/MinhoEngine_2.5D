@@ -12,6 +12,7 @@
 #define CBUFFER(name, slot) static const int CB_GETBINDSLOT(name) = slot; struct alignas(16) name 
 
 #define CBSLOT_TRANSFORM		0
+#define CBSLOT_ANIMATION		1
 
 namespace min::graphics
 {
@@ -37,6 +38,7 @@ namespace min::graphics
 	enum class eCBType
 	{
 		Transform,
+		Animation,
 		None,
 		End,
 	};
@@ -67,6 +69,7 @@ namespace min::graphics
 		Smoothness,
 		Metallic,
 		Sprite,
+		Animation,
 		End,
 	};
 
@@ -105,6 +108,17 @@ namespace min::graphics
 		math::Matrix world;
 		math::Matrix view;
 		math::Matrix projection;
+	};
+
+	CBUFFER(AnimationCB, CBSLOT_ANIMATION)
+	{
+		float offsetX;
+		float offsetY;
+		float sizeX;
+		float sizeY;
+		float textureSizeX;
+		float textureSizeY;
+		float useAni;
 	};
 }
 

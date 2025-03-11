@@ -90,7 +90,9 @@ namespace min
 				Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 				*/
 				//Resources::Load<graphics::Texture>(L"BG", L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\Resources\\CloudOcean.png");
-			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
+			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
+			Resources::Load<graphics::Texture>(L"BG", L"..\\Resources\\\Char\\BG\\Bg_Beach.png");
+
 
 			//renderer::Initialize();
 

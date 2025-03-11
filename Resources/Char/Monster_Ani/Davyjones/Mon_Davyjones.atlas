@@ -1,0 +1,90 @@
+
+Mon_Davyjones.png
+size: 564,564
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: true
+  xy: 347, 168
+  size: 99, 209
+  orig: 99, 209
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: false
+  xy: 2, 30
+  size: 119, 237
+  orig: 119, 257
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 318, 269
+  size: 293, 241
+  orig: 293, 241
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 2, 12
+  size: 73, 16
+  orig: 82, 27
+  offset: 8, 7
+  index: -1
+eye_light
+  rotate: false
+  xy: 2, 274
+  size: 90, 33
+  orig: 94, 37
+  offset: 2, 2
+  index: -1
+hat
+  rotate: false
+  xy: 123, 5
+  size: 222, 129
+  orig: 224, 131
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 123, 136
+  size: 192, 171
+  orig: 192, 191
+  offset: 0, 0
+  index: -1
+leg_l
+  rotate: true
+  xy: 427, 2
+  size: 81, 105
+  orig: 83, 107
+  offset: 1, 1
+  index: -1
+leg_r
+  rotate: true
+  xy: 427, 85
+  size: 81, 117
+  orig: 83, 119
+  offset: 1, 1
+  index: -1
+pelvis
+  rotate: true
+  xy: 347, 19
+  size: 147, 78
+  orig: 147, 78
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 309
+  size: 300, 122
+  orig: 314, 128
+  offset: 4, 1
+  index: -1
+sword
+  rotate: false
+  xy: 2, 433
+  size: 314, 129
+  orig: 317, 132
+  offset: 2, 2
+  index: -1

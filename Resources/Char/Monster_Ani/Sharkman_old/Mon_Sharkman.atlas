@@ -1,0 +1,90 @@
+
+Mon_Sharkman.png
+size: 800,800
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm_l
+  rotate: true
+  xy: 432, 640
+  size: 158, 317
+  orig: 158, 317
+  offset: 0, 0
+  index: -1
+arm_r
+  rotate: true
+  xy: 432, 481
+  size: 157, 317
+  orig: 157, 317
+  offset: 0, 0
+  index: -1
+axe
+  rotate: false
+  xy: 2, 485
+  size: 428, 313
+  orig: 430, 315
+  offset: 1, 1
+  index: -1
+body
+  rotate: false
+  xy: 420, 2
+  size: 284, 291
+  orig: 284, 291
+  offset: 0, 0
+  index: -1
+eye_dead
+  rotate: true
+  xy: 751, 660
+  size: 138, 32
+  orig: 139, 32
+  offset: 0, 0
+  index: -1
+eye_light
+  rotate: false
+  xy: 147, 40
+  size: 169, 73
+  orig: 182, 85
+  offset: 6, 4
+  index: -1
+head
+  rotate: true
+  xy: 420, 295
+  size: 184, 376
+  orig: 186, 378
+  offset: 1, 1
+  index: -1
+leg_l
+  rotate: false
+  xy: 706, 155
+  size: 80, 138
+  orig: 82, 140
+  offset: 1, 1
+  index: -1
+leg_r
+  rotate: false
+  xy: 706, 15
+  size: 80, 138
+  orig: 82, 140
+  offset: 1, 1
+  index: -1
+pelvis
+  rotate: false
+  xy: 147, 115
+  size: 217, 166
+  orig: 217, 166
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 2, 283
+  size: 416, 200
+  orig: 436, 208
+  offset: 6, 1
+  index: -1
+tail
+  rotate: true
+  xy: 2, 56
+  size: 225, 143
+  orig: 225, 143
+  offset: 0, 0
+  index: -1

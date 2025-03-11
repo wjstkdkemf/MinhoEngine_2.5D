@@ -19,6 +19,7 @@ namespace min {
 		void SetSprite(graphics::Texture* sprite) { mSprite = sprite; }
 		void SetMaterial(Material* material) { mMaterial = material; }
 
+		graphics::Texture* GetSprite() { return mSprite; }
 
 	private:
 		graphics::Texture* mSprite;

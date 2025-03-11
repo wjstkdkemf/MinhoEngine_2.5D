@@ -1,0 +1,440 @@
+
+char_mage.png
+size: 1077,1077
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+char_darkwizardman_rare/arm_l
+  rotate: false
+  xy: 785, 101
+  size: 57, 84
+  orig: 57, 84
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/arm_r
+  rotate: false
+  xy: 895, 104
+  size: 59, 81
+  orig: 59, 81
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/body
+  rotate: false
+  xy: 828, 323
+  size: 78, 93
+  orig: 79, 93
+  offset: 1, 0
+  index: -1
+char_darkwizardman_rare/book
+  rotate: true
+  xy: 288, 538
+  size: 22, 45
+  orig: 22, 45
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/bottle
+  rotate: true
+  xy: 74, 10
+  size: 29, 44
+  orig: 29, 44
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/cloak
+  rotate: true
+  xy: 429, 179
+  size: 106, 59
+  orig: 106, 59
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/hair_l
+  rotate: false
+  xy: 313, 175
+  size: 51, 108
+  orig: 51, 108
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/hair_r
+  rotate: false
+  xy: 316, 65
+  size: 51, 108
+  orig: 51, 108
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/hat
+  rotate: true
+  xy: 229, 285
+  size: 242, 134
+  orig: 242, 134
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/head
+  rotate: false
+  xy: 521, 593
+  size: 151, 260
+  orig: 151, 260
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/leg_l
+  rotate: true
+  xy: 960, 190
+  size: 42, 80
+  orig: 42, 80
+  offset: 0, 0
+  index: -1
+char_darkwizardman_rare/leg_r
+  rotate: false
+  xy: 956, 105
+  size: 42, 80
+  orig: 42, 80
+  offset: 0, 0
+  index: -1
+char_wizardman_common/arm_l
+  rotate: true
+  xy: 409, 2
+  size: 63, 91
+  orig: 63, 91
+  offset: 0, 0
+  index: -1
+char_wizardman_common/arm_r
+  rotate: false
+  xy: 598, 170
+  size: 61, 92
+  orig: 61, 92
+  offset: 0, 0
+  index: -1
+char_wizardman_common/body
+  rotate: false
+  xy: 801, 233
+  size: 105, 88
+  orig: 105, 88
+  offset: 0, 0
+  index: -1
+char_wizardman_common/bottle
+  rotate: true
+  xy: 732, 46
+  size: 45, 59
+  orig: 45, 59
+  offset: 0, 0
+  index: -1
+char_wizardman_common/hat
+  rotate: false
+  xy: 2, 267
+  size: 225, 260
+  orig: 225, 260
+  offset: 0, 0
+  index: -1
+char_wizardman_common/head
+  rotate: true
+  xy: 908, 355
+  size: 113, 131
+  orig: 113, 131
+  offset: 0, 0
+  index: -1
+char_wizardman_common/leg_l
+  rotate: false
+  xy: 735, 93
+  size: 48, 91
+  orig: 48, 91
+  offset: 0, 0
+  index: -1
+char_wizardman_common/leg_r
+  rotate: false
+  xy: 844, 96
+  size: 49, 89
+  orig: 49, 89
+  offset: 0, 0
+  index: -1
+char_wizardman_epic/arm_l
+  rotate: false
+  xy: 538, 64
+  size: 62, 91
+  orig: 62, 91
+  offset: 0, 0
+  index: -1
+char_wizardman_epic/arm_r
+  rotate: false
+  xy: 476, 67
+  size: 60, 88
+  orig: 61, 88
+  offset: 0, 0
+  index: -1
+char_wizardman_epic/body
+  rotate: true
+  xy: 365, 389
+  size: 209, 149
+  orig: 209, 149
+  offset: 0, 0
+  index: -1
+char_wizardman_epic/head
+  rotate: false
+  xy: 2, 41
+  size: 202, 224
+  orig: 202, 224
+  offset: 0, 0
+  index: -1
+char_wizardman_epic/leg_l
+  rotate: false
+  xy: 369, 67
+  size: 52, 108
+  orig: 52, 108
+  offset: 0, 0
+  index: -1
+char_wizardman_epic/leg_r
+  rotate: false
+  xy: 423, 67
+  size: 51, 108
+  orig: 51, 108
+  offset: 0, 0
+  index: -1
+char_wizardman_rare/arm_l
+  rotate: true
+  xy: 490, 203
+  size: 59, 106
+  orig: 59, 106
+  offset: 0, 0
+  index: -1
+char_wizardman_rare/arm_r
+  rotate: true
+  xy: 661, 186
+  size: 59, 104
+  orig: 59, 104
+  offset: 0, 0
+  index: -1
+char_wizardman_rare/body
+  rotate: true
+  xy: 365, 287
+  size: 100, 149
+  orig: 102, 149
+  offset: 0, 0
+  index: -1
+char_wizardman_rare/hat
+  rotate: false
+  xy: 2, 803
+  size: 284, 272
+  orig: 284, 272
+  offset: 0, 0
+  index: -1
+char_wizardman_rare/head
+  rotate: true
+  xy: 665, 357
+  size: 190, 161
+  orig: 190, 162
+  offset: 0, 1
+  index: -1
+char_wizardman_rare/leg_l
+  rotate: false
+  xy: 1000, 126
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+char_wizardman_rare/leg_r
+  rotate: true
+  xy: 668, 51
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/arm_l
+  rotate: true
+  xy: 206, 2
+  size: 61, 108
+  orig: 61, 108
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/arm_r
+  rotate: false
+  xy: 366, 177
+  size: 61, 108
+  orig: 61, 108
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/body
+  rotate: true
+  xy: 908, 234
+  size: 119, 126
+  orig: 119, 126
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/hat
+  rotate: false
+  xy: 288, 600
+  size: 231, 253
+  orig: 231, 253
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/leg_l
+  rotate: true
+  xy: 2, 2
+  size: 37, 70
+  orig: 37, 70
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/leg_r
+  rotate: true
+  xy: 288, 562
+  size: 36, 70
+  orig: 36, 70
+  offset: 0, 0
+  index: -1
+char_wizardwoman_common/ribbon
+  rotate: false
+  xy: 516, 264
+  size: 143, 119
+  orig: 143, 119
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/arm_l
+  rotate: false
+  xy: 602, 75
+  size: 64, 93
+  orig: 64, 93
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/arm_r
+  rotate: false
+  xy: 668, 94
+  size: 65, 90
+  orig: 65, 90
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/body
+  rotate: true
+  xy: 206, 146
+  size: 119, 105
+  orig: 119, 105
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/cape
+  rotate: true
+  xy: 516, 385
+  size: 206, 147
+  orig: 206, 147
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/hat
+  rotate: false
+  xy: 288, 855
+  size: 322, 220
+  orig: 322, 221
+  offset: 0, 1
+  index: -1
+char_wizardwoman_epic/head
+  rotate: true
+  xy: 879, 864
+  size: 211, 186
+  orig: 211, 186
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/leg_l
+  rotate: true
+  xy: 502, 157
+  size: 44, 94
+  orig: 44, 94
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/leg_r
+  rotate: true
+  xy: 864, 187
+  size: 44, 94
+  orig: 44, 94
+  offset: 0, 0
+  index: -1
+char_wizardwoman_epic/skirt
+  rotate: false
+  xy: 206, 65
+  size: 108, 79
+  orig: 108, 79
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/arm_l
+  rotate: true
+  xy: 502, 4
+  size: 58, 93
+  orig: 58, 93
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/arm_r
+  rotate: true
+  xy: 316, 2
+  size: 61, 91
+  orig: 61, 91
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/body
+  rotate: true
+  xy: 908, 470
+  size: 129, 128
+  orig: 129, 128
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/hat
+  rotate: false
+  xy: 2, 529
+  size: 284, 272
+  orig: 284, 272
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/head
+  rotate: false
+  xy: 612, 859
+  size: 265, 216
+  orig: 265, 216
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/leg_l
+  rotate: false
+  xy: 1025, 621
+  size: 44, 96
+  orig: 44, 96
+  offset: 0, 0
+  index: -1
+char_wizardwoman_rare/leg_r
+  rotate: true
+  xy: 767, 187
+  size: 44, 95
+  orig: 44, 95
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: true
+  xy: 828, 418
+  size: 146, 78
+  orig: 157, 86
+  offset: 6, 2
+  index: -1
+tomb
+  rotate: true
+  xy: 661, 247
+  size: 108, 138
+  orig: 108, 138
+  offset: 0, 0
+  index: -1
+wand_common
+  rotate: false
+  xy: 1025, 719
+  size: 25, 143
+  orig: 25, 143
+  offset: 0, 0
+  index: -1
+wand_dark_rare
+  rotate: false
+  xy: 674, 549
+  size: 129, 308
+  orig: 130, 308
+  offset: 0, 0
+  index: -1
+wand_epic
+  rotate: false
+  xy: 899, 601
+  size: 124, 261
+  orig: 125, 262
+  offset: 1, 0
+  index: -1
+wand_rare
+  rotate: false
+  xy: 805, 566
+  size: 92, 291
+  orig: 92, 292
+  offset: 0, 1
+  index: -1

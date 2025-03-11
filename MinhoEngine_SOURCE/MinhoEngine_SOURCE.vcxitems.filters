@@ -297,6 +297,69 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinKeyEvent.h">
       <Filter>Common\Event</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\allocators.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\cursorstreamwrapper.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\document.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\encodedstream.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\encodings.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\filereadstream.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\filewritestream.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\fwd.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\istreamwrapper.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\memorybuffer.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\memorystream.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\ostreamwrapper.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\pointer.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\prettywriter.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\rapidjson.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\reader.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\schema.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\stream.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\stringbuffer.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\uri.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\writer.h">
+      <Filter>Common\RapidJson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -394,6 +457,9 @@
     </Filter>
     <Filter Include="Common\Event">
       <UniqueIdentifier>{b1ae139b-ef22-4f69-9cbc-0f1df37b283c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\RapidJson">
+      <UniqueIdentifier>{8651beb4-9b9a-49cc-bc8b-56c37ac83dd9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
