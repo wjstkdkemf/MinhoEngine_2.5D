@@ -45,6 +45,9 @@
     <ClInclude Include="MinLoadingScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="MinEnemyScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MinPlayerScript.cpp">
@@ -72,6 +75,9 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="MinCameraScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="MinEnemyScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>

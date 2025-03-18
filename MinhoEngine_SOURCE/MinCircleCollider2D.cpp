@@ -19,6 +19,9 @@ namespace min
 	}
 	void CircleCollider2D::Update()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		mCircleCollider2D.Center = tr->GetPosition();
+		mCircleCollider2D.Radius = mRadian * max(max(tr->GetScale().x, tr->GetScale().y), tr->GetScale().z);
 	}
 	void CircleCollider2D::LateUpdate()
 	{
@@ -27,5 +30,9 @@ namespace min
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
+	}
+	bool CircleCollider2D::Intersects(Collider* other)
+	{
+		return false;//mCircleCollider2D.Intersects(ray.position, ray.direction, OUT distance)
 	}
 }

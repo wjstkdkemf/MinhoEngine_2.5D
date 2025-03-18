@@ -22,6 +22,7 @@ namespace min::enums
 		None,
 		BackGround,
 		FrontGround,
+		Enemy,
 		Player,
 		Floor,
 		Particle,

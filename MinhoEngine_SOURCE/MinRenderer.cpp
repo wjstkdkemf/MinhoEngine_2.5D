@@ -144,6 +144,72 @@ namespace min::renderer
 	}
 
 
+	void LoadPlayerMesh()
+	{
+		Mesh* mesh = new Mesh();
+		std::vector<graphics::Vertex> vertexes = {};
+		std::vector<UINT> indices = {};
+
+		vertexes.resize(4);
+
+		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
+		vertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
+
+		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
+		vertexes[1].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[1].uv = Vector2(1.0f, 0.0f);
+
+		vertexes[2].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
+		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[2].uv = Vector2(1.0f, 1.0f);
+
+		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[3].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[3].uv = Vector2(0.0f, 1.0f);
+
+		indices.push_back(0);
+		indices.push_back(2);
+		indices.push_back(3);
+
+		indices.push_back(0);
+		indices.push_back(1);
+		indices.push_back(2);
+
+		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
+		inputLayoutDesces[0].AlignedByteOffset = 0;
+		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		inputLayoutDesces[0].InputSlot = 0;
+		inputLayoutDesces[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[0].SemanticName = "POSITION";
+		inputLayoutDesces[0].SemanticIndex = 0;
+
+		inputLayoutDesces[1].AlignedByteOffset = 12;
+		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		inputLayoutDesces[1].InputSlot = 0;
+		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[1].SemanticName = "COLOR";
+		inputLayoutDesces[1].SemanticIndex = 0;
+
+		inputLayoutDesces[2].AlignedByteOffset = 28;
+		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+		inputLayoutDesces[2].InputSlot = 0;
+		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[2].SemanticName = "TEXCOORD";
+		inputLayoutDesces[2].SemanticIndex = 0;
+
+		graphics::Shader* spriteShader = Resources::Find<graphics::Shader>(L"AnimationShader");
+		mesh->SetVertexBufferParams(3, inputLayoutDesces, spriteShader->GetVSBlob()->GetBufferPointer(), spriteShader->GetVSBlob()->GetBufferSize());
+
+
+
+		mesh->CreateVB(vertexes);
+		mesh->CreateIB(indices);
+
+		min::Resources::Insert(L"PlayerMesh", mesh);
+	}
+
 	void LoadMeterails()
 	{
 		Material* triangleMaterial = new Material();
@@ -163,6 +229,7 @@ namespace min::renderer
 	{
 		LoadTriangleMesh();
 		LoadRectMesh();
+		LoadPlayerMesh();
 	}
 	void LoadShaders()
 	{
@@ -179,7 +246,7 @@ namespace min::renderer
 		constantBuffers[CBSLOT_TRANSFORM]->Create(sizeof(TransformCB));
 
 		constantBuffers[CBSLOT_ANIMATION] = new ConstantBuffer(eCBType::Animation);
-		constantBuffers[CBSLOT_ANIMATION]->Create(sizeof(TransformCB));
+		constantBuffers[CBSLOT_ANIMATION]->Create(sizeof(AnimationCB));
 	}
 
 	void LoadStates()
@@ -273,6 +340,11 @@ namespace min::renderer
 		bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND::D3D11_BLEND_ONE;
 		bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_ONE;
 		GetDevice()->CreateBlendState(&bsDesc, blendStates[(UINT)eBlendState::OneOne].GetAddressOf());
+
+		bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_DEST_COLOR;
+		bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND::D3D11_BLEND_ZERO;
+		GetDevice()->CreateBlendState(&bsDesc, blendStates[(UINT)eBlendState::ColorZero].GetAddressOf());
+
 #pragma endregion
 #pragma region depthstencil state
 		D3D11_DEPTH_STENCIL_DESC dsDesc = {};
@@ -287,6 +359,8 @@ namespace min::renderer
 		dsDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
 		dsDesc.StencilEnable = false;
 		GetDevice()->CreateDepthStencilState(&dsDesc, depthStencilStates[(UINT)eDepthStencilState::DepthNone].GetAddressOf());
+
+
 #pragma endregion
 	}
 

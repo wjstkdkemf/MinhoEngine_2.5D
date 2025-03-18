@@ -51,19 +51,7 @@ namespace min
 			else 
 			{
 				mbComplete = true;
-
-				graphics::AnimationCB cbData = {};
-				cbData.offsetX = 0.0f;
-				cbData.offsetY = 0.0f;
-				cbData.sizeX = 0.0f;
-				cbData.sizeY = 0.0f;
-				cbData.textureSizeX = 0.0f;
-				cbData.textureSizeY = 0.0f;
-				cbData.useAni = 0.0f;
-				graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_ANIMATION];
-
-				cb->SetData(&cbData);
-				cb->Bind(eShaderStage::All);
+				ResetAnimationConstant();
 			}
 		}
 	}
@@ -97,6 +85,8 @@ namespace min
 
 		if (mMesh)
 			graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
+
+		ResetAnimationConstant();
 	}
 	void Animation::CreateAnimation(const std::wstring& name, graphics::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
 	{
@@ -110,7 +100,7 @@ namespace min
 		//mAnimationSprite.elapsedTime = ;     // 경과 시간
 		//mAnimationSprite.duration = duration;
 		mSprite = spriteSheet;
-		mMesh = Resources::Find<Mesh>(L"RectMesh");
+		mMesh = Resources::Find<Mesh>(L"PlayerMesh"); //추후 수정 예정 -> 몬스터 , 플레이어 와 같은 구분을 위해
 		mMaterial = Resources::Find<Material>(L"AnimationMaterial");
 		//mMaterial = Resources::Find<Material>(L"SpriteDefaultMaterial");
 		
@@ -126,6 +116,21 @@ namespace min
 			mAnimationSheet.push_back(sprite);
 		}
 		int a = 0;
+	}
+	void Animation::ResetAnimationConstant()
+	{
+		graphics::AnimationCB cbData = {};
+		cbData.offsetX = 0.0f;
+		cbData.offsetY = 0.0f;
+		cbData.sizeX = 0.0f;
+		cbData.sizeY = 0.0f;
+		cbData.textureSizeX = 0.0f;
+		cbData.textureSizeY = 0.0f;
+		cbData.useAni = 0.0f;
+		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_ANIMATION];
+
+		cb->SetData(&cbData);
+		cb->Bind(eShaderStage::All);
 	}
 	void Animation::Reset()
 	{

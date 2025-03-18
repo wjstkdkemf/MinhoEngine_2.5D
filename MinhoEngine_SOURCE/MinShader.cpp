@@ -10,7 +10,7 @@ namespace min::graphics
 		: Resource(enums::eResourceType::Shader)
 		, mRasterizerState(eRasterizerState::SolidNone)
 		, mBlendState(eBlendState::AlphaBlend)
-		, mDepthStencilState(eDepthStencilState::DepthNone)
+		, mDepthStencilState(eDepthStencilState::LessEqual)
 	{
 	}
 	Shader::~Shader()
@@ -81,7 +81,10 @@ namespace min::graphics
 			GetDevice()->BindPS(mPS.Get());
 
 		GetDevice()->BindRasterizerState(renderer::rasterizerStates[(UINT)mRasterizerState].Get());
-		GetDevice()->BindBlendState(renderer::blendStates[(UINT)mBlendState].Get(), nullptr, 0xffffff);
+		if (isBlendFactor)
+			GetDevice()->BindBlendState(renderer::blendStates[(UINT)mBlendState].Get(), mBlendFactor, 0xffffff);
+		else
+			GetDevice()->BindBlendState(renderer::blendStates[(UINT)mBlendState].Get(), nullptr, 0xffffff);
 		GetDevice()->BindDepthStencilState(renderer::depthStencilStates[static_cast<UINT>(mDepthStencilState)].Get(), 0);
 	}
 }

@@ -18,6 +18,9 @@ namespace min
 	}
 	void BoxCollider2D::Update()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		mBoxCollider2D.Center = tr->GetPosition();
+		
 	}
 	void BoxCollider2D::LateUpdate()
 	{
@@ -26,5 +29,14 @@ namespace min
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
+	}
+	bool BoxCollider2D::Intersects(Collider* other)
+	{
+		if (other->GetColType() == eColliderType::Rect2D)
+		{
+			if (mBoxCollider2D.Intersects(((BoxCollider2D*)other)->GetBoxCollider2D()))
+				return true;
+		}
+		return false;
 	}
 }

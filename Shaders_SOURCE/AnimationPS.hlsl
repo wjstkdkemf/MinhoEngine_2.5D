@@ -15,6 +15,14 @@ struct VSOutput
 };
 float4 main(VSOutput input) : SV_Target
 {
-    float4 color = sprite.Sample(anisotropicSampler, input.uv);
+    float4 color = sprite.Sample(pointSampler, input.uv);
+    
+    if(color.r == 1.0f && color.g == 0.0f && color.b == 1.0f)
+        color.a = 0.0f;
+    
+    color.rgb *= color.a;
+    
+    clip(color.a - 0.01f);
+    
     return color;
 }

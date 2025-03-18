@@ -19,12 +19,16 @@ namespace min
 		virtual void OnCollisionStay(Collider* other);
 		virtual void OnCollisionExit(Collider* other);
 
+		virtual bool Intersects(Collider* other) = 0;
+		eColliderType GetColType() const { return mType; }
+
+
 		Vector2 GetOffset() const { return mOffset; }
 		void SetOffset(Vector2 offset) { mOffset = offset; }
 		UINT32 GetID() const { return mID; }
 		Vector2 GetSize() const { return mSize; }
 		void SetSize(Vector2 Size) { mSize = Size; }
-		eColliderType GetColType() const { return mType; }
+		
 
 
 	private:

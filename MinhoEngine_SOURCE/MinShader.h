@@ -34,6 +34,15 @@ namespace min::graphics
 		void SetBlendState(const eBlendState state) { mBlendState = state; }
 		void SetDepthStencilState(const eDepthStencilState state) { mDepthStencilState = state; }
 
+		void SetBlendFactor(float Factors[4])
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				mBlendFactor[i] = Factors[i];
+			}
+			isBlendFactor = true;
+		}
+
 	private:
 		static bool bWireframe;
 
@@ -52,6 +61,9 @@ namespace min::graphics
 		graphics::eRasterizerState mRasterizerState;
 		graphics::eBlendState mBlendState;
 		graphics::eDepthStencilState mDepthStencilState;
+
+		bool isBlendFactor = false;
+		float mBlendFactor[4];
 	};
 }
 

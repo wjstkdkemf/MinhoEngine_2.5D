@@ -47,7 +47,7 @@ namespace min
 			, Vector2 offset
 			, UINT spriteLength
 			, float duration);
-
+		void ResetAnimationConstant();
 		void Reset();
 
 		bool IsComplete() const { return mbComplete; }

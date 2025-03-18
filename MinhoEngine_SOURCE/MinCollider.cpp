@@ -8,7 +8,7 @@ namespace min
 	Collider::Collider(eColliderType type)
 		: Component(enums::eComponentType::Collider)
 		, mType(type)
-		, mID(mCollisionID)
+		, mID(mCollisionID++)
 		, mSize(Vector2::One)
 	{
 

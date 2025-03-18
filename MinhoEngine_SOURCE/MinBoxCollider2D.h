@@ -14,6 +14,10 @@ namespace min
 		virtual void LateUpdate();
 		virtual void Render();
 
+		virtual bool Intersects(Collider* other) override;
+		BoundingBox& GetBoxCollider2D() { return mBoxCollider2D; }
+
 	private:
+		BoundingBox mBoxCollider2D;
 	};
 }

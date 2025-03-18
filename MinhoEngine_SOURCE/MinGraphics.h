@@ -85,6 +85,7 @@ namespace min::graphics
 	{
 		AlphaBlend,
 		OneOne,
+		ColorZero,
 		End,
 	};
 
@@ -119,6 +120,7 @@ namespace min::graphics
 		float textureSizeX;
 		float textureSizeY;
 		float useAni;
+		float DataPadding;
 	};
 }
 

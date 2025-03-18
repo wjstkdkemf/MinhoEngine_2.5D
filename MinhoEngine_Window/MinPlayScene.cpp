@@ -26,6 +26,7 @@
 #include "MinSpriteRenderer.h"
 #include "MinMaterial.h"
 #include "MinCameraScript.h"
+#include "MinEnemyScript.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -52,19 +53,22 @@ namespace min {
 #pragma region BG
 			
 			GameObject* BG = object::Instantiate<GameObject>
-				(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 0.0f));
-			BG->GetComponent<Transform>()->SetScale(Vector3(10.0f , 10.0f , 0.0f));
+				(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 10.0f));
+			BG->GetComponent<Transform>()->SetScale(Vector3(15.0f , 15.0f , 0.0f));
 
 			SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();
 			sr->SetSprite(Resources::Find<graphics::Texture>(L"BG"));
+
+			//BoxCollider2D* mBGBoxCollidder = BG->AddComponent<BoxCollider2D>();
+			//mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
 
 			//BG->AddComponent<PlayerScript>();
 			
 #pragma endregion
 #pragma region Player
 			GameObject* Player = object::Instantiate<GameObject>
-				(enums::eLayerType::Player, Vector3(0.0f, 0.0f, 10.0f));
-			Player->GetComponent<Transform>()->SetScale(5.0f, 5.0f, 5.0f);
+				(enums::eLayerType::Player, Vector3(5.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+			Player->GetComponent<Transform>()->SetScale(5.0f, 5.0f, 0.0f);
 			PlayerScript* prsc = Player->AddComponent<PlayerScript>();
 			//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
 			//prsr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
@@ -73,10 +77,12 @@ namespace min {
 			Animator* playerAnimator = Player->AddComponent<Animator>();
 
 			playerAnimator->CreateAnimation(L"PlayerWalk", Resources::Find<graphics::Texture>(L"Player")
-				,Vector2(0.0f , 0.0f), Vector2(250.0f, 250.0f) , Vector2::Zero , 4 , 0.5f);
+				,Vector2(0.0f , 0.0f), Vector2(250.0f, 250.0f) , Vector2::Zero , 3 , 0.5f);
 
 			playerAnimator->PlayAnimation(L"PlayerWalk",true);
 
+			BoxCollider2D* mPlayerBoxCollidder = Player->AddComponent<BoxCollider2D>();
+			mPlayerBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
 
 			//std::vector<std::wstring> FolderPath;
 			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\0.png");
@@ -87,7 +93,24 @@ namespace min {
 			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\5.png");
 
 			//playerAnimator->CreateAnimationByFolder(L"PlayerWalk", FolderPath, Vector2::Zero, 1.0f);
+#pragma endregion
 
+#pragma region Enemy
+			GameObject* Enemy = object::Instantiate<GameObject>
+				(enums::eLayerType::Enemy, Vector3(-5.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+			Enemy->GetComponent<Transform>()->SetScale(5.0f, 5.0f, 0.0f);
+			EnemyScript* Enemysc = Enemy->AddComponent<EnemyScript>();
+			//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
+			//prsr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
+			Animator* EnemyAnimator = Enemy->AddComponent<Animator>();
+
+			EnemyAnimator->CreateAnimation(L"PlayerWalk", Resources::Find<graphics::Texture>(L"Player")
+				, Vector2(0.0f, 0.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 3, 0.5f);
+
+			EnemyAnimator->PlayAnimation(L"PlayerWalk", true);
+
+			BoxCollider2D* mEnemyBoxCollidder = Enemy->AddComponent<BoxCollider2D>();
+			mEnemyBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
 #pragma endregion
 			//Animation* ani = 
 
@@ -112,7 +135,7 @@ namespace min {
 	}
 	void PlayScene::OnEnter()
 	{
-		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Enemy, true);
 		/*CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
 
 		UIManager::Push(eUIType::Button);*/

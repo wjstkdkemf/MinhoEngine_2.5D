@@ -65,7 +65,6 @@ namespace min
 	}
 	void PlayerScript::OnCollisionEnter(Collider* other)
 	{
-		int a = 0;
 	}
 	void PlayerScript::OnCollisionStay(Collider* other)
 	{
