@@ -82,7 +82,7 @@ namespace min {
 			playerAnimator->PlayAnimation(L"PlayerWalk",true);
 
 			BoxCollider2D* mPlayerBoxCollidder = Player->AddComponent<BoxCollider2D>();
-			mPlayerBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
+			mPlayerBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f); // Vector3(1.0f);
 
 			//std::vector<std::wstring> FolderPath;
 			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\0.png");
@@ -110,7 +110,7 @@ namespace min {
 			EnemyAnimator->PlayAnimation(L"PlayerWalk", true);
 
 			BoxCollider2D* mEnemyBoxCollidder = Enemy->AddComponent<BoxCollider2D>();
-			mEnemyBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
+			mEnemyBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f); // Vector3(1.0f);
 #pragma endregion
 			//Animation* ani = 
 

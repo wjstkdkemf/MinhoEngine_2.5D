@@ -41,9 +41,6 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {53441763-B9D5-4352-8DF5-37EBDDAC4681}
-	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Editor_SOURCE\Editor_SOURCE.vcxitems*{64118986-3a2b-4d3c-bebc-a45a32729af6}*SharedItemsImports = 4
 		MinhoEngine_SOURCE\MinhoEngine_SOURCE.vcxitems*{64118986-3a2b-4d3c-bebc-a45a32729af6}*SharedItemsImports = 4

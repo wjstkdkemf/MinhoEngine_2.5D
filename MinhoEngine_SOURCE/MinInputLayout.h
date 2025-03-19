@@ -10,6 +10,9 @@ namespace min::graphics
 		~InputLayout();
 
 		void CreateInputLayout(UINT vertexCount, D3D11_INPUT_ELEMENT_DESC* layout, const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength);
+		void CreateInputLayout_Const(UINT vertexCount,const D3D11_INPUT_ELEMENT_DESC* layout, const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength);
+		ID3D11InputLayout* GetInputLayout() { return mInputLayout.Get(); }
+		
 		void Bind();
 
 	private:

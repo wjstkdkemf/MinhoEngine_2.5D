@@ -1,5 +1,6 @@
 #pragma once
 #include "MinCollider.h"
+#include "MinInputLayout.h"
 
 namespace min
 {
@@ -16,8 +17,11 @@ namespace min
 
 		virtual bool Intersects(Collider* other) override;
 		BoundingBox& GetBoxCollider2D() { return mBoxCollider2D; }
+		void DrawCube(CXMMATRIX mWorld, FXMVECTOR color);
+		void DrawAabb(BoundingBox box, FXMVECTOR color);
 
 	private:
 		BoundingBox mBoxCollider2D;
+		graphics::InputLayout mInputLayout;
 	};
 }

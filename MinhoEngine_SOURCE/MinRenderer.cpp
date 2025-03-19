@@ -19,6 +19,8 @@ namespace min::renderer
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)eRasterizerState::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBlendState::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDepthStencilState::End] = {};
+	std::unique_ptr<PrimitiveBatch<VertexPositionColor>> primitiveBatch = {};
+	std::unique_ptr<BasicEffect> batchEffect = {};
 
 	RenderTarget* FrameBuffer = nullptr;
 
@@ -363,6 +365,12 @@ namespace min::renderer
 
 #pragma endregion
 	}
+	void LoadFrimitiveBatch()
+	{
+		primitiveBatch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(GetDevice()->GetID3D11DeviceContext().Get());
+		batchEffect = std::make_unique<BasicEffect>(GetDevice()->GetID3D11Device().Get());
+		batchEffect->SetVertexColorEnabled(true);
+	}
 
 	void Initialize()
 	{
@@ -372,6 +380,7 @@ namespace min::renderer
 		LoadMeterails();
 		LoadConstantBuffers();
 		LoadFrameBuffer();
+		LoadFrimitiveBatch();
 	}
 	void Release()
 	{

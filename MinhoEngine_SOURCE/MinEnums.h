@@ -43,8 +43,8 @@ namespace min::enums
 
 	enum class eColliderType
 	{
-		Circle2D,
 		Rect2D,
+		Circle2D,
 		End,
 	};
 

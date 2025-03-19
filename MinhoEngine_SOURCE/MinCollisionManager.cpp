@@ -175,10 +175,25 @@ namespace min
         //    }
         //}
         eColliderType LeftColType = left->GetColType();
-        switch((int)LeftColType)
+        switch ((int)LeftColType)
+        {
+        case 0:
+            if ((BoxCollider2D*)left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+            {
+                int a = 0;
+                return true;
+            }
+            break;
+        case 1:
+            break;
+        }
         if(left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
         {
-            int a = 0;
+            if ((CircleCollider2D*)left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+            {
+                int a = 0;
+                return true;
+            }
             return true;
         }
 
