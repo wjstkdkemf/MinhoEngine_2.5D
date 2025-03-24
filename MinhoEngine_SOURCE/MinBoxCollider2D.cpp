@@ -3,6 +3,7 @@
 #include "minGameObject.h"
 #include "MinRenderer.h"
 #include "MinCamera.h"
+#include "MinSkillManager.h"
 
 #include "DirectXColors.h"
 #include "DirectXMath.h"
@@ -55,6 +56,32 @@ namespace min
 		return false;
 	}
 
+    void BoxCollider2D::OnCollisionEnter(Collider* other)
+    {
+        /*if (other->GetOwner()->GetLayerType() == eLayerType::Enemy)
+        {
+            if(GetOwner()->GetLayerType() == eLayerType::Player)
+                GetOwner()->GetComponent<SkillManager>()->
+        }*/
+    }
+
+    void BoxCollider2D::OnCollisionStay(Collider* other)
+    {
+    }
+
+    void BoxCollider2D::OnCollisionExit(Collider* other)
+    {
+    }
+
+    void BoxCollider2D::DrawAabb(BoundingBox box, FXMVECTOR color)
+    {
+        XMMATRIX matWorld = XMMatrixScaling(box.Extents.x, box.Extents.y, box.Extents.z);
+        XMVECTOR position = XMLoadFloat3(&box.Center);
+        matWorld.r[3] = XMVectorSelect(matWorld.r[3], position, g_XMSelect1110);
+
+        DrawCube(matWorld, color);
+    }
+
     void BoxCollider2D::DrawCube(CXMMATRIX mWorld, FXMVECTOR color)
     {
         static const XMVECTOR s_verts[8] =
@@ -101,14 +128,6 @@ namespace min
         renderer::primitiveBatch->DrawIndexed(D3D11_PRIMITIVE_TOPOLOGY_LINELIST, s_indices, _countof(s_indices), verts, 8);
 
         renderer::primitiveBatch->End();
-    }
-    void BoxCollider2D::DrawAabb(BoundingBox box, FXMVECTOR color)
-    {
-        XMMATRIX matWorld = XMMatrixScaling(box.Extents.x, box.Extents.y, box.Extents.z);
-        XMVECTOR position = XMLoadFloat3(&box.Center);
-        matWorld.r[3] = XMVectorSelect(matWorld.r[3], position, g_XMSelect1110);
-
-        DrawCube(matWorld, color);
     }
 }
 /*

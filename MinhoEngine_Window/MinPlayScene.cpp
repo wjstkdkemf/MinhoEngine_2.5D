@@ -27,6 +27,7 @@
 #include "MinMaterial.h"
 #include "MinCameraScript.h"
 #include "MinEnemyScript.h"
+#include "MinSkillManager.h"
 
 namespace min {
 	PlayScene::PlayScene()
@@ -66,23 +67,26 @@ namespace min {
 			
 #pragma endregion
 #pragma region Player
-			GameObject* Player = object::Instantiate<GameObject>
+			Player* mPlayer = object::Instantiate<Player>
 				(enums::eLayerType::Player, Vector3(5.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
-			Player->GetComponent<Transform>()->SetScale(5.0f, 5.0f, 0.0f);
-			PlayerScript* prsc = Player->AddComponent<PlayerScript>();
+			mPlayer->GetComponent<Transform>()->SetScale(5.0f, 5.0f, 0.0f);
+			PlayerScript* prsc = mPlayer->AddComponent<PlayerScript>();
 			//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
 			//prsr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
 
-			object::DontDestoryOnLoad(Player);
-			Animator* playerAnimator = Player->AddComponent<Animator>();
+			object::DontDestoryOnLoad(mPlayer);
+			Animator* playerAnimator = mPlayer->AddComponent<Animator>();
 
 			playerAnimator->CreateAnimation(L"PlayerWalk", Resources::Find<graphics::Texture>(L"Player")
 				,Vector2(0.0f , 0.0f), Vector2(250.0f, 250.0f) , Vector2::Zero , 3 , 0.5f);
 
 			playerAnimator->PlayAnimation(L"PlayerWalk",true);
 
-			BoxCollider2D* mPlayerBoxCollidder = Player->AddComponent<BoxCollider2D>();
+			BoxCollider2D* mPlayerBoxCollidder = mPlayer->AddComponent<BoxCollider2D>();
 			mPlayerBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f); // Vector3(1.0f);
+
+			SkillManager* prsm = mPlayer->AddComponent<SkillManager>();
+
 
 			//std::vector<std::wstring> FolderPath;
 			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\0.png");

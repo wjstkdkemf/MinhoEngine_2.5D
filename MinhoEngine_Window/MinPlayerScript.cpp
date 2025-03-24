@@ -11,6 +11,7 @@
 #include "MinCollider.h"
 #include "MinRigidbody.h"
 #include "MinUIManager.h"
+#include "MinSkillManager.h"
 
 namespace min
 {
@@ -33,7 +34,7 @@ namespace min
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
-
+		SkillManager* sm = GetOwner()->GetComponent<SkillManager>();
 		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 		if (input::GetKey(eKeyCode::D)) {
 			//pos.x += 100.0f * Time::DeltaTime();
@@ -47,18 +48,15 @@ namespace min
 			tr->SetPosition(pos.x - 0.1f, pos.y, pos.z);
 			//rb->AddForce(Vector2(200.0f, 0.0f));
 		}
-		//if (input::GetKey(eKeyCode::A)) {
-		//	rb->AddForce(Vector2(-200.0f, 0.0f));
-		//	//pos.x -= 100.0f * Time::DeltaTime();
-		//}
-		//if (input::GetKey(eKeyCode::W)) {
-		//	rb->AddForce(Vector2(0.0f, -200.0f));
-		//	//pos.y -= 100.0f * Time::DeltaTime();
-		//}
-		//if (input::GetKey(eKeyCode::S)) {
-		//	rb->AddForce(Vector2(0.0f, 200.0f));
-		//	//pos.y += 100.0f * Time::DeltaTime();
-		//}
+		if (input::GetKey(eKeyCode::Q)) {
+			sm->UseSkill(L"FirstSkill");
+		}
+		if (input::GetKey(eKeyCode::W)) {
+			sm->UseSkill(L"SecondSkill");
+		}
+		if (input::GetKey(eKeyCode::E)) {
+			sm->UseSkill(L"E");
+		}
 	}
 	void PlayerScript::Render()
 	{

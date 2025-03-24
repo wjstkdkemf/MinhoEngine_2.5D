@@ -136,6 +136,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinWindow.cpp">
       <Filter>High Level interface</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillManager.cpp">
+      <Filter>Component\SkillManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSkill.cpp">
+      <Filter>Component\SkillManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinFirstSkill.cpp">
+      <Filter>Component\SkillManager\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSecondSkill.cpp">
+      <Filter>Component\SkillManager\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -360,6 +372,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)rapidjson\writer.h">
       <Filter>Common\RapidJson</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillManager.h">
+      <Filter>Component\SkillManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSkill.h">
+      <Filter>Component\SkillManager</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinFirstSkill.h">
+      <Filter>Component\SkillManager\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSecondSkill.h">
+      <Filter>Component\SkillManager\Skill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -460,6 +484,12 @@
     </Filter>
     <Filter Include="Common\RapidJson">
       <UniqueIdentifier>{8651beb4-9b9a-49cc-bc8b-56c37ac83dd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SkillManager">
+      <UniqueIdentifier>{9da38a35-c5e2-444a-a58d-7f2b5a610b12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SkillManager\Skill">
+      <UniqueIdentifier>{a35920db-06d6-4af7-a71e-e62328ded10d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

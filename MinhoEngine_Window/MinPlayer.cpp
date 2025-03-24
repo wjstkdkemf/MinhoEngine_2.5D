@@ -4,6 +4,12 @@
 #include "MinTime.h"
 
 namespace min {
+	Player::Player()
+	{
+	}
+	Player::~Player()
+	{
+	}
 	void Player::Initialize()
 	{
 		GameObject::Initialize();
