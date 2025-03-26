@@ -7,13 +7,14 @@ namespace min
         , mSkillDamage(0)
         , mSkillManager(nullptr)
         , mFinish(false)
+        , ColliderExtent(1.0f,1.0f,0.0f)
     {
     }
     Skill::~Skill()
     {
         
     }
-    void Skill::Active()
+    void Skill::Active(bool Direction)
     {
     }
 }

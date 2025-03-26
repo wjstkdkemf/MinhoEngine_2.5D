@@ -23,6 +23,7 @@ namespace min {
 		LeftShift = VK_LSHIFT, Leftcontrol = VK_LCONTROL, LeftAlt = VK_LMENU,
 		RightShift = VK_RSHIFT, RightControl = VK_RCONTROL, RightAlt = VK_RMENU,
 
+		SpaceVar = VK_SPACE,
 		End = VK_END
 	};
 

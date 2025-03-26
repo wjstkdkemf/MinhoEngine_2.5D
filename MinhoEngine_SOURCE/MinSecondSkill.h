@@ -10,7 +10,7 @@ namespace min
 		SecondSkill();
 		~SecondSkill();
 
-		 void Active() override;
+		 void Active(bool Direction) override;
 
 	private:
 		float mTime;

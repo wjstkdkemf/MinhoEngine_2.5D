@@ -1,23 +1,23 @@
-#include "MinCat.h"
+#include "MinFirstSkillGameObject.h"
 #include "Mininput.h"
 #include "MinTransform.h"
 #include "MinTime.h"
 
 namespace min
 {
-	void Cat::Initialize()
+	void FirstSkillGameObject::Initialize()
 	{
 		GameObject::Initialize();
 	}
-	void Cat::Update()
+	void FirstSkillGameObject::Update()
 	{
 		GameObject::Update();
 	}
-	void Cat::LateUpdate()
+	void FirstSkillGameObject::LateUpdate()
 	{
 		GameObject::LateUpdate();
 	}
-	void Cat::Rander()
+	void FirstSkillGameObject::Rander()
 	{
 		GameObject::Rander();
 	}

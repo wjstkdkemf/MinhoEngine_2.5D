@@ -41,6 +41,10 @@ namespace min
 	}
 	void BoxCollider2D::LateUpdate()
 	{
+        BoxCollider2D* Collider = GetOwner()->GetComponent<BoxCollider2D>();
+        Transform* fstr = GetOwner()->GetComponent<Transform>();
+
+        Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 2.0f, fstr->GetScale().y / 2.0f, 0);//GetmSkillCollider()
 	}
 	void BoxCollider2D::Render()
 	{

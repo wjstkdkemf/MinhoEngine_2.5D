@@ -37,6 +37,8 @@ namespace min {
 		const Vector3 Foward() { return mForward; };
 		const Vector3 Right() { return mRight; };
 		const Vector3 Up() { return mUp; };
+
+		XMFLOAT4 TransformToClipSpace(XMFLOAT3 pos);
 	private:
 		Transform* mParent;
 		Matrix mWorldMatrix;

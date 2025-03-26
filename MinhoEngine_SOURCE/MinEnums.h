@@ -5,13 +5,14 @@ namespace min::enums
 	enum class eComponentType
 	{
 		Transform,
+		Camera,
 		Collider,
 		Rigidbody,
 		Script,
 		SpriteRenderer,
 		Animator,
-		Camera,
 		Skill,
+		Shadow,
 		AudioListener,
 		AudioSource,
 		End,

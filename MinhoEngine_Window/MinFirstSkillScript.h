@@ -1,32 +1,35 @@
 #pragma once
 #include "..\\MinhoEngine_SOURCE\\MinScript.h"
+#include "MinTransform.h"
 
 namespace min
 {
-	class EnemyScript : public Script
+	class FirstSkillScript :public Script
 	{
 	public:
 		enum class eState
 		{
 			idle,
-			Walk,
-			Jump,
-			GiveWater,
-			Attack,
-			Max = 16,
+			Run,
+			Hit,
 		};
 
-		EnemyScript();
-		~EnemyScript();
+		FirstSkillScript();
+		~FirstSkillScript();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
+		void SkillPlayAnimation();
+		void Move(Transform* tr);
+
 		void OnCollisionEnter(Collider* other) override;
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
+
+		void SetDuration(float Duration) { mDuration = Duration; }
 
 	private:
 
@@ -34,9 +37,8 @@ namespace min
 		eState mState;
 		class Animator* mAnimator;
 
-		//void (*StartEvent)();
-		//void (*CompleteEvent)();
-		//void (*EndEvent)();
+		float mTime;
+		float mDuration;
 	};
 }
 

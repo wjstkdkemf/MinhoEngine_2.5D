@@ -3,7 +3,7 @@
 #include "MinTransform.h"
 #include "MinSkillManager.h"
 #include "MinTime.h"
-#include "..\\MinhoEngine_Window\MinCat.h"
+#include "..\\MinhoEngine_Window\MinEffect.h"
 
 namespace min
 {
@@ -19,9 +19,9 @@ namespace min
 	SecondSkill::~SecondSkill()
 	{
 	}
-	void SecondSkill::Active()
+	void SecondSkill::Active(bool Direction)
 	{
-		Cat* FirstSkillObj = object::Instantiate<Cat>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
+		Effect* FirstSkillObj = object::Instantiate<Effect>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
 
 		mTime += Time::DeltaTime();
 		if (mTime < this->GetSkillDuration())

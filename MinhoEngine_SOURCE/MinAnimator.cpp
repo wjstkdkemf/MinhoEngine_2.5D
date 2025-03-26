@@ -56,8 +56,9 @@ namespace min
 	}
 	void Animator::Render()
 	{
-		if(mActiveAnimation->IsComplete() == false)
-			mActiveAnimation->Render();
+		if(mActiveAnimation != nullptr)
+			if(mActiveAnimation->IsComplete() == false)
+				mActiveAnimation->Render();
 		/*if (mActiveAnimation)
 			mActiveAnimation->Render(hdc);*/
 	}

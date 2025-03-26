@@ -23,7 +23,7 @@ namespace min
 	}
 	void SkillManager::LateUpdate()
 	{
-		if (mActive)
+		/*if (mActive)
 		{
 			if (mSkill[mActiveName]->GetFinish())
 			{
@@ -32,19 +32,19 @@ namespace min
 			}
 
 			mSkill[mActiveName]->Active();
-		}
+		}*/
 		
 	}
 	void SkillManager::Render()
 	{
 	}
-	void SkillManager::UseSkill(std::wstring KeyValue)
+	void SkillManager::UseSkill(std::wstring KeyValue , bool Direction)
 	{
 		if (mSkill.find(KeyValue) != mSkill.end())
 		{
-			mSkill[KeyValue]->Active();
-			mActiveName = KeyValue;
-			mActive = true;
+			mSkill[KeyValue]->Active(Direction);
+			//mActiveName = KeyValue;
+			//mActive = true;
 		}
 	}
 	void SkillManager::CreateSkillinfo()//std::wstring name, Vector3 Range, UINT Damage, XMFLOAT3 Extent

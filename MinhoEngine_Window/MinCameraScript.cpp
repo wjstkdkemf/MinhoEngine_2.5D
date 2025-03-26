@@ -4,7 +4,7 @@
 #include "MinTime.h"
 #include "minGameObject.h"
 #include "MinAnimator.h"
-#include "MinCat.h"
+#include "MinEffect.h"
 #include "MinObject.h"
 #include "MinResources.h"
 #include "MinBoxCollider2D.h"

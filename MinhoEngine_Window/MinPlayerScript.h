@@ -10,8 +10,8 @@ namespace min
 		{
 			idle,
 			Walk,
-			Sleep,
-			GiveWater,
+			Jump,
+			Skill,
 			Attack,
 			Max = 16,
 		};
@@ -30,17 +30,29 @@ namespace min
 
 		void PlayerEffect();
 
+		float GetZvalue() { return mZvalue; }
+
 	private:
 		void Idle();
 		void move();
-		void giveWater();
+		void SkillActive();
+		void Jumping();
+		void makeShadow();
 
 	private:
 		eState mState;
 		class Animator* mAnimator;
+		//class Effect* Shadow;
 
+		float mDelayTime;
+		float mZvalue;
+		float mGravity;
 
+		bool isJump;
 
+		bool mFront; // true 면 오른쪽 , false 면 왼쪽
+
+		float mJumpingTime;
 		//void (*StartEvent)();
 		//void (*CompleteEvent)();
 		//void (*EndEvent)();

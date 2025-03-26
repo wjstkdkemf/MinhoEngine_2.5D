@@ -148,6 +148,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSecondSkill.cpp">
       <Filter>Component\SkillManager\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinShadow.cpp">
+      <Filter>Component\Shadow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -384,6 +387,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSecondSkill.h">
       <Filter>Component\SkillManager\Skill</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinShadow.h">
+      <Filter>Component\Shadow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -490,6 +496,9 @@
     </Filter>
     <Filter Include="Component\SkillManager\Skill">
       <UniqueIdentifier>{a35920db-06d6-4af7-a71e-e62328ded10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Shadow">
+      <UniqueIdentifier>{754e1dc3-94b7-4ad8-a86d-a8f7f51138f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

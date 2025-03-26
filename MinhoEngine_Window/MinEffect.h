@@ -2,7 +2,7 @@
 #include "..\\MinhoEngine_SOURCE\minGameObject.h"
 
 namespace min {
-	class Cat : public GameObject
+	class Effect : public GameObject
 	{
 	public:
 		void Initialize() override;

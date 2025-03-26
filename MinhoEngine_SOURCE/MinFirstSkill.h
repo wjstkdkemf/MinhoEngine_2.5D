@@ -1,6 +1,6 @@
 #pragma once
 #include "MinSkill.h"
-
+#include "..\\MinhoEngine_Window\MinEffect.h"
 
 namespace min
 {
@@ -10,7 +10,7 @@ namespace min
 		FirstSkill();
 		~FirstSkill();
 
-		void Active() override;
+		void Active(bool Direction) override;
 
 	private:
 		float mTime;

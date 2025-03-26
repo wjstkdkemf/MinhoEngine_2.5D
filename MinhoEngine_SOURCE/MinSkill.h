@@ -13,7 +13,7 @@ namespace min
 		Skill();
 		virtual ~Skill();
 
-		virtual void Active() = 0;
+		virtual void Active(bool Direction) = 0;
 
 		void SetSkillAnimation(std::wstring name) { mSkillAnimation = name; }
 		void SetSkillPosition(Vector3 Position) { mSkillPosition = Position; }
@@ -23,20 +23,21 @@ namespace min
 		void SetSkillDuration(float Time) { SkillDuration = Time; }
 		void SetFinish(bool fin) { mFinish = fin; }
 
-
+		std::wstring GetSkillAnimation() { return mSkillAnimation; }
 		float GetSkillDuration() {return SkillDuration; }
 		bool GetFinish() { return mFinish; }
+		XMFLOAT3 GetmSkillCollider() { return ColliderExtent; }
 
 
 		class SkillManager* GetSkillManager() { return mSkillManager; }
 
-		//void SetmSkillCollider(XMFLOAT3 Extent) { ColliderExtent = Extent; }//mSkillCollider.GetBoxCollider2D().Extents
+		void SetmSkillCollider(XMFLOAT3 Extent) { ColliderExtent = Extent; }//mSkillCollider.GetBoxCollider2D().Extents
 
 
 	private:
 		//Animation* mSkillAnimation;
 		//BoxCollider2D mSkillCollider;
-		//XMFLOAT3 ColliderExtent;
+		XMFLOAT3 ColliderExtent;
 		class SkillManager* mSkillManager;
 		enums::eColliderType mSkillColType; // 스킬의 collider 형태
 		std::wstring mSkillAnimation; // 스킬의 애니메이션 이름 -> 미리 애니메이터에 load 해놔야함.

@@ -108,8 +108,8 @@ namespace min
 		{
 			Sprite sprite = {};
 			sprite.size = size;
-			sprite.offset.x = offset.x + size.x * i;
-			sprite.offset.y = offset.y;
+			sprite.offset.x = leftTop.x + size.x * i + offset.x;
+			sprite.offset.y = leftTop.y + offset.y;
 			sprite.duration = duration;
 			sprite.totalFrames = spriteLength;
 		//	sprite.mScratch.InitializeFromImage(*spriteSheet);

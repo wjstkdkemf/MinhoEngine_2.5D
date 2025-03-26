@@ -4,6 +4,8 @@
 #include "MinConstantBuffer.h"
 #include "MinRenderer.h"
 
+#include "DirectXMath.h"
+
 namespace min {
 
 	Transform::Transform()
@@ -57,5 +59,24 @@ namespace min {
 
 		cb->SetData(&cbData);
 		cb->Bind(eShaderStage::All);
+	}
+
+	XMFLOAT4 Transform::TransformToClipSpace(XMFLOAT3 pos) {
+		// 1. 원래 좌표를 float4로 확장 (w=1.0f)
+		XMVECTOR position = XMVectorSet(pos.x, pos.y, pos.z, 1.0f);
+
+		// 2. 월드 변환
+		position = XMVector4Transform(position, GetWorldMatrix());
+
+		Matrix ViewMatrix_t = Camera::GetGpuViewMatrix();
+		// 3. 뷰 변환
+		position = XMVector4Transform(position, ViewMatrix_t.Invert());
+		// 4. 투영 변환
+		position = XMVector4Transform(position, Camera::GetGpuProjectionMatrix().Invert());
+
+		// 결과 저장
+		XMFLOAT4 clipPos;
+		XMStoreFloat4(&clipPos, position);
+		return clipPos;
 	}
 }

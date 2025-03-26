@@ -10,15 +10,15 @@ namespace min
 		BoxCollider2D();
 		~BoxCollider2D();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render();
+		void Initialize() override;
+		void Update() override;
+		void LateUpdate() override;
+		void Render() override;
 
-		virtual bool Intersects(Collider* other) override;
-		virtual void OnCollisionEnter(Collider* other) override;
-		virtual void OnCollisionStay(Collider* other) override;
-		virtual void OnCollisionExit(Collider* other) override;
+		bool Intersects(Collider* other) override;
+		void OnCollisionEnter(Collider* other) override;
+		void OnCollisionStay(Collider* other) override;
+		void OnCollisionExit(Collider* other) override;
 		
 		BoundingBox& GetBoxCollider2D() { return mBoxCollider2D; }
 		void DrawAabb(BoundingBox box, FXMVECTOR color);

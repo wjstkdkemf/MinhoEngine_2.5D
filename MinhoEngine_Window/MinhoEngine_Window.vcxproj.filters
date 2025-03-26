@@ -10,6 +10,12 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{52178267-d73f-464d-ace0-3e2672dd7aa3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Skill">
+      <UniqueIdentifier>{68f6d016-4e8f-4f1f-8d88-d71a340bcda2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Skill">
+      <UniqueIdentifier>{1e09ed28-8d60-40aa-945a-43989e291c6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MinLodeScene.h">
@@ -27,7 +33,7 @@
     <ClInclude Include="MinPlayer.h">
       <Filter>Contents</Filter>
     </ClInclude>
-    <ClInclude Include="MinCat.h">
+    <ClInclude Include="MinEffect.h">
       <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="MinTile.h">
@@ -47,6 +53,12 @@
     </ClInclude>
     <ClInclude Include="MinEnemyScript.h">
       <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="MinFirstSkillGameObject.h">
+      <Filter>Contents\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MinFirstSkillScript.h">
+      <Filter>Scripts\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +83,7 @@
     <ClCompile Include="MinFloor.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
-    <ClCompile Include="MinCat.cpp">
+    <ClCompile Include="MinEffect.cpp">
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="MinCameraScript.cpp">
@@ -79,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="MinEnemyScript.cpp">
       <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="MinFirstSkillGameObject.cpp">
+      <Filter>Contents\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="MinFirstSkillScript.cpp">
+      <Filter>Scripts\Skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

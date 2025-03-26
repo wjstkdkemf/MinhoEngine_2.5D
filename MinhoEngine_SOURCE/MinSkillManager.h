@@ -11,12 +11,12 @@ namespace min
 		SkillManager();
 		~SkillManager();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render();
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void LateUpdate() override;
+		virtual void Render() override;
 
-		void UseSkill(std::wstring KeyValue);
+		void UseSkill(std::wstring KeyValue, bool Direction);
 
 		void CreateSkillinfo();//std::wstring name, Vector3 Range, UINT Damage, XMFLOAT3 Extent
 

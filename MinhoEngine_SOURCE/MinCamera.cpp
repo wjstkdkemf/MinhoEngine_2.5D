@@ -50,6 +50,8 @@ namespace min
 		const Vector3 forward = tr->Foward();
 
 		mViewMatrix = Matrix::CreateLookToLH(pos, forward, up);
+
+		//XMMATRIX mViewMatrix = Matrix::CreateLookToLH(pos, forward, up);
 	}
 	void Camera::CreateProjectionMatrix(eProjectionType type)
 	{

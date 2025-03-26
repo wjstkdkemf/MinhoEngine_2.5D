@@ -4,7 +4,7 @@
 #include "MinTime.h"
 #include "minGameObject.h"
 #include "MinAnimator.h"
-#include "MinCat.h"
+#include "MinEffect.h"
 #include "MinObject.h"
 #include "MinResources.h"
 #include "MinBoxCollider2D.h"
@@ -12,12 +12,19 @@
 #include "MinRigidbody.h"
 #include "MinUIManager.h"
 #include "MinSkillManager.h"
+#include "MinSpriteRenderer.h"
 
 namespace min
 {
 	PlayerScript::PlayerScript()
-		:mState(PlayerScript::eState::idle)
-		,mAnimator(nullptr)
+		: mState(PlayerScript::eState::idle)
+		, mAnimator(nullptr)
+		, mDelayTime(2.0f)
+		, mZvalue(0.0f)
+		, mGravity(0.05f)
+		, isJump(false)
+		, mJumpingTime(0.0f)
+		, mFront(true)
 	{
 	}
 	PlayerScript::~PlayerScript()
@@ -25,38 +32,46 @@ namespace min
 	}
 	void PlayerScript::Initialize()
 	{
-
 	}
 	void PlayerScript::Update()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector3 pos = tr->GetPosition();
+
+		if (mAnimator == nullptr)
+			mAnimator = GetOwner()->GetComponent<Animator>();
+
+		if (mDelayTime < 2.0f)
+			mDelayTime += Time::DeltaTime();
+
+		Jumping();
+
+		switch (mState)
+		{
+		case min::PlayerScript::eState::idle:
+			Idle();
+			break;
+		case min::PlayerScript::eState::Walk:
+			move();
+			break;
+		case min::PlayerScript::eState::Jump:
+			//Jumping();
+			break;
+		case min::PlayerScript::eState::Skill:
+			SkillActive();
+			break;
+		case min::PlayerScript::eState::Attack:
+			break;
+		case min::PlayerScript::eState::Max:
+			break;
+		default:
+			break;
+		}
 	}
 	void PlayerScript::LateUpdate()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector3 pos = tr->GetPosition();
-		SkillManager* sm = GetOwner()->GetComponent<SkillManager>();
 		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
-		if (input::GetKey(eKeyCode::D)) {
-			//pos.x += 100.0f * Time::DeltaTime();
-			Vector3 pos = tr->GetPosition();
-			tr->SetPosition(pos.x + 0.1f, pos.y, pos.z);
-			//rb->AddForce(Vector2(200.0f, 0.0f));
-		}
-		if (input::GetKey(eKeyCode::A)) {
-			//pos.x += 100.0f * Time::DeltaTime();
-			Vector3 pos = tr->GetPosition();
-			tr->SetPosition(pos.x - 0.1f, pos.y, pos.z);
-			//rb->AddForce(Vector2(200.0f, 0.0f));
-		}
-		if (input::GetKey(eKeyCode::Q)) {
-			sm->UseSkill(L"FirstSkill");
-		}
-		if (input::GetKey(eKeyCode::W)) {
-			sm->UseSkill(L"SecondSkill");
-		}
-		if (input::GetKey(eKeyCode::E)) {
-			sm->UseSkill(L"E");
-		}
+
 	}
 	void PlayerScript::Render()
 	{
@@ -77,17 +92,141 @@ namespace min
 	}
 	void PlayerScript::Idle()
 	{
+#pragma region 이동관련 구현(WASD)
+		if (input::GetKey(eKeyCode::D)) {
+			mState = eState::Walk;
+			mAnimator->PlayAnimation(L"PlayerWalk_Right");
+			mFront = true;
+		}
+		if (input::GetKey(eKeyCode::A)) {
+			mState = eState::Walk;
+			mAnimator->PlayAnimation(L"PlayerWalk_Left");
+			mFront = false;
+		}
+		if (input::GetKey(eKeyCode::W)) {
+			mState = eState::Walk;
+		}
+		if (input::GetKey(eKeyCode::S)) {
+			mState = eState::Walk;
+		}
+#pragma region Jump and Gravity
+		if (input::GetKey(eKeyCode::SpaceVar))
+		{
+			if (!isJump)
+				isJump = true;
+		}
+#pragma endregion
+#pragma endregion
+#pragma region Skill
+		if (input::GetKey(eKeyCode::Q)) {
+			mState = eState::Walk;
+		}
+		if (input::GetKey(eKeyCode::E)) {
+			mState = eState::Walk;
+		}
+#pragma endregion
 	}
 	void PlayerScript::move()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector3 pos = tr->GetPosition();
+		SkillManager* sm = GetOwner()->GetComponent<SkillManager>();
 
+#pragma region 이동관련 구현(WASD)
+		if (input::GetKey(eKeyCode::D)) {
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x + 0.01f, pos.y, pos.z);
+		}
+		if (input::GetKey(eKeyCode::A)) {
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x - 0.01f, pos.y, pos.z);
+			mFront = false;
+		}
+		if (input::GetKey(eKeyCode::W)) {
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x, pos.y + 0.01f, pos.z);
+		}
+		if (input::GetKey(eKeyCode::S)) {
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x, pos.y - 0.01f, pos.z);
+		}
+#pragma endregion
+#pragma region Skill
+		if (input::GetKey(eKeyCode::Q)) {
+			if (mDelayTime >= 2.0f)
+			{
+				sm->UseSkill(L"FirstSkill", mFront);
+				mDelayTime = 0.0f;
+			}
+		}
+		if (input::GetKey(eKeyCode::E)) {
+			sm->UseSkill(L"SecondSkill", mFront);
+		}
+		if (input::GetKey(eKeyCode::SpaceVar))
+		{
+			if (!isJump)
+				isJump = true;
+		}
+#pragma endregion
+#pragma endregion
+
+		if (input::GetKeyUp(eKeyCode::D) || input::GetKeyUp(eKeyCode::A) || input::GetKeyUp(eKeyCode::W) || input::GetKeyUp(eKeyCode::S)
+			|| input::GetKeyUp(eKeyCode::Q) || input::GetKeyUp(eKeyCode::E))
+		{
+			mState = eState::idle;
+			mAnimator->PlayAnimation(L"Player_Idle");
+		}
 	}
-	void PlayerScript::giveWater()
+	void PlayerScript::SkillActive()
 	{
 		/*if (mAnimator->IsCompleteAnimation()) 
 		{
 			mState = PlayerScript::eState::idle;
 			mAnimator->PlayAnimation(L"Idle", false);
 		}*/
+	}
+	void PlayerScript::Jumping()
+	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector3 pos = tr->GetPosition();
+
+		if (isJump)
+		{
+			if (mJumpingTime < 0.5f) // 추후 중력 계수로 해서 수정 가능
+			{
+				Vector3 pos = tr->GetPosition();
+				tr->SetPosition(pos.x, pos.y + 0.1f, pos.z);
+				mZvalue += 0.1f;
+				mJumpingTime += Time::DeltaTime();
+			}
+			else
+			{
+				isJump = false;
+				mJumpingTime = 0.0f;
+			}
+
+		}
+		if (mZvalue > 0.0f)
+		{
+			Vector3 pos = tr->GetPosition();
+			tr->SetPosition(pos.x, pos.y - mGravity, pos.z);
+
+			mZvalue -= mGravity;
+		}
+	}
+	void PlayerScript::makeShadow()
+	{
+		//Transform* tr = GetOwner()->GetComponent<Transform>();
+		////Shadow = object::Instantiate<Effect>(eLayerType::SkillEffect,
+		////	Vector3(tr->GetPosition().x, tr->GetPosition().y - (tr->GetScale().y / 2.0f), tr->GetPosition().z));
+		//Shadow = object::Instantiate<Effect>(eLayerType::SkillEffect,
+		//	Vector3(0.0f, 0.0f, 0.0f));
+		//Transform* sdtr = Shadow->GetComponent<Transform>();
+		//sdtr->SetScale((tr->GetScale()) * 0.5f);
+		//SpriteRenderer* sdsr = Shadow->AddComponent<SpriteRenderer>();
+		//sdsr->SetSprite(Resources::Find<graphics::Texture>(L"Shadow"));
+		////Shadow->AddComponent<BoxCollider2D>();
+		////BoxCollider2D* mShadowBoxCollidder = Shadow->GetComponent<BoxCollider2D>();
+		////mShadowBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f);
 	}
 }
