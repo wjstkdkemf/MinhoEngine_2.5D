@@ -30,7 +30,6 @@ namespace min
 
 		void PlayerEffect();
 
-		float GetZvalue() { return mZvalue; }
 
 	private:
 		void Idle();
@@ -45,7 +44,6 @@ namespace min
 		//class Effect* Shadow;
 
 		float mDelayTime;
-		float mZvalue;
 		float mGravity;
 
 		bool isJump;

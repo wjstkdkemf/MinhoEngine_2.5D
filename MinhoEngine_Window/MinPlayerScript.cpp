@@ -20,7 +20,6 @@ namespace min
 		: mState(PlayerScript::eState::idle)
 		, mAnimator(nullptr)
 		, mDelayTime(2.0f)
-		, mZvalue(0.0f)
 		, mGravity(0.05f)
 		, isJump(false)
 		, mJumpingTime(0.0f)
@@ -196,7 +195,7 @@ namespace min
 			{
 				Vector3 pos = tr->GetPosition();
 				tr->SetPosition(pos.x, pos.y + 0.1f, pos.z);
-				mZvalue += 0.1f;
+				tr->SetPlusZvalue(0.1f);
 				mJumpingTime += Time::DeltaTime();
 			}
 			else
@@ -206,12 +205,11 @@ namespace min
 			}
 
 		}
-		if (mZvalue > 0.0f)
+		if (tr->GetZvalue() > 0.0f)
 		{
 			Vector3 pos = tr->GetPosition();
 			tr->SetPosition(pos.x, pos.y - mGravity, pos.z);
-
-			mZvalue -= mGravity;
+			tr->SetPlusZvalue(-mGravity);
 		}
 	}
 	void PlayerScript::makeShadow()
