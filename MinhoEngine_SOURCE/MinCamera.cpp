@@ -9,6 +9,7 @@ namespace min
 {
 	Matrix Camera::ViewMatrix = Matrix::Identity;
 	Matrix Camera::ProjectionMatrix = Matrix::Identity;
+	Vector3 Camera::mCameraPosition = Vector3::Zero;
 
 	Camera::Camera()
 		:Component(enums::eComponentType::Camera)
@@ -44,6 +45,7 @@ namespace min
 	void Camera::CreateViewMatrix()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
+		mCameraPosition = tr->GetPosition();
 
 		const Vector3 pos = tr->GetPosition();
 		const Vector3 up = tr->Up();

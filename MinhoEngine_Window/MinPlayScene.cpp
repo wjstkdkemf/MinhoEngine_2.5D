@@ -54,22 +54,20 @@ namespace min {
 #pragma endregion
 #pragma region BG
 			
-			//GameObject* BG = object::Instantiate<GameObject>
-			//	(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 10.0f));
-			//BG->GetComponent<Transform>()->SetScale(Vector3(15.0f , 15.0f , 0.0f));
+			GameObject* BG = object::Instantiate<GameObject>
+				(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 10.0f));
+			BG->GetComponent<Transform>()->SetScale(Vector3(15.0f , 15.0f , 0.0f));
 
-			//SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();
-			//sr->SetSprite(Resources::Find<graphics::Texture>(L"BG"));
+			SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();
+			sr->SetSprite(Resources::Find<graphics::Texture>(L"BG"));
 
-			//BoxCollider2D* mBGBoxCollidder = BG->AddComponent<BoxCollider2D>();
-			//mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
-
-			//BG->AddComponent<PlayerScript>();
+			BoxCollider2D* mBGBoxCollidder = BG->AddComponent<BoxCollider2D>();
+			mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
 			
 #pragma endregion
 #pragma region Player
 			Player* mPlayer = object::Instantiate<Player>
-				(enums::eLayerType::Player, Vector3(3.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+				(enums::eLayerType::Player, Vector3(0.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
 			mPlayer->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 0.0f);
 			PlayerScript* prsc = mPlayer->AddComponent<PlayerScript>();
 			//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
@@ -124,9 +122,7 @@ namespace min {
 			BoxCollider2D* mEnemyBoxCollidder = Enemy->AddComponent<BoxCollider2D>();
 			mEnemyBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f); // Vector3(1.0f);
 #pragma endregion
-			//Animation* ani = 
 
-			//renderer::selectedObject = BG;
 		}
 	}
 	void PlayScene::Update()

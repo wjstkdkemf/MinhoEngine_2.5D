@@ -94,7 +94,7 @@ namespace min
 			Resources::Load<graphics::Texture>(L"BG", L"..\\Resources\\Char\\BG\\Bg_Beach.png");
 			Resources::Load<graphics::Texture>(L"FirstSkill", L"..\\Resources\\FirstSkill.png");
 			Resources::Load<graphics::Texture>(L"Shadow", L"..\\Resources\\shadow.png");
-
+			Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
 
 
 			//renderer::Initialize();

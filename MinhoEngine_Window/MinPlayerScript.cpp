@@ -13,12 +13,14 @@
 #include "MinUIManager.h"
 #include "MinSkillManager.h"
 #include "MinSpriteRenderer.h"
+#include "MinCamera.h"
 
 namespace min
 {
 	PlayerScript::PlayerScript()
 		: mState(PlayerScript::eState::idle)
 		, mAnimator(nullptr)
+		, Skill_info(nullptr)
 		, mDelayTime(2.0f)
 		, mGravity(0.05f)
 		, isJump(false)
@@ -36,6 +38,14 @@ namespace min
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
+
+		if(Skill_info == nullptr)
+		{
+			Skill_info = object::Instantiate<GameObject>(enums::eLayerType::Skill_info, Vector3(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f));
+			Skill_info->GetComponent<Transform>()->SetScale(0.3f, 0.3f, 0);
+			SpriteRenderer* sksr = Skill_info->AddComponent<SpriteRenderer>();
+			sksr->SetSprite(Resources::Find<graphics::Texture>(L"Bubble"));
+		}
 
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<Animator>();
@@ -70,7 +80,7 @@ namespace min
 	void PlayerScript::LateUpdate()
 	{
 		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
-
+		Skill_info->GetComponent<Transform>()->SetPosition(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f);
 	}
 	void PlayerScript::Render()
 	{

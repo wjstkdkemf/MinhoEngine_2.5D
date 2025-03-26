@@ -500,5 +500,8 @@
     <Filter Include="Component\Shadow">
       <UniqueIdentifier>{754e1dc3-94b7-4ad8-a86d-a8f7f51138f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Skill_infomation">
+      <UniqueIdentifier>{6e316237-325a-4385-8cf9-ba5b1f232d3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

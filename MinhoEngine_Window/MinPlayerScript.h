@@ -41,6 +41,7 @@ namespace min
 	private:
 		eState mState;
 		class Animator* mAnimator;
+		class GameObject* Skill_info;
 		//class Effect* Shadow;
 
 		float mDelayTime;

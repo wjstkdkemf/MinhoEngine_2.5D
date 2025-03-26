@@ -29,6 +29,7 @@ namespace min::enums
 		SkillEffect,
 		Floor,
 		Particle,
+		Skill_info,
 		Max = 16,
 	};
 

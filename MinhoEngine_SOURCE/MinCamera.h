@@ -15,6 +15,8 @@ namespace min
 
 		static Matrix GetGpuViewMatrix() { return ViewMatrix; }
 		static Matrix GetGpuProjectionMatrix() { return ProjectionMatrix; }
+
+		static Vector3 GetCameraPosition() { return mCameraPosition; }
 		static void SetGpuViewMatrix(Matrix matrix) { ViewMatrix = matrix; }
 		static void SetGpuProjectionMatrix(Matrix matrix) { ProjectionMatrix = matrix; }
 
@@ -35,9 +37,12 @@ namespace min
 		const Matrix& GetViewMatrix() { return mViewMatrix; }
 		const Matrix& GetProjectionMatrix() { return mProjectionMatrix; }
 
+		
+
 	private:
 		static Matrix ViewMatrix;
 		static Matrix ProjectionMatrix;
+		static Vector3 mCameraPosition;
 
 		eProjectionType mProjectionType;
 
