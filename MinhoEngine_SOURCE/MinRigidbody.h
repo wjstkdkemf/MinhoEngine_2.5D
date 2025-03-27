@@ -15,22 +15,24 @@ namespace min
 		virtual void Render();
 
 		void SetMass(float mass) { mMass = mass; }
-		void AddForce(Vector2 force) { mForce = force; }
+		void AddForce(Vector3 force) { mForce += force; }
+		void ResetForce() { mForce = Vector3::Zero; }
 		void SetGround(bool ground) { mbGround = ground; }
-		void SetVelocity(Vector2 velocity) { mVelocity = velocity; }
+		void SetVelocity(Vector3 velocity) { mVelocity = velocity; }
 
-		Vector2 GetVelocity() const {return mVelocity; }
+		Vector3 GetVelocity() const {return mVelocity; }
+		bool GetGround() { return mbGround; }
 
 	private:
 		bool mbGround;
 		float mMass;
 		float mFriction;
 		
-		Vector2 mForce;
-		Vector2 mAccelation;
-		Vector2 mVelocity;
-		Vector2 mLimitmVelocity;
-		Vector2 mGravity;
+		Vector3 mForce;
+		Vector3 mAccelation;
+		Vector3 mVelocity;
+		Vector3 mLimitmVelocity;
+		Vector3 mGravity;
 	};
 }
 

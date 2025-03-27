@@ -56,14 +56,23 @@ namespace min {
 			
 			GameObject* BG = object::Instantiate<GameObject>
 				(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 10.0f));
-			BG->GetComponent<Transform>()->SetScale(Vector3(15.0f , 15.0f , 0.0f));
+			BG->GetComponent<Transform>()->SetScale(Vector3(25.0f , 15.0f , 0.0f));
 
 			SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();
 			sr->SetSprite(Resources::Find<graphics::Texture>(L"BG"));
 
-			BoxCollider2D* mBGBoxCollidder = BG->AddComponent<BoxCollider2D>();
-			mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
+			//BoxCollider2D* mBGBoxCollidder = BG->AddComponent<BoxCollider2D>();
+			//mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
 			
+#pragma endregion
+#pragma region Floor
+			Floor* mFloor = object::Instantiate<Floor>(eLayerType::Floor, Vector3(0.0f, -8.0f, 0.0f));
+			mFloor->GetComponent<Transform>()->SetScale(25.0f, 15.0f, 0.0f);
+			SpriteRenderer* flsr = mFloor->AddComponent<SpriteRenderer>();
+			flsr->SetSprite(Resources::Find<graphics::Texture>(L"Floor_1"));
+
+			BoxCollider2D* mBGBoxCollidder = mFloor->AddComponent<BoxCollider2D>();
+			//mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
 #pragma endregion
 #pragma region Player
 			Player* mPlayer = object::Instantiate<Player>
@@ -84,6 +93,7 @@ namespace min {
 			playerAnimator->PlayAnimation(L"Player_Idle",true);
 
 			mPlayer->AddComponent<Shadow>();
+			mPlayer->AddComponent<Rigidbody>();
 
 			BoxCollider2D* mPlayerBoxCollidder = mPlayer->AddComponent<BoxCollider2D>();
 			mPlayerBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f); // Vector3(1.0f);
@@ -91,13 +101,6 @@ namespace min {
 			SkillManager* prsm = mPlayer->AddComponent<SkillManager>();
 
 			object::DontDestoryOnLoad(mPlayer);
-			//std::vector<std::wstring> FolderPath;
-			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\0.png");
-			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\1.png");
-			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\2.png");
-			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\3.png");
-			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\4.png");
-			//FolderPath.push_back(L"..\\Resources\\char_2\\01_Ninja\\legs\\5.png");
 
 			//playerAnimator->CreateAnimationByFolder(L"PlayerWalk", FolderPath, Vector2::Zero, 1.0f);
 #pragma endregion
@@ -144,9 +147,9 @@ namespace min {
 	void PlayScene::OnEnter()
 	{
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Enemy, true);
-		/*CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
 
-		UIManager::Push(eUIType::Button);*/
+		/*UIManager::Push(eUIType::Button);*/
 		Scene::OnEnter();
 	}
 	void PlayScene::OnExit()

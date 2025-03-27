@@ -23,11 +23,11 @@ namespace min::enums
 	{
 		None,
 		BackGround,
+		Floor,
 		FrontGround,
 		Enemy,
 		Player,
 		SkillEffect,
-		Floor,
 		Particle,
 		Skill_info,
 		Max = 16,

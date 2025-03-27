@@ -3,6 +3,7 @@
 #include "MinObject.h"
 #include "MinSpriteRenderer.h"
 #include "MinResources.h"
+#include "MinRigidbody.h"
 #include "..\\MinhoEngine_Window\MinPlayerScript.h"
 #include "..\\MinhoEngine_Window\\MinEffect.h"
 
@@ -29,7 +30,10 @@ namespace min
 		Transform* sdtr = mShadow->GetComponent<Transform>();
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		sdtr->SetScale((tr->GetScale()) * 0.5f);
-		sdtr->SetPosition(Vector3(tr->GetPosition().x, tr->GetPosition().y - (tr->GetScale().y / 2.0f) - tr->GetZvalue(), tr->GetPosition().z));
+		sdtr->SetPosition(Vector3(tr->GetPosition().x, tr->GetPosition().y - tr->GetZvalue() - (tr->GetScale().y / 2.0f), tr->GetPosition().z));
+
+		if (!(GetOwner()->GetComponent<Rigidbody>()->GetGround()))
+			int a = 10;
 	}
 	void Shadow::LateUpdate()
 	{
