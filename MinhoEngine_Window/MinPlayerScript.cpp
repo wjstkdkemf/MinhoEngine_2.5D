@@ -26,6 +26,7 @@ namespace min
 		, isJump(false)
 		, mJumpingTime(0.0f)
 		, mFront(true)
+		, mSpeed(15.0f)
 	{
 	}
 	PlayerScript::~PlayerScript()
@@ -142,17 +143,17 @@ namespace min
 
 #pragma region 이동관련 구현(WASD)
 		if (input::GetKey(eKeyCode::D)) {
-			rd->AddForce(Vector3(300.0f, 0.0f, 0.0f));
+			rd->AddForce(Vector3(mSpeed, 0.0f, 0.0f));
 		}
 		if (input::GetKey(eKeyCode::A)) {
-			rd->AddForce(Vector3(-300.0f, 0.0f, 0.0f));
+			rd->AddForce(Vector3(-mSpeed, 0.0f, 0.0f));
 			mFront = false;
 		}
 		if (input::GetKey(eKeyCode::W)) {
-			rd->AddForce(Vector3(0.0f, 300.0f, 0.0f));
+			rd->AddForce(Vector3(0.0f, mSpeed, 0.0f));
 		}
 		if (input::GetKey(eKeyCode::S)) {
-			rd->AddForce(Vector3(0.0f, -300.0f, 0.0f));
+			rd->AddForce(Vector3(0.0f, -mSpeed, 0.0f));
 		}
 #pragma endregion
 #pragma region Skill
@@ -194,36 +195,20 @@ namespace min
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 
 		if (isJump)
 		{
-			GetOwner()->GetComponent<Rigidbody>()->SetGround(false);
-			GetOwner()->GetComponent<Rigidbody>()->AddForce(Vector3(0.0f, 100.0f, 0.0f));
-			isJump = false;
-			//if (mJumpingTime < 0.5f) // 추후 중력 계수로 해서 수정 가능
-			//{
-			//	Vector3 pos = tr->GetPosition();
-			//	tr->SetPosition(pos.x, pos.y + 0.1f, pos.z);
-			//	tr->SetPlusZvalue(0.1f);
-
-
-			//	mJumpingTime += Time::DeltaTime();
-			//}
-			//else
-			//{
-			//	isJump = false;
-			//	mJumpingTime = 0.0f;
-			//}
-		}
-		else if (tr->GetZvalue() <= 0.0f)
-		{
-			//Vector3 pos = tr->GetPosition();
-			//tr->SetPosition(pos.x, pos.y - mGravity, pos.z);
-			//tr->SetPlusZvalue(-mGravity);
-			GetOwner()->GetComponent<Rigidbody>()->SetGround(true);
-			GetOwner()->GetComponent<Rigidbody>()->SetVelocity(Vector3::Zero);
-
-			tr->SetPlusZvalue(-tr->GetZvalue());
+			if(rb->GetGround())
+			{
+				rb->SetGround(false);
+				rb->AddJumpingForce(Vector3(0.0f, 10.0f, 0.0f));
+				isJump = false;
+			}
+			else
+			{
+				isJump = false;
+			}
 		}
 	}
 	void PlayerScript::makeShadow()

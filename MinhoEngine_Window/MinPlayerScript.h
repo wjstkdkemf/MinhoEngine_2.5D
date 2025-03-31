@@ -46,6 +46,7 @@ namespace min
 
 		float mDelayTime;
 		float mGravity;
+		float mSpeed;
 
 		bool isJump;
 

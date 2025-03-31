@@ -6,8 +6,8 @@ namespace min::enums
 	{
 		Transform,
 		Camera,
-		Collider,
 		Rigidbody,
+		Collider,
 		Script,
 		SpriteRenderer,
 		Animator,
