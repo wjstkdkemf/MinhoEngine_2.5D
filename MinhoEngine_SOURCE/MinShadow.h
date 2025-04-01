@@ -14,8 +14,14 @@ namespace min
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
+		void SetGroundMaterial();
+		std::wstring& GetGroundMaterial() { return mGroundMaterial; }
+		
+
 	private:
 		class Effect* mShadow;
+		std::wstring mGroundMaterial;
+
 	};
 }
 

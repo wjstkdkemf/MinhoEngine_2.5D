@@ -44,7 +44,14 @@ namespace min
         BoxCollider2D* Collider = GetOwner()->GetComponent<BoxCollider2D>();
         Transform* fstr = GetOwner()->GetComponent<Transform>();
 
-        Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 2.0f, fstr->GetScale().y / 2.0f, 0);//GetmSkillCollider()
+        if (GetOwner()->GetName() == L"Player")
+        {
+            Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 7.0f, fstr->GetScale().y / 4.5f, 0);
+        }
+        else
+        {
+            Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 2.0f, fstr->GetScale().y / 2.0f, 0);//GetmSkillCollider()
+        }
 	}
 	void BoxCollider2D::Render()
 	{
@@ -59,6 +66,15 @@ namespace min
 		}
 		return false;
 	}
+
+    ContainmentType BoxCollider2D::Contain(Collider* other)
+    {
+        if (other->GetColType() == eColliderType::Rect2D)
+        {
+            return (mBoxCollider2D.Contains(((BoxCollider2D*)other)->GetBoxCollider2D()));
+        }
+        return ContainmentType::DISJOINT;
+    }
 
     void BoxCollider2D::OnCollisionEnter(Collider* other)
     {

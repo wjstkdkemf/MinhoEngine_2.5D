@@ -15,6 +15,7 @@ namespace min
 		virtual void Render();
 
 		virtual bool Intersects(Collider* other) override;
+		virtual ContainmentType Contain(Collider* other) override;
 		BoundingSphere& GetCircleCollider2D() { return mCircleCollider2D; }
 
 	private:

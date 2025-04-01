@@ -5,6 +5,9 @@
 #include "MinCollider.h"
 #include "MinTransform.h"
 #include "minGameObject.h"
+#include "MinSpriteRenderer.h"
+#include "MinShadow.h"
+#include "..\\MinhoEngine_Window\MinPlayerScript.h"
 
 namespace min
 {
@@ -125,76 +128,47 @@ namespace min
     }
     bool CollisionManager::Intersect(Collider* left, Collider* right)
     {
-        //Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
-        //Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
-
-        //Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
-        //Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
-
-        //Vector2 leftSize = left->GetSize() * 100.0f;
-        //Vector2 rightSize = right->GetSize() * 100.0f;
-
-        //enums::eColliderType leftType = left->GetColType();
-        //enums::eColliderType rightType = right->GetColType();
-
-        //if (leftType == enums::eColliderType::Rect2D// rect - rect
-        //    && rightType == enums::eColliderType::Rect2D)
-        //{
-        //    if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f)
-        //        && fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
-        //    {
-        //        return true;
-        //    }
-        //}
-
-        //if (leftType == enums::eColliderType::Circle2D//circle - circle
-        //    && rightType == enums::eColliderType::Circle2D)
-        //{
-        //    Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
-        //    Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
-        //    float distance = (leftCirclePos - rightCirclePos).Length();
-        //    if (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f))
-        //    {
-        //        return true;
-        //    }
-        //}
-
-        //if (leftType == enums::eColliderType::Rect2D && rightType == enums::eColliderType::Circle2D
-        //    || leftType == enums::eColliderType::Circle2D && rightType == enums::eColliderType::Rect2D)
-        //{
-        //}
-        //
-
-        //
-        //return false;
-        //if (left->GetColType() == eColliderType::Rect2D)
-        //{
-        //    if (right->GetColType() == eColliderType::Rect2D)
-        //    {
-        //        CheckRectToRectCollision(left , right)
-        //    }
-        //}
         eColliderType LeftColType = left->GetColType();
-        switch ((int)LeftColType)
+        if (left->GetName() == L"Floor")
         {
-        case 0:
-            if ((BoxCollider2D*)left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+            switch ((int)LeftColType)
             {
-                int a = 0;
+            case 0:
+                if (((BoxCollider2D*)left)->Contain(right) == ContainmentType::CONTAINS)//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬. 
+                {
+                    right->GetOwner()->SetName(left->GetOwner()->GetComponent<SpriteRenderer>()->GetName());//Shadow가 가지고 있는 게임오브젝트의 이름을 땅의 재질로 하여 업로드해주기
+                    return true;
+                }
+                break;
+            case 1:
+                if ((CircleCollider2D*)left->Contain(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+                {
+                    int a = 0;
+                    return true;
+                }
                 return true;
+                break;
             }
-            break;
-        case 1:
-            break;
         }
-        if(left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+        else
         {
-            if ((CircleCollider2D*)left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+            switch ((int)LeftColType)
             {
-                int a = 0;
-                return true;
+            case 0:
+                if ((BoxCollider2D*)left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+                {
+                    int a = 0;
+                    return true;
+                }
+                break;
+            case 1:
+                if ((CircleCollider2D*)left->Intersects(right))//추후 스위치 문으로 수정하여 확실하게 사용하는게 더 좋을꺼라고 생각이듬.
+                {
+                    int a = 0;
+                    return true;
+                }
+                break;
             }
-            return true;
         }
 
         return false;

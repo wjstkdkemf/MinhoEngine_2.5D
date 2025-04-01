@@ -20,6 +20,7 @@ namespace min
 		virtual void OnCollisionExit(Collider* other);
 
 		virtual bool Intersects(Collider* other) = 0;
+		virtual ContainmentType Contain(Collider* other) = 0;
 		eColliderType GetColType() const { return mType; }
 
 

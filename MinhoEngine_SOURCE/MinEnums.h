@@ -28,6 +28,7 @@ namespace min::enums
 		Enemy,
 		Player,
 		SkillEffect,
+		Shadow,
 		Particle,
 		Skill_info,
 		Max = 16,

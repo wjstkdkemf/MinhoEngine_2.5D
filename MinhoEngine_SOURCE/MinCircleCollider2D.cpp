@@ -35,4 +35,8 @@ namespace min
 	{
 		return false;//mCircleCollider2D.Intersects(ray.position, ray.direction, OUT distance)
 	}
+	ContainmentType CircleCollider2D::Contain(Collider* other)
+	{
+		return ContainmentType::DISJOINT;
+	}
 }

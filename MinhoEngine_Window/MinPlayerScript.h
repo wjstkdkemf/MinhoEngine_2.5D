@@ -30,13 +30,12 @@ namespace min
 
 		void PlayerEffect();
 
-
 	private:
 		void Idle();
 		void move();
 		void SkillActive();
 		void Jumping();
-		void makeShadow();
+		void MakeSkill_Info();
 
 	private:
 		eState mState;
@@ -47,6 +46,8 @@ namespace min
 		float mDelayTime;
 		float mGravity;
 		float mSpeed;
+
+
 
 		bool isJump;
 

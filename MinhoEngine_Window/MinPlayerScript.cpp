@@ -14,6 +14,7 @@
 #include "MinSkillManager.h"
 #include "MinSpriteRenderer.h"
 #include "MinCamera.h"
+#include "MinShadow.h"
 
 namespace min
 {
@@ -42,10 +43,7 @@ namespace min
 
 		if(Skill_info == nullptr)
 		{
-			Skill_info = object::Instantiate<GameObject>(enums::eLayerType::Skill_info, Vector3(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f));
-			Skill_info->GetComponent<Transform>()->SetScale(0.3f, 0.3f, 0);
-			SpriteRenderer* sksr = Skill_info->AddComponent<SpriteRenderer>();
-			sksr->SetSprite(Resources::Find<graphics::Texture>(L"Bubble"));
+			MakeSkill_Info();
 		}
 
 		if (mAnimator == nullptr)
@@ -82,6 +80,9 @@ namespace min
 	{
 		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 		//Skill_info->GetComponent<Transform>()->SetPosition(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f);
+
+		if (GetOwner()->GetComponent<Shadow>()->GetGroundMaterial() == L"Floor_1")//땅의 재질을 읽어들일 수 있으므로 이에 맞는 사운드 출력을 구현하면됨
+			int a = 0;
 	}
 	void PlayerScript::Render()
 	{
@@ -211,19 +212,12 @@ namespace min
 			}
 		}
 	}
-	void PlayerScript::makeShadow()
+	void PlayerScript::MakeSkill_Info()
 	{
-		//Transform* tr = GetOwner()->GetComponent<Transform>();
-		////Shadow = object::Instantiate<Effect>(eLayerType::SkillEffect,
-		////	Vector3(tr->GetPosition().x, tr->GetPosition().y - (tr->GetScale().y / 2.0f), tr->GetPosition().z));
-		//Shadow = object::Instantiate<Effect>(eLayerType::SkillEffect,
-		//	Vector3(0.0f, 0.0f, 0.0f));
-		//Transform* sdtr = Shadow->GetComponent<Transform>();
-		//sdtr->SetScale((tr->GetScale()) * 0.5f);
-		//SpriteRenderer* sdsr = Shadow->AddComponent<SpriteRenderer>();
-		//sdsr->SetSprite(Resources::Find<graphics::Texture>(L"Shadow"));
-		////Shadow->AddComponent<BoxCollider2D>();
-		////BoxCollider2D* mShadowBoxCollidder = Shadow->GetComponent<BoxCollider2D>();
-		////mShadowBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f);
+		Skill_info = object::Instantiate<GameObject>(enums::eLayerType::Shadow, Vector3(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f));
+		Skill_info->GetComponent<Transform>()->SetScale(0.3f, 0.3f, 0);
+		SpriteRenderer* sksr = Skill_info->AddComponent<SpriteRenderer>();
+		sksr->SetSprite(Resources::Find<graphics::Texture>(L"Bubble"));
+		Skill_info->AddComponent<Shadow>();
 	}
 }
