@@ -33,7 +33,7 @@ namespace min
 		Transform* sdtr = mShadow->GetComponent<Transform>();
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		
-		sdtr->SetScale((tr->GetScale().x) / 4.0f, (tr->GetScale().y) / 6.0f, (tr->GetScale().z) / 2.0f);
+		sdtr->SetScale((tr->GetScale().x) / 6.0f, (tr->GetScale().y) / 8.0f, (tr->GetScale().z) / 2.0f);
 		sdtr->SetPosition(Vector3(tr->GetPosition().x, tr->GetPosition().y - tr->GetZvalue() - (tr->GetScale().y / 4.0f), tr->GetPosition().z));
 
 		if (!(GetOwner()->GetComponent<Rigidbody>()->GetGround()))

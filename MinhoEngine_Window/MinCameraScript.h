@@ -18,9 +18,20 @@ namespace min
 		void Render() override;
 
 		void SetPlayer(Player* player) { mPlayer = player; }
+		void SetFieldSize(Vector3 Size) { mFieldSize = Size; }
+
+		void SetFieldMaxSize(float X , float Y)
+		{
+			mMaxWidthInOrgan = X;
+			mMaxHeightInOrgan = Y;
+		}
 
 	private:
 		Player* mPlayer;
+		Vector3 mFieldSize;
+
+		float mMaxWidthInOrgan;
+		float mMaxHeightInOrgan;
 	};
 }
 

@@ -14,6 +14,8 @@
 namespace min
 {
 	CameraScript::CameraScript()
+		: mMaxWidthInOrgan(0.0f)
+		, mMaxHeightInOrgan(0.0f)
 	{
 	}
 	CameraScript::~CameraScript()
@@ -52,13 +54,21 @@ namespace min
 		//	|| input::GetKeyUp(eKeyCode::Down)) 
 		//{
 		//}
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Transform* prtr = mPlayer->GetComponent<Transform>();
-		Vector3 pos = prtr->GetPosition();
-		tr->SetPosition(pos.x, pos.y , pos.z - 5.0f);
 	}
 	void CameraScript::LateUpdate()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Transform* prtr = mPlayer->GetComponent<Transform>();
+		Vector3 pos = prtr->GetPosition();
+
+		float lx = (mFieldSize.x - mMaxWidthInOrgan) / 2;
+		float clampX = std::clamp(pos.x, -lx, lx ); // 추후lx 부분을 ground의 position으로 조정해줘야함 
+
+		//float ly = (mFieldSize.y - mMaxHeightInOrgan) / 2;
+		//float clampY = std::clamp(pos.y, -ly, ly);
+
+
+		tr->SetPosition(clampX, pos.y, pos.z - 5.0f);
 	}
 	void CameraScript::Render()
 	{

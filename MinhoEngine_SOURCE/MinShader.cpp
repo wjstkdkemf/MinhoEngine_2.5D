@@ -10,7 +10,7 @@ namespace min::graphics
 		: Resource(enums::eResourceType::Shader)
 		, mRasterizerState(eRasterizerState::SolidNone)
 		, mBlendState(eBlendState::AlphaBlend)
-		, mDepthStencilState(eDepthStencilState::LessEqual)
+		, mDepthStencilState(eDepthStencilState::DepthNone)
 	{
 	}
 	Shader::~Shader()
@@ -85,6 +85,6 @@ namespace min::graphics
 			GetDevice()->BindBlendState(renderer::blendStates[(UINT)mBlendState].Get(), mBlendFactor, 0xffffff);
 		else
 			GetDevice()->BindBlendState(renderer::blendStates[(UINT)mBlendState].Get(), nullptr, 0xffffff);
-		GetDevice()->BindDepthStencilState(renderer::depthStencilStates[static_cast<UINT>(mDepthStencilState)].Get(), 0);
+		GetDevice()->BindDepthStencilState(renderer::depthStencilStates[static_cast<UINT>(mDepthStencilState)].Get(), 0);// 1로 바꾸어 off 함
 	}
 }

@@ -2,6 +2,7 @@
 #include "minGameObject.h"
 #include "MinTransform.h"
 #include "MinApplication.h"
+#include "..\\MinhoEngine_Window\MinCameraScript.h"
 
 extern min::Application application;
 
@@ -13,13 +14,14 @@ namespace min
 
 	Camera::Camera()
 		:Component(enums::eComponentType::Camera)
-		, mProjectionType(eProjectionType::Perspective)
+		, mProjectionType(eProjectionType::Orthographic)
 		, mViewMatrix(Matrix::Identity)
 		, mProjectionMatrix(Matrix::Identity)
 		, mAspectRatio(0.0f)
 		, mNear(1.0f)
 		, mFar(1000.0f)
 		, mSize(1.0f)
+
 	{
 	}
 	Camera::~Camera()
@@ -61,8 +63,9 @@ namespace min
 		GetClientRect(application.GetWindow().GetHwnd(), &winRect);
 		float width = (winRect.right - winRect.left);
 		float height = (winRect.bottom - winRect.top);
-		mAspectRatio = width / height;
 
+		GetOwner()->GetComponent<CameraScript>()->SetFieldMaxSize(width / mSize, height / mSize);
+		mAspectRatio = width / height;
 		switch (type)
 		{
 		case eProjectionType::Perspective:

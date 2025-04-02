@@ -46,7 +46,7 @@ namespace min {
 			(enums::eLayerType::None, Vector3(0.0f, 0.0f, -5.0f));
 
 		Camera* cameraComp = camera->AddComponent<Camera>();
-		cameraComp->SetProjectionType(Camera::eProjectionType::Perspective);
+		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
 		cameraComp->SetSize(200.0f);
 
 		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
@@ -56,7 +56,7 @@ namespace min {
 			
 		GameObject* BG = object::Instantiate<GameObject>
 			(enums::eLayerType::BackGround, Vector3(0.0f , 0.0f , 10.0f));
-		BG->GetComponent<Transform>()->SetScale(Vector3(25.0f , 15.0f , 0.0f));
+		BG->GetComponent<Transform>()->SetScale(Vector3(15.0f , 15.0f , 0.0f));
 
 		SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();
 		sr->SetSprite(Resources::Find<graphics::Texture>(L"BG"));
@@ -67,7 +67,7 @@ namespace min {
 #pragma endregion
 #pragma region Floor
 		Floor* mFloor = object::Instantiate<Floor>(eLayerType::Floor, Vector3(0.0f, -8.0f, 0.0f));
-		mFloor->GetComponent<Transform>()->SetScale(25.0f, 15.0f, 0.0f);
+		mFloor->GetComponent<Transform>()->SetScale(15.0f, 15.0f, 0.0f);
 		SpriteRenderer* flsr = mFloor->AddComponent<SpriteRenderer>();
 		flsr->SetSprite(Resources::Find<graphics::Texture>(L"Floor_1"));
 		flsr->SetName(L"Floor_1");
@@ -109,8 +109,8 @@ namespace min {
 
 #pragma region Enemy
 		GameObject* Enemy = object::Instantiate<GameObject>
-			(enums::eLayerType::Enemy, Vector3(-3.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
-		Enemy->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 0.0f);
+			(enums::eLayerType::Enemy, Vector3(-4.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+		Enemy->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 0.0f);
 		EnemyScript* Enemysc = Enemy->AddComponent<EnemyScript>();
 		//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
 		//prsr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
@@ -125,11 +125,11 @@ namespace min {
 		EnemyAnimator->PlayAnimation(L"PlayerWalk", true);
 
 		BoxCollider2D* mEnemyBoxCollidder = Enemy->AddComponent<BoxCollider2D>();
-		mEnemyBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(0.75f, 1.1f, 0.0f); // Vector3(1.0f);
 #pragma endregion
 
 		
 		cameraScript->SetPlayer(mPlayer);
+		cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());
 	}
 	void PlayScene::Update()
 	{

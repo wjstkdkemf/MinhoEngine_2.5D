@@ -37,7 +37,6 @@ namespace min
 		const Matrix& GetViewMatrix() { return mViewMatrix; }
 		const Matrix& GetProjectionMatrix() { return mProjectionMatrix; }
 
-		
 
 	private:
 		static Matrix ViewMatrix;
@@ -52,6 +51,7 @@ namespace min
 		float mNear;
 		float mFar;
 		float mSize;
+
 
 	};
 }

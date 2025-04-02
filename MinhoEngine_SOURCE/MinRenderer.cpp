@@ -205,7 +205,6 @@ namespace min::renderer
 		mesh->SetVertexBufferParams(3, inputLayoutDesces, spriteShader->GetVSBlob()->GetBufferPointer(), spriteShader->GetVSBlob()->GetBufferSize());
 
 
-
 		mesh->CreateVB(vertexes);
 		mesh->CreateIB(indices);
 
