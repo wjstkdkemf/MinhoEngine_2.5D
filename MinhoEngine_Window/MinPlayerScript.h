@@ -30,6 +30,8 @@ namespace min
 
 		void PlayerEffect();
 
+		void CoolTimeCheck();
+
 	private:
 		void Idle();
 		void move();
@@ -47,10 +49,10 @@ namespace min
 		float mGravity;
 		float mSpeed;
 
+		std::vector<float> mCoolTime;
 
-
+		bool mMoveLock;
 		bool isJump;
-
 		bool mFront; // true 면 오른쪽 , false 면 왼쪽
 
 		float mJumpingTime;

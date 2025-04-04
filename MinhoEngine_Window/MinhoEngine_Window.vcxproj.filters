@@ -54,10 +54,13 @@
     <ClInclude Include="MinEnemyScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="MinFirstSkillGameObject.h">
+    <ClInclude Include="MinSkillGameObject.h">
       <Filter>Contents\Skill</Filter>
     </ClInclude>
     <ClInclude Include="MinFirstSkillScript.h">
+      <Filter>Scripts\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MinSecondSkillScript.h">
       <Filter>Scripts\Skill</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,10 +95,13 @@
     <ClCompile Include="MinEnemyScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="MinFirstSkillGameObject.cpp">
+    <ClCompile Include="MinSkillGameObject.cpp">
       <Filter>Contents\Skill</Filter>
     </ClCompile>
     <ClCompile Include="MinFirstSkillScript.cpp">
+      <Filter>Scripts\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="MinSecondSkillScript.cpp">
       <Filter>Scripts\Skill</Filter>
     </ClCompile>
   </ItemGroup>

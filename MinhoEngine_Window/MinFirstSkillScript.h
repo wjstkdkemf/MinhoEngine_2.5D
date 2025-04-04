@@ -30,6 +30,7 @@ namespace min
 		void OnCollisionExit(Collider* other) override;
 
 		void SetDuration(float Duration) { mDuration = Duration; }
+		void SetDirection(bool dir) { mDirection = dir; }
 
 	private:
 
@@ -39,6 +40,8 @@ namespace min
 
 		float mTime;
 		float mDuration;
+
+		bool mDirection;
 	};
 }
 

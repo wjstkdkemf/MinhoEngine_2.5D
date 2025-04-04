@@ -28,6 +28,8 @@ namespace min
 		, mJumpingTime(0.0f)
 		, mFront(true)
 		, mSpeed(15.0f)
+		, mMoveLock(false)
+		, mCoolTime(4, 3.0f)
 	{
 	}
 	PlayerScript::~PlayerScript()
@@ -49,10 +51,8 @@ namespace min
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<Animator>();
 
-		if (mDelayTime < 2.0f)
-			mDelayTime += Time::DeltaTime();
-
 		Jumping();
+		CoolTimeCheck();
 
 		switch (mState)
 		{
@@ -101,32 +101,51 @@ namespace min
 	{
 
 	}
+	void PlayerScript::CoolTimeCheck()
+	{
+		if (mCoolTime[0] < 2.0f) 
+		{
+			mCoolTime[0] += Time::DeltaTime();
+
+			if (mCoolTime[0] >= 1.0f)
+				mMoveLock = false;
+		}
+
+		if (mCoolTime[1] < 1.0f)
+		{
+			mCoolTime[1] += Time::DeltaTime();
+
+			if (mCoolTime[1] >= 0.5f)
+				mMoveLock = false;
+		}
+	}
 	void PlayerScript::Idle()
 	{
 #pragma region 이동관련 구현(WASD)
-		if (input::GetKey(eKeyCode::D)) {
-			mState = eState::Walk;
-			mAnimator->PlayAnimation(L"PlayerWalk_Right");
-			mFront = true;
-		}
-		if (input::GetKey(eKeyCode::A)) {
-			mState = eState::Walk;
-			mAnimator->PlayAnimation(L"PlayerWalk_Left");
-			mFront = false;
-		}
-		if (input::GetKey(eKeyCode::W)) {
-			mState = eState::Walk;
-		}
-		if (input::GetKey(eKeyCode::S)) {
-			mState = eState::Walk;
-		}
-#pragma region Jump and Gravity
-		if (input::GetKey(eKeyCode::SpaceVar))
+		if(!mMoveLock)
 		{
-			if (!isJump)
-				isJump = true;
+			if (input::GetKey(eKeyCode::D)) {
+				mState = eState::Walk;
+				mAnimator->PlayAnimation(L"PlayerWalk_Right");
+				mFront = true;
+			}
+			if (input::GetKey(eKeyCode::A)) {
+				mState = eState::Walk;
+				mAnimator->PlayAnimation(L"PlayerWalk_Left");
+				mFront = false;
+			}
+			if (input::GetKey(eKeyCode::W)) {
+				mState = eState::Walk;
+			}
+			if (input::GetKey(eKeyCode::S)) {
+				mState = eState::Walk;
+			}
+			if (input::GetKey(eKeyCode::SpaceVar))
+			{
+				if (!isJump)
+					isJump = true;
+			}
 		}
-#pragma endregion
 #pragma endregion
 #pragma region Skill
 		if (input::GetKey(eKeyCode::Q)) {
@@ -159,14 +178,22 @@ namespace min
 #pragma endregion
 #pragma region Skill
 		if (input::GetKey(eKeyCode::Q)) {
-			if (mDelayTime >= 2.0f)
+			if (mCoolTime[0] >= 2.0f)
 			{
 				sm->UseSkill(L"FirstSkill", mFront);
-				mDelayTime = 0.0f;
+				rd->SetVelocity(Vector3::Zero);
+				mMoveLock = true;
+				mCoolTime[0] = 0.0f;
 			}
 		}
 		if (input::GetKey(eKeyCode::E)) {
-			sm->UseSkill(L"SecondSkill", mFront);
+			if (mCoolTime[1] >= 1.0f)
+			{
+				sm->UseSkill(L"SecondSkill", mFront);
+				rd->SetVelocity(Vector3::Zero);
+				mMoveLock = true;
+				mCoolTime[1] = 0.0f;
+			}
 		}
 		if (input::GetKey(eKeyCode::SpaceVar))
 		{

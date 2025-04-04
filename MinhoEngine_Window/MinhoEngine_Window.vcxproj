@@ -157,7 +157,8 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClInclude Include="MinCameraScript.h" />
     <ClInclude Include="MinEffect.h" />
     <ClInclude Include="MinEnemyScript.h" />
-    <ClInclude Include="MinFirstSkillGameObject.h" />
+    <ClInclude Include="MinSecondSkillScript.h" />
+    <ClInclude Include="MinSkillGameObject.h" />
     <ClInclude Include="MinFirstSkillScript.h" />
     <ClInclude Include="MinFloor.h" />
     <ClInclude Include="MinLoadResources.h" />
@@ -208,7 +209,8 @@ copy "$(SolutionDir)\External\Library\Fmod\Release\fmodstudio.dll" "$(SolutionDi
     <ClCompile Include="MinCameraScript.cpp" />
     <ClCompile Include="MinEffect.cpp" />
     <ClCompile Include="MinEnemyScript.cpp" />
-    <ClCompile Include="MinFirstSkillGameObject.cpp" />
+    <ClCompile Include="MinSecondSkillScript.cpp" />
+    <ClCompile Include="MinSkillGameObject.cpp" />
     <ClCompile Include="MinFirstSkillScript.cpp" />
     <ClCompile Include="MinFloor.cpp" />
     <ClCompile Include="MinLoadingScene.cpp" />

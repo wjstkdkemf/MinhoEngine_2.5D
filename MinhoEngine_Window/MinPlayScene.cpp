@@ -128,8 +128,8 @@ namespace min {
 #pragma endregion
 
 		
-		cameraScript->SetPlayer(mPlayer);
-		cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());
+		cameraScript->SetPlayer(mPlayer);// 카메라가 따라다닐 오브젝트 지정
+		cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());//카메라 위치 최대치
 	}
 	void PlayScene::Update()
 	{

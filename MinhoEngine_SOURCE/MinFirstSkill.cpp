@@ -9,7 +9,7 @@
 #include <DirectXMath.h>
 
 #include "..\\MinhoEngine_Window\\MinFirstSkillScript.h"
-#include "..\\MinhoEngine_Window\\MinFirstSkillGameObject.h"
+#include "..\\MinhoEngine_Window\\MinSkillGameObject.h"
 
 
 
@@ -29,14 +29,21 @@ namespace min
     }
     void FirstSkill::Active(bool Direction)
     {
-        FirstSkillGameObject* fsgo = object::Instantiate<FirstSkillGameObject>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
+        SkillGameObject* fsgo = object::Instantiate<SkillGameObject>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
         Transform* fstr = fsgo->GetComponent<Transform>();
         fstr->SetScale(0.5f, 0.3f, 0.0f);
         Vector3 pos = fstr->GetPosition();
-        pos.x += 1.5f;
+
+        if(Direction)
+            pos.x += 1.5f;
+        else
+            pos.x -= 1.5f;
+
         fstr->SetPosition(pos);
         //fsgo->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 2.0f);
         FirstSkillScript* fssc = fsgo->AddComponent<FirstSkillScript>();
+
+        fssc->SetDirection(Direction);
 
         Animator* fsAnimator = fsgo->AddComponent<Animator>();
 
@@ -47,25 +54,6 @@ namespace min
 
         BoxCollider2D* fsCollider = fsgo->AddComponent<BoxCollider2D>();
         Matrix fsmatrix = fstr->GetWorldMatrix();
-        fsCollider->GetBoxCollider2D().Extents = XMFLOAT3(fsmatrix._11, fsmatrix._22 , 0);//GetmSkillCollider()
-
-        
-        /*if (mTime == 0.0f)
-        {
-            mSkillGameObject = object::Instantiate<Cat>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
-        }
-
-        mTime += Time::DeltaTime();
-        if (mTime < this->GetSkillDuration())
-        {
-            int a = 0;
-        }
-        else
-        {
-            this->SetFinish(true);
-            mTime = 0;
-            mSkillGameObject->death();
-        }*/
-
+        fsCollider->GetBoxCollider2D().Extents = XMFLOAT3(fsmatrix._11, fsmatrix._22 , 0);
     }
 }

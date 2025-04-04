@@ -53,8 +53,6 @@ namespace min
 		F_skill->SetSkillManager(this);
 		std::unique_ptr<SecondSkill> S_skill = std::make_unique<SecondSkill>();
 		S_skill->SetSkillManager(this);
-		
-		F_skill->SetSkillManager(this);
 
 		mSkill[L"FirstSkill"] = std::move(F_skill);
 		mSkill[L"SecondSkill"] = std::move(S_skill);

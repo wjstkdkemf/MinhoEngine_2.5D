@@ -3,7 +3,7 @@
 
 namespace min
 {
-	class FirstSkillGameObject :public GameObject
+	class SkillGameObject :public GameObject
 	{
 	public:
 		void Initialize() override;
