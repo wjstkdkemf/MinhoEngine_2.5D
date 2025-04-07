@@ -1,4 +1,4 @@
-#include "MinBoxCollider2D.h"
+#include "MinBoxCollider2DOBB.h"
 #include "MinTransform.h"
 #include "minGameObject.h"
 #include "MinRenderer.h"
@@ -10,15 +10,15 @@
 
 namespace min
 {
-	BoxCollider2D::BoxCollider2D()
-		:Collider(eColliderType::Rect2DAABB)
-	{
-	}
-	BoxCollider2D::~BoxCollider2D()
-	{
-	}
-	void BoxCollider2D::Initialize()
-	{
+    BoxCollider2DOBB::BoxCollider2DOBB()
+        :Collider(eColliderType::Rect2DOBB)
+    {
+    }
+    BoxCollider2DOBB::~BoxCollider2DOBB()
+    {
+    }
+    void BoxCollider2DOBB::Initialize()
+    {
         {
             void const* shaderByteCode;
             size_t byteCodeLength;
@@ -30,18 +30,18 @@ namespace min
                 , shaderByteCode
                 , byteCodeLength);
         }
-	}
-	void BoxCollider2D::Update()
-	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		mBoxCollider2D.Center = tr->GetPosition();
-		
+    }
+    void BoxCollider2DOBB::Update()
+    {
+        Transform* tr = GetOwner()->GetComponent<Transform>();
+        mBoxCollider2D.Center = tr->GetPosition();
+
         renderer::batchEffect->SetProjection(Camera::GetGpuProjectionMatrix());
         renderer::batchEffect->SetView(Camera::GetGpuViewMatrix());
-	}
-	void BoxCollider2D::LateUpdate()
-	{
-        BoxCollider2D* Collider = GetOwner()->GetComponent<BoxCollider2D>();
+    }
+    void BoxCollider2DOBB::LateUpdate()
+    {
+        BoxCollider2DOBB* Collider = GetOwner()->GetComponent<BoxCollider2DOBB>();
         Transform* fstr = GetOwner()->GetComponent<Transform>();
 
         if (GetOwner()->GetName() == L"Player")
@@ -50,34 +50,38 @@ namespace min
         }
         else
         {
-            Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 2.0f, fstr->GetScale().y / 2.0f, 0);
-            
+            Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 2.0f, fstr->GetScale().y / 2.0f, 0);//GetmSkillCollider()
+            XMStoreFloat4(&(Collider->GetBoxCollider2D().Orientation),
+                XMQuaternionRotationRollPitchYaw(math::Radian(fstr->GetRotation().x), math::Radian(fstr->GetRotation().y), math::Radian(fstr->GetRotation().z)));
         }
-	}
-	void BoxCollider2D::Render()
-	{
-        DrawAabb(mBoxCollider2D, Colors::White);
-	}
-	bool BoxCollider2D::Intersects(Collider* other)
-	{
-		if (other->GetColType() == eColliderType::Rect2DAABB)
-		{
-			if (mBoxCollider2D.Intersects(((BoxCollider2D*)other)->GetBoxCollider2D()))
-				return true;
-		}
-		return false;
-	}
-
-    ContainmentType BoxCollider2D::Contain(Collider* other)
+    }
+    void BoxCollider2DOBB::Render()
     {
-        if (other->GetColType() == eColliderType::Rect2DAABB)
+        // DrawAabb(mBoxCollider2D, Colors::White);
+
+        DrawObb(mBoxCollider2D, Colors::White);
+
+    }
+    bool BoxCollider2DOBB::Intersects(Collider* other)
+    {
+        if (other->GetColType() == eColliderType::Rect2DOBB)
         {
-            return (mBoxCollider2D.Contains(((BoxCollider2D*)other)->GetBoxCollider2D()));
+            if (mBoxCollider2D.Intersects(((BoxCollider2D*)other)->GetBoxCollider2D()))
+                return true;
+        }
+        return false;
+    }
+
+    ContainmentType BoxCollider2DOBB::Contain(Collider* other)
+    {
+        if (other->GetColType() == eColliderType::Rect2DOBB)
+        {
+            return (mBoxCollider2D.Contains(((BoxCollider2DOBB*)other)->GetBoxCollider2D()));
         }
         return ContainmentType::DISJOINT;
     }
 
-    void BoxCollider2D::OnCollisionEnter(Collider* other)
+    void BoxCollider2DOBB::OnCollisionEnter(Collider* other)
     {
         /*if (other->GetOwner()->GetLayerType() == eLayerType::Enemy)
         {
@@ -86,24 +90,25 @@ namespace min
         }*/
     }
 
-    void BoxCollider2D::OnCollisionStay(Collider* other)
+    void BoxCollider2DOBB::OnCollisionStay(Collider* other)
     {
     }
 
-    void BoxCollider2D::OnCollisionExit(Collider* other)
+    void BoxCollider2DOBB::OnCollisionExit(Collider* other)
     {
     }
-
-    void BoxCollider2D::DrawAabb(BoundingBox box, FXMVECTOR color)
+    void BoxCollider2DOBB::DrawObb(BoundingOrientedBox box, FXMVECTOR color)
     {
-        XMMATRIX matWorld = XMMatrixScaling(box.Extents.x, box.Extents.y, box.Extents.z);
+        XMMATRIX matWorld = XMMatrixRotationQuaternion(XMLoadFloat4(&box.Orientation));
+        XMMATRIX matScale = XMMatrixScaling(box.Extents.x, box.Extents.y, box.Extents.z);
+        matWorld = XMMatrixMultiply(matScale, matWorld);
         XMVECTOR position = XMLoadFloat3(&box.Center);
         matWorld.r[3] = XMVectorSelect(matWorld.r[3], position, g_XMSelect1110);
 
         DrawCube(matWorld, color);
     }
 
-    void BoxCollider2D::DrawCube(CXMMATRIX mWorld, FXMVECTOR color)
+    void BoxCollider2DOBB::DrawCube(CXMMATRIX mWorld, FXMVECTOR color)
     {
         static const XMVECTOR s_verts[8] =
         {
@@ -154,11 +159,11 @@ namespace min
 /*
 void DrawAabb( const BoundingBox& box, FXMVECTOR color )
 {
-	XMMATRIX matWorld = XMMatrixScaling( box.Extents.x, box.Extents.y, box.Extents.z );
-	XMVECTOR position = XMLoadFloat3( &box.Center );
-	matWorld.r[3] = XMVectorSelect( matWorld.r[3], position, g_XMSelect1110 );
+    XMMATRIX matWorld = XMMatrixScaling( box.Extents.x, box.Extents.y, box.Extents.z );
+    XMVECTOR position = XMLoadFloat3( &box.Center );
+    matWorld.r[3] = XMVectorSelect( matWorld.r[3], position, g_XMSelect1110 );
 
-	DrawCube( matWorld, color );
+    DrawCube( matWorld, color );
 }
 */
 

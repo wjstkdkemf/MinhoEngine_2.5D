@@ -4,11 +4,11 @@
 
 namespace min
 {
-	class BoxCollider2D : public Collider
+	class BoxCollider2DOBB : public Collider
 	{
 	public:
-		BoxCollider2D();
-		~BoxCollider2D();
+		BoxCollider2DOBB();
+		~BoxCollider2DOBB();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -22,13 +22,13 @@ namespace min
 		virtual void OnCollisionEnter(Collider* other) override;
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
-		
-		BoundingBox& GetBoxCollider2D() { return mBoxCollider2D; }
-		void DrawAabb(BoundingBox box, FXMVECTOR color);
+
+		BoundingOrientedBox& GetBoxCollider2D() { return mBoxCollider2D; }
+		void DrawObb(BoundingOrientedBox box, FXMVECTOR color);
 		void DrawCube(CXMMATRIX mWorld, FXMVECTOR color);
 
 	private:
-		BoundingBox mBoxCollider2D;//BoundingBox
+		BoundingOrientedBox mBoxCollider2D;//BoundingBox
 		graphics::InputLayout mInputLayout;
 	};
 }

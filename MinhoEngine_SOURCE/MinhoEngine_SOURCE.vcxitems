@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinAudioListener.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MiNAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinBoxCollider2DOBB.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinCollider.h" />
@@ -103,6 +104,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioListener.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinBoxCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinBoxCollider2DOBB.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCircleCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinCollider.cpp" />

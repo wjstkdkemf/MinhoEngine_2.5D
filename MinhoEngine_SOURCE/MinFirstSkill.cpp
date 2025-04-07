@@ -18,7 +18,7 @@ namespace min
     FirstSkill::FirstSkill()
         : mTime(0.0f)
     {
-        this->SetSkillColType(eColliderType::Rect2D);
+        this->SetSkillColType(eColliderType::Rect2DAABB);
         this->SetSkillDamage(100.0f);
         this->SetSkillPosition(Vector3::Zero);
         this->SetSkillAnimation(L"FirstSkill");

@@ -6,13 +6,14 @@
 #include "..\\MinhoEngine_Window\MinEffect.h"
 #include "..\\MinhoEngine_Window\MinSkillGameObject.h"
 #include "..\\MinhoEngine_Window\MinSecondSkillScript.h"
+#include "MinBoxCollider2DOBB.h"
 
 namespace min
 {
 	SecondSkill::SecondSkill()
 		: mTime(0.0f)
 	{
-		this->SetSkillColType(eColliderType::Rect2D);
+		this->SetSkillColType(eColliderType::Rect2DOBB);
 		this->SetSkillDamage(100.0f);
 		this->SetSkillPosition(Vector3::Zero);
 		this->SetSkillAnimation(L"SecondSkill");
@@ -56,7 +57,7 @@ namespace min
 
         sssc->SetDuration(GetSkillDuration());
 
-        BoxCollider2D* fsCollider = ssgo->AddComponent<BoxCollider2D>();
+        BoxCollider2DOBB* fsCollider = ssgo->AddComponent<BoxCollider2DOBB>();
         Matrix fsmatrix = sstr->GetWorldMatrix();
         fsCollider->GetBoxCollider2D().Extents = XMFLOAT3(fsmatrix._11, fsmatrix._22, 0);
 	}

@@ -151,6 +151,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinShadow.cpp">
       <Filter>Component\Shadow</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinBoxCollider2DOBB.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MinShadow.h">
       <Filter>Component\Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinBoxCollider2DOBB.h">
+      <Filter>Component\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
