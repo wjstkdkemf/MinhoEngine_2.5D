@@ -16,7 +16,7 @@ namespace min
 		this->SetSkillDamage(100.0f);
 		this->SetSkillPosition(Vector3::Zero);
 		this->SetSkillAnimation(L"SecondSkill");
-		this->SetSkillDuration(0.3f);
+		this->SetSkillDuration(1.0f);//스킬 지속 시간
 	}
 	SecondSkill::~SecondSkill()
 	{
@@ -25,15 +25,22 @@ namespace min
 	{
         SkillGameObject* ssgo = object::Instantiate<SkillGameObject>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
         Transform* sstr = ssgo->GetComponent<Transform>();
-        sstr->SetScale(0.5f, 0.3f, 0.0f);
+        sstr->SetScale(0.1f, 0.5f, 0.0f);
         Vector3 pos = sstr->GetPosition();
+        Vector3 Rot = sstr->GetRotation();
 
         if (Direction)
+        {
             pos.x += 0.5f;
+            sstr->SetRotation(Rot.x, Rot.y, Rot.z -35.0f);
+        }
         else
+        {
             pos.x -= 0.5f;
+            sstr->SetRotation(Rot.x, Rot.y, Rot.z + 35.0f);
+        }
 
-
+        pos.y += 0.2f;
 
         sstr->SetPosition(pos);
         

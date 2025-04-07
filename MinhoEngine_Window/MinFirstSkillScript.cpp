@@ -61,7 +61,9 @@ namespace min
             pos.x += 10.0f * Time::DeltaTime();
         else
             pos.x -= 10.0f * Time::DeltaTime();
+
         tr->SetPosition(pos.x , pos.y, pos.z);
+
     }
     void FirstSkillScript::OnCollisionEnter(Collider* other)
     {

@@ -31,10 +31,10 @@ namespace min {
 		void SetPosition(Vector3 position) { mPosition = position; }
 		void SetPosition(float x, float y, float z) { mPosition = Vector3(x, y, z); }
 		void SetRotation(Vector3 rotation) { mRotation = rotation; }
-		void SetPlusZvalue(float Z) { mZvalue += Z; }
 		void SetRotation(float x, float y, float z) { mRotation = Vector3(x, y, z); }
 		void SetScale(Vector3 scale) { mScale = scale; }
 		void SetScale(float x, float y, float z) { mScale = Vector3(x, y, z); }
+		void SetPlusZvalue(float Z) { mZvalue += Z; }
 
 		const Vector3 Foward() { return mForward; };
 		const Vector3 Right() { return mRight; };

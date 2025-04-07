@@ -51,11 +51,16 @@ namespace min
         else
         {
             Collider->GetBoxCollider2D().Extents = XMFLOAT3(fstr->GetScale().x / 2.0f, fstr->GetScale().y / 2.0f, 0);//GetmSkillCollider()
+            XMStoreFloat4(&(Collider->GetBoxCollider2D().Orientation), 
+                XMQuaternionRotationRollPitchYaw(math::Radian(fstr->GetRotation().x), math::Radian(fstr->GetRotation().y), math::Radian(fstr->GetRotation().z)));
         }
 	}
 	void BoxCollider2D::Render()
 	{
-        DrawAabb(mBoxCollider2D, Colors::White);
+       // DrawAabb(mBoxCollider2D, Colors::White);
+
+        DrawObb(mBoxCollider2D, Colors::White);
+
 	}
 	bool BoxCollider2D::Intersects(Collider* other)
 	{
@@ -93,9 +98,20 @@ namespace min
     {
     }
 
-    void BoxCollider2D::DrawAabb(BoundingBox box, FXMVECTOR color)
+    void BoxCollider2D::DrawAabb(BoundingOrientedBox box, FXMVECTOR color)
     {
         XMMATRIX matWorld = XMMatrixScaling(box.Extents.x, box.Extents.y, box.Extents.z);
+        XMVECTOR position = XMLoadFloat3(&box.Center);
+        matWorld.r[3] = XMVectorSelect(matWorld.r[3], position, g_XMSelect1110);
+
+        DrawCube(matWorld, color);
+    }
+
+    void BoxCollider2D::DrawObb(BoundingOrientedBox box, FXMVECTOR color)
+    {
+        XMMATRIX matWorld = XMMatrixRotationQuaternion(XMLoadFloat4(&box.Orientation));
+        XMMATRIX matScale = XMMatrixScaling(box.Extents.x, box.Extents.y, box.Extents.z);
+        matWorld = XMMatrixMultiply(matScale, matWorld);
         XMVECTOR position = XMLoadFloat3(&box.Center);
         matWorld.r[3] = XMVectorSelect(matWorld.r[3], position, g_XMSelect1110);
 

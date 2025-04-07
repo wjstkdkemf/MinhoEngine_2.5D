@@ -13,7 +13,8 @@ namespace min
         , mPivot()
         , mStart() 
         , mAngle(0.0f)
-        , mDeltaAngle(-5.0f)
+        , mDeltaAngle(-0.5f)
+        , mDirection(true)
     {
     }
     SecondSkillScript::~SecondSkillScript()
@@ -29,6 +30,7 @@ namespace min
 
         if (mTime > mDuration)
             object::Destory(GetOwner());
+
         if (mAnimator == nullptr)
             mAnimator = GetOwner()->GetComponent<Animator>();
 
@@ -60,13 +62,18 @@ namespace min
     void SecondSkillScript::Move(Transform* tr)
     {
         Vector3 pos = tr->GetPosition();
+        Vector3 Rot = tr->GetRotation();
 
+        if (mDeltaAngle == -0.5f && !mDirection)
+        {
+            mDeltaAngle = 0.5f;
+        }
+        
+
+        Rot.z +=  mDeltaAngle;
         UpdateSetting();
-
-        if (mDeltaAngle == -5.0f && !mDirection)
-            mDeltaAngle = 5.0f;
-
         tr->SetPosition(mStart.x, mStart.y, pos.z);
+        tr->SetRotation(Rot.x, Rot.y, Rot.z);
     }
     void SecondSkillScript::OnCollisionEnter(Collider* other)
     {

@@ -23,12 +23,13 @@ namespace min
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 		
-		BoundingBox& GetBoxCollider2D() { return mBoxCollider2D; }
-		void DrawAabb(BoundingBox box, FXMVECTOR color);
+		BoundingOrientedBox& GetBoxCollider2D() { return mBoxCollider2D; }
+		void DrawAabb(BoundingOrientedBox box, FXMVECTOR color);
+		void DrawObb(BoundingOrientedBox box, FXMVECTOR color);
 		void DrawCube(CXMMATRIX mWorld, FXMVECTOR color);
 
 	private:
-		BoundingBox mBoxCollider2D;
+		BoundingOrientedBox mBoxCollider2D;//BoundingBox
 		graphics::InputLayout mInputLayout;
 	};
 }
