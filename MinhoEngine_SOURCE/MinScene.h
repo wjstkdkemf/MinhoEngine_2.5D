@@ -23,6 +23,7 @@ namespace min {
 		void EraseGameObject(GameObject* gameObj);
 		Layer* GetLayer(const enums::eLayerType type) { return mLayer[(UINT)type]; }
 
+
 	private :
 		void CreateLayers();
 

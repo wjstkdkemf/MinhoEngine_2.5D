@@ -58,6 +58,9 @@ namespace min
 	void CameraScript::LateUpdate()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
+		if (mPlayer == nullptr)
+			return ;
+
 		Transform* prtr = mPlayer->GetComponent<Transform>();
 		Vector3 pos = prtr->GetPosition();
 

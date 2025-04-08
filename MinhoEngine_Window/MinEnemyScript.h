@@ -34,6 +34,7 @@ namespace min
 		eState mState;
 		class Animator* mAnimator;
 
+		float HP;
 		//void (*StartEvent)();
 		//void (*CompleteEvent)();
 		//void (*EndEvent)();

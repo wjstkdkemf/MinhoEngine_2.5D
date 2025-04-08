@@ -18,11 +18,11 @@ namespace min
     FirstSkill::FirstSkill()
         : mTime(0.0f)
     {
-        this->SetSkillColType(eColliderType::Rect2DAABB);
-        this->SetSkillDamage(100.0f);
-        this->SetSkillPosition(Vector3::Zero);
-        this->SetSkillAnimation(L"FirstSkill");
-        this->SetSkillDuration(2.0f);
+        SetSkillColType(eColliderType::Rect2DAABB);
+        SetSkillDamage(100.0f);
+        SetSkillPosition(Vector3(1.5f, 0.0f , 0.0f));
+        SetSkillAnimation(L"FirstSkill");
+        SetSkillDuration(2.0f);
     }
     FirstSkill::~FirstSkill()
     {
@@ -30,14 +30,16 @@ namespace min
     void FirstSkill::Active(bool Direction)
     {
         SkillGameObject* fsgo = object::Instantiate<SkillGameObject>(eLayerType::SkillEffect, this->GetSkillManager()->GetOwner()->GetComponent<Transform>()->GetPosition());
+
+#pragma region 기초설정
         Transform* fstr = fsgo->GetComponent<Transform>();
         fstr->SetScale(0.5f, 0.3f, 0.0f);
         Vector3 pos = fstr->GetPosition();
 
-        if(Direction)
-            pos.x += 1.5f;
+        if (Direction)
+            pos.x += GetSkillPosition().x;
         else
-            pos.x -= 1.5f;
+            pos.x -= GetSkillPosition().x;
 
         fstr->SetPosition(pos);
         //fsgo->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 2.0f);
@@ -45,15 +47,19 @@ namespace min
 
         fssc->SetDirection(Direction);
 
-        Animator* fsAnimator = fsgo->AddComponent<Animator>();
+        fsgo->SetDamage(GetSkillDamage());
+        fssc->SetDuration(GetSkillDuration());
 
+        Animator* fsAnimator = fsgo->AddComponent<Animator>();
         fsAnimator->CreateAnimation(GetSkillAnimation(), Resources::Find<graphics::Texture>(L"FirstSkill")
             , Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, GetSkillDuration() / 8.0f); // duration / 프레임 갯수
 
-        fssc->SetDuration(GetSkillDuration());
+#pragma endregion
 
         BoxCollider2D* fsCollider = fsgo->AddComponent<BoxCollider2D>();
         Matrix fsmatrix = fstr->GetWorldMatrix();
         fsCollider->GetBoxCollider2D().Extents = XMFLOAT3(fsmatrix._11, fsmatrix._22 , 0);
+
+
     }
 }

@@ -13,7 +13,7 @@ namespace min
         , mPivot()
         , mStart() 
         , mAngle(0.0f)
-        , mDeltaAngle(-0.5f)
+        , mDeltaAngle(-5.0f)
         , mDirection(true)
     {
     }
@@ -64,9 +64,9 @@ namespace min
         Vector3 pos = tr->GetPosition();
         Vector3 Rot = tr->GetRotation();
 
-        if (mDeltaAngle == -0.5f && !mDirection)
+        if (mDeltaAngle == -5.0f && !mDirection)
         {
-            mDeltaAngle = 0.5f;
+            mDeltaAngle *= -1.0f;
         }
         
 

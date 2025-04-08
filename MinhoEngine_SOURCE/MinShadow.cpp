@@ -26,7 +26,8 @@ namespace min
 
 		SpriteRenderer* sdsr = mShadow->AddComponent<SpriteRenderer>();
 		sdsr->SetSprite(Resources::Find<graphics::Texture>(L"Shadow"));
-		mShadow->AddComponent<BoxCollider2D>();
+		BoxCollider2D* shbc = mShadow->AddComponent<BoxCollider2D>();
+		shbc->SetName(L"Shadow");
 	}
 	void Shadow::Update()
 	{
@@ -36,8 +37,7 @@ namespace min
 		sdtr->SetScale((tr->GetScale().x) / 6.0f, (tr->GetScale().y) / 8.0f, (tr->GetScale().z) / 2.0f);
 		sdtr->SetPosition(Vector3(tr->GetPosition().x, tr->GetPosition().y - tr->GetZvalue() - (tr->GetScale().y / 4.0f), tr->GetPosition().z));
 
-		if (!(GetOwner()->GetComponent<Rigidbody>()->GetGround()))
-			int a = 10;
+		//if (!(GetOwner()->GetComponent<Rigidbody>()->GetGround()))
 	}
 	void Shadow::LateUpdate()
 	{

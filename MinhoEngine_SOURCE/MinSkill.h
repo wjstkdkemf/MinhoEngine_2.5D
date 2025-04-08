@@ -25,6 +25,8 @@ namespace min
 
 		std::wstring GetSkillAnimation() { return mSkillAnimation; }
 		float GetSkillDuration() {return SkillDuration; }
+		float GetSkillDamage() { return mSkillDamage; }
+		Vector3 GetSkillPosition() { return mSkillPosition; }
 		bool GetFinish() { return mFinish; }
 		XMFLOAT3 GetmSkillCollider() { return ColliderExtent; }
 
@@ -35,8 +37,6 @@ namespace min
 
 
 	private:
-		//Animation* mSkillAnimation;
-		//BoxCollider2D mSkillCollider;
 		XMFLOAT3 ColliderExtent;
 		class SkillManager* mSkillManager;
 		enums::eColliderType mSkillColType; // 스킬의 collider 형태

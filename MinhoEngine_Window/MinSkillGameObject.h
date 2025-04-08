@@ -11,7 +11,10 @@ namespace min
 		void LateUpdate() override;
 		void Rander() override;
 
+		void SetDamage(float damage) { Damage = damage; }
+		float GetDamage() { return Damage; }
 	private:
+		float Damage;
 	};
 }
 

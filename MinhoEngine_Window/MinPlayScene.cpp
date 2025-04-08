@@ -95,14 +95,15 @@ namespace min {
 			
 		playerAnimator->PlayAnimation(L"Player_Idle",true);
 
-		mPlayer->AddComponent<Shadow>();
 		mPlayer->AddComponent<Rigidbody>();
+		mPlayer->AddComponent<Shadow>();
 
 		BoxCollider2D* mPlayerBoxCollidder = mPlayer->AddComponent<BoxCollider2D>();
 
 		SkillManager* prsm = mPlayer->AddComponent<SkillManager>();
 
 		object::DontDestoryOnLoad(mPlayer);
+		object::DontDestoryOnLoad(mPlayer->GetComponent<Shadow>()->GetShadow());
 
 		//playerAnimator->CreateAnimationByFolder(L"PlayerWalk", FolderPath, Vector2::Zero, 1.0f);
 #pragma endregion
@@ -151,6 +152,8 @@ namespace min {
 	{
 		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Enemy, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Shadow, eLayerType::Floor, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::SkillEffect, eLayerType::Enemy, true);
+
 
 		/*UIManager::Push(eUIType::Button);*/
 		Scene::OnEnter();

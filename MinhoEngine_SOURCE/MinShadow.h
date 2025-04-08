@@ -17,6 +17,7 @@ namespace min
 		void SetGroundMaterial();
 		std::wstring& GetGroundMaterial() { return mGroundMaterial; }
 		
+		class Effect* GetShadow() { return mShadow; }
 
 	private:
 		class Effect* mShadow;

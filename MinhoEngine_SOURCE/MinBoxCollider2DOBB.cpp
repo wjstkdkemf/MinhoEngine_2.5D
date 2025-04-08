@@ -4,6 +4,7 @@
 #include "MinRenderer.h"
 #include "MinCamera.h"
 #include "MinSkillManager.h"
+#include "MinScript.h"
 
 #include "DirectXColors.h"
 #include "DirectXMath.h"
@@ -64,7 +65,7 @@ namespace min
     }
     bool BoxCollider2DOBB::Intersects(Collider* other)
     {
-        if (other->GetColType() == eColliderType::Rect2DOBB)
+        if (other->GetColType() == eColliderType::Rect2DAABB)
         {
             if (mBoxCollider2D.Intersects(((BoxCollider2D*)other)->GetBoxCollider2D()))
                 return true;
@@ -83,11 +84,11 @@ namespace min
 
     void BoxCollider2DOBB::OnCollisionEnter(Collider* other)
     {
-        /*if (other->GetOwner()->GetLayerType() == eLayerType::Enemy)
-        {
-            if(GetOwner()->GetLayerType() == eLayerType::Player)
-                GetOwner()->GetComponent<SkillManager>()->
-        }*/
+        if (other->GetName() == L"Floor" || other->GetName() == L"Shadow")
+            return;
+
+        Script* script = GetOwner()->GetComponent<Script>();
+        script->OnCollisionEnter(other);
     }
 
     void BoxCollider2DOBB::OnCollisionStay(Collider* other)

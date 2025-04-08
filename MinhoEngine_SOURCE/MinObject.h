@@ -37,6 +37,7 @@ namespace min::object
 		return gameobject;
 	}
 
+
 	static void Destory(GameObject* obj)
 	{
 		obj->death();
@@ -50,5 +51,12 @@ namespace min::object
 
 		Scene* dontDestroyOnLoad = SceneManager::GetDontDestroyOnLoad();
 		dontDestroyOnLoad->AddGameObject(gameobject, gameobject->GetLayerType());
+	}
+
+	static GameObject* GetDontDestoryOnLoadLayer(const enums::eLayerType type)
+	{
+		Scene* dontDestroyOnLoad = SceneManager::GetDontDestroyOnLoad();
+
+		return (dontDestroyOnLoad->GetLayer(type)->GetGameObjects())[0];
 	}
 }
