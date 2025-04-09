@@ -38,8 +38,7 @@ namespace min {
 	{
 	}
 	void PlayScene::Initialize()
-	{
-		
+	{	
 		Scene::Initialize();
 #pragma region Camera
 		GameObject* camera = object::Instantiate<GameObject>
@@ -50,6 +49,8 @@ namespace min {
 		cameraComp->SetSize(200.0f);
 
 		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
+
+		mCameraVector.push_back(camera);
 		renderer::mainCamera = cameraComp;
 #pragma endregion
 #pragma region BG
@@ -78,7 +79,7 @@ namespace min {
 #pragma endregion
 #pragma region Player
 		Player* mPlayer = object::Instantiate<Player>
-			(enums::eLayerType::Player, Vector3(0.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+			(enums::eLayerType::Player, Vector3(3.0f, 3.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
 		mPlayer->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 0.0f);
 		mPlayer->SetName(L"Player");
 		PlayerScript* prsc = mPlayer->AddComponent<PlayerScript>();
@@ -107,7 +108,6 @@ namespace min {
 
 		//playerAnimator->CreateAnimationByFolder(L"PlayerWalk", FolderPath, Vector2::Zero, 1.0f);
 #pragma endregion
-
 #pragma region Enemy
 		GameObject* Enemy = object::Instantiate<GameObject>
 			(enums::eLayerType::Enemy, Vector3(-4.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
@@ -127,7 +127,6 @@ namespace min {
 
 		BoxCollider2D* mEnemyBoxCollidder = Enemy->AddComponent<BoxCollider2D>();
 #pragma endregion
-
 		
 		cameraScript->SetPlayer(mPlayer);// 카메라가 따라다닐 오브젝트 지정
 		cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());//카메라 위치 최대치
@@ -154,6 +153,8 @@ namespace min {
 		CollisionManager::CollisionLayerCheck(eLayerType::Shadow, eLayerType::Floor, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::SkillEffect, eLayerType::Enemy, true);
 
+		UIManager::Push(eUIType::HPBAR);
+		renderer::mainCamera = mCameraVector[0]->GetComponent<Camera>();
 
 		/*UIManager::Push(eUIType::Button);*/
 		Scene::OnEnter();
@@ -161,7 +162,7 @@ namespace min {
 	void PlayScene::OnExit()
 	{
 		//Transform* tr = mPlayer->GetComponent<Transform>();
-		//UIManager::Pop(eUIType::Button);
+		//UIManager::Pop(eUIType::HPBAR);
 		//tr->SetPosition(Vector2(0, 0));
 		Scene::OnExit();
 	}

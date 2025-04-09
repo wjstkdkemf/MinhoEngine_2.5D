@@ -44,16 +44,16 @@ namespace min
 		void SetType(eUIType type) {mType = type ; }
 		void SetFullScreen(bool enable) { mbFullScreen = enable; }
 		bool IsFullScreen() {return mbFullScreen; }
-		Vector2 GetPos() { return mPosition; }
-		void SetPos(Vector2 pos) { mPosition = pos; }
-		Vector2 GetSize() { return mSize; }
-		void SetSize(Vector2 size) { mSize = size; }
+		Vector3 GetPos() { return mPosition; }
+		void SetPos(Vector3 pos) { mPosition = pos; }
+		Vector3 GetSize() { return mSize; }
+		void SetSize(Vector3 size) { mSize = size; }
 
 
 
 	protected:
-		Vector2 mPosition;
-		Vector2 mSize;
+		Vector3 mPosition;
+		Vector3 mSize;
 		bool mbMouseOn;
 
 	private:

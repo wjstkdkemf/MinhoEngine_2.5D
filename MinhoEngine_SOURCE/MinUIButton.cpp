@@ -12,8 +12,8 @@ namespace min
 	}
 	void UIButton::OnInit()
 	{
-		SetPos(Vector2(200.0f, 200.0f));
-		SetSize(Vector2(200.0f, 200.0f));
+		//SetPos(Vector3(200.0f, 200.0f));
+		//SetSize(Vector3(200.0f, 200.0f));
 
 		mOnClick = std::bind(&UIButton::ButtonClick, this);
 	}

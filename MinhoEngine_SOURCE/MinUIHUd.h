@@ -1,6 +1,9 @@
 #pragma once
 #include "MinUIBase.h"
 #include "MinTexture.h"
+#include "MinMesh.h"
+#include "MinMaterial.h"
+#include "MinTransform.h"
 
 namespace min
 {
@@ -19,7 +22,10 @@ namespace min
 		virtual void OnClear() override;
 
 	private:
-		graphics::Texture* mTexture;
+		Transform* mHptr;
+		graphics::Texture* mSprite;
+		Material* mMaterial;
+		Mesh* mMesh;
 	};
 }
 

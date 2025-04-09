@@ -96,9 +96,9 @@ namespace min
 			Resources::Load<graphics::Texture>(L"Shadow", L"..\\Resources\\shadow.png");
 			Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
 			Resources::Load<graphics::Texture>(L"Floor_1", L"..\\Resources\\Char\\BG\\Bg_Beach.png");
-			Resources::Load<graphics::Texture>(L"Floor_2", L"..\\Resources\\CloudOcean.png");
+			Resources::Load<graphics::Texture>(L"Floor_2", L"..\\Resources\\//CloudOcean.png");//CloudOcean.png
+			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 
-			
 			//renderer::Initialize();
 
 			SceneManager::CreateScene<PlayScene>(L"PlayScene");

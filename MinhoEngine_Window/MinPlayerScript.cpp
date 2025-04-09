@@ -241,10 +241,10 @@ namespace min
 	}
 	void PlayerScript::MakeSkill_Info()
 	{
-		Skill_info = object::Instantiate<GameObject>(enums::eLayerType::Shadow, Vector3(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f));
+		/*Skill_info = object::Instantiate<GameObject>(enums::eLayerType::Shadow, Vector3(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f));
 		Skill_info->GetComponent<Transform>()->SetScale(0.3f, 0.3f, 0);
 		SpriteRenderer* sksr = Skill_info->AddComponent<SpriteRenderer>();
 		sksr->SetSprite(Resources::Find<graphics::Texture>(L"Bubble"));
-		Skill_info->AddComponent<Shadow>();
+		Skill_info->AddComponent<Shadow>();*/
 	}
 }

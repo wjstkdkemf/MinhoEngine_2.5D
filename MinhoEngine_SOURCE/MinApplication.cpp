@@ -66,14 +66,14 @@ namespace min {
 		Time::Update();
 
 		CollisionManager::Update();
-		UIManager::Update();
 		SceneManager::Update();
+		UIManager::Update();
 	}
 	void Application::LateUpdate()
 	{
 		CollisionManager::LateUpdate();
-		UIManager::LateUpdate();
 		SceneManager::LateUpdate();
+		UIManager::LateUpdate();
 	}
 	void Application::Render()
 	{
@@ -85,8 +85,8 @@ namespace min {
 
 		Time::Render();
 		CollisionManager::Render();
-		UIManager::Render();
 		SceneManager::Render();
+		UIManager::Render();
 
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> src = GetDevice()->GetFrameBuffer();
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> dst = renderer::FrameBuffer->GetAttachmentTexture(0)->GetTexture();

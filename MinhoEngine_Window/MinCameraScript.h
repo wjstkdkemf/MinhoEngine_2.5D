@@ -25,6 +25,9 @@ namespace min
 			mMaxWidthInOrgan = X;
 			mMaxHeightInOrgan = Y;
 		}
+		float GetMaxWidth() { return mMaxWidthInOrgan; }
+		float GetMaxHeight() { return mMaxHeightInOrgan; }
+
 
 	private:
 		Player* mPlayer;

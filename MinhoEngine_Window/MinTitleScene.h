@@ -17,6 +17,7 @@ namespace min {
 		void OnExit() override;
 
 	private:
+		std::vector<GameObject*> mCameraVector;
 	};
 }
 

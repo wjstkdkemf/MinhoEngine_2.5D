@@ -14,6 +14,7 @@
 #include "MinCameraScript.h"
 #include "MinFloor.h"
 #include "MinBoxCollider2D.h"
+#include "MinUIManager.h"
 
 namespace min {
 	TitleScene::TitleScene()
@@ -34,6 +35,7 @@ namespace min {
 		cameraComp->SetSize(200.0f);
 
 		CameraScript* cameraScript = camera->AddComponent<CameraScript>();
+		mCameraVector.push_back(camera);
 		renderer::mainCamera = cameraComp;
 #pragma endregion
 #pragma region Floor
@@ -71,6 +73,7 @@ namespace min {
 	}
 	void TitleScene::OnEnter()
 	{
+		renderer::mainCamera = mCameraVector[0]->GetComponent<Camera>();
 		Scene::OnEnter();
 	}
 	void TitleScene::OnExit()
