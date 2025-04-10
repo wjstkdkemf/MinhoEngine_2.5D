@@ -10,6 +10,11 @@ namespace min
 	class UIHUd : public UIBase
 	{
 	public:
+		struct Vertex {
+			XMFLOAT3 position;  // (x, y, z) ? È­¸é ÇÈ¼¿ ±âÁØ ÁÂÇ¥
+			XMFLOAT2 uv;        // ÅØ½ºÃ³ ÁÂÇ¥ (0~1)
+		};
+
 		UIHUd();
 		~UIHUd();
 

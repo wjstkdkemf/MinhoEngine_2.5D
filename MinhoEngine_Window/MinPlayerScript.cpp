@@ -140,6 +140,10 @@ namespace min
 			if (input::GetKey(eKeyCode::S)) {
 				mState = eState::Walk;
 			}
+			if (input::GetKey(eKeyCode::P))
+			{
+				input::GetMousePosition();
+			}
 			if (input::GetKey(eKeyCode::SpaceVar))
 			{
 				if (!isJump)
@@ -174,6 +178,10 @@ namespace min
 		}
 		if (input::GetKey(eKeyCode::S)) {
 			rd->AddForce(Vector3(0.0f, -mSpeed, 0.0f));
+		}
+		if (input::GetKey(eKeyCode::P))
+		{
+			input::GetMousePosition();
 		}
 #pragma endregion
 #pragma region Skill

@@ -1,6 +1,9 @@
 #include "MinUIManager.h"
 #include "MinUIHUd.h"
 #include "MinUIButton.h"
+#include "MinApplication.h"
+
+extern min::Application application;
 
 namespace min
 {
@@ -8,6 +11,17 @@ namespace min
 	std::stack<UIBase*> UIManager::mUIBases = {};
 	std::queue<eUIType>UIManager::mRequestUIQueue = {};
 	UIBase* UIManager::mActiveUI = nullptr;
+
+	XMMATRIX UIManager::mUIMatrix = XMMatrixIdentity();
+	XMMATRIX UIManager::mUIViewMatrix = XMMatrixIdentity();
+
+	UIManager::UIManager()
+	{
+	}
+
+	UIManager::~UIManager()
+	{
+	}
 
 	void UIManager::Initialize()
 	{
@@ -17,6 +31,14 @@ namespace min
 		UIButton* button = new UIButton();
 		mUIs.insert(std::make_pair(eUIType::Button, button));
 
+		RECT winRect;
+		GetClientRect(application.GetWindow().GetHwnd(), &winRect);
+
+		mUIMatrix = XMMatrixOrthographicOffCenterLH(
+			0.0f, (winRect.right - winRect.left),
+			(winRect.bottom - winRect.top), 0.0f,
+			0.0f, 1.0f
+		);
 	}
 	void UIManager::OnLoad(eUIType type)
 	{

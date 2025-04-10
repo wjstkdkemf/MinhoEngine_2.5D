@@ -8,6 +8,9 @@ namespace min
 	class UIManager
 	{
 	public:
+		UIManager();
+		~UIManager();
+
 		static void Initialize();
 		static void OnLoad(eUIType type);
 		static void Update();
@@ -19,6 +22,10 @@ namespace min
 
 		static void Push(eUIType type);
 		static void Pop(eUIType type);
+
+	public:
+		static XMMATRIX mUIMatrix;
+		static XMMATRIX mUIViewMatrix;
 
 	private:
 		static std::unordered_map<eUIType, UIBase*> mUIs;

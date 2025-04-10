@@ -17,3 +17,9 @@ cbuffer Animation : register(b1)
     float textureSizeY;
     float useAni;
 }
+
+cbuffer UIMatrixBuffer : register(b2)
+{
+    matrix view;
+    matrix projection;
+}

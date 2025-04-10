@@ -13,6 +13,8 @@
 
 #define CBSLOT_TRANSFORM		0
 #define CBSLOT_ANIMATION		1
+#define CBSLOT_UI				2
+
 
 namespace min::graphics
 {
@@ -121,6 +123,12 @@ namespace min::graphics
 		float textureSizeY;
 		float useAni;
 		float DataPadding;
+	};
+
+	CBUFFER(UICB, CBSLOT_UI)
+	{
+		math::Matrix view;
+		math::Matrix projection;
 	};
 }
 

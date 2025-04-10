@@ -238,6 +238,7 @@ namespace min::renderer
 		min::Resources::Load<graphics::Shader>(L"SpriteDefaultShader", L"..\\Shaders_SOURCE\\SpriteDefault");
 		min::Resources::Load<graphics::Shader>(L"WireframeShader", L"..\\Shaders_SOURCE\\Wireframe");
 		min::Resources::Load<graphics::Shader>(L"AnimationShader", L"..\\Shaders_SOURCE\\Animation");
+		min::Resources::Load<graphics::Shader>(L"UIShader", L"..\\Shaders_SOURCE\\UI");
 	}
 
 	void LoadConstantBuffers()

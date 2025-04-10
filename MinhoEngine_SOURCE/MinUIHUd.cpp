@@ -3,6 +3,7 @@
 #include "MinTransform.h"
 #include "MinRenderer.h"
 #include "minGameObject.h"
+#include "MinUIManager.h"
 #include "..\\MinhoEngine_Window\MinCameraScript.h"
 
 namespace min
@@ -24,7 +25,7 @@ namespace min
 		mSprite = Resources::Find<graphics::Texture>(L"HPBAR");
 		mHptr->Initialize();
 		mMesh = Resources::Find<Mesh>(L"RectMesh"); //추후 수정 예정
-		mMaterial = Resources::Find<Material>(L"SpriteDefaultMaterial");
+		//mMaterial = Resources::Find<Material>(L"SpriteDefaultMaterial");
 	}
 	void UIHUd::OnActive()
 	{
@@ -51,8 +52,16 @@ namespace min
 	}
 	void UIHUd::OnRender()
 	{
-		if(mHptr)
-			mHptr->Bind();
+		//if(mHptr)
+			//mHptr->Bind();
+		graphics::UICB cbData = {};
+		cbData.view = XMMatrixTranspose(UIManager::mUIViewMatrix);
+		cbData.projection = XMMatrixTranspose(UIManager::mUIMatrix);
+
+		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_UI];
+
+		cb->SetData(&cbData);
+		cb->Bind(eShaderStage::All);
 
 		if (mMesh)
 			mMesh->Bind();
