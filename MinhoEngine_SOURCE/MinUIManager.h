@@ -24,8 +24,8 @@ namespace min
 		static void Pop(eUIType type);
 
 	public:
-		static XMMATRIX mUIMatrix;
-		static XMMATRIX mUIViewMatrix;
+		static Matrix mUIMatrix;
+		static Matrix mUIViewMatrix;
 
 	private:
 		static std::unordered_map<eUIType, UIBase*> mUIs;

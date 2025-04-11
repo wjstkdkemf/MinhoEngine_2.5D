@@ -20,6 +20,6 @@ cbuffer Animation : register(b1)
 
 cbuffer UIMatrixBuffer : register(b2)
 {
-    matrix view;
-    matrix projection;
+    row_major matrix view;
+    row_major matrix projection;
 }

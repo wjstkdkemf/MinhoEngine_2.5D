@@ -10,7 +10,6 @@ namespace min
 {
 	UIHUd::UIHUd()
 		:UIBase(enums::eUIType::HPBAR)
-		, mHptr(nullptr)
 		, mSprite(nullptr)
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
@@ -21,11 +20,9 @@ namespace min
 	}
 	void UIHUd::OnInit()
 	{
-		mHptr = new Transform();
+		mMesh = Resources::Find<Mesh>(L"UIMesh"); //추후 수정 예정
 		mSprite = Resources::Find<graphics::Texture>(L"HPBAR");
-		mHptr->Initialize();
-		mMesh = Resources::Find<Mesh>(L"RectMesh"); //추후 수정 예정
-		//mMaterial = Resources::Find<Material>(L"SpriteDefaultMaterial");
+		mMaterial = Resources::Find<Material>(L"UIMaterial");
 	}
 	void UIHUd::OnActive()
 	{
@@ -35,28 +32,15 @@ namespace min
 	}
 	void UIHUd::OnUpdate()
 	{
-		mHptr->Update();
 	}
 	void UIHUd::OnLateUpdate()
 	{
-		Transform* tr = renderer::mainCamera->GetOwner()->GetComponent<Transform>();
-		Vector3 trpos = tr->GetPosition();
-		mHptr->SetPosition(trpos.x, trpos.y - (renderer::mainCamera->GetOwner()->GetComponent<CameraScript>()->GetMaxHeight() / 2), trpos.z + 3.0f);
-
-		if (renderer::mainCamera->GetOwner()->GetComponent<CameraScript>()->GetMaxHeight() != 0.0f)
-		{
-			renderer::mainCamera->GetOwner()->GetComponent<CameraScript>()->GetMaxHeight();
-			int a = 0;
-		}
-		mHptr->LateUpdate();
 	}
 	void UIHUd::OnRender()
 	{
-		//if(mHptr)
-			//mHptr->Bind();
 		graphics::UICB cbData = {};
-		cbData.view = XMMatrixTranspose(UIManager::mUIViewMatrix);
-		cbData.projection = XMMatrixTranspose(UIManager::mUIMatrix);
+		cbData.view = UIManager::mUIViewMatrix;
+		cbData.projection = UIManager::mUIMatrix;
 
 		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_UI];
 

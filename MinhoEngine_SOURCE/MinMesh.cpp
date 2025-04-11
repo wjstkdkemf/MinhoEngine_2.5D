@@ -32,6 +32,7 @@ namespace min
 
 		return mVB.Create(vertices);
 	}
+
 	bool Mesh::CreateIB(const std::vector<UINT>& indices)
 	{
 		mData.indices = indices;

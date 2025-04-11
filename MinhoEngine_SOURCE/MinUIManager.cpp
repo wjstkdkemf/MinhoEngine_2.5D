@@ -12,8 +12,8 @@ namespace min
 	std::queue<eUIType>UIManager::mRequestUIQueue = {};
 	UIBase* UIManager::mActiveUI = nullptr;
 
-	XMMATRIX UIManager::mUIMatrix = XMMatrixIdentity();
-	XMMATRIX UIManager::mUIViewMatrix = XMMatrixIdentity();
+	Matrix UIManager::mUIMatrix = Matrix::Identity;
+	Matrix UIManager::mUIViewMatrix = Matrix::Identity;
 
 	UIManager::UIManager()
 	{
@@ -34,10 +34,10 @@ namespace min
 		RECT winRect;
 		GetClientRect(application.GetWindow().GetHwnd(), &winRect);
 
-		mUIMatrix = XMMatrixOrthographicOffCenterLH(
-			0.0f, (winRect.right - winRect.left),
-			(winRect.bottom - winRect.top), 0.0f,
-			0.0f, 1.0f
+		mUIMatrix = Matrix::CreateOrthographicOffCenterLH(
+			0.0f, (float)application.GetWindow().GetWidth(),       // Left to Right
+			(float)application.GetWindow().GetHeight(), 0.0f,      // Bottom to Top (Y축 아래로 증가)
+			0.0f, 1.0f                // nearZ, farZ
 		);
 	}
 	void UIManager::OnLoad(eUIType type)

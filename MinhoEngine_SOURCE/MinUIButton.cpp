@@ -1,10 +1,17 @@
 #include "MinUIButton.h"
 #include "Mininput.h"
+#include "MinResources.h"
+#include "MinUIManager.h"
+#include "MinGraphics.h"
+#include "MinRenderer.h"
 
 namespace min
 {
 	UIButton::UIButton()
 		: UIBase(enums::eUIType::Button)
+		, mSprite(nullptr)
+		, mMaterial(nullptr)
+		, mMesh(nullptr)
 	{
 	}
 	UIButton::~UIButton()
@@ -12,10 +19,14 @@ namespace min
 	}
 	void UIButton::OnInit()
 	{
-		//SetPos(Vector3(200.0f, 200.0f));
-		//SetSize(Vector3(200.0f, 200.0f));
+		mMesh = Resources::Find<Mesh>(L"UIButtonMesh"); //추후 수정 예정
+		mSprite = Resources::Find<graphics::Texture>(L"HPBAR");
+		mMaterial = Resources::Find<Material>(L"UIMaterial");
 
 		mOnClick = std::bind(&UIButton::ButtonClick, this);
+
+		SetPos(Vector3(600.0f, 100.0f, 0.0f));
+		SetSize(Vector3(100.0f, 50.0f, 0.0f));
 	}
 	void UIButton::OnActive()
 	{
@@ -50,11 +61,32 @@ namespace min
 	}
 	void UIButton::OnRender()
 	{
+		graphics::UICB cbData = {};
+		cbData.view = UIManager::mUIViewMatrix;
+		cbData.projection = UIManager::mUIMatrix;
+
+		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_UI];
+
+		cb->SetData(&cbData);
+		cb->Bind(eShaderStage::All);
+
+		if (mMesh)
+			mMesh->Bind();
+
+		if (mMaterial)
+			mMaterial->BindShader();
+
+		if (mSprite)
+			mSprite->Bind(eShaderStage::PS, (UINT)eTextureType::Sprite);
+
+		if (mMesh)
+			graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
 	}
 	void UIButton::OnClear()
 	{
 	}
 	void UIButton::ButtonClick()
 	{
+		int a = 0;
 	}
 }

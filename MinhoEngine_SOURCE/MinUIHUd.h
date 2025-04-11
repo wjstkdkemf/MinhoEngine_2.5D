@@ -3,7 +3,6 @@
 #include "MinTexture.h"
 #include "MinMesh.h"
 #include "MinMaterial.h"
-#include "MinTransform.h"
 
 namespace min
 {
@@ -27,7 +26,6 @@ namespace min
 		virtual void OnClear() override;
 
 	private:
-		Transform* mHptr;
 		graphics::Texture* mSprite;
 		Material* mMaterial;
 		Mesh* mMesh;

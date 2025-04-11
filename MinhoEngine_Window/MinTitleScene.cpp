@@ -47,13 +47,13 @@ namespace min {
 
 		BoxCollider2D* mBGBoxCollidder = mFloor->AddComponent<BoxCollider2D>();
 		mBGBoxCollidder->SetName(L"Floor");
-		//mBGBoxCollidder->GetBoxCollider2D().Extents = XMFLOAT3(1.0f, 1.0f, 1.0f); // Vector3(1.0f);
+		
 #pragma endregion
 
 		Player* mPlayer = (Player*)object::GetDontDestoryOnLoadLayer(eLayerType::Player);
 
 		cameraScript->SetPlayer(mPlayer);// 카메라가 따라다닐 오브젝트 지정
-		cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());
+		//cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());
 	}
 	void TitleScene::Update()
 	{
@@ -73,11 +73,12 @@ namespace min {
 	}
 	void TitleScene::OnEnter()
 	{
+		UIManager::Push(eUIType::HPBAR);
 		renderer::mainCamera = mCameraVector[0]->GetComponent<Camera>();
 		Scene::OnEnter();
 	}
-	void TitleScene::OnExit()
-	{
+	void TitleScene::OnExit(){
+		UIManager::Pop(eUIType::HPBAR);
 		Scene::OnExit();
 	}
 }

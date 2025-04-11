@@ -16,6 +16,7 @@ namespace min
 	CameraScript::CameraScript()
 		: mMaxWidthInOrgan(0.0f)
 		, mMaxHeightInOrgan(0.0f)
+		, mFieldSize(600.0f, 600.0f , 0.0f)
 	{
 	}
 	CameraScript::~CameraScript()

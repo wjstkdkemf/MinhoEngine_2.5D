@@ -79,7 +79,7 @@ namespace min {
 #pragma endregion
 #pragma region Player
 		Player* mPlayer = object::Instantiate<Player>
-			(enums::eLayerType::Player, Vector3(3.0f, 3.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+			(enums::eLayerType::Player, Vector3(0.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
 		mPlayer->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 0.0f);
 		mPlayer->SetName(L"Player");
 		PlayerScript* prsc = mPlayer->AddComponent<PlayerScript>();
@@ -154,15 +154,15 @@ namespace min {
 		CollisionManager::CollisionLayerCheck(eLayerType::SkillEffect, eLayerType::Enemy, true);
 
 		UIManager::Push(eUIType::HPBAR);
+		UIManager::Push(eUIType::Button);
 		renderer::mainCamera = mCameraVector[0]->GetComponent<Camera>();
 
-		/*UIManager::Push(eUIType::Button);*/
 		Scene::OnEnter();
 	}
 	void PlayScene::OnExit()
 	{
 		//Transform* tr = mPlayer->GetComponent<Transform>();
-		//UIManager::Pop(eUIType::HPBAR);
+		UIManager::Pop(eUIType::HPBAR);
 		//tr->SetPosition(Vector2(0, 0));
 		Scene::OnExit();
 	}

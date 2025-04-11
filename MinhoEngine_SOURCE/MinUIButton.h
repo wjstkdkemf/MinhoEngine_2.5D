@@ -1,6 +1,8 @@
 #pragma once
 #include "MinUIBase.h"
 #include "MinTexture.h"
+#include "MinMaterial.h"
+#include "MinMesh.h"
 
 namespace min
 {
@@ -21,7 +23,9 @@ namespace min
 		virtual void ButtonClick();
 
 	private:
-		graphics::Texture* mTexture;
+		graphics::Texture* mSprite;
+		Material* mMaterial;
+		Mesh* mMesh;
 		Event mOnClick;
 	};
 }

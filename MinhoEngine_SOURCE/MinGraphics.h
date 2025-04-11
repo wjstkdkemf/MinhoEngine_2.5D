@@ -25,6 +25,11 @@ namespace min::graphics
 		math::Vector2 uv;
 	};
 
+	struct UIVertex {
+		XMFLOAT3 pos;
+		XMFLOAT2 uv;
+	};
+
 	enum class eShaderStage
 	{
 		VS,
@@ -41,6 +46,7 @@ namespace min::graphics
 	{
 		Transform,
 		Animation,
+		UI,
 		None,
 		End,
 	};
