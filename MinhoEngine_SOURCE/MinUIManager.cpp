@@ -1,6 +1,7 @@
 #include "MinUIManager.h"
 #include "MinUIHUd.h"
 #include "MinUIButton.h"
+#include "MinSkillInventory.h"
 #include "MinApplication.h"
 
 extern min::Application application;
@@ -30,6 +31,9 @@ namespace min
 
 		UIButton* button = new UIButton();
 		mUIs.insert(std::make_pair(eUIType::Button, button));
+
+		SkillInventory* skillinven = new SkillInventory();
+		mUIs.insert(std::make_pair(eUIType::SkillInventory, skillinven));
 
 		RECT winRect;
 		GetClientRect(application.GetWindow().GetHwnd(), &winRect);

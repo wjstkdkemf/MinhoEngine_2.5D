@@ -1,5 +1,7 @@
 #include "MinUIBase.h"
-
+#include "MinGraphics.h"
+#include "MinUIManager.h"
+#include "MinRenderer.h"
 
 namespace min
 {
@@ -64,5 +66,16 @@ namespace min
     }
     void UIBase::OnClear()
     {
+    }
+    void UIBase::CreateUIConstantBuffer()
+    {
+        graphics::UICB cbData = {};
+        cbData.view = UIManager::mUIViewMatrix;
+        cbData.projection = UIManager::mUIMatrix;
+
+        graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_UI];
+
+        cb->SetData(&cbData);
+        cb->Bind(eShaderStage::All);
     }
 }

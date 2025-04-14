@@ -519,6 +519,10 @@ namespace min::graphics
 	{
 		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
 	}
+	void GraphicDevice_DX11::DrawIndexedInstanced(UINT IndexCount,UINT slotSize, UINT StartIndexLocation, INT BaseVertexLocation)
+	{
+		mContext->DrawIndexedInstanced(IndexCount, slotSize, 0, 0, 0);// 인덱스 버퍼의 시작위치, 정점 버퍼의 시작위치, 인스턴스 시작 위치
+	}
 	void GraphicDevice_DX11::Present()
 	{
 		mSwapChain->Present(1, 0);

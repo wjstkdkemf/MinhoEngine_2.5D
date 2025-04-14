@@ -15,6 +15,8 @@
 #define CBSLOT_ANIMATION		1
 #define CBSLOT_UI				2
 
+#define IBSLOT_INVENTORY		0
+
 
 namespace min::graphics
 {
@@ -28,6 +30,11 @@ namespace min::graphics
 	struct UIVertex {
 		XMFLOAT3 pos;
 		XMFLOAT2 uv;
+	};
+
+	struct InstanceData {
+		XMFLOAT2 offset;
+		XMFLOAT4 color;
 	};
 
 	enum class eShaderStage
@@ -48,6 +55,11 @@ namespace min::graphics
 		Animation,
 		UI,
 		None,
+		End,
+	};
+	enum class eIBType
+	{
+		Inventory,
 		End,
 	};
 

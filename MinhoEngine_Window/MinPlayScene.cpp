@@ -154,7 +154,7 @@ namespace min {
 		CollisionManager::CollisionLayerCheck(eLayerType::SkillEffect, eLayerType::Enemy, true);
 
 		UIManager::Push(eUIType::HPBAR);
-		UIManager::Push(eUIType::Button);
+		UIManager::Push(eUIType::SkillInventory);
 		renderer::mainCamera = mCameraVector[0]->GetComponent<Camera>();
 
 		Scene::OnEnter();

@@ -57,6 +57,7 @@ namespace min::graphics
 		void Initialize();
 		void Draw(UINT VertexCount, UINT StartVertexLocation);
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
+		void DrawIndexedInstanced(UINT IndexCount, UINT slotSize, UINT StartIndexLocation, INT BaseVertexLocation);
 		void Present();
 
 	public:

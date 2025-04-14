@@ -98,6 +98,7 @@ namespace min
 			Resources::Load<graphics::Texture>(L"Floor_1", L"..\\Resources\\Char\\BG\\Bg_Beach.png");
 			Resources::Load<graphics::Texture>(L"Floor_2", L"..\\Resources\\//CloudOcean.png");//CloudOcean.png
 			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
+			Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\Fase1.png");
 
 			//renderer::Initialize();
 

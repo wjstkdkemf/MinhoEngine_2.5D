@@ -203,6 +203,9 @@ namespace min
 				mCoolTime[1] = 0.0f;
 			}
 		}
+		if (input::GetKey(eKeyCode::R)) {
+				sm->SetSkillDamage(L"FirstSkill");
+		}
 		if (input::GetKey(eKeyCode::SpaceVar))
 		{
 			if (!isJump)
@@ -212,7 +215,7 @@ namespace min
 #pragma endregion
 
 		if (input::GetKeyUp(eKeyCode::D) || input::GetKeyUp(eKeyCode::A) || input::GetKeyUp(eKeyCode::W) || input::GetKeyUp(eKeyCode::S)
-			|| input::GetKeyUp(eKeyCode::Q) || input::GetKeyUp(eKeyCode::E))
+			|| input::GetKeyUp(eKeyCode::Q) || input::GetKeyUp(eKeyCode::E) || input::GetKeyUp(eKeyCode::R))
 		{
 			rd->ResetForce();
 			mState = eState::idle;

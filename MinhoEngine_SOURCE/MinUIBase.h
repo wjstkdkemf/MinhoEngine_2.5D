@@ -49,7 +49,7 @@ namespace min
 		Vector3 GetSize() { return mSize; }
 		void SetSize(Vector3 size) { mSize = size; }
 
-
+		void CreateUIConstantBuffer();
 
 	protected:
 		Vector3 mPosition;

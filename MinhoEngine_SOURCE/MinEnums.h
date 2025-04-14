@@ -58,6 +58,7 @@ namespace min::enums
 	{
 		HPBAR,
 		Button,
+		SkillInventory,
 		End,
 	};
 }

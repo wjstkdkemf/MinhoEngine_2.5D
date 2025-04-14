@@ -47,6 +47,15 @@ namespace min
 			//mActive = true;
 		}
 	}
+	void SkillManager::SetSkillDamage(std::wstring KeyValue)
+	{
+		if (mSkill.find(KeyValue) != mSkill.end())
+		{
+			mSkill[KeyValue]->SetSkillDamage(100.0f);
+			//mActiveName = KeyValue;
+			//mActive = true;
+		}
+	}
 	void SkillManager::CreateSkillinfo()//std::wstring name, Vector3 Range, UINT Damage, XMFLOAT3 Extent
 	{
 		std::unique_ptr<FirstSkill> F_skill = std::make_unique<FirstSkill>() ;

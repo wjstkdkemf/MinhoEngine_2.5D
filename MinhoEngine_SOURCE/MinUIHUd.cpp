@@ -21,7 +21,7 @@ namespace min
 	void UIHUd::OnInit()
 	{
 		mMesh = Resources::Find<Mesh>(L"UIMesh"); //추후 수정 예정
-		mSprite = Resources::Find<graphics::Texture>(L"HPBAR");
+		mSprite = Resources::Find<graphics::Texture>(L"NoneSkill");//HPBAR
 		mMaterial = Resources::Find<Material>(L"UIMaterial");
 	}
 	void UIHUd::OnActive()
@@ -38,14 +38,7 @@ namespace min
 	}
 	void UIHUd::OnRender()
 	{
-		graphics::UICB cbData = {};
-		cbData.view = UIManager::mUIViewMatrix;
-		cbData.projection = UIManager::mUIMatrix;
-
-		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_UI];
-
-		cb->SetData(&cbData);
-		cb->Bind(eShaderStage::All);
+		CreateUIConstantBuffer();
 
 		if (mMesh)
 			mMesh->Bind();
@@ -58,6 +51,8 @@ namespace min
 
 		if (mMesh)
 			graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
+
+
 	}
 	void UIHUd::OnClear()
 	{

@@ -61,14 +61,7 @@ namespace min
 	}
 	void UIButton::OnRender()
 	{
-		graphics::UICB cbData = {};
-		cbData.view = UIManager::mUIViewMatrix;
-		cbData.projection = UIManager::mUIMatrix;
-
-		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_UI];
-
-		cb->SetData(&cbData);
-		cb->Bind(eShaderStage::All);
+		CreateUIConstantBuffer();
 
 		if (mMesh)
 			mMesh->Bind();
@@ -81,6 +74,7 @@ namespace min
 
 		if (mMesh)
 			graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
+
 	}
 	void UIButton::OnClear()
 	{

@@ -17,6 +17,7 @@ namespace min
 		virtual void Render() override;
 
 		void UseSkill(std::wstring KeyValue, bool Direction);
+		void SetSkillDamage(std::wstring KeyValue);
 
 		void CreateSkillinfo();//std::wstring name, Vector3 Range, UINT Damage, XMFLOAT3 Extent
 

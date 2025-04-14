@@ -15,6 +15,7 @@ namespace min::renderer
 	GameObject* selectedObject = nullptr;
 
 	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
+	InstanceBuffer* InstanceBuffers[(UINT)eIBType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)eSamplerType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)eRasterizerState::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBlendState::End] = {};
@@ -340,6 +341,70 @@ namespace min::renderer
 		min::Resources::Insert(L"UIButtonMesh", mesh);
 	}
 
+	void LoadInventoryMesh()
+	{
+		Mesh* mesh = new Mesh();
+		std::vector<graphics::Vertex> vertexes = {};
+		std::vector<UINT> indices = {};
+
+		vertexes.resize(4);
+
+		vertexes[0].pos = Vector3(900.0f, 100.0f, 0.5f);
+		vertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
+
+		vertexes[1].pos = Vector3(950.0f, 100.0f, 0.5f);
+		vertexes[1].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[1].uv = Vector2(1.0f, 0.0f);
+
+		vertexes[2].pos = Vector3(950.0f, 150.0f, 0.5f);
+		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[2].uv = Vector2(1.0f, 1.0f);
+
+		vertexes[3].pos = Vector3(900.0f, 150.0f, 0.5f);
+		vertexes[3].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[3].uv = Vector2(0.0f, 1.0f);
+
+		indices.push_back(0);
+		indices.push_back(2);
+		indices.push_back(3);
+
+		indices.push_back(0);
+		indices.push_back(1);
+		indices.push_back(2);
+
+		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
+		inputLayoutDesces[0].AlignedByteOffset = 0;
+		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		inputLayoutDesces[0].InputSlot = 0;
+		inputLayoutDesces[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[0].SemanticName = "POSITION";
+		inputLayoutDesces[0].SemanticIndex = 0;
+
+		inputLayoutDesces[1].AlignedByteOffset = 12;
+		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		inputLayoutDesces[1].InputSlot = 0;
+		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[1].SemanticName = "COLOR";
+		inputLayoutDesces[1].SemanticIndex = 0;
+
+		inputLayoutDesces[2].AlignedByteOffset = 28;
+		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+		inputLayoutDesces[2].InputSlot = 0;
+		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[2].SemanticName = "TEXCOORD";
+		inputLayoutDesces[2].SemanticIndex = 0;
+
+		graphics::Shader* UIShader = Resources::Find<graphics::Shader>(L"UIShader");
+		mesh->SetVertexBufferParams(3, inputLayoutDesces, UIShader->GetVSBlob()->GetBufferPointer(), UIShader->GetVSBlob()->GetBufferSize());
+
+
+		mesh->CreateVB(vertexes);
+		mesh->CreateIB(indices);
+
+		min::Resources::Insert(L"UIButtonMesh", mesh);
+	}
+
 	void LoadMeterails()
 	{
 		Material* triangleMaterial = new Material();
@@ -357,6 +422,10 @@ namespace min::renderer
 		Material* UIMaterial = new Material();
 		UIMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"UIShader"));
 		min::Resources::Insert(L"UIMaterial", UIMaterial);
+
+		Material* InventoryMaterial = new Material();
+		UIMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"InventoryShader"));
+		min::Resources::Insert(L"InventoryMaterial", InventoryMaterial);
 	}
 
 	void LoadMeshes()
@@ -366,6 +435,7 @@ namespace min::renderer
 		LoadPlayerMesh();
 		LoadUIMesh();
 		LoadUIButtonMesh();
+		LoadInventoryMesh();
 	}
 	void LoadShaders()
 	{
@@ -374,6 +444,8 @@ namespace min::renderer
 		min::Resources::Load<graphics::Shader>(L"WireframeShader", L"..\\Shaders_SOURCE\\Wireframe");
 		min::Resources::Load<graphics::Shader>(L"AnimationShader", L"..\\Shaders_SOURCE\\Animation");
 		min::Resources::Load<graphics::Shader>(L"UIShader", L"..\\Shaders_SOURCE\\UI");
+		min::Resources::Load<graphics::Shader>(L"InventoryShader", L"..\\Shaders_SOURCE\\inventory");
+
 	}
 
 	void LoadConstantBuffers()
@@ -387,6 +459,11 @@ namespace min::renderer
 
 		constantBuffers[CBSLOT_UI] = new ConstantBuffer(eCBType::UI);
 		constantBuffers[CBSLOT_UI]->Create(sizeof(UICB));
+	}
+	void LoadInstanceBuffers()
+	{
+		InstanceBuffers[IBSLOT_INVENTORY] = new InstanceBuffer(eIBType::Inventory);
+		InstanceBuffers[IBSLOT_INVENTORY]->Create(sizeof(InstanceData));
 	}
 
 	void LoadStates()
@@ -517,6 +594,7 @@ namespace min::renderer
 		LoadMeshes();
 		LoadMeterails();
 		LoadConstantBuffers();
+		LoadInstanceBuffers();
 		LoadFrameBuffer();
 		LoadFrimitiveBatch();
 	}

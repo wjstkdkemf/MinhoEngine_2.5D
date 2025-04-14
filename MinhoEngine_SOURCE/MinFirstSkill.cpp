@@ -19,7 +19,7 @@ namespace min
         : mTime(0.0f)
     {
         SetSkillColType(eColliderType::Rect2DAABB);
-        SetSkillDamage(100.0f);
+        SetSkillDamage(50.0f);
         SetSkillPosition(Vector3(1.5f, 0.0f , 0.0f));
         SetSkillAnimation(L"FirstSkill");
         SetSkillDuration(2.0f);

@@ -43,6 +43,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Mininput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinInputLayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinInstanceBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinKeyEvent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinMaterial.h" />
@@ -62,6 +63,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinShadow.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSkill.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillInventory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinTexture.h" />
@@ -120,6 +122,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinIndexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Mininput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinInputLayout.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinInstanceBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinMath.cpp" />
@@ -136,6 +139,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinShadow.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSkill.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillInventory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinTexture.cpp" />
