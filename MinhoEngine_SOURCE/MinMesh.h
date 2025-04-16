@@ -26,11 +26,11 @@ namespace min
 		virtual HRESULT Load(const std::wstring path) override;
 
 		bool CreateVB(const std::vector<graphics::Vertex>& vertices);
-		//bool CreateUIVB(const graphics::UIVertex vertices[]);
 		bool CreateIB(const std::vector<UINT>& indices);
 		void SetVertexBufferParams(UINT vertexCount, D3D11_INPUT_ELEMENT_DESC* layout, const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength);
 		UINT GetIndexCount() const { return mIB.GetIndexCount(); }
 		void Bind();
+		void BindWithInstancing(graphics::eIBType eType);
 
 	private:
 		graphics::InputLayout mInputLayout;

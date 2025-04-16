@@ -36,10 +36,10 @@ namespace min::graphics
 		void BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, UINT Offset);
 		void BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
 		void BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets);
+		void BindVertexBufferWithInstanceBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const ppVertexBuffers[], const UINT pStrides[], const UINT pOffsets[]);
 		void BindSampler(eShaderStage stage, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers);
 		void BindSamplers(UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers);
-		bool CreateUnorderedAccessView(ID3D11Resource* pResource, const D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc,
-			ID3D11UnorderedAccessView** ppUAView);
+		bool CreateUnorderedAccessView(ID3D11Resource* pResource, const D3D11_UNORDERED_ACCESS_VIEW_DESC* pDesc, ID3D11UnorderedAccessView** ppUAView);
 		void BindRasterizerState(ID3D11RasterizerState* pRasterizerState);
 		void BindBlendState(ID3D11BlendState* pBlendState, const FLOAT BlendFactor[4], UINT SampleMask);
 		void BindDepthStencilState(ID3D11DepthStencilState* pDepthStencilState, UINT StencilRef);

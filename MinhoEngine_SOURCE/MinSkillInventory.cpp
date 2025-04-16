@@ -15,6 +15,7 @@ namespace min
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
 		, mNormal()
+		, mInstanceSize(4) // instancebuffer에서 들고있는게 나을수도?
 	{
 	}
 	SkillInventory::~SkillInventory()
@@ -22,12 +23,12 @@ namespace min
 	}
 	void SkillInventory::OnInit()
 	{
-		mMesh = Resources::Find<Mesh>(L"UIMesh"); //추후 수정 예정
+		mMesh = Resources::Find<Mesh>(L"SkillInventoryMesh"); //추후 수정 예정
 		mSprite = Resources::Find<graphics::Texture>(L"NoneSkill");
-		mMaterial = Resources::Find<Material>(L"UIMaterial");
+		mMaterial = Resources::Find<Material>(L"SkillInventoryMaterial");
 
 		mNormal.offset.x = 80.0f;
-		mNormal.offset.y = 80.0f;
+		mNormal.offset.y = 0.0f;
 		mNormal.color.x = 0.0f;
 		mNormal.color.y = 0.0f;
 		mNormal.color.z = 0.0f;
@@ -50,7 +51,7 @@ namespace min
 		CreateUIIndexBuffer();
 
 		if (mMesh)
-			mMesh->Bind();
+			mMesh->BindWithInstancing(eIBType::Inventory);
 
 		if (mMaterial)
 			mMaterial->BindShader();
@@ -68,14 +69,14 @@ namespace min
 	}
 	void SkillInventory::CreateUIIndexBuffer()
 	{
-		for (int i = 0; i < 4; ++i) {
+		for (int i = 0; i < mInstanceSize; ++i) {
 			InstanceData data;
-			data.offset = XMFLOAT2(mNormal.offset.x * (i + 1), mNormal.offset.y * (i + 1));  // 슬롯 위치
+			data.offset = XMFLOAT2(mNormal.offset.x * i, 0.0f);  // 슬롯 위치
 			data.color = XMFLOAT4(mNormal.color.x, mNormal.color.y, mNormal.color.z, 1.0f);  // 슬롯 색상
 			mInstanceData.push_back(data);
 		}
 		
-		renderer::InstanceBuffers[IBSLOT_INVENTORY]->SetData(&mInstanceData);
+		renderer::InstanceBuffers[IBSLOT_INVENTORY]->SetData(mInstanceData.data());
 		
 		//deviceContext->UpdateSubresource(instanceBuffer, 0, NULL, mInstanceData.data(), 0, 0);
 	}

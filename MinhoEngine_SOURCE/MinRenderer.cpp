@@ -236,6 +236,7 @@ namespace min::renderer
 		vertexes[3].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 		vertexes[3].uv = Vector2(0.0f, 1.0f);
 
+
 		indices.push_back(0);
 		indices.push_back(2);
 		indices.push_back(3);
@@ -373,7 +374,7 @@ namespace min::renderer
 		indices.push_back(1);
 		indices.push_back(2);
 
-		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
+		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[5] = {};
 		inputLayoutDesces[0].AlignedByteOffset = 0;
 		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
 		inputLayoutDesces[0].InputSlot = 0;
@@ -395,14 +396,30 @@ namespace min::renderer
 		inputLayoutDesces[2].SemanticName = "TEXCOORD";
 		inputLayoutDesces[2].SemanticIndex = 0;
 
-		graphics::Shader* UIShader = Resources::Find<graphics::Shader>(L"UIShader");
-		mesh->SetVertexBufferParams(3, inputLayoutDesces, UIShader->GetVSBlob()->GetBufferPointer(), UIShader->GetVSBlob()->GetBufferSize());
+		inputLayoutDesces[3].AlignedByteOffset = 0;		
+		inputLayoutDesces[3].Format = DXGI_FORMAT_R32G32_FLOAT;
+		inputLayoutDesces[3].InputSlot = 1;
+		inputLayoutDesces[3].InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
+		inputLayoutDesces[3].InstanceDataStepRate = 1;
+		inputLayoutDesces[3].SemanticName = "OFFSET";
+		inputLayoutDesces[3].SemanticIndex = 0;
+
+		inputLayoutDesces[4].AlignedByteOffset = 8;
+		inputLayoutDesces[4].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		inputLayoutDesces[4].InputSlot = 1;
+		inputLayoutDesces[4].InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
+		inputLayoutDesces[4].InstanceDataStepRate = 1;
+		inputLayoutDesces[4].SemanticName = "COLOR";
+		inputLayoutDesces[4].SemanticIndex = 1;
+
+		graphics::Shader* UIShader = Resources::Find<graphics::Shader>(L"InventoryShader");
+		mesh->SetVertexBufferParams(5, inputLayoutDesces, UIShader->GetVSBlob()->GetBufferPointer(), UIShader->GetVSBlob()->GetBufferSize());
 
 
 		mesh->CreateVB(vertexes);
 		mesh->CreateIB(indices);
 
-		min::Resources::Insert(L"UIButtonMesh", mesh);
+		min::Resources::Insert(L"SkillInventoryMesh", mesh);
 	}
 
 	void LoadMeterails()
@@ -424,8 +441,8 @@ namespace min::renderer
 		min::Resources::Insert(L"UIMaterial", UIMaterial);
 
 		Material* InventoryMaterial = new Material();
-		UIMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"InventoryShader"));
-		min::Resources::Insert(L"InventoryMaterial", InventoryMaterial);
+		InventoryMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"InventoryShader"));
+		min::Resources::Insert(L"SkillInventoryMaterial", InventoryMaterial);
 	}
 
 	void LoadMeshes()

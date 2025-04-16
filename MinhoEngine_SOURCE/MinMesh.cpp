@@ -1,4 +1,5 @@
 #include "MinMesh.h"
+#include "MinGraphics.h"
 
 namespace min
 {
@@ -47,6 +48,14 @@ namespace min
 	{
 		mInputLayout.Bind();
 		mVB.Bind();
+		mIB.Bind();
+
+		graphics::GetDevice()->BindPrimitiveTopology(mData.mTopology);
+	}
+	void Mesh::BindWithInstancing(graphics::eIBType eType)
+	{
+		mInputLayout.Bind();
+		mVB.BindWithIncetancing(eType);
 		mIB.Bind();
 
 		graphics::GetDevice()->BindPrimitiveTopology(mData.mTopology);

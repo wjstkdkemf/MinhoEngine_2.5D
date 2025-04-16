@@ -22,10 +22,13 @@ namespace min
 
 		void CreateUIIndexBuffer();
 
+		UINT GetInstanceSize() { return mInstanceSize; }
+
 	private:
 		graphics::Texture* mSprite;
 		Material* mMaterial;
 		Mesh* mMesh;
+		UINT mInstanceSize;
 
 		std::vector<graphics::InstanceData> mInstanceData;
 

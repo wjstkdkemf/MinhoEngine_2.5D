@@ -38,12 +38,13 @@ namespace min::graphics
 	}
 	void InstanceBuffer::SetData(void* data) const
 	{
-		GetDevice()->SetDataGpuBuffer(buffer.Get(), data, mSize * mInventorySize);
+		GetDevice()->SetDataGpuBuffer(buffer.Get(), data, mSize * mInventorySize); //mSize * mInventorySize
 	}
 	void InstanceBuffer::Bind()
 	{
 		UINT offset = 0;
 		UINT vectexSize = sizeof(Vertex);
+		
 		GetDevice()->BindVertexBuffer(0, 1, buffer.GetAddressOf(), &vectexSize, &offset);
 	}
 }

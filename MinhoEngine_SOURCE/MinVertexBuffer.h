@@ -11,6 +11,7 @@ namespace min::graphics
 
 		bool Create(const std::vector<Vertex>& vertexes);
 		void Bind();
+		void BindWithIncetancing(eIBType eType);
 
 	private:
 	};

@@ -1,5 +1,5 @@
 #include "MinVertexBuffer.h"
-
+#include "MinRenderer.h"
 
 namespace min::graphics
 {
@@ -31,5 +31,17 @@ namespace min::graphics
 		UINT offset = 0;
 		UINT vectexSize = sizeof(Vertex);
 		GetDevice()->BindVertexBuffer(0, 1, buffer.GetAddressOf(), &vectexSize, &offset);
+	}
+	void VertexBuffer::BindWithIncetancing(eIBType eType)
+	{
+		graphics::InstanceBuffer* ib = renderer::InstanceBuffers[IBSLOT_INVENTORY];
+
+		ID3D11Buffer* Buffers[2] = { buffer.Get() , ib->buffer.Get() };
+		UINT offset[2] = { 0, 0 };
+		UINT vertexSize[2] = { sizeof(Vertex), sizeof(InstanceData) };
+
+		//GetDevice()->GetID3D11DeviceContext()->IASetVertexBuffers(0, 2, Buffers, vertexSize, offset);
+		GetDevice()->BindVertexBuffer(0, 2, Buffers, vertexSize, offset);
+		//GetDevice()->BindVertexBufferWithInstanceBuffer(0, 2, Buffers, vertexSize, offset);
 	}
 }

@@ -21,7 +21,7 @@ namespace min
 	void UIHUd::OnInit()
 	{
 		mMesh = Resources::Find<Mesh>(L"UIMesh"); //추후 수정 예정
-		mSprite = Resources::Find<graphics::Texture>(L"NoneSkill");//HPBAR
+		mSprite = Resources::Find<graphics::Texture>(L"HPBAR");//HPBAR
 		mMaterial = Resources::Find<Material>(L"UIMaterial");
 	}
 	void UIHUd::OnActive()

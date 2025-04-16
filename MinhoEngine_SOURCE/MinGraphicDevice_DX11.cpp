@@ -531,4 +531,8 @@ namespace min::graphics
 	{
 		mContext->IASetVertexBuffers(StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
 	}
+	void GraphicDevice_DX11::BindVertexBufferWithInstanceBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const ppVertexBuffers[], const UINT pStrides[], const UINT pOffsets[])
+	{
+		mContext->IASetVertexBuffers(StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
+	}
 }
