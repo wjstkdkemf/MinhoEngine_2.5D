@@ -23,3 +23,9 @@ cbuffer UIMatrixBuffer : register(b2)
     row_major matrix view;
     row_major matrix projection;
 }
+
+cbuffer SkillOffset : register(b3)
+{
+    float OffsetX;
+    float OffsetY;
+}

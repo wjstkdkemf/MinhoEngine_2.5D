@@ -51,8 +51,6 @@ namespace min
 
 		if (mMesh)
 			graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
-
-
 	}
 	void UIHUd::OnClear()
 	{

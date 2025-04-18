@@ -422,6 +422,70 @@ namespace min::renderer
 		min::Resources::Insert(L"SkillInventoryMesh", mesh);
 	}
 
+	void LoadSkillInventoryMesh()
+	{
+		Mesh* mesh = new Mesh();
+		std::vector<graphics::Vertex> vertexes = {};
+		std::vector<UINT> indices = {};
+
+		vertexes.resize(4);
+
+		vertexes[0].pos = Vector3(900.0f, 100.0f, 0.5f);
+		vertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		vertexes[0].uv = Vector2(0.0f, 0.0f);
+
+		vertexes[1].pos = Vector3(950.0f, 100.0f, 0.5f);
+		vertexes[1].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		vertexes[1].uv = Vector2(1.0f, 0.0f);
+
+		vertexes[2].pos = Vector3(950.0f, 150.0f, 0.5f);
+		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[2].uv = Vector2(1.0f, 1.0f);
+
+		vertexes[3].pos = Vector3(900.0f, 150.0f, 0.5f);
+		vertexes[3].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		vertexes[3].uv = Vector2(0.0f, 1.0f);
+
+		indices.push_back(0);
+		indices.push_back(2);
+		indices.push_back(3);
+
+		indices.push_back(0);
+		indices.push_back(1);
+		indices.push_back(2);
+
+		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[5] = {};
+		inputLayoutDesces[0].AlignedByteOffset = 0;
+		inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		inputLayoutDesces[0].InputSlot = 0;
+		inputLayoutDesces[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[0].SemanticName = "POSITION";
+		inputLayoutDesces[0].SemanticIndex = 0;
+
+		inputLayoutDesces[1].AlignedByteOffset = 12;
+		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		inputLayoutDesces[1].InputSlot = 0;
+		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[1].SemanticName = "COLOR";
+		inputLayoutDesces[1].SemanticIndex = 0;
+
+		inputLayoutDesces[2].AlignedByteOffset = 28;
+		inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+		inputLayoutDesces[2].InputSlot = 0;
+		inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		inputLayoutDesces[2].SemanticName = "TEXCOORD";
+		inputLayoutDesces[2].SemanticIndex = 0;
+
+		graphics::Shader* UIShader = Resources::Find<graphics::Shader>(L"SkillInventoryIconShader");
+		mesh->SetVertexBufferParams(3, inputLayoutDesces, UIShader->GetVSBlob()->GetBufferPointer(), UIShader->GetVSBlob()->GetBufferSize());
+
+
+		mesh->CreateVB(vertexes);
+		mesh->CreateIB(indices);
+
+		min::Resources::Insert(L"SkillItemInventoryMesh", mesh);
+	}
+
 	void LoadMeterails()
 	{
 		Material* triangleMaterial = new Material();
@@ -443,6 +507,10 @@ namespace min::renderer
 		Material* InventoryMaterial = new Material();
 		InventoryMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"InventoryShader"));
 		min::Resources::Insert(L"SkillInventoryMaterial", InventoryMaterial);
+
+		Material* SkillInventoryMaterial = new Material();
+		SkillInventoryMaterial->SetShader(min::Resources::Find<graphics::Shader>(L"SkillInventoryIconShader"));
+		min::Resources::Insert(L"SkillItemInventoryMaterial", SkillInventoryMaterial);
 	}
 
 	void LoadMeshes()
@@ -453,6 +521,7 @@ namespace min::renderer
 		LoadUIMesh();
 		LoadUIButtonMesh();
 		LoadInventoryMesh();
+		LoadSkillInventoryMesh();
 	}
 	void LoadShaders()
 	{
@@ -462,7 +531,7 @@ namespace min::renderer
 		min::Resources::Load<graphics::Shader>(L"AnimationShader", L"..\\Shaders_SOURCE\\Animation");
 		min::Resources::Load<graphics::Shader>(L"UIShader", L"..\\Shaders_SOURCE\\UI");
 		min::Resources::Load<graphics::Shader>(L"InventoryShader", L"..\\Shaders_SOURCE\\inventory");
-
+		min::Resources::Load<graphics::Shader>(L"SkillInventoryIconShader", L"..\\Shaders_SOURCE\\SkillInventoryIcon");
 	}
 
 	void LoadConstantBuffers()
@@ -476,6 +545,9 @@ namespace min::renderer
 
 		constantBuffers[CBSLOT_UI] = new ConstantBuffer(eCBType::UI);
 		constantBuffers[CBSLOT_UI]->Create(sizeof(UICB));
+
+		constantBuffers[CBSLOT_Skill] = new ConstantBuffer(eCBType::Skill);
+		constantBuffers[CBSLOT_Skill]->Create(sizeof(SkillCB));
 	}
 	void LoadInstanceBuffers()
 	{

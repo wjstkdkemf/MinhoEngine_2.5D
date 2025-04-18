@@ -10,6 +10,7 @@
 #include "MinRenderer.h"
 #include "MinApplicationEvent.h"
 #include "MinMoushEvent.h"
+#include "MinSkillInformation.h"
 
 namespace min {
 	//std::vector<GameObject> Application::Bullet = {};
@@ -39,6 +40,7 @@ namespace min {
 		CollisionManager::Initialize();
 		UIManager::Initialize();
 		SceneManager::Initialize();
+		SkillInformation::CreateSkillInformation();
 
 		mbRunning = true;
 	}

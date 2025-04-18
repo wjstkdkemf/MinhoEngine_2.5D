@@ -140,6 +140,14 @@ namespace min
 			if (input::GetKey(eKeyCode::S)) {
 				mState = eState::Walk;
 			}
+			if (input::GetKey(eKeyCode::R)) {
+				//sm->SetSkillDamage(L"FirstSkill");
+				UIManager::Push(eUIType::SkillInventory);
+			}
+			if (input::GetKey(eKeyCode::T)) {
+				//sm->SetSkillDamage(L"FirstSkill");
+				UIManager::Pop(eUIType::SkillInventory);//eUIType::SkillInventory
+			}
 			if (input::GetKey(eKeyCode::P))
 			{
 				input::GetMousePosition();
@@ -204,7 +212,12 @@ namespace min
 			}
 		}
 		if (input::GetKey(eKeyCode::R)) {
-				sm->SetSkillDamage(L"FirstSkill");
+			//sm->SetSkillDamage(L"FirstSkill");
+			UIManager::Push(eUIType::SkillInventory);
+		}
+		if (input::GetKey(eKeyCode::T)) {
+			//sm->SetSkillDamage(L"FirstSkill");
+			UIManager::Pop(eUIType::SkillInventory);
 		}
 		if (input::GetKey(eKeyCode::SpaceVar))
 		{
@@ -215,7 +228,7 @@ namespace min
 #pragma endregion
 
 		if (input::GetKeyUp(eKeyCode::D) || input::GetKeyUp(eKeyCode::A) || input::GetKeyUp(eKeyCode::W) || input::GetKeyUp(eKeyCode::S)
-			|| input::GetKeyUp(eKeyCode::Q) || input::GetKeyUp(eKeyCode::E) || input::GetKeyUp(eKeyCode::R))
+			|| input::GetKeyUp(eKeyCode::Q) || input::GetKeyUp(eKeyCode::E) || input::GetKeyUp(eKeyCode::R) || input::GetKeyUp(eKeyCode::T))
 		{
 			rd->ResetForce();
 			mState = eState::idle;

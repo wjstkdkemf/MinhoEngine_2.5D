@@ -3,6 +3,7 @@
 #include "MinTexture.h"
 #include "MinMesh.h"
 #include "MinMaterial.h"
+#include "MinSkillInformation.h"
 
 namespace min
 {
@@ -20,19 +21,29 @@ namespace min
 		virtual void OnRender() override;
 		virtual void OnClear() override;
 
+		void PrintItem();
+
 		void CreateUIIndexBuffer();
+		void CreateIntanceData();
 
 		UINT GetInstanceSize() { return mInstanceSize; }
 
+		void UpdateSkillInformation();
+		void SkillConstantBufferSetting(UINT Num);
+
 	private:
 		graphics::Texture* mSprite;
+		graphics::Texture* mSkillSprite;
 		Material* mMaterial;
 		Mesh* mMesh;
+		Mesh* mSkillMesh;
+		Material* mSkillMaterial;
 		UINT mInstanceSize;
 
-		std::vector<graphics::InstanceData> mInstanceData;
-
 		graphics::InstanceData mNormal;
+		std::vector<graphics::InstanceData> mInstanceData;
+		std::vector<graphics::InstanceData> mInstanceDatas;
+		std::vector<std::wstring> mSkillName;
 	};
 }
 

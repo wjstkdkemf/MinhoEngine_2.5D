@@ -63,6 +63,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinShadow.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSkill.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillInformation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillInventory.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.h" />
@@ -139,6 +140,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinShadow.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSkill.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillInformation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillInventory.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSpriteRenderer.cpp" />

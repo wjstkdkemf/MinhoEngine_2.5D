@@ -14,6 +14,7 @@
 #define CBSLOT_TRANSFORM		0
 #define CBSLOT_ANIMATION		1
 #define CBSLOT_UI				2
+#define CBSLOT_Skill			3
 
 #define IBSLOT_INVENTORY		0
 
@@ -54,6 +55,7 @@ namespace min::graphics
 		Transform,
 		Animation,
 		UI,
+		Skill,
 		None,
 		End,
 	};
@@ -147,6 +149,12 @@ namespace min::graphics
 	{
 		math::Matrix view;
 		math::Matrix projection;
+	};
+
+	CBUFFER(SkillCB, CBSLOT_UI)
+	{
+		float offsetX;
+		float offsetY;
 	};
 }
 
