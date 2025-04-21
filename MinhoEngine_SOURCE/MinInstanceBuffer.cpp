@@ -6,7 +6,7 @@ namespace min::graphics
 	InstanceBuffer::InstanceBuffer(eIBType type)
 		: mType(type)
 		, mSize(0)
-		, mInventorySize(4)
+		, mInventorySize(30)
 	{
 	}
 	InstanceBuffer::~InstanceBuffer()

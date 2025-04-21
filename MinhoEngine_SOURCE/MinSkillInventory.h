@@ -10,6 +10,14 @@ namespace min
 	class SkillInventory : public UIBase
 	{
 	public:
+		struct InventoryInfo
+		{
+			std::wstring SkillName;
+			Vector2 SkillPos;
+
+			bool mTouch;
+		};
+
 		SkillInventory();
 		~SkillInventory();
 
@@ -25,6 +33,7 @@ namespace min
 
 		void CreateUIIndexBuffer();
 		void CreateIntanceData();
+		void CreateSkillInformation();
 
 		UINT GetInstanceSize() { return mInstanceSize; }
 
@@ -35,15 +44,23 @@ namespace min
 		graphics::Texture* mSprite;
 		graphics::Texture* mSkillSprite;
 		Material* mMaterial;
+		Material* mSkillMaterial;
 		Mesh* mMesh;
 		Mesh* mSkillMesh;
-		Material* mSkillMaterial;
+
 		UINT mInstanceSize;
+		UINT mInventoryRow;
+		UINT mInventoryCol;
 
 		graphics::InstanceData mNormal;
 		std::vector<graphics::InstanceData> mInstanceData;
 		std::vector<graphics::InstanceData> mInstanceDatas;
-		std::vector<std::wstring> mSkillName;
+		std::vector<InventoryInfo> mSkillInfo;
+
+		InventoryInfo* mSelectSkillInfo;
+
+		float mMinValue;
+		float mTouchDelay;
 	};
 }
 

@@ -5,6 +5,8 @@
 #include "minGameObject.h"
 #include "MinUIManager.h"
 #include "MinGraphics.h"
+#include "Mininput.h"
+#include "MinTime.h"
 #include "..\\MinhoEngine_Window\MinCameraScript.h"
 
 namespace min
@@ -19,8 +21,13 @@ namespace min
 		, mSkillMaterial(nullptr)
 		, mNormal()
 		, mInstanceDatas{}
-		, mInstanceSize(4) // instancebuffer에서 들고있는게 나을수도?
-		, mSkillName{}
+		, mInstanceSize(0) // instancebuffer에서 들고있는게 나을수도? -> 자주 바꾸지 않아도 되니까 일단은 임시로 고정값을 instancebuffer에 부여, 추후 필요시 오버할로케이션 전략등 고려
+		, mInventoryRow(2)
+		, mInventoryCol(4)
+		, mMinValue(1800.0f)
+		, mTouchDelay(0.3f)
+		, mSkillInfo{}
+		, mSelectSkillInfo(nullptr)
 	{
 	}
 	SkillInventory::~SkillInventory()
@@ -34,14 +41,18 @@ namespace min
 		mSkillMesh = Resources::Find<Mesh>(L"SkillItemInventoryMesh");
 		mSkillMaterial = Resources::Find<Material>(L"SkillItemInventoryMaterial");
 		mNormal.offset.x = 80.0f;
-		mNormal.offset.y = 0.0f;
+		mNormal.offset.y = 80.0f;
 		mNormal.color.x = 0.0f;
 		mNormal.color.y = 0.0f;
 		mNormal.color.z = 0.0f;
 
+		mInstanceSize = mInventoryCol * mInventoryRow;
+
 		mInstanceDatas.resize(mInstanceSize);
+		mSkillInfo.resize(mInstanceSize);
 		CreateIntanceData();
 
+		CreateSkillInformation();
 		UpdateSkillInformation();
 	}
 	void SkillInventory::OnActive()
@@ -53,6 +64,46 @@ namespace min
 	}
 	void SkillInventory::OnUpdate()
 	{
+		mTouchDelay += Time::DeltaTime();
+
+		if (input::GetKeyDown(eKeyCode::LButton))
+		{
+			Vector2 mousePos = input::GetMousePosition();
+			float minDist = mMinValue;
+			InventoryInfo* closest = nullptr;
+
+			for (InventoryInfo& slot : mSkillInfo)
+			{
+				float dx = mousePos.x - slot.SkillPos.x;
+				float dy = mousePos.y - slot.SkillPos.y;
+
+				float dist = dx * dx + dy * dy;
+
+				if (dist < minDist)
+				{
+					minDist = dist;
+					closest = &slot;
+				}
+			}
+			if (minDist != mMinValue && mTouchDelay >= 1.0f)
+			{
+				if (mSelectSkillInfo != nullptr)
+				{
+					if(mSelectSkillInfo != closest)
+						std::swap(mSelectSkillInfo->SkillName, closest->SkillName);
+
+					mSelectSkillInfo->mTouch = false;
+					mSelectSkillInfo = nullptr;
+					mTouchDelay = 0.0f;
+				}
+				else
+				{
+					closest->mTouch = true;
+					mSelectSkillInfo = closest;
+					mTouchDelay = 0.0f;
+				}
+			}
+		}
 	}
 	void SkillInventory::OnLateUpdate()
 	{
@@ -72,7 +123,7 @@ namespace min
 			mSprite->Bind(eShaderStage::PS, (UINT)eTextureType::Sprite);
 
 		if (mMesh)
-			graphics::GetDevice()->DrawIndexedInstanced(mMesh->GetIndexCount(), 4, 0, 0);
+			graphics::GetDevice()->DrawIndexedInstanced(mMesh->GetIndexCount(), mInstanceSize, 0, 0);
 
 		PrintItem();
 	}
@@ -81,10 +132,21 @@ namespace min
 	}
 	void SkillInventory::PrintItem()
 	{
-		for (int i = 0; i < mSkillName.size(); i++)
+		for (int i = 0; i < mSkillInfo.size(); i++)
 		{
-			mSkillSprite = Resources::Find<graphics::Texture>(mSkillName[i]);
+			if (mSkillInfo[i].mTouch)
+			{
+				int a = 0;
+				mSkillInfo[i].mTouch = false;
+			}
+
+			if (mSkillInfo[i].SkillName == L"")
+				continue;
+
+			mSkillSprite = Resources::Find<graphics::Texture>(mSkillInfo[i].SkillName);
 			SkillConstantBufferSetting(i);
+
+			
 
 			if (mSkillMesh)
 				mSkillMesh->Bind();
@@ -116,24 +178,45 @@ namespace min
 	}
 	void SkillInventory::CreateIntanceData()
 	{
-		for (UINT i = 0; i < mInstanceSize; ++i)
-		{
-			mInstanceDatas[i].offset.x = mNormal.offset.x * i;
-			mInstanceDatas[i].offset.y = mNormal.offset.y * i;
+		//for (UINT i = 0; i < mInstanceSize; ++i)
+		//{
+		//	mInstanceDatas[i].offset.x = mNormal.offset.x * i;
+		//	mInstanceDatas[i].offset.y = mNormal.offset.y * i;
 
-			mInstanceDatas[i].color.x = mNormal.color.x;
-			mInstanceDatas[i].color.y = mNormal.color.y;
-			mInstanceDatas[i].color.z = mNormal.color.z;
+		//	mInstanceDatas[i].color.x = mNormal.color.x;
+		//	mInstanceDatas[i].color.y = mNormal.color.y;
+		//	mInstanceDatas[i].color.z = mNormal.color.z;
+		//}
+		UINT index = 0;
+		for (UINT j = 1; j < mInventoryRow + 1; ++j)
+		{
+			for (UINT i = 0; i < mInventoryCol; ++i)
+			{
+				mInstanceDatas[index].offset.x = mNormal.offset.x * i;
+				mInstanceDatas[index].offset.y = mNormal.offset.y * (j - 1);
+
+				mInstanceDatas[index].color.x = mNormal.color.x;
+				mInstanceDatas[index].color.y = mNormal.color.y;
+				mInstanceDatas[index].color.z = mNormal.color.z;
+
+				mSkillInfo[index].SkillPos = Vector2(925.0f + mInstanceDatas[index].offset.x, 125.0f + mInstanceDatas[index].offset.y);//925 와 125는 mesh구현 과정에서 설정한 초기 중앙위치.
+				index++;
+			}
+		}
+	}
+	void SkillInventory::CreateSkillInformation()
+	{
+		for (int i = 0; i < SkillInformation::GetSkillInformation().size(); i++)
+		{
+			mSkillInfo[i].SkillName = SkillInformation::GetSkillInformation()[i]->SkillName;
 		}
 	}
 	void SkillInventory::UpdateSkillInformation()
 	{
-		mSkillName.clear();
-
-		for (int i = 0; i < SkillInformation::GetSkillInformation().size(); i++)
-		{
-			mSkillName.push_back(SkillInformation::GetSkillInformation()[i]->SkillName);
-		}
+		//for (int i = 0; i < SkillInformation::GetSkillInformation().size(); i++)
+		//{
+		//	mSkillName[i] = SkillInformation::GetSkillInformation()[i]->SkillName;
+		//}
 	}
 	void SkillInventory::SkillConstantBufferSetting(UINT Num)
 	{
