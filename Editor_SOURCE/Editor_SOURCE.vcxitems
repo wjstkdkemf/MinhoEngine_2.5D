@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)GraphEditor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiColliderWindow.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)guiEditorApplication.h" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)GraphEditor.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiColliderWindow.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)guiEditorApplication.cpp" />

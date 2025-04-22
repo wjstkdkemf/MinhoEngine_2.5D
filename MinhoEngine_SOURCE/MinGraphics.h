@@ -147,6 +147,7 @@ namespace min::graphics
 
 	CBUFFER(UICB, CBSLOT_UI)
 	{
+		math::Matrix world;
 		math::Matrix view;
 		math::Matrix projection;
 	};
@@ -155,6 +156,7 @@ namespace min::graphics
 	{
 		float offsetX;
 		float offsetY;
+		bool isSelect;
 	};
 }
 

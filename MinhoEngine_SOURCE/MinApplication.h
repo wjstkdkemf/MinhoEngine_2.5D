@@ -37,7 +37,6 @@ namespace min{
 		void Release();
 
 		Window GetWindow() { return mWindow; }
-
 		bool IsLoaded() const { return mbLoaded; }
 		void IsLoaded(bool load) { mbLoaded = load; }
 		bool IsRunning() const { return mbRunning; }

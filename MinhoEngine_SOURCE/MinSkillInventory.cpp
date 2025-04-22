@@ -7,18 +7,25 @@
 #include "MinGraphics.h"
 #include "Mininput.h"
 #include "MinTime.h"
+#include "MinApplication.h"
+
 #include "..\\MinhoEngine_Window\MinCameraScript.h"
+
+extern min::Application application;
 
 namespace min
 {
 	SkillInventory::SkillInventory()
 		:UIBase(enums::eUIType::SkillInventory)
 		, mSprite(nullptr)
+		, mBGSprite(nullptr)
 		, mSkillSprite(nullptr)
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
 		, mSkillMesh(nullptr)
+		, mSkillBGMesh(nullptr)
 		, mSkillMaterial(nullptr)
+		, mSkillBGMaterial(nullptr)
 		, mNormal()
 		, mInstanceDatas{}
 		, mInstanceSize(0) // instancebuffer에서 들고있는게 나을수도? -> 자주 바꾸지 않아도 되니까 일단은 임시로 고정값을 instancebuffer에 부여, 추후 필요시 오버할로케이션 전략등 고려
@@ -28,6 +35,8 @@ namespace min
 		, mTouchDelay(0.3f)
 		, mSkillInfo{}
 		, mSelectSkillInfo(nullptr)
+		, mBeforeResolutionX(1600.0f)
+		, mBeforeResolutionY(900.0f)
 	{
 	}
 	SkillInventory::~SkillInventory()
@@ -35,24 +44,35 @@ namespace min
 	}
 	void SkillInventory::OnInit()
 	{
-		mMesh = Resources::Find<Mesh>(L"SkillInventoryMesh"); //추후 수정 예정
-		mSprite = Resources::Find<graphics::Texture>(L"NoneSkill");
-		mMaterial = Resources::Find<Material>(L"SkillInventoryMaterial");
-		mSkillMesh = Resources::Find<Mesh>(L"SkillItemInventoryMesh");
-		mSkillMaterial = Resources::Find<Material>(L"SkillItemInventoryMaterial");
-		mNormal.offset.x = 80.0f;
-		mNormal.offset.y = 80.0f;
-		mNormal.color.x = 0.0f;
-		mNormal.color.y = 0.0f;
-		mNormal.color.z = 0.0f;
+		if(mSkillInfo.size() == 0)
+		{
+			mMesh = Resources::Find<Mesh>(L"SkillInventoryMesh"); //추후 수정 예정
+			mSkillMesh = Resources::Find<Mesh>(L"SkillItemInventoryMesh");
+			mSkillBGMesh = Resources::Find<Mesh>(L"SkillItemInventoryBGMesh");
 
-		mInstanceSize = mInventoryCol * mInventoryRow;
+			mSprite = Resources::Find<graphics::Texture>(L"NoneSkill");
+			mBGSprite = Resources::Find<graphics::Texture>(L"SkillBG");
 
-		mInstanceDatas.resize(mInstanceSize);
-		mSkillInfo.resize(mInstanceSize);
-		CreateIntanceData();
+			mMaterial = Resources::Find<Material>(L"SkillInventoryMaterial");
+			mSkillMaterial = Resources::Find<Material>(L"SkillItemInventoryMaterial");
+			mSkillBGMaterial = Resources::Find<Material>(L"UIMaterial");
+			mNormal.offset.x = 80.0f;
+			mNormal.offset.y = 80.0f;
+			mNormal.color.x = 0.0f;
+			mNormal.color.y = 0.0f;
+			mNormal.color.z = 0.0f;
 
-		CreateSkillInformation();
+			mInstanceSize = mInventoryCol * mInventoryRow;
+
+			mInstanceDatas.resize(mInstanceSize);
+			mSkillInfo.resize(mInstanceSize);
+
+			CreateIntanceData();
+			CreateSkillInformation();
+		}
+		if (mBeforeResolutionX != (float)application.GetWindow().GetWidth() || mBeforeResolutionY != (float)application.GetWindow().GetHeight())
+			ResizeSkillPosition();
+
 		UpdateSkillInformation();
 	}
 	void SkillInventory::OnActive()
@@ -64,6 +84,9 @@ namespace min
 	}
 	void SkillInventory::OnUpdate()
 	{
+		if (mBeforeResolutionX != (float)application.GetWindow().GetWidth() || mBeforeResolutionY != (float)application.GetWindow().GetHeight())
+			ResizeSkillPosition();
+
 		mTouchDelay += Time::DeltaTime();
 
 		if (input::GetKeyDown(eKeyCode::LButton))
@@ -98,8 +121,11 @@ namespace min
 				}
 				else
 				{
-					closest->mTouch = true;
-					mSelectSkillInfo = closest;
+					if(closest->SkillName != L"")
+					{
+						closest->mTouch = true;
+						mSelectSkillInfo = closest;
+					}
 					mTouchDelay = 0.0f;
 				}
 			}
@@ -112,6 +138,8 @@ namespace min
 	{
 		CreateUIConstantBuffer();
 		CreateUIIndexBuffer();
+
+		PirntUIBG();
 
 		if (mMesh)
 			mMesh->BindWithInstancing(eIBType::Inventory);
@@ -130,29 +158,44 @@ namespace min
 	void SkillInventory::OnClear()
 	{
 	}
+	void SkillInventory::PirntUIBG()
+	{
+		if (mSkillBGMesh)
+			mSkillBGMesh->Bind();
+
+		if (mSkillBGMaterial)
+			mSkillBGMaterial->BindShader();
+
+		if (mBGSprite)
+			mBGSprite->Bind(eShaderStage::PS, (UINT)eTextureType::Sprite);
+
+		if (mSkillBGMesh)
+			graphics::GetDevice()->DrawIndexed(mSkillBGMesh->GetIndexCount(), 0, 0);
+	}
 	void SkillInventory::PrintItem()
 	{
 		for (int i = 0; i < mSkillInfo.size(); i++)
 		{
-			if (mSkillInfo[i].mTouch)
-			{
-				int a = 0;
-				mSkillInfo[i].mTouch = false;
-			}
-
 			if (mSkillInfo[i].SkillName == L"")
 				continue;
 
 			mSkillSprite = Resources::Find<graphics::Texture>(mSkillInfo[i].SkillName);
 			SkillConstantBufferSetting(i);
 
-			
-
 			if (mSkillMesh)
 				mSkillMesh->Bind();
 
 			if (mSkillMaterial)
 				mSkillMaterial->BindShader();
+
+			if (mSkillInfo[i].mTouch)
+			{
+				SkillSelecttConstantBufferSetting(i, 10.0f);
+				ID3D11ShaderResourceView* nullSRV[1] = { nullptr };
+				graphics::GetDevice()->SetShaderResource(eShaderStage::PS, (UINT)eTextureType::Sprite, nullSRV);
+				graphics::GetDevice()->DrawIndexed(mSkillMesh->GetIndexCount(), 0, 0);
+				SkillConstantBufferSetting(i);
+			}
 
 			if (mSkillSprite)
 				mSkillSprite->Bind(eShaderStage::PS, (UINT)eTextureType::Sprite);
@@ -223,10 +266,36 @@ namespace min
 		graphics::SkillCB cbData = {};
 		cbData.offsetX = mInstanceDatas[Num].offset.x;
 		cbData.offsetY = mInstanceDatas[Num].offset.y;
+		cbData.isSelect = false;
 
 		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_Skill];
 
 		cb->SetData(&cbData);
 		cb->Bind(eShaderStage::All);
 	}
+	void SkillInventory::SkillSelecttConstantBufferSetting(UINT Num, float offset)
+	{
+		graphics::SkillCB cbData = {};
+		cbData.offsetX = mInstanceDatas[Num].offset.x + offset;
+		cbData.offsetY = mInstanceDatas[Num].offset.y + offset;
+		cbData.isSelect = true;
+
+		graphics::ConstantBuffer* cb = renderer::constantBuffers[CBSLOT_Skill];
+
+		cb->SetData(&cbData);
+		cb->Bind(eShaderStage::All);
+	}
+	void SkillInventory::ResizeSkillPosition() {
+		float ScaleX = (float)application.GetWindow().GetWidth() / mBeforeResolutionX;
+		float ScaleY = (float)application.GetWindow().GetHeight() / mBeforeResolutionY;
+
+		for (InventoryInfo& Skill_Info : mSkillInfo)
+		{
+			Skill_Info.SkillPos.x *= ScaleX;
+			Skill_Info.SkillPos.y *= ScaleY;
+		}
+		mBeforeResolutionX = (float)application.GetWindow().GetWidth();
+		mBeforeResolutionY = (float)application.GetWindow().GetHeight();
+	}
+
 }

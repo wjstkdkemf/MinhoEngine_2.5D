@@ -29,6 +29,7 @@ namespace min
 		virtual void OnRender() override;
 		virtual void OnClear() override;
 
+		void PirntUIBG();
 		void PrintItem();
 
 		void CreateUIIndexBuffer();
@@ -39,14 +40,22 @@ namespace min
 
 		void UpdateSkillInformation();
 		void SkillConstantBufferSetting(UINT Num);
+		void SkillSelecttConstantBufferSetting(UINT Num, float offset);
+
+		void ResizeSkillPosition();
 
 	private:
 		graphics::Texture* mSprite;
 		graphics::Texture* mSkillSprite;
+		graphics::Texture* mBGSprite;
+
 		Material* mMaterial;
 		Material* mSkillMaterial;
+		Material* mSkillBGMaterial;
+
 		Mesh* mMesh;
 		Mesh* mSkillMesh;
+		Mesh* mSkillBGMesh;
 
 		UINT mInstanceSize;
 		UINT mInventoryRow;
@@ -61,6 +70,8 @@ namespace min
 
 		float mMinValue;
 		float mTouchDelay;
+		float mBeforeResolutionX;
+		float mBeforeResolutionY;
 	};
 }
 

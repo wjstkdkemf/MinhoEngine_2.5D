@@ -13,11 +13,10 @@
 #include "MinSkillInformation.h"
 
 namespace min {
-	//std::vector<GameObject> Application::Bullet = {};
-
 	Application::Application()
 		: mbLoaded(false)
 		, mbRunning(false)
+		, mWindow()
 	{
 		mWindow.SetEventCallBack(MIN_BIND_EVENT_FN(Application::OnEvent));
 	}

@@ -111,6 +111,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)guiImguiEditor.h">
       <Filter>GUI\ImguiEditor</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)guiColliderWindow.h">
+      <Filter>GUI\EditorWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)imgui.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)guiImguiEditor.cpp">
       <Filter>GUI\ImguiEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)guiColliderWindow.cpp">
+      <Filter>GUI\EditorWindow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

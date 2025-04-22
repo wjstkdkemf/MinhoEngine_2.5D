@@ -1,5 +1,6 @@
 #include "Samplers.hlsli"
 #include "Textures.hlsli"
+#include "ConstantBuffers.hlsli"
 
 struct VSInput
 {
@@ -16,6 +17,11 @@ struct VSOutput
 float4 main(VSOutput input) : SV_Target
 {
     float4 color = sprite.Sample(anisotropicSampler, input.uv);
+    
+    if (isSelect)
+    {
+        color.rgb = lerp(color.rgb, float3(1, 0, 0), 0.4);
+    }
     
     return color;
 }

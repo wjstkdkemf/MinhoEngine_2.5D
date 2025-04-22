@@ -98,13 +98,16 @@ namespace min
 			Resources::Load<graphics::Texture>(L"Floor_1", L"..\\Resources\\Char\\BG\\Bg_Beach.png");
 			Resources::Load<graphics::Texture>(L"Floor_2", L"..\\Resources\\//CloudOcean.png");//CloudOcean.png
 			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
-			Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase1.png");
+			//Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase1.png");
 			Resources::Load<graphics::Texture>(L"Skill_1", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase2.png");
 			Resources::Load<graphics::Texture>(L"Skill_2", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase3.png");
 			Resources::Load<graphics::Texture>(L"Skill_3", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase4.png");
 
-			//renderer::Initialize();
+			Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\UI\\PNG\\Extra\\Default\\button_square_depth_line.png");
+			Resources::Load<graphics::Texture>(L"SkillBG", L"..\\Resources\\UI\\PNG\\Extra\\Default\\button_rectangle_depth_line.png");
 
+			//renderer::Initialize();
+			
 			SceneManager::CreateScene<PlayScene>(L"PlayScene");
 			SceneManager::CreateScene<TitleScene>(L"TitleScene");
 			

@@ -1,6 +1,7 @@
 #include "guiEditorApplication.h"
 
 #include "guiInspectorWindow.h"
+#include "guiColliderWindow.h"
 #include "..\\MinhoEngine_SOURCE\\MinApplication.h"
 #include "..\\MinhoEngine_SOURCE\\MinRenderer.h"
 #include "..\\MinhoEngine_SOURCE\\MinGameObject.h"
@@ -33,7 +34,9 @@ namespace gui
 
 		mImguiEditor->Initialize();
 		InspectorWindow* inspector = new InspectorWindow();
+		ColliderWindow* col = new ColliderWindow();
 		mEditorWindows.insert(std::make_pair(L"InspectorWindow", inspector));
+		mEditorWindows.insert(std::make_pair(L"ColliderWindow", col));
 		mEventCallback = &EditorApplication::OnEvent;
 
 		return true;
