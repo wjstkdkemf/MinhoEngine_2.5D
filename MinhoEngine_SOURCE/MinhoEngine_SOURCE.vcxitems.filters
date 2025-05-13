@@ -163,6 +163,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinSkillInformation.cpp">
       <Filter>UI\Skill_infomation</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MinTitleButton.cpp">
+      <Filter>UI\Title_Button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)commoninclude.h">
@@ -414,6 +417,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MinSkillInformation.h">
       <Filter>UI\Skill_infomation</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MinTitleButton.h">
+      <Filter>UI\Title_Button</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -526,6 +532,12 @@
     </Filter>
     <Filter Include="UI\Skill_infomation">
       <UniqueIdentifier>{6e316237-325a-4385-8cf9-ba5b1f232d3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\SkillManager\Monster_Skill">
+      <UniqueIdentifier>{408767b1-cbb2-4616-ba02-3ad98071385f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Title_Button">
+      <UniqueIdentifier>{1df161c9-99f7-4a6e-bd38-1315dffbb3e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

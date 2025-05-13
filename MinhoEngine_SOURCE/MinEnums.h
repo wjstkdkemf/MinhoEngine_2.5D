@@ -56,6 +56,7 @@ namespace min::enums
 
 	enum class eUIType
 	{
+		TitleButton,
 		SkillInventory,
 		HPBAR,
 		Button,

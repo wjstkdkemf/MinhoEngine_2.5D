@@ -58,7 +58,11 @@ namespace min
 	}
 	void BoxCollider2D::Render()
 	{
-        DrawAabb(mBoxCollider2D, Colors::White);
+        if (GetOwner()->GetState() == GameObject::eState::Active)
+        {   
+            GetOwner()->GetState();
+            DrawAabb(mBoxCollider2D, Colors::White);
+        }
 	}
 	bool BoxCollider2D::Intersects(Collider* other)
 	{

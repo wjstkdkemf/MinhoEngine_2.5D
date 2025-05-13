@@ -59,8 +59,8 @@ namespace min
     void BoxCollider2DOBB::Render()
     {
         // DrawAabb(mBoxCollider2D, Colors::White);
-
-        DrawObb(mBoxCollider2D, Colors::White);
+        if(GetOwner()->GetState() == GameObject::eState::Active)
+            DrawObb(mBoxCollider2D, Colors::White);
 
     }
     bool BoxCollider2DOBB::Intersects(Collider* other)

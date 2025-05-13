@@ -1,16 +1,17 @@
 #pragma once
-#include "MinUIBase.h"
+#include "MinUIButton.h"
 #include "MinTexture.h"
 #include "MinMaterial.h"
 #include "MinMesh.h"
 
+
 namespace min
 {
-	class UIButton : public UIBase
+	class NewGameButton : public UIButton
 	{
 	public:
-		UIButton();
-		~UIButton();
+		NewGameButton();
+		~NewGameButton();
 
 		virtual void OnInit() override;
 		virtual void OnActive() override;
@@ -22,11 +23,7 @@ namespace min
 
 		virtual void ButtonClick();
 
-	protected:
-		graphics::Texture* mSprite;
-		Material* mMaterial;
-		Mesh* mMesh;
-		Event mOnClick;
+	private:
 	};
 }
 

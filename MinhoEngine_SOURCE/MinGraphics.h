@@ -15,6 +15,7 @@
 #define CBSLOT_ANIMATION		1
 #define CBSLOT_UI				2
 #define CBSLOT_Skill			3
+#define CBSLOT_Title			4
 
 #define IBSLOT_INVENTORY		0
 
@@ -56,6 +57,7 @@ namespace min::graphics
 		Animation,
 		UI,
 		Skill,
+		Title,
 		None,
 		End,
 	};
@@ -157,6 +159,13 @@ namespace min::graphics
 		float offsetX;
 		float offsetY;
 		bool isSelect;
+	};
+
+	CBUFFER(TitleCB, CBSLOT_UI)
+	{
+		float offsetX;
+		float offsetY;
+		bool isfocus;
 	};
 }
 

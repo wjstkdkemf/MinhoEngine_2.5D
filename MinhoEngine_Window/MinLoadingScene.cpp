@@ -55,7 +55,7 @@ namespace min
 			mResourcesLoad->join();
 			//메인쓰레드와 완전 분리 시켜 독립적인 쓰레드 운영가능
 			//mResourcesLoadThread->detach();
-			SceneManager::LoadScene(L"PlayScene");//TitleScenePlayScene
+			SceneManager::LoadScene(L"TitleScene");//TitleScenePlayScene
 		}
 	}
 
@@ -97,6 +97,13 @@ namespace min
 			Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
 			Resources::Load<graphics::Texture>(L"Floor_1", L"..\\Resources\\Char\\BG\\Bg_Beach.png");
 			Resources::Load<graphics::Texture>(L"Floor_2", L"..\\Resources\\//CloudOcean.png");//CloudOcean.png
+			Resources::Load<graphics::Texture>(L"TitleMenu", L"..\\Resources\\TitleMenu+.png");
+			Resources::Load<graphics::Texture>(L"TitleName", L"..\\Resources\\TitleName.png");
+
+			Resources::Load<graphics::Texture>(L"BeforeSelect", L"..\\Resources\\beforeSelect.png");
+			Resources::Load<graphics::Texture>(L"AfterSelect", L"..\\Resources\\afterSelect.png");
+
+
 			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 			//Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase1.png");
 			Resources::Load<graphics::Texture>(L"Skill_1", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase2.png");

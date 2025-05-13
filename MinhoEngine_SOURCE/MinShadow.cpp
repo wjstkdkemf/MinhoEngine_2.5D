@@ -5,6 +5,7 @@
 #include "MinResources.h"
 #include "MinRigidbody.h"
 #include "MinBoxCollider2D.h"
+#include "minGameObject.h"
 #include "..\\MinhoEngine_Window\MinPlayerScript.h"
 #include "..\\MinhoEngine_Window\\MinEffect.h"
 
@@ -36,6 +37,15 @@ namespace min
 		
 		sdtr->SetScale((tr->GetScale().x) / 6.0f, (tr->GetScale().y) / 8.0f, (tr->GetScale().z) / 2.0f);
 		sdtr->SetPosition(Vector3(tr->GetPosition().x, tr->GetPosition().y - tr->GetZvalue() - (tr->GetScale().y / 4.0f), tr->GetPosition().z));
+
+		if (GetOwner()->GetState() == GameObject::eState::Paused)
+		{
+			mShadow->SetActive(false);
+		}
+		else if (GetOwner()->GetState() == GameObject::eState::Active)
+		{
+			mShadow->SetActive(true);
+		}
 
 		//if (!(GetOwner()->GetComponent<Rigidbody>()->GetGround()))
 	}

@@ -3,6 +3,7 @@
 #include "MinComponent.h"
 #include "MinTexture.h"
 #include "MinMaterial.h"
+#include "MinResources.h"
 #include "MinMesh.h"
 
 namespace min {
@@ -18,6 +19,7 @@ namespace min {
 
 		void SetSprite(graphics::Texture* sprite) { mSprite = sprite; }
 		void SetMaterial(Material* material) { mMaterial = material; }
+		void SetMesh(std::wstring name) {mMesh = Resources::Find<Mesh>(name);}
 
 		graphics::Texture* GetSprite() { return mSprite; }
 

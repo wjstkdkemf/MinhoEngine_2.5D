@@ -81,8 +81,11 @@ namespace min
 		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 		//Skill_info->GetComponent<Transform>()->SetPosition(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f);
 
-		if (GetOwner()->GetComponent<Shadow>()->GetGroundMaterial() == L"Floor_1")//땅의 재질을 읽어들일 수 있으므로 이에 맞는 사운드 출력을 구현하면됨
-			int a = 0;
+		if(GetOwner()->GetState() == GameObject::eState::Active)
+		{
+			if (GetOwner()->GetComponent<Shadow>()->GetGroundMaterial() == L"Floor_1")//땅의 재질을 읽어들일 수 있으므로 이에 맞는 사운드 출력을 구현하면됨
+				int a = 0;
+		}
 	}
 	void PlayerScript::Render()
 	{

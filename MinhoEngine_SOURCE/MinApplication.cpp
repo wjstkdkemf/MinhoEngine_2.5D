@@ -39,7 +39,7 @@ namespace min {
 		CollisionManager::Initialize();
 		UIManager::Initialize();
 		SceneManager::Initialize();
-		SkillInformation::CreateSkillInformation();
+		SkillInformation::CreateSkillInformation(); //추후 업데이트 데이터에 대한 스킬 로드도 만들어줘야함
 
 		mbRunning = true;
 	}

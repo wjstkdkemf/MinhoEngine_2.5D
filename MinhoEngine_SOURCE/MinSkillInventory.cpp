@@ -56,6 +56,7 @@ namespace min
 			mMaterial = Resources::Find<Material>(L"SkillInventoryMaterial");
 			mSkillMaterial = Resources::Find<Material>(L"SkillItemInventoryMaterial");
 			mSkillBGMaterial = Resources::Find<Material>(L"UIMaterial");
+
 			mNormal.offset.x = 80.0f;
 			mNormal.offset.y = 80.0f;
 			mNormal.color.x = 0.0f;

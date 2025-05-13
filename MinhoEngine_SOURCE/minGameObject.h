@@ -2,6 +2,7 @@
 #include "commoninclude.h"
 #include "MinComponent.h"
 
+
 namespace min::object
 {
 	void Destroy(GameObject* gameObject);

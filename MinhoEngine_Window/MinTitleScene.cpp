@@ -13,6 +13,8 @@
 #include "MinCamera.h"
 #include "MinCameraScript.h"
 #include "MinFloor.h"
+#include "MinShadow.h"
+#include "MinEffect.h"
 #include "MinBoxCollider2D.h"
 #include "MinUIManager.h"
 
@@ -38,22 +40,27 @@ namespace min {
 		mCameraVector.push_back(camera);
 		renderer::mainCamera = cameraComp;
 #pragma endregion
-#pragma region Floor
-		Floor* mFloor = object::Instantiate<Floor>(eLayerType::Floor, Vector3(0.0f, -8.0f, 0.0f));
-		mFloor->GetComponent<Transform>()->SetScale(15.0f, 15.0f, 0.0f);
-		SpriteRenderer* flsr = mFloor->AddComponent<SpriteRenderer>();
-		flsr->SetSprite(Resources::Find<graphics::Texture>(L"Floor_2"));
-		flsr->SetName(L"Floor_2");
+#pragma region BG
+		GameObject* BG = object::Instantiate<GameObject>
+			(enums::eLayerType::BackGround, Vector3(0.0f, 0.0f, 0.0f));
+		BG->GetComponent<Transform>()->SetScale(Vector3(8.0f, 8.0f, 0.0f));
 
-		BoxCollider2D* mBGBoxCollidder = mFloor->AddComponent<BoxCollider2D>();
-		mBGBoxCollidder->SetName(L"Floor");
-		
+		SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();//
+		sr->SetSprite(Resources::Find<graphics::Texture>(L"Floor_2"));//TitleMenu
 #pragma endregion
 
-		Player* mPlayer = (Player*)object::GetDontDestoryOnLoadLayer(eLayerType::Player);
+#pragma region TitleName
+		GameObject* TitleName = object::Instantiate<GameObject>
+			(enums::eLayerType::BackGround, Vector3(0.0f, 1.0f, 0.0f));
+		TitleName->GetComponent<Transform>()->SetScale(Vector3(2.0f, 1.0f, 0.0f));
 
-		cameraScript->SetPlayer(mPlayer);// 카메라가 따라다닐 오브젝트 지정
+		SpriteRenderer* tnsr = TitleName->AddComponent<SpriteRenderer>();//
+		
+		tnsr->SetSprite(Resources::Find<graphics::Texture>(L"TitleName"));//TitleMenu
+#pragma endregion
+		//cameraScript->SetPlayer(mPlayer);// 카메라가 따라다닐 오브젝트 지정
 		//cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());
+
 	}
 	void TitleScene::Update()
 	{
@@ -73,12 +80,25 @@ namespace min {
 	}
 	void TitleScene::OnEnter()
 	{
-		UIManager::Push(eUIType::HPBAR);
+		UIManager::Push(eUIType::TitleButton);
 		renderer::mainCamera = mCameraVector[0]->GetComponent<Camera>();
+
+		Player* mPlayer = (Player*)object::GetDontDestoryOnLoadLayer(eLayerType::Player);
+		mPlayer->SetActive(false);
+
+		Effect* mShadow = (Effect*)object::GetDontDestoryOnLoadLayer(eLayerType::Shadow);
+		mShadow->SetActive(false);
+
 		Scene::OnEnter();
 	}
 	void TitleScene::OnExit(){
-		UIManager::Pop(eUIType::HPBAR);
+		UIManager::Pop(eUIType::TitleButton);
+
+		Player* mPlayer = (Player*)object::GetDontDestoryOnLoadLayer(eLayerType::Player);
+		mPlayer->SetActive(true);
+		Shadow* mShadow = (Shadow*)object::GetDontDestoryOnLoadLayer(eLayerType::Shadow);
+		mShadow->GetShadow()->SetActive(true);
+
 		Scene::OnExit();
 	}
 }

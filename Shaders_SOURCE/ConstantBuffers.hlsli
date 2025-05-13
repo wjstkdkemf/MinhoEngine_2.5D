@@ -31,3 +31,10 @@ cbuffer SkillOffset : register(b3)
     float OffsetY;
     bool isSelect;
 }
+
+cbuffer TitleOffset : register(b4)
+{
+    float TOffsetX;
+    float TOffsetY;
+    bool TisSelect;
+}
