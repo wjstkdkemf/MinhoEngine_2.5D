@@ -18,10 +18,11 @@
 
 namespace min
 {
+	bool PlayerScript::exChangeSkill = false;
+
 	PlayerScript::PlayerScript()
 		: mState(PlayerScript::eState::idle)
 		, mAnimator(nullptr)
-		, Skill_info(nullptr)
 		, mDelayTime(2.0f)
 		, mGravity(0.05f)
 		, isJump(false)
@@ -37,15 +38,18 @@ namespace min
 	}
 	void PlayerScript::Initialize()
 	{
+		exChangeSkill = false;
+		mSkillInfo.resize(4);
 	}
 	void PlayerScript::Update()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
 
-		if(Skill_info == nullptr)
+		if(exChangeSkill)
 		{
 			MakeSkill_Info();
+			exChangeSkill = false;
 		}
 
 		if (mAnimator == nullptr)
@@ -53,6 +57,8 @@ namespace min
 
 		Jumping();
 		CoolTimeCheck();
+		CheakPosition();
+
 
 		switch (mState)
 		{
@@ -78,9 +84,6 @@ namespace min
 	}
 	void PlayerScript::LateUpdate()
 	{
-		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
-		//Skill_info->GetComponent<Transform>()->SetPosition(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f);
-
 		if(GetOwner()->GetState() == GameObject::eState::Active)
 		{
 			if (GetOwner()->GetComponent<Shadow>()->GetGroundMaterial() == L"Floor_1")//땅의 재질을 읽어들일 수 있으므로 이에 맞는 사운드 출력을 구현하면됨
@@ -121,6 +124,30 @@ namespace min
 			if (mCoolTime[1] >= 0.5f)
 				mMoveLock = false;
 		}
+	}
+	void PlayerScript::CheakPosition()
+	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector3 pos = tr->GetPosition();
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+
+		float lx = mFieldSize.x / 2;
+		float clampX = std::clamp(pos.x, -lx, lx); // 추후lx 부분을 ground의 position으로 조정해줘야함 
+
+		float ly = mFieldSize.y / 2;
+
+		float clampY = 0.0f;
+
+		if(rb->GetGround())
+			clampY = std::clamp(pos.y, -ly + 0.5f, 0.0f);
+		else
+		{
+			clampY = std::clamp(pos.y, -ly + 0.5f, 999999.0f);
+			Vector3 vel = rb->GetVelocity();
+			rb->SetVelocity(Vector3(vel.x, 0.0f, vel.z));
+		}
+
+		tr->SetPosition(clampX, clampY, pos.z);
 	}
 	void PlayerScript::Idle()
 	{
@@ -165,6 +192,9 @@ namespace min
 #pragma region Skill
 		if (input::GetKey(eKeyCode::Q)) {
 			mState = eState::Walk;
+
+			Transform* tr = GetOwner()->GetComponent<Transform>();
+			Vector3 pos = tr->GetPosition();
 		}
 		if (input::GetKey(eKeyCode::E)) {
 			mState = eState::Walk;
@@ -199,7 +229,7 @@ namespace min
 		if (input::GetKey(eKeyCode::Q)) {
 			if (mCoolTime[0] >= 2.0f)
 			{
-				sm->UseSkill(L"FirstSkill", mFront);
+				sm->UseSkill(mSkillInfo[0].SkillName, mFront);
 				rd->SetVelocity(Vector3::Zero);
 				mMoveLock = true;
 				mCoolTime[0] = 0.0f;
@@ -208,7 +238,7 @@ namespace min
 		if (input::GetKey(eKeyCode::E)) {
 			if (mCoolTime[1] >= 1.0f)
 			{
-				sm->UseSkill(L"SecondSkill", mFront);
+				sm->UseSkill(mSkillInfo[1].SkillName, mFront);
 				rd->SetVelocity(Vector3::Zero);
 				mMoveLock = true;
 				mCoolTime[1] = 0.0f;
@@ -268,10 +298,12 @@ namespace min
 	}
 	void PlayerScript::MakeSkill_Info()
 	{
-		/*Skill_info = object::Instantiate<GameObject>(enums::eLayerType::Shadow, Vector3(Camera::GetCameraPosition().x, Camera::GetCameraPosition().y - 2.0f, Camera::GetCameraPosition().z + 1.0f));
-		Skill_info->GetComponent<Transform>()->SetScale(0.3f, 0.3f, 0);
-		SpriteRenderer* sksr = Skill_info->AddComponent<SpriteRenderer>();
-		sksr->SetSprite(Resources::Find<graphics::Texture>(L"Bubble"));
-		Skill_info->AddComponent<Shadow>();*/
+		SkillInventory* skillinven = (SkillInventory*)UIManager::UIGet(eUIType::SkillInventory);
+		std::vector<SkillInventory::InventoryInfo> skillinfo = skillinven->GetSkillInfo();
+
+		for (int i = 0; i < 4; i++)
+		{
+			mSkillInfo[i] = skillinfo[i];
+		}
 	}
 }

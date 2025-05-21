@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\MinhoEngine_SOURCE\\MinScript.h"
+#include "..\\MinhoEngine_SOURCE\MinSkillInventory.h"
 
 namespace min
 {
@@ -31,6 +32,13 @@ namespace min
 		void PlayerEffect();
 
 		void CoolTimeCheck();
+		void CheakPosition();
+
+		void SetFieldSize(Vector3 Size) { mFieldSize = Size; }
+
+	public :
+		static bool exChangeSkill;
+
 
 	private:
 		void Idle();
@@ -42,7 +50,8 @@ namespace min
 	private:
 		eState mState;
 		class Animator* mAnimator;
-		class GameObject* Skill_info;
+
+		Vector3 mFieldSize;
 		//class Effect* Shadow;
 
 		float mDelayTime;
@@ -56,6 +65,9 @@ namespace min
 		bool mFront; // true 면 오른쪽 , false 면 왼쪽
 
 		float mJumpingTime;
+
+
+		std::vector<SkillInventory::InventoryInfo> mSkillInfo;
 		//void (*StartEvent)();
 		//void (*CompleteEvent)();
 		//void (*EndEvent)();

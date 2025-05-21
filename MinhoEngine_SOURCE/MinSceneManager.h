@@ -17,6 +17,9 @@ namespace min {
 		}
 
 		static Scene* LoadScene(const std::wstring& name);
+		//static Scene* LoadScene(const std::wstring& name , bool Loading);
+
+
 		static bool SetActiveScene(const std::wstring& name);
 		static std::wstring GetSceneName() { return mActiveScene->GetName(); }
 		static Scene* GetActiveScene() { return mActiveScene; }

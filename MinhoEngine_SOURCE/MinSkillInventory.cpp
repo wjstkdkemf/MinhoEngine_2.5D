@@ -9,6 +9,7 @@
 #include "MinTime.h"
 #include "MinApplication.h"
 
+#include "..\\MinhoEngine_Window\MinPlayerScript.h"
 #include "..\\MinhoEngine_Window\MinCameraScript.h"
 
 extern min::Application application;
@@ -82,6 +83,7 @@ namespace min
 	}
 	void SkillInventory::OnInActive()
 	{
+		PlayerScript::exChangeSkill = true;
 	}
 	void SkillInventory::OnUpdate()
 	{

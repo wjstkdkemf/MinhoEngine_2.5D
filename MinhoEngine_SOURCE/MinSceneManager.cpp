@@ -34,6 +34,20 @@ namespace min {
 		return mActiveScene;
 	}
 
+	//Scene* SceneManager::LoadScene(const std::wstring& name, bool Loading)
+	//{
+	//	if (mActiveScene) {
+	//		mActiveScene->OnExit();
+	//	}
+
+	//	if (!SetActiveScene(name))
+	//		return nullptr;
+
+	//	mActiveScene->OnEnter();
+
+	//	return mActiveScene;
+	//}
+
 	std::vector<GameObject*> SceneManager::GetGameObjects(eLayerType layer)
 	{
 		std::vector<GameObject*> gameObjects

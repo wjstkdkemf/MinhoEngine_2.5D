@@ -49,7 +49,7 @@ namespace min
 	{
 		if (mbLoadCompleted /*&& application.IsLoaded()*/)
 		{
-			int a = 0;
+			//int a = 0;
 			//만약 메인쓰레드가 종료되는데 자식쓰레드가 남아있다면
 			//자식쓰레드를 메인쓰레드에 편입시켜 메인쓰레드가 종료되기전까지 block
 			mResourcesLoad->join();
@@ -77,22 +77,9 @@ namespace min
 
 		m.lock();
 		{
-			/*	Resources::Load<graphics::Texture>(L"BG", L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\Resources\\CloudOcean.png");
-				Resources::Load<graphics::Texture>(L"BG_2", L"..\\Resources\\TitleName.png");
-				Resources::Load<graphics::Texture>(L"TN", L"..\\Resources\\background.png");
-				Resources::Load<graphics::Texture>(L"PackMan", L"..\\Resources\\3.png");
-				Resources::Load<graphics::Texture>(L"Chicken", L"..\\Resources\\chicken.bmp");
-				Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
-				Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
-				Resources::Load<graphics::Texture>(L"MappleEffect", L"..\\Resources\\ezgif.com-gif-maker.png");
-				Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
-				Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
-				Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
-				*/
-				//Resources::Load<graphics::Texture>(L"BG", L"C:\\Users\\wjstk\\source\\repos\\MinhoEngine\\Resources\\CloudOcean.png");
 			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
 			Resources::Load<graphics::Texture>(L"BG", L"..\\Resources\\background.png");
-			Resources::Load<graphics::Texture>(L"FirstSkill", L"..\\Resources\\FirstSkill.png");
+			Resources::Load<graphics::Texture>(L"FirstSkillEffect", L"..\\Resources\\FirstSkill.png");
 			Resources::Load<graphics::Texture>(L"Shadow", L"..\\Resources\\shadow.png");
 			Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
 			Resources::Load<graphics::Texture>(L"Floor_1", L"..\\Resources\\Char\\BG\\Bg_Beach.png");
@@ -106,8 +93,8 @@ namespace min
 
 			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 			//Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase1.png");
-			Resources::Load<graphics::Texture>(L"Skill_1", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase2.png");
-			Resources::Load<graphics::Texture>(L"Skill_2", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase3.png");
+			Resources::Load<graphics::Texture>(L"FirstSkill", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase2.png");
+			Resources::Load<graphics::Texture>(L"SecondSkill", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase3.png");
 			Resources::Load<graphics::Texture>(L"Skill_3", L"..\\Resources\\char_2\\Background\\00_Icon\\Fase4.png");
 
 			Resources::Load<graphics::Texture>(L"NoneSkill", L"..\\Resources\\UI\\PNG\\Extra\\Default\\button_square_depth_line.png");

@@ -33,6 +33,11 @@ namespace min {
 
 		mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
 		mGraphicDevice->Initialize();
+
+		GetDevice()->GetID3D11Device().Get();
+
+		// = std::make_unique<SpriteFont>(GetDevice()->GetID3D11Device().Get(), L"myfile.spritefont"); //mGraphicDevice.get()->GetID3D11Device().Get()
+
 		renderer::Initialize();
 
 		Fmod::Initialize();

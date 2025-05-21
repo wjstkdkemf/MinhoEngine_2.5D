@@ -154,14 +154,14 @@ namespace min::graphics
 		math::Matrix projection;
 	};
 
-	CBUFFER(SkillCB, CBSLOT_UI)
+	CBUFFER(SkillCB, CBSLOT_Skill)
 	{
 		float offsetX;
 		float offsetY;
 		bool isSelect;
 	};
 
-	CBUFFER(TitleCB, CBSLOT_UI)
+	CBUFFER(TitleCB, CBSLOT_Title)
 	{
 		float offsetX;
 		float offsetY;

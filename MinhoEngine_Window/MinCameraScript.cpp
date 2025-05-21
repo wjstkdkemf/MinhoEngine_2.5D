@@ -68,11 +68,11 @@ namespace min
 		float lx = (mFieldSize.x - mMaxWidthInOrgan) / 2;
 		float clampX = std::clamp(pos.x, -lx, lx ); // 추후lx 부분을 ground의 position으로 조정해줘야함 
 
-		//float ly = (mFieldSize.y - mMaxHeightInOrgan) / 2;
-		//float clampY = std::clamp(pos.y, -ly, ly);
+		float ly = (mFieldSize.y - mMaxHeightInOrgan) / 2;
+		float clampY = std::clamp(pos.y, -ly, 999999999.0f);
 
 
-		tr->SetPosition(clampX, pos.y, pos.z - 5.0f);
+		tr->SetPosition(clampX, clampY, pos.z - 5.0f);
 	}
 	void CameraScript::Render()
 	{

@@ -13,8 +13,8 @@ namespace min
 	}
 	void SkillInformation::CreateSkillInformation()
 	{
-		CreateSkillInformationByOnes(L"Skill_1");
-		CreateSkillInformationByOnes(L"Skill_2");
+		CreateSkillInformationByOnes(L"FirstSkill");
+		CreateSkillInformationByOnes(L"SecondSkill");
 		CreateSkillInformationByOnes(L"Skill_3");
 	}
 	void SkillInformation::CreateSkillInformationByOnes(std::wstring name)

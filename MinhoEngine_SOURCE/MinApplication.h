@@ -5,6 +5,7 @@
 
 #include "minGameObject.h"
 #include "MinGraphicDevice_DX11.h"
+#include "SpriteFont.h"
 
 #include "MinEvent.h"
 #include "MinWindow.h"
@@ -46,6 +47,8 @@ namespace min{
 		bool mbLoaded;
 		bool mbRunning;
 		std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
+		std::unique_ptr<DirectX::SpriteFont> mFont;
+
 
 		Window mWindow;
 		//std::vector<GameObject*> Bullet;

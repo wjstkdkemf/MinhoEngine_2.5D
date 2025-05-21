@@ -168,6 +168,10 @@ namespace min
 				tempStack.push(uibase);
 				continue;
 			}
+			else
+			{
+				uibase->InActive();
+			}
 
 			if (uibase->IsFullScreen())
 			{

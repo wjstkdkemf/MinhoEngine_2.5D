@@ -23,6 +23,12 @@ namespace min
 		static void Push(eUIType type);
 		static void Pop(eUIType type);
 
+		static UIBase* UIGet(eUIType type)
+		{
+			auto iter = mUIs.find(type);
+			return iter->second;
+		}
+
 	public:
 		static Matrix mUIMatrix;
 		static Matrix mUIViewMatrix;

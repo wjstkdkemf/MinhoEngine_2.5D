@@ -31,6 +31,7 @@ namespace min {
 #pragma region Camera
 		GameObject* camera = object::Instantiate<GameObject>
 			(enums::eLayerType::None, Vector3(0.0f, 0.0f, -5.0f));
+		camera->SetName(L"camera");
 
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
@@ -43,6 +44,9 @@ namespace min {
 #pragma region BG
 		GameObject* BG = object::Instantiate<GameObject>
 			(enums::eLayerType::BackGround, Vector3(0.0f, 0.0f, 0.0f));
+
+		BG->SetName(L"BG");
+
 		BG->GetComponent<Transform>()->SetScale(Vector3(8.0f, 8.0f, 0.0f));
 
 		SpriteRenderer* sr = BG->AddComponent<SpriteRenderer>();//
@@ -53,6 +57,9 @@ namespace min {
 		GameObject* TitleName = object::Instantiate<GameObject>
 			(enums::eLayerType::BackGround, Vector3(0.0f, 1.0f, 0.0f));
 		TitleName->GetComponent<Transform>()->SetScale(Vector3(2.0f, 1.0f, 0.0f));
+
+		TitleName->SetName(L"TitleName");
+
 
 		SpriteRenderer* tnsr = TitleName->AddComponent<SpriteRenderer>();//
 		

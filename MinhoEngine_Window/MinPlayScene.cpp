@@ -67,7 +67,7 @@ namespace min {
 			
 #pragma endregion
 #pragma region Floor
-		Floor* mFloor = object::Instantiate<Floor>(eLayerType::Floor, Vector3(0.0f, -8.0f, 0.0f));
+		Floor* mFloor = object::Instantiate<Floor>(eLayerType::Floor, Vector3(0.0f, -7.5f, 10.0f));
 		mFloor->GetComponent<Transform>()->SetScale(15.0f, 15.0f, 0.0f);
 		SpriteRenderer* flsr = mFloor->AddComponent<SpriteRenderer>();
 		flsr->SetSprite(Resources::Find<graphics::Texture>(L"Floor_1"));
@@ -79,7 +79,7 @@ namespace min {
 #pragma endregion
 #pragma region Player
 		Player* mPlayer = object::Instantiate<Player>
-			(enums::eLayerType::Player, Vector3(0.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+			(enums::eLayerType::Player, Vector3(0.0f, -5.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
 		mPlayer->GetComponent<Transform>()->SetScale(2.0f, 2.0f, 0.0f);
 		mPlayer->SetName(L"Player");
 		PlayerScript* prsc = mPlayer->AddComponent<PlayerScript>();
@@ -110,7 +110,7 @@ namespace min {
 #pragma endregion
 #pragma region Enemy
 		GameObject* Enemy = object::Instantiate<GameObject>
-			(enums::eLayerType::Enemy, Vector3(-4.0f, 0.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
+			(enums::eLayerType::Enemy, Vector3(-4.0f, -5.0f, 0.0f));//카메라에 가까울수록 depth버퍼가 크다
 		Enemy->GetComponent<Transform>()->SetScale(1.0f, 1.0f, 0.0f);
 		EnemyScript* Enemysc = Enemy->AddComponent<EnemyScript>();
 		//SpriteRenderer* prsr = Player->AddComponent<SpriteRenderer>();
@@ -130,6 +130,8 @@ namespace min {
 		
 		cameraScript->SetPlayer(mPlayer);// 카메라가 따라다닐 오브젝트 지정
 		cameraScript->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());//카메라 위치 최대치
+
+		prsc->SetFieldSize(mFloor->GetComponent<Transform>()->GetScale());
 	}
 	void PlayScene::Update()
 	{

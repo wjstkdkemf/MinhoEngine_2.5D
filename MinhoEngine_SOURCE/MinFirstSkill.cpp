@@ -51,7 +51,7 @@ namespace min
         fssc->SetDuration(GetSkillDuration());
 
         Animator* fsAnimator = fsgo->AddComponent<Animator>();
-        fsAnimator->CreateAnimation(GetSkillAnimation(), Resources::Find<graphics::Texture>(L"FirstSkill")
+        fsAnimator->CreateAnimation(GetSkillAnimation(), Resources::Find<graphics::Texture>(L"FirstSkillEffect")
             , Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, GetSkillDuration() / 8.0f); // duration / ÇÁ·¹ÀÓ °¹¼ö
 
 #pragma endregion

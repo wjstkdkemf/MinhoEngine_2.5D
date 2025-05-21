@@ -36,7 +36,9 @@ namespace min
 		void CreateIntanceData();
 		void CreateSkillInformation();
 
+		std::vector<InventoryInfo> GetSkillInfo() { return mSkillInfo; }
 		UINT GetInstanceSize() { return mInstanceSize; }
+		//const bool GetExChange() { return exChangeSkill; }
 
 		void UpdateSkillInformation();
 		void SkillConstantBufferSetting(UINT Num);
@@ -72,6 +74,8 @@ namespace min
 		float mTouchDelay;
 		float mBeforeResolutionX;
 		float mBeforeResolutionY;
+
+		//bool exChangeSkill;
 	};
 }
 

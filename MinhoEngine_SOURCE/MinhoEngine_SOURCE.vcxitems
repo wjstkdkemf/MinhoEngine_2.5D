@@ -157,4 +157,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MinVertexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MinWindow.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\myfile.spritefont" />
+  </ItemGroup>
 </Project>

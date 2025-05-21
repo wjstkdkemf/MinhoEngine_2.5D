@@ -540,4 +540,7 @@
       <UniqueIdentifier>{1df161c9-99f7-4a6e-bd38-1315dffbb3e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\myfile.spritefont" />
+  </ItemGroup>
 </Project>
