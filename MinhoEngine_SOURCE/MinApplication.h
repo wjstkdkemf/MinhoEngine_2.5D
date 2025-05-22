@@ -41,13 +41,14 @@ namespace min{
 		bool IsLoaded() const { return mbLoaded; }
 		void IsLoaded(bool load) { mbLoaded = load; }
 		bool IsRunning() const { return mbRunning; }
+		//std::unique_ptr<graphics::GraphicDevice_DX11> GetDevice() { return mGraphicDevice; };
 
 
 	private:
 		bool mbLoaded;
 		bool mbRunning;
 		std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
-		std::unique_ptr<DirectX::SpriteFont> mFont;
+		//std::unique_ptr<DirectX::SpriteFont> mFont;
 
 
 		Window mWindow;

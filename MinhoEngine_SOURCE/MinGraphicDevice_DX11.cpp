@@ -39,6 +39,68 @@ namespace min::graphics
 		return true;
 	}
 
+	void GraphicDevice_DX11::InitializeD2D(ID3D11Device* d3d11Device, IDXGISwapChain* swapChain)
+	{
+		HRESULT hr = S_OK;
+		// Direct2D 팩토리 생성
+		D2D1_FACTORY_OPTIONS options = {};
+		hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, __uuidof(ID2D1Factory1), &options, &g_d2dFactory);
+
+		if (FAILED(hr))
+		{
+			int a = 0;
+		}
+
+		// DirectWrite 팩토리 생성
+		hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &g_dwriteFactory);
+
+		if (FAILED(hr))
+		{
+			int a = 0;
+		}
+
+		// DXGI 백버퍼에서 Direct2D 렌더 타겟 생성
+		Microsoft::WRL::ComPtr<IDXGISurface> dxgiBackBuffer;
+
+		hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
+
+		if (FAILED(hr))
+		{
+			int a = 0;
+		}
+
+		D2D1_RENDER_TARGET_PROPERTIES props = D2D1::RenderTargetProperties(
+			D2D1_RENDER_TARGET_TYPE_HARDWARE,
+			D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED)
+		);
+		hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));;
+
+		if (FAILED(hr))
+		{
+			int a = 0;
+		}
+
+		hr = g_d2dFactory->CreateDxgiSurfaceRenderTarget(dxgiBackBuffer.Get(), &props, &g_d2dRenderTarget);
+
+		if (FAILED(hr))
+		{
+			int a = 0;
+		}
+
+		// 브러쉬 및 텍스트 포맷 생성 (예시)
+		g_d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &g_brush);
+		g_dwriteFactory->CreateTextFormat(
+			L"Arial",
+			nullptr,
+			DWRITE_FONT_WEIGHT_NORMAL,
+			DWRITE_FONT_STYLE_NORMAL,
+			DWRITE_FONT_STRETCH_NORMAL,
+			24.0f,
+			L"ko-kr", // 또는 다른 로케일
+			&g_textFormat
+		);
+	}
+
 	bool GraphicDevice_DX11::CreateSwapchain(DXGI_SWAP_CHAIN_DESC desc)
 	{
 		Microsoft::WRL::ComPtr<IDXGIDevice>     pDXGIDevice = nullptr;
@@ -450,6 +512,7 @@ namespace min::graphics
 
 		//renderer::vertexBuffer.Create(renderer::vertexes);
 		//renderer::indexBuffer.Create(renderer::indices);
+		InitializeD2D(mDevice.Get(), mSwapChain.Get());
 	}
 
 	void GraphicDevice_DX11::Draw(UINT VertexCount, UINT StartVertexLocation)

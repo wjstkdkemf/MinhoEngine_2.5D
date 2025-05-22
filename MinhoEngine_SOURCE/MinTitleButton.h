@@ -42,6 +42,8 @@ namespace min
 		void ConstantBufferSetting(UINT Num);
 		void ResizeButtonPosition();
 
+		void PrintFont(UINT num);
+
 	private:
 		graphics::Texture* mSprite;
 		graphics::Texture* mMainTitleSprite;

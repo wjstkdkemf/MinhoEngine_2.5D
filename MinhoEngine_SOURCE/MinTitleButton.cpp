@@ -122,6 +122,8 @@ namespace min
 
 			ConstantBufferSetting(i);
 
+			Mesh::MeshData me = mMesh->GetMeshData();
+
 			if (mMainTitleMesh)
 				mMainTitleMesh->Bind();
 
@@ -142,6 +144,9 @@ namespace min
 
 			if (mMainTitleMesh)
 				graphics::GetDevice()->DrawIndexed(mMainTitleMesh->GetIndexCount(), 0, 0);
+
+
+			PrintFont(i);
 		}
 	}
 	void TitleButton::PrintBGTitle()
@@ -200,5 +205,30 @@ namespace min
 		}
 		mBeforeResolutionX = (float)application.GetWindow().GetWidth();
 		mBeforeResolutionY = (float)application.GetWindow().GetHeight();
+	}
+	void TitleButton::PrintFont(UINT num)
+	{
+		float screenX = mTitlenfo[num].TitlePos.x - 30.0f ; // 위치 맞추기
+		float screenY = mTitlenfo[num].TitlePos.y - 20.0f; // Direct2D는 Y축이 아래로 증가하므로 변환 필요
+
+
+		// 3. Direct2D 렌더링 시작
+		GetDevice()->GetID2D1RenderTarget()->BeginDraw();
+		GetDevice()->GetID2D1RenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity()); // 기본 변환 초기화
+
+		// 텍스트 그리기
+		std::wstring text = mTitlenfo[num].ButtonName;
+		D2D1_RECT_F textRect = D2D1::RectF(screenX, screenY, screenX + 100, screenY + 50); // 적절한 크기 설정
+
+		GetDevice()->GetID2D1RenderTarget()->DrawText(
+			text.c_str(),
+			(UINT32)text.length(),
+			GetDevice()->GetIDWriteTextFormat().Get(),
+			textRect,
+			GetDevice()->GetID2D1SolidColorBrush().Get()
+		);
+
+		// 4. Direct2D 렌더링 종료
+		GetDevice()->GetID2D1RenderTarget()->EndDraw();
 	}
 }

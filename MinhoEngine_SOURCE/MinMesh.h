@@ -32,6 +32,8 @@ namespace min
 		void Bind();
 		void BindWithInstancing(graphics::eIBType eType);
 
+		MeshData GetMeshData() { return mData; }
+
 	private:
 		graphics::InputLayout mInputLayout;
 		graphics::VertexBuffer mVB;

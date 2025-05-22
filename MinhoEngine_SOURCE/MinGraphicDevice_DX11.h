@@ -26,6 +26,7 @@ namespace min::graphics
 		bool CreateBlendState(const D3D11_BLEND_DESC* pBlendState, ID3D11BlendState** ppBlendState);
 		bool CreateDepthStencilState(const D3D11_DEPTH_STENCIL_DESC* pDepthStencilDesc, ID3D11DepthStencilState** ppDepthStencilState);
 
+		void InitializeD2D(ID3D11Device* d3d11Device, IDXGISwapChain* swapChain);
 
 		void BindInputLayout(ID3D11InputLayout* pInputLayout);
 		void BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology);
@@ -65,6 +66,13 @@ namespace min::graphics
 		[[nodiscard]] Microsoft::WRL::ComPtr<ID3D11DeviceContext> GetID3D11DeviceContext() { return mContext; }
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> GetFrameBuffer() { return mFrameBuffer; }
 
+		[[nodiscard]] Microsoft::WRL::ComPtr<ID2D1Factory1> GetID2D1Factory1() { return g_d2dFactory; }
+		[[nodiscard]] Microsoft::WRL::ComPtr<IDWriteFactory> GetIDWriteFactory() { return g_dwriteFactory; }
+		[[nodiscard]] Microsoft::WRL::ComPtr<ID2D1RenderTarget> GetID2D1RenderTarget() { return g_d2dRenderTarget; }
+		[[nodiscard]] Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> GetID2D1SolidColorBrush() { return g_brush; }
+		[[nodiscard]] Microsoft::WRL::ComPtr<IDWriteTextFormat> GetIDWriteTextFormat() { return g_textFormat; }
+
+
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> mDevice;
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> mContext;
@@ -75,6 +83,12 @@ namespace min::graphics
 
 		Microsoft::WRL::ComPtr<IDXGISwapChain> mSwapChain;
 		Microsoft::WRL::ComPtr<ID3D11SamplerState> mSamplers;//[(UINT)Filter::MAXIMUM_ANISOTROPIC]
+
+		Microsoft::WRL::ComPtr<ID2D1Factory1> g_d2dFactory;
+		Microsoft::WRL::ComPtr<IDWriteFactory> g_dwriteFactory;
+		Microsoft::WRL::ComPtr<ID2D1RenderTarget> g_d2dRenderTarget; // Direct3D 백버퍼와 연동될 렌더 타겟
+		Microsoft::WRL::ComPtr<ID2D1SolidColorBrush> g_brush;
+		Microsoft::WRL::ComPtr<IDWriteTextFormat> g_textFormat;
 	};
 
 	inline GraphicDevice_DX11*& GetDevice()
