@@ -1,4 +1,4 @@
-# MinhoEngine_2.5D: DirectX11 기반 2.5D 게임 엔진 모작
+# DirectX11 기반 2.5D 벨트 스크롤 게임 엔진 모작
 
 ## 프로젝트 소개
 
