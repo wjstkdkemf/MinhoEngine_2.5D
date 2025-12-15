@@ -10,29 +10,35 @@
     * DirectX 기반으로 Unity의 Animation 시스템을 재설계.
     * GameObject 클래스에 Animator 컴포넌트를 추가하고, Animation을 Resource로 구현하여 재생, 일시 정지 관리.
     * 메모리 최적화를 고려한 설계 및 이벤트 기반 함수 포인터를 통한 코드 가독성 향상.
+    * Code: [Animator.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinAnimation.cpp)
 
 * **Collider Manager:**
     * BoxCollider, CircleCollider 등 다양한 충돌체를 컴포넌트로 구현.
     * 연산량 과다로 인한 프레임 드랍 문제를 해결하기 위해 Layer 간 충돌 구분 로직 구현.
     * DirectXTK의 BoundingBOX를 활용한 시각화 및 BoundingOrientedBox를 사용한 회전 충돌 처리 구현.
+    * Code: [BoxCollider2DOBB.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinBoxCollider2DOBB.cpp)
 
 * **RigidBody:**
     * 2.5D 환경에 특화된 Y축 이동 (점프 vs. 방향키 이동) 분리 및 충돌 계산 구분.
     * 임의의 Z축 값 설정을 통한 점프 시각화 (그림자 생성) 및 코드 가독성/유지보수성 향상.
     * Force 기반 이동 설계를 통해 새로운 이동 방식 설계 용이성 확보.
+    * Code: [Rigidbody.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinRigidbody.cpp)
 
 * **Skill Manager & Skill Class:**
     * 높은 확장성을 위해 스킬 발동 함수를 `virtual` 순수 가상 함수로 설계.
     * `std::unique_ptr`를 사용하여 스킬 객체를 관리하고 `unorderedMap`에 저장함으로써 메모리 해제 자동화 및 효율적인 스킬 호출 구현.
+    * Code: [SkillManager.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinSkillManager.cpp)
 
 * **UI Manager:**
     * 기존 비효율적인 카메라 뷰스페이스 변환 방식 대신, 별도의 UI 전용 뷰스페이스 구성 및 출력 시스템 설계.
     * 그래픽스 파이프라인 이해를 바탕으로 화면 출력 흐름 개선 및 UI/실제 좌표계 통일을 통한 터치 인터랙션 직관성, 유지보수성 향상.
+    * Code: [UIManager.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinUIManager.cpp)
 
 * **Inventory System:**
     * 기존 Skill 시스템을 확장하여 Skill Class 정보를 효율적으로 관리하는 인벤토리 시스템 구현.
     * 인스턴싱(Instancing) 기법을 통해 비어있는 슬롯 렌더링 시 드로우 콜(Draw Call) 횟수 대폭 감소.
     * 스킬 아이콘을 위한 별도의 Constant Buffer를 사용하여 렌더링 효율성과 유연성 확보.
+    * Code: [SkillInventory.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinSkillInventory.cpp)
 
 ## 기술 스택
 
