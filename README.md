@@ -10,7 +10,7 @@
     * DirectX 기반으로 Unity의 Animation 시스템을 재설계.
     * GameObject 클래스에 Animator 컴포넌트를 추가하고, Animation을 Resource로 구현하여 재생, 일시 정지 관리.
     * 메모리 최적화를 고려한 설계 및 이벤트 기반 함수 포인터를 통한 코드 가독성 향상.
-    * Code: ![Animator.cpp](https://github.com/user-attachments/assets/f2d2dedf-a694-4cc8-9b5f-3f5c803b7172)
+    * Code: [Animator.cpp](https://github.com/wjstkdkemf/MinhoEngine_2.5D/blob/main/MinhoEngine_SOURCE/MinAnimation.cpp)
 
 * **Collider Manager:**
     * BoxCollider, CircleCollider 등 다양한 충돌체를 컴포넌트로 구현.
@@ -51,7 +51,7 @@
 
 각 시스템의 작동 방식 및 게임 플레이 영상을 통해 구현 내용을 확인하실 수 있습니다.
 
-* [게임 시작 씬과 게임 씬의 전환 영상](https://www.youtube.com/watch?v=h9m_7P1c9AE)
+* ![게임 시작 씬과 게임 씬의 전환 영상](https://github.com/user-attachments/assets/f2d2dedf-a694-4cc8-9b5f-3f5c803b7172)
 * [씬내 이동 반경 제한 및 물리 법칙(가속도) 구현 영상](https://www.youtube.com/watch?v=qmt11QpNQd0)
 * [스킬 인벤토리 및 스킬 데미지 구현 영상](https://www.youtube.com/watch?v=1P8lNQFo7Vo)
 * [스킬 인벤토리와 캐릭터 스킬 시스템의 연동 영상](https://www.youtube.com/watch?v=--5En7LuhW8)
