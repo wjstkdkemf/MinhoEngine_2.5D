@@ -53,12 +53,18 @@
 
 * 게임 시작 씬과 게임 씬의 전환 영상
   ![01.gif](https://github.com/user-attachments/assets/f2d2dedf-a694-4cc8-9b5f-3f5c803b7172)
-* [씬내 이동 반경 제한 및 물리 법칙(가속도) 구현 영상](https://www.youtube.com/watch?v=qmt11QpNQd0)
-* [스킬 인벤토리 및 스킬 데미지 구현 영상](https://www.youtube.com/watch?v=1P8lNQFo7Vo)
+* 씬내 이동 반경 제한 및 물리 법칙(가속도) 구현 영상
+  ![02.gif](https://github.com/user-attachments/assets/dff041e5-5c7d-44a5-ade0-07199f72cf82)
+* 스킬 인벤토리 및 스킬 데미지 구현 영상
+  ![03.gif](https://github.com/user-attachments/assets/5a6f5bf5-f6cd-4942-bd78-24ee49235cd5)
 * [스킬 인벤토리와 캐릭터 스킬 시스템의 연동 영상](https://www.youtube.com/watch?v=--5En7LuhW8)
+  ![04.gif]
 * [2.5D 환경의 점프 구현 영상](https://www.youtube.com/watch?v=Gir6DMIhsvc)
+  ![05.gif]
 * [포탈 구현](https://www.youtube.com/watch?v=oRgj7u0u7VI)
+  ![06.gif]
 * [포탈 후 스킬 기능 작동 확인 영상](https://www.youtube.com/watch?v=QO8wDUo0Pp8)
+  ![07.gif](https://github.com/user-attachments/assets/e12d6243-bb39-4333-bd0d-bd2e93134c65)
 
 ## 배운 점 및 성과
 
