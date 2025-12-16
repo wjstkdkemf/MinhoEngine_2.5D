@@ -51,7 +51,8 @@
 
 각 시스템의 작동 방식 및 게임 플레이 영상을 통해 구현 내용을 확인하실 수 있습니다.
 
-* ![게임 시작 씬과 게임 씬의 전환 영상](https://github.com/user-attachments/assets/f2d2dedf-a694-4cc8-9b5f-3f5c803b7172)
+* 게임 시작 씬과 게임 씬의 전환 영상
+  ![01.gif](https://github.com/user-attachments/assets/f2d2dedf-a694-4cc8-9b5f-3f5c803b7172)
 * [씬내 이동 반경 제한 및 물리 법칙(가속도) 구현 영상](https://www.youtube.com/watch?v=qmt11QpNQd0)
 * [스킬 인벤토리 및 스킬 데미지 구현 영상](https://www.youtube.com/watch?v=1P8lNQFo7Vo)
 * [스킬 인벤토리와 캐릭터 스킬 시스템의 연동 영상](https://www.youtube.com/watch?v=--5En7LuhW8)
